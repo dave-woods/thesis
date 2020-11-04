@@ -1,2 +1,9 @@
+\contentsline {section}{Declaration}{i}
+\contentsline {section}{Abstract}{ii}
+\contentsline {section}{Acknowledgements}{iii}
 \contentsline {section}{\numberline {1}Introduction}{1}
-\contentsline {section}{\numberline {2}Bibliography}{2}
+\contentsline {section}{\numberline {2}Relevant Literature}{2}
+\contentsline {section}{\numberline {3}Annotation}{3}
+\contentsline {section}{\numberline {4}Semantics}{4}
+\contentsline {section}{Bibliography}{5}
+\contentsline {section}{Appendices}{6}
