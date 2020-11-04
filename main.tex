@@ -6,21 +6,24 @@
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
-% - Double check gutter margin is included
-% - Make sure title page wording and formatting is acceptable
-%   - Should supervisors be included on title page?
-% - Does GDPR need to be included in Declaration?
-% - Make sure ADAPT acknowledgement is correct
-% - Check all references are accurate and not abbreviated
-% - Find out if "Summary" should be included versus Abstract
-% - Include lists of tables/figures(?) and double-check for correct labels
-% - Ensure 100k word limit is not reached... lol
-% - 
+% - Double check gutter margin is included                                     %
+% - Make sure title page wording and formatting is acceptable                  %
+%   - Should supervisors be included on title page?                            %
+% - Does GDPR need to be included in Declaration?                              %
+% - Make sure ADAPT acknowledgement is correct                                 %
+% - Check all references are accurate and not abbreviated                      %
+% - Find out if "Summary" should be included versus Abstract                   %
+% - Include lists of tables/figures(?) and double-check for correct labels     %
+% - Ensure 100k word limit is not reached... lol                               %
+% - Check that appendices and other sections not automatically included in the %
+%   TOC are accurate and up to date.                                           %
+% - Should Related Publications be included?                                   %
+% - Is Times a preferred font/does it matter?                                  %
 %                                                                              % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{natbib}
-\usepackage{times}
+%\usepackage{times}
 \usepackage{url}
 \usepackage{array}
 \usepackage{latexsym}
@@ -34,7 +37,6 @@
 \usepackage{setspace}
 \usepackage{diagbox}
 \usepackage[nodayofweek]{datetime}
-\usepackage[toc,page]{appendix}
 
 \def\drs#1#2{
 \begin{tabular}[c]{| c |}
@@ -152,6 +154,9 @@ I, the undersigned, declare that this thesis has not been submitted as an exerci
 \noindent
 I, the undersigned, agree to deposit this thesis in the University's open access institutional repository or allow the Library to do so on my behalf, subject to Irish Copyright Legislation and Trinity College Library conditions of use and acknowledgement.
 
+%\noindent
+%I, the undersigned, consent / do not consent to the examiner retaining a copy of the thesis beyond the examining period, should they so wish (EU GDPR May 2018).
+
 \vspace{\fill}
 
 \begin{table*}[!htbp]
@@ -185,6 +190,9 @@ Centres Programme (Grant 13/RC/2106) and is co-funded under the European
 Regional Development Fund.
 
 
+%\newpage
+%\section*{Related Publications}
+%\addcontentsline{toc}{section}{Related Publications}
 
 
 
@@ -204,12 +212,19 @@ Regional Development Fund.
 \section{Annotation}\label{sec:annotation}
 \newpage
 \section{Semantics}\label{sec:semantics}
+\newpage
+\section{Implementation}\label{sec:implementation}
+\newpage
+\section{Evaluation}\label{sec:evaluation}
+\newpage
+\section{Conclusion}\label{sec:conclusion}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
 %                             Actual Document Ends                             %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \newpage
 \pagestyle{empty}
 \onehalfspacing
