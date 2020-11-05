@@ -19,8 +19,15 @@
 %   TOC are accurate and up to date.                                           %
 % - Should Related Publications be included?                                   %
 % - Is Times a preferred font/does it matter?                                  %
+% - Don't have solitary sections (e.g. 4.1.1 without 4.1.2)                    %
+% - Vinny Wade and Dave Lewis may be internal examiners, so try to address the %
+%   issues they brought up during the transfer                                 %
 %                                                                              % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Use I_A as correction to below for intervals, not nominals
+% Use N_A for first order nominals, as first order ensures each element occurs exactly once, rather than L_A which allows infinite strings for the gap calculation thing
 
 \usepackage{natbib}
 %\usepackage{times}
@@ -190,10 +197,10 @@ Centres Programme (Grant 13/RC/2106) and is co-funded under the European
 Regional Development Fund.
 
 
-%\newpage
-%\section*{Related Publications}
-%\addcontentsline{toc}{section}{Related Publications}
-
+\newpage
+\section*{Related Publications}
+\addcontentsline{toc}{section}{Related Publications}
+% what they are and how they figure in, but don't go into it
 
 
 \newpage
@@ -208,14 +215,45 @@ Regional Development Fund.
 \section{Introduction}\label{sec:intro}
 \newpage
 \section{Relevant Literature}\label{sec:litreview}
+\subsection{Times and Events}
+\subsubsection{Allen Relations}
+\subsubsection{Tense and Aspect} % Reichenbach, Vendler, TEA
+% Aspect hypothesis of dowty - build from statives - this is behind block-compression/destuttering
+% as difference for Schwer s-words
+\subsection{Annotation}
+% Derczinski
+\subsubsection{ISO-TimeML}
+\subsubsection{TimeBank}
+\subsection{Semantics}
+\subsubsection{Discourse Representation Theory}
+% Bunt's use for semantic annotation - can we get his slides from the DCLRS?
+\subsubsection{Boxer}
 \newpage
-\section{Annotation}\label{sec:annotation}
+\section{Finite State Temporality}
+\subsection{Strings for Times and Events}
+\subsubsection{Creating Strings}
+\subsubsection{Granularity: Points vs Intervals vs Semi-intervals}
+\subsubsection{String Operations}
+\subsection{Applications}
+\subsubsection{Timelines from Texts}
+\subsubsection{Scheduling (Zebra Puzzle)}
 \newpage
-\section{Semantics}\label{sec:semantics}
+\section{Methods}\label{sec:methods}
+\subsection{Extracting Strings from Annotated Text}\label{sec:annotation}
+\subsubsection{TLINKs}
+\subsection{Enhancing Strings using DRT}\label{sec:semantics}
+\subsubsection{Parallel Meaning Bank}
+\subsubsection{VerbNet and WordNet}
+\subsection{Inference via Residuals}
 \newpage
 \section{Implementation}\label{sec:implementation}
+\subsection{Computational Pipeline} % ?NLTK
+
 \newpage
 \section{Evaluation}\label{sec:evaluation}
+\subsection{Timeline Validity}\label{sub:strcreation}
+\subsection{FRACAS Semantic Test Suite}
+\subsection{Correctness of Code}\label{sub:correct}
 \newpage
 \section{Conclusion}\label{sec:conclusion}
 
