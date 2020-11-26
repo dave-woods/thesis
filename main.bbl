@@ -1,3 +1,68 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\astroncite{Allen}{1983}]{allen1983maintaining}
+Allen, J.~F. (1983).
+\newblock {Maintaining Knowledge About Temporal Intervals}.
+\newblock {\em Communications of the ACM}, 26(11):832--843.
+
+\bibitem[\protect\astroncite{Bos}{2008}]{Bos2008}
+Bos, J. (2008).
+\newblock {Wide-Coverage Semantic Analysis with Boxer}.
+\newblock In {\em Proceedings of the 2008 Conference on Semantics in Text
+  Processing - STEP '08}, pages 277--286.
+
+\bibitem[\protect\astroncite{Fernando and
+  Nairn}{2005}]{fernando2005entailments}
+Fernando, T. and Nairn, R. (2005).
+\newblock Entailments in finite-state temporality.
+\newblock In {\em Proceedings of the Sixth International Workshop on
+  Computational Semantics}, pages 128--138, Tilburg University.
+
+\bibitem[\protect\astroncite{Fernando et~al.}{2019}]{fernando2019mso}
+Fernando, T., Woods, D., and Vogel, C. (2019).
+\newblock Mso with tests and reducts.
+\newblock In {\em Proceedings of the 14th International Conference on
+  Finite-State Methods and Natural Language Processing}, pages 27--36.
+
+\bibitem[\protect\astroncite{Freksa}{1992}]{Freksa1992}
+Freksa, C. (1992).
+\newblock {Temporal Reasoning Based on Semi-Intervals}.
+\newblock {\em {Artificial Intelligence}}, 54:199--227.
+
+\bibitem[\protect\astroncite{Kamp and Reyle}{1993}]{Kamp1993}
+Kamp, H. and Reyle, U. (1993).
+\newblock {\em {From Discourse to Logic; An Introduction to Mod- eltheoretic
+  Semantics of Natural Language, Formal Logic and DRT}}.
+\newblock Dordrecht: Kluwer.
+
+\bibitem[\protect\astroncite{Pustejovsky et~al.}{2005}]{Pustejovsky2005}
+Pustejovsky, J., Knippen, R., Littman, J., and Saur{\'{i}}, R. (2005).
+\newblock {Temporal and Event Information in Natural Language Text}.
+\newblock {\em Language Resources and Evaluation}, 39(2-3):123--164.
+
+\bibitem[\protect\astroncite{Pustejovsky
+  et~al.}{2006}]{pustejovsky2006timebank}
+Pustejovsky, J., Verhagen, M., Sauri, R., Littman, J., Gaizauskas, R., Katz,
+  G., Mani, I., Knippen, R., and Setzer, A. (2006).
+\newblock {TimeBank 1.2 LDC2006T08}.
+\newblock Web Download: \url{https://catalog.ldc.upenn.edu/LDC2006T08}.
+\newblock {Philadelphia: Linguistic Data Consortium}.
+
+\bibitem[\protect\astroncite{Reichenbach}{1947}]{reichenbach1947elements}
+Reichenbach, H. (1947).
+\newblock {\em Elements of symbolic logic}.
+\newblock New York: Macmillan.
+
+\bibitem[\protect\astroncite{Woods and Fernando}{2018}]{woods2018improving}
+Woods, D. and Fernando, T. (2018).
+\newblock {Improving String Processing for Temporal Relations}.
+\newblock In {\em Proceedings of the 14th Joint ISO-ACL Workshop on
+  Interoperable Semantic Annotation (ISA-14)}, pages 76--86.
+
+\bibitem[\protect\astroncite{Woods et~al.}{2017}]{woods2017towards}
+Woods, D., Fernando, T., and Vogel, C. (2017).
+\newblock {Towards Efficient String Processing of Annotated Events}.
+\newblock In {\em Proceedings of the 13th Joint ISO-ACL Workshop on
+  Interoperable Semantic Annotation (ISA-13)}, pages 124--133.
+
 \end{thebibliography}

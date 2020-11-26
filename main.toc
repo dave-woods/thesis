@@ -7,34 +7,40 @@
 \contentsline {subsection}{\numberline {2.1}Times and Events}{2}
 \contentsline {subsubsection}{\numberline {2.1.1}Allen Relations}{2}
 \contentsline {subsubsection}{\numberline {2.1.2}Tense and Aspect}{2}
-\contentsline {subsection}{\numberline {2.2}Annotation}{2}
-\contentsline {subsubsection}{\numberline {2.2.1}ISO-TimeML}{2}
-\contentsline {subsubsection}{\numberline {2.2.2}TimeBank}{2}
-\contentsline {subsection}{\numberline {2.3}Semantics}{2}
-\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{2}
-\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{2}
-\contentsline {section}{\numberline {3}Finite State Temporality}{3}
-\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{3}
-\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{3}
-\contentsline {subsubsection}{\numberline {3.1.2}Granularity: Points vs Intervals vs Semi-intervals}{3}
-\contentsline {subsubsection}{\numberline {3.1.3}String Operations}{3}
-\contentsline {subsection}{\numberline {3.2}Applications}{3}
-\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{3}
-\contentsline {subsubsection}{\numberline {3.2.2}Scheduling (Zebra Puzzle)}{3}
-\contentsline {section}{\numberline {4}Methods}{4}
-\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{4}
-\contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{4}
-\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{4}
-\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{4}
-\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{4}
-\contentsline {subsection}{\numberline {4.3}Inference via Residuals}{4}
-\contentsline {section}{\numberline {5}Implementation}{5}
-\contentsline {subsection}{\numberline {5.1}Computational Pipeline}{5}
-\contentsline {section}{\numberline {6}Evaluation}{6}
-\contentsline {subsection}{\numberline {6.1}Timeline Validity}{6}
-\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{6}
-\contentsline {subsection}{\numberline {6.3}Correctness of Code}{6}
-\contentsline {section}{\numberline {7}Conclusion}{7}
-\contentsline {section}{Bibliography}{8}
-\contentsline {section}{Appendices}{9}
-\contentsline {subsection}{Python Code}{9}
+\contentsline {subsection}{\numberline {2.2}Temporal Annotation}{2}
+\contentsline {subsubsection}{\numberline {2.2.1}ISO-TimeML}{3}
+\contentsline {subsubsection}{\numberline {2.2.2}TimeBank}{3}
+\contentsline {subsection}{\numberline {2.3}Temporal Semantics}{3}
+\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{3}
+\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{4}
+\contentsline {section}{\numberline {3}Finite-State Temporality}{5}
+\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{5}
+\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{6}
+\contentsline {subsubsection}{\numberline {3.1.2}Granularity: Points vs Intervals vs Semi-intervals}{6}
+\contentsline {subsubsection}{\numberline {3.1.3}String Operations}{7}
+\contentsline {subsection}{\numberline {3.2}Applications}{7}
+\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{7}
+\contentsline {subsubsection}{\numberline {3.2.2}Inferring New Information}{8}
+\contentsline {subsubsection}{\numberline {3.2.3}Scheduling (Zebra Puzzle)}{9}
+\contentsline {section}{\numberline {4}Methods}{10}
+\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{10}
+\contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{10}
+\contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{11}
+\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{12}
+\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{12}
+\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{13}
+\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{13}
+\contentsline {subsubsection}{\numberline {4.3.1}Superposition}{13}
+\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{13}
+\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{13}
+\contentsline {section}{\numberline {5}Implementation}{14}
+\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{14}
+\contentsline {subsection}{\numberline {5.2}Front-end Interface}{14}
+\contentsline {section}{\numberline {6}Evaluation}{15}
+\contentsline {subsection}{\numberline {6.1}Timeline Validity}{15}
+\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{15}
+\contentsline {subsection}{\numberline {6.3}Correctness of Code}{15}
+\contentsline {section}{\numberline {7}Conclusion}{16}
+\contentsline {section}{Bibliography}{17}
+\contentsline {section}{Appendices}{18}
+\contentsline {subsection}{Python Code}{18}

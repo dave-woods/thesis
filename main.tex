@@ -17,12 +17,15 @@
 % - Ensure 100k word limit is not reached... lol                               %
 % - Check that appendices and other sections not automatically included in the %
 %   TOC are accurate and up to date.                                           %
-% - Should Related Publications be included?                                   %
+% * Should Related Publications be included?                                   %
 % - Is Times a preferred font/does it matter?                                  %
-% - Don't have solitary sections (e.g. 4.1.1 without 4.1.2)                    %
+% * Don't have solitary sections (e.g. 4.1.1 without 4.1.2)                    %
 % - Vinny Wade and Dave Lewis may be internal examiners, so try to address the %
 %   issues they brought up during the transfer                                 %
-%                                                                              % 
+% - Should FST discussion bother talking about FS automata/transducers?        %
+% - Remind examiners regularly of core concepts, don't expect them to remember %
+% - Should lit review cover smaller topics eg scheduling or just major themes? %
+%                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -120,6 +123,11 @@
 \renewcommand{\emptyset}{\varnothing}
 \renewcommand{\phi}{\varphi}
 
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
 % Allows entry of EventStrings as |a|{}|b,c|d|
 % Use {} for empty box
 \usepackage{etoolbox}
@@ -129,6 +137,13 @@
 	\PipeParser{#1}
 }
 
+\newcommand{\xmltag}[2][]{\texttt{\textless{}#2#1\textgreater{}}}
+
+\newcommand{\refneeded}[1][]{{\color{red}[Figure reference needed!#1]}}
+\newcommand{\citeneeded}[1][]{{\color{red}[Citation needed!#1]}}
+
+\newcommand{\selfnote}[1]{{\color{red}[NB\footnote{{\color{red}#1}}]}}
+\newcommand{\nb}{\selfnote}
 
 %\usepackage[nottoc,numbib]{tocbibind} %This includes the bibliography as a numbered section in the TOC
 \usepackage[nottoc]{tocbibind}
@@ -144,7 +159,7 @@
 \date{\parbox{\linewidth}{\centering%
 		{\large A dissertation submitted\\in fulfillment of the requirements\\for the Degree of\\\textbf{Doctor of Philosophy}}\\		
 		\bigskip\bigskip\bigskip
-		{\Large \textbf{University of Dublin, Trinity College}}\\\endgraf \monthyeardate\today}}
+		{\Large \textbf{University of Dublin, Trinity College}}\\\endgraf \monthyeardate\today}{\small \vspace{\fill} Supervised by: Dr Tim Fernando, Dr Carl Vogel}}
 
 \begin{document}
 \maketitle
@@ -201,8 +216,13 @@ Regional Development Fund.
 \section*{Related Publications}
 \addcontentsline{toc}{section}{Related Publications}
 % what they are and how they figure in, but don't go into it
+During the course of my studies, I was an author on three papers that were accepted for publication, listed below.
 
-
+\begin{itemize}
+	\item ``Towards Efficient String Processing of Annotated Events" \citep{woods2017towards}, describing the use of strings to model temporal data such as could be found in text annotated with ISO-TimeML. Presented at the 13th Joint ISO-ACL Workshop on Interoperable Semantic Annotation in Montpellier, France.
+	\item ``Improving String Processing for Temporal Relations" \citep{woods2018improving}, discussing refinements to the previously described string-based model, such as varied granularity. Presented at the 14th Joint ISO-ACL Workshop on Interoperable Semantic Annotation, colocated with COLING 2018 in Santa F\'{e}, New Mexico, USA.
+	\item ``MSO with tests and reducts" \citep*{fernando2019mso}, discussing differing string granularities in the context of tests within Monadic Second Order logic. Presented at the 14th International Conference on Finite-State Methods and Natural Language Processing in Dresden, Germany.
+\end{itemize}
 \newpage
 \tableofcontents
 \newpage
@@ -213,46 +233,165 @@ Regional Development Fund.
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:intro}
+This thesis will explore and describe the use of strings as models to represent temporal information---data concerning times and events---for use in computational systems which deal with knowledge-based reasoning in some way. Such systems rely on temporal information in order to perform accurately. For example, a question-answering system that is asked ``Will it rain next week?" must be able to locate itself temporally such that it knows what the current time is, the relation between that time and the queried time, and whether raining events have been forecast during the period that it defines using the phrase ``next week".
 \newpage
 \section{Relevant Literature}\label{sec:litreview}
-\subsection{Times and Events}
-\subsubsection{Allen Relations}
-\subsubsection{Tense and Aspect} % Reichenbach, Vendler, TEA
+In this chapter, the existing literature related to the major topics of the thesis are reviewed and analysed. A gap is identified, which the remaineder of this work seeks to fill.
+\subsection{Times and Events}\label{sub:timesevents}
+The concept of time has fascinated researchers for millenia, and as such, a great deal of work exists on the topic. What follows here focuses on the formal study of temporality in language.
+\subsubsection{Allen Relations}\label{ssub:allen}
+The seminal work of James F. Allen's \textit{Maintaining Knowledge about Temporal Intervals} has pushed the field since its publication in  \citeyear{allen1983maintaining}, and indeed the framework he described drives some of the design decisions in the present work.
+\subsubsection{Tense and Aspect}\label{ssub:tenseaspect}
+Reichenbach's (\citeyear{reichenbach1947elements}) theory of tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect. \selfnote{Bring up TEA here. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block-compression. Tim mentioned that this is a difference from Schwer's S-Words.}
+%theoretically, if event time can be an interval, so could the speech and reference times, which would lead to even more aspects
+% Reichenbach, Vendler, TEA
 % Aspect hypothesis of dowty - build from statives - this is behind block-compression/destuttering
 % as difference for Schwer s-words
-\subsection{Annotation}
+\subsection{Temporal Annotation}\label{sub:annotation}
+Ideally, a human using an artificially intelligent system won't have to consider annotation, except in the case when that itself is the goal. In any case, for now annotated text is a crucial source of data for working with models such as are presented in this work. When it comes to temporal annotation, the international standard is TimeML, specifically ISO-TimeML. \selfnote{Also talk about Tango and Verhagen's T-BOX.}
 % Derczinski
-\subsubsection{ISO-TimeML}
-\subsubsection{TimeBank}
-\subsection{Semantics}
-\subsubsection{Discourse Representation Theory}
+\subsubsection{ISO-TimeML}\label{ssub:timeml}
+TimeML \citep{Pustejovsky2005} was initially designed with the goal of improving question-answering systems by marking up texts so as to give events explicit temporal locations.
+
+TimeML vs ISO-TimeML: the ISO version is the standard. However, the TimeBank corpus uses the older version.
+
+\subsubsection{TimeBank}\label{ssub:timebank}
+The TimeBank corpus \citep{pustejovsky2006timebank} collects news articles that were manually annotated with TimeML. While it does contain some inconsistencies as a result of human error, it remains one of the largest sources for documents marked up with TimeML.
+\subsection{Temporal Semantics}\label{sub:semantics}
+The following sections describe some of the existing ways that the semantics of times and events can be represented. \selfnote{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST?}
+\subsubsection{Discourse Representation Theory}\label{ssub:drt}
+\citet{Kamp1993} introduced Discourse Representation Theory (DRT) as a framework for semantically representing information derived from a text. DRT separates discourse referents (the entities under discussion) from Discourse Representation Structure (DRS) conditions, which describe what is known about the referents.
+
+\selfnote{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
 % Bunt's use for semantic annotation - can we get his slides from the DCLRS?
-\subsubsection{Boxer}
+\subsubsection{Boxer}\label{ssub:boxer}
+Automatic parsing of text into DRSs is a popular task \selfnote{Find the shared task from 2019---I'm sure it was on the PMB website, but I can't find it at present}, and \citet{Bos2008} released the first version of the Boxer software which claimed to do this with over 95\% coverage for semantic analysis of newswire texts, though it was noted in the release that performance for temporal data was not as strong as its other areas.
+
+There is a newer version of Boxer implemented as part of the Parallel Meaning Bank \citeneeded{} toolchain---however, this version had unfortunately not been made available for general use at the time of writing.
+
 \newpage
-\section{Finite State Temporality}
-\subsection{Strings for Times and Events}
-\subsubsection{Creating Strings}
-\subsubsection{Granularity: Points vs Intervals vs Semi-intervals}
-\subsubsection{String Operations}
-\subsection{Applications}
-\subsubsection{Timelines from Texts}
-\subsubsection{Scheduling (Zebra Puzzle)}
+\section{Finite-State Temporality}\label{sec:fst}
+Finite-state methods may be applied to temporal semantics in an approach known as \textit{finite-state temporality} \citep{fernando2005entailments} \selfnote{Probably need to go into more detail on what FST is as defined here. Definitely need to mention why finite-state as a whole is good. Maybe mention MSO in this opening bit?}. In this chapter, strings are demonstrated as a tool of choice in modelling sequences of times and events for use within this approach. The reasoning behind the creation of such temporal strings is shown, along with their mechanics, and a discussion on the granularity of temporal information, i.e. how much ``zoom" is useful when looking at an event.
+
+A number of operations are described for working with these strings, in particular \textit{superposition} for combining the data from multiple strings. These manipulations will prove useful when reasoning about event relations, and also in maximising data density, as will be seen.
+
+The strings are then shown as applied to creating a functional timeline from the temporal information in a piece of text, and also how they may be useful elsewhere, such as in the area of scheduling, using a variation of the Zebra Puzzle \citeneeded{}.
+
+\subsection{Strings for Times and Events}\label{sub:strings}
+A string is a basic computational entity, defined as a finite sequence of symbols selected from some finite alphabet $A$. They are amenable to manipulation using finite-state methods, something lacking in the infinite models of predicate logic.
+
+How should events be labelled? Some say an event is defined in part by its participants \citeneeded{}. Many of the procedures defined in this work which use these strings operate primarily on a syntactic level rather than depending on the lexical semantics of individual words, in order to produce an approach that works broadly. As such, in most cases, simple labels suffice for the purposes of describing the mechanics used here---this follows TimeML's standard of using labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, it will be useful to keep reference to a fuller picture of the data when possible, particularly when drawing inferences (see \ref{ssub:inferring} and \ref{ssub:ontology}).
+
+\subsubsection{Creating Strings}\label{ssub:creating}
+In order to create a string, first fix a set $A$ of symbols which represent the times and events under discussion. 
+
+Sets of strings are languages \selfnote{Maybe mention this in \ref{sub:strings} rather than here? See how it goes}.
+
+\subsubsection{Granularity: Points vs Intervals vs Semi-intervals}\label{ssub:granularity}
+A decision must be made in regards to what is regarded as `primitive' in a string, in terms of whether a basic component is considered as instantaneous, or as having some duration. In the first view, only points exist, and so an event will have a beginning and an ending (left and right borders), each of which represented by a symbol in the string. In the second, entire intervals are used instead of points. Two points may only be related in three ways: \textless, =, \textgreater. Two intervals, however, may be related in thirteen different ways, precisely, the Allen Relations \citeneeded{}. 
+
+There are advantages to each approach: ... e.g. intervals are intuitive and infinitely divisible and allow for more specific relation-labels; points are simpler and incomplete information doesn't break the system by forcing disjunctions.
+
+A third option exists: semi-intervals, as described by \cite{Freksa1992}. By treating the borders of an event as intervals, this expands the number of available relations between two events to 31.
+
+Ultimately, intervals are chosen for a number of reasons: primarily because ISO-TimeML, the international standard for temporal annotation, uses intervals for its TLINKs, but also they seem the most intuitive \selfnote{This is vague and subjective; defend it better}. Worth noting that there are translations available between the different granularities.
+
+\subsubsection{String Operations}\label{ssub:operations}
+Many many operations. The most important is \textbf{superposition} (and it's more advanced forms)! Also we have block-compression, reduct, vocabulary, projection, border translations. Note also that there are equivalent operations for strings which use points instead of intervals.
+
+Discuss the language level operations here too.
+
+\subsection{Applications}\label{sub:applications}
+The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
+
+\subsubsection{Timelines from Texts}\label{ssub:timelines}
+Strings, as entities comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---though not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality \citeneeded[ -- see Sec 1 para 1 of: \url{https://onlinelibrary.wiley.com/doi/full/10.1111/cogs.12804}]{}. Regardless of spatial orientation, this perception of time maps well to a sequential representation as is found with strings. Perceived directionality of time is not an issue, as it is a small modification to change the direction of a string.
+
+A lot of information can be derived from a text document, depending on what one is looking for. Here, the focus is on isolating the events and times that are mentioned or implied in the text. By extracting this information, a timeline is built which gives a picture of the content of the document, which may reveal insights not obvious when looking at the text as a whole.
+
+\subsubsection{Inferring New Information}\label{ssub:inferring}
+A text which has been manually annotated for temporal inforamation will typically mark up the most important relations between events, at least as the annotator saw them. By extracting and making plain the timeline, any inconsistencies are immediately revealed, whether these are the fault of a problematic document or human error. Further, relations between times and events which were not previously obvious can be spelled out clearly.
+
+This can be extended over multiple documents by keeping track of the semantics of the elements in a string---being able to map between the symbols and their meanings---and linking documents which refer to the same events. This can provide a way for checking consistency between reports which originate from different sources, or a way for augmenting an existing timeline with new data.
+
+Additionally, conclusions can be drawn about whether certain inferences can be made based on existing data by determining the gap between premise strings and strings representing the question statement. That is, deriving the information that could be added to the premises to make the conclusion consistent with the known information (see \ref{ssub:residuals}).
+
+\subsubsection{Scheduling (Zebra Puzzle)}\label{ssub:zebra}
+Scheduling is a problem. The Zebra/Einstein Puzzle is another problem. They may seem dissimilar, but in fact, there are a number of parallels. Both problems can be viewed as constraint satisfaction problems. Although the Zebra Puzzle concerns physical constraints, these can be modelled as sequences for which one can use strings to represent. If a ``house" is conceptualised as a box in a string i.e. a set, the elements contained within are the properties of that house according to the puzzle. For example, $\{red, english, zebra, oj, kools\}$. The left/right spatial relations are thought of in the same way as the previous/next boxes in a string.
+
+Below is presented a variant of the puzzle using clues pertaining to temporal relations instead of spatial ones.
+%\newpage
+%a
+%\newpage
+%a
+%\newpage
+%a
+%\newpage
+%a
+%\newpage
+%a
+%\newpage
+%a
+%\newpage
+%a
+%\newpage
+%a
+%\newpage
+%a
+
 \newpage
 \section{Methods}\label{sec:methods}
-\subsection{Extracting Strings from Annotated Text}\label{sec:annotation}
-\subsubsection{TLINKs}
-\subsection{Enhancing Strings using DRT}\label{sec:semantics}
-\subsubsection{Parallel Meaning Bank}
-\subsubsection{VerbNet and WordNet}
-\subsection{Inference via Residuals}
+This chapter details the approaches that were taken to produce the results.
+
+\subsection{Extracting Strings from Annotated Text}\label{sub:extracting}
+The primary source of data is the TimeBank corpus which is one of the largest available collections of documents which are annotated with TimeML. Events are marked up with an \xmltag{EVENT} tag, and times with the \xmltag{TIMEX3} tag. Within TimeML, they are treated as intervals (see \ref{ssub:granularity}) which becomes relevant to the present work in the way they are related.
+
+\subsubsection{TLINKs}\label{ssub:tlinks}
+TimeML primarily uses \xmltag{TLINK} tags to annotate relations between marked up events and times. These serve as the basis for initial string creation, as they provide the two intervals that are being related, as well as the relation between them. The relation set used is specific to TimeML, but has its roots in the set of Allen Relations---see table \refneeded{} below.
+
+A translation is built from \xmltag{TLINK} to string, using the tag's attributes to provide the data, and the Allen Relations as an intermediary step, as per table \refneeded{}. For example: \nb{example here please}. Any events and times that feature in the document but are not mentioned in a \xmltag{TLINK} are kept aside for now, as there is not a given connection from these events to the rest of the timeline.
+
+After creating strings from the \xmltag{TLINK}s, the next step is to start building the timeline, using the superposition technique described in \ref{ssub:operations}. This allows for connections to be built between events and times that were not explicitly related by the annotation. If every time and event in the text is related to every other time and event, there is \textit{temporal closure} in the text (see \ref{ssub:allen} \nb{See transfer p6 -- maybe include the graph of $n(n-1)/2, n \ge 2$?}). For there to be temporal closure in a TimeML document would be a large amount of work for an annotator, as for $N$ events/times there would be $N(N - 1) / 2$ relations between them, which increases quickly: at $N = 10$ there are 45 relations, at $N = 50$ there are 1225 relations. This becomes unwieldy for a human to annotate, especially given that it is generally understood by the human reader that if $A$ precedes $B$, and $B$ precedes $C$, then $A$ also precedes $C$, so it feels unnecessary to include this latter relation. However, an automated system does not have this inherent knowledge, and needs a way to calculate the implied relations.
+
+The various relations can be combined according to the table in \cite{allen1983maintaining} \citeneeded[ -- get the page and figure number], reproduced in \ref{ssub:allen} \refneeded{}, and again below using strings in table \refneeded{}. The advantage to using strings is that the extension beyond three events is simple \nb{Defend this -- I think there is something in ISA13 paper -- or remove}. It should be noted that several combinations of relations produce a disjunction of relations, which follows from the fact that these combinations of $a \bigcdot b$ and $b \bigcdot c$ don't provide enough information to determine the exact relation $a \bigcdot c$. It may be possible to narrow this down, though, with the addition of further relations connecting other intervals ($d,e,f,...$) with some or all of $a,b,c$.
+
+\subsubsection{Handling Incomplete Data}\label{ssub:incomplete}
+When dealing with any temporal information, there is often a lack of specificity that means temporal closure cannot be calculated. For example, knowing that event $a$ occurred before event $c$ \Before{a}{c} and that event $b$ also occurred before $c$ \Before{b}{c} does not impart any information on the relation between $a$ and $b$. If this is all of the available data, then it is only possible to choose this relation $a \bigcdot b$ with a precision of $\frac{1}{13}$ chance. However, further information which includes other relations for each of $a$ and $b$ individually may eventually reveal their connection.
+
+See also, using semi-intervals to simplify disjunctions of Allen Relations. Minimal sets of maximal strings.
+
+\subsection{Enhancing Strings using DRT}\label{sub:enhancing}
+Automatic DRS-parsing of plain text is a task which has recently seen new approaches \citeneeded[ -- shared task, see fsmnlp paper sec 1]. It is possible to leverage the temporal information that features in a DRS to create strings. While the relations generally found using this approach are less specific than those found in TimeML \nb{compare the relations}, the advantage of using DRSs is that elements such as event participants are described.
+
+Boxer \citep{Bos2008} is one available tool for parsing a text into one or more DRSs, though the temporal information in this version struggles a bit. A newer version of the tool is used as part of the Parallel Meaning Bank \citeneeded toolchain, although it has not been made publicly available at present.
+
+\subsubsection{Parallel Meaning Bank}\label{ssub:pmb}
+Under the assumption that the version of Boxer that is used in PMB would become available at some point, here is a description of PMB, and how the present work utilises the data within it as a demonstration of using text that has been parsed into DRSs can be transformed into strings for temporal reasoning.
+
+Discourse relations are also a thing here.
+
+\subsubsection{VerbNet and WordNet}\label{ssub:verbwordnet}
+Two resources which are used in PMB and that can be leveraged are VerbNet, which supplies the semantic roles in a DRS, and WordNet, which is used to specify the particular sense of a verb (or other word). The version of Boxer used in the PMB includes this information in its output.
+
+This data can be useful when trying to make links between events which have not been given a specific relation. For example, finding the closest hypernym between two verbs, or checking verbs which share participants may help to inform the building of relations (see \ref{ssub:ontology})
+
+\subsection{Reasoning with Strings}\label{sub:reasoning}
+
+\subsubsection{Superposition}\label{ssub:superposition}
+
+\subsubsection{Event Ontology}\label{ssub:ontology}
+
+\subsubsection{Residuals and Gaps}\label{ssub:residuals}
+
 \newpage
 \section{Implementation}\label{sec:implementation}
-\subsection{Computational Pipeline} % ?NLTK
+\subsection{Back-end Pipeline}\label{sub:backend} % ?NLTK
+\subsection{Front-end Interface}\label{sub:frontend}
 
 \newpage
 \section{Evaluation}\label{sec:evaluation}
-\subsection{Timeline Validity}\label{sub:strcreation}
-\subsection{FRACAS Semantic Test Suite}
+\subsection{Timeline Validity}\label{sub:validity}
+\subsection{FRACAS Semantic Test Suite}\label{sub:fracas}
 \subsection{Correctness of Code}\label{sub:correct}
 \newpage
 \section{Conclusion}\label{sec:conclusion}
