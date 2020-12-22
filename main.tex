@@ -48,6 +48,8 @@
 \usepackage{diagbox}
 \usepackage[nodayofweek]{datetime}
 
+\captionsetup[figure]{font=small,labelfont=small}
+
 \def\drs#1#2{
 \begin{tabular}[c]{| c |}
 	\hline #1 \\
@@ -111,6 +113,22 @@
 \newcommand{\ciDuring}[2]{``$#1$ contains $#2$'' -- \iDuring{#1}{#2}}
 \newcommand{\ciStarts}[2]{``$#1$ started by $#2$'' -- \iStarts{#1}{#2}}
 \newcommand{\ciFinishes}[2]{``$#1$ finished by $#2$'' -- \iFinishes{#1}{#2}}
+
+
+\newcommand{\siBefore}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#2)}\ebox{\alpha(#2),\omega(#1)}\ebox{\omega(#1)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siMeets}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#2)}\ebox{\omega(#1)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siOverlaps}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#2)}\ebox{}\ebox{\omega(#1)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siDuring}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#1)}\ebox{}\ebox{\omega(#1)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siStarts}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{}\ebox{\omega(#1)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siFinishes}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#1)}\ebox{}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siEquals}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siAfter}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#1)}\ebox{\alpha(#1),\omega(#2)}\ebox{\omega(#2)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siiMeets}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#1)}\ebox{\omega(#2)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siiOverlaps}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#1)}\ebox{}\ebox{\omega(#2)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siiDuring}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#2)}\ebox{}\ebox{\omega(#2)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siiStarts}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{}\ebox{\omega(#2)}\ebox{\omega(#1),\omega(#2)}}
+\newcommand{\siiFinishes}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#2)}\ebox{}\ebox{\omega(#1),\omega(#2)}}
+
 
 \newcommand{\projects}[3]{\bc(\rho_{#3}(#1)) = #2}
 \newcommand{\projectsVoc}[2]{\projects{#1}{#2}{voc(#2)}}
@@ -203,6 +221,10 @@ I, the undersigned, agree to deposit this thesis in the University's open access
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 %My thanks to Tim for his patience and understanding, to Carl for guiding and reassuring comments, and to my friends and family for their continuous encouragement and support. In particular, Brian, who had the misfortune to be staying with me while I was working on this report, and the members of DU Trampoline club, who have had a more bad-tempered coach of late.
+
+I would like to thank my parents, Margaret and Graham, who never doubted I would do my best; my brother, Fergus, often a much-needed reminder of normal life; Conor and Katie, who inspired me to start; Adelais, who encouraged me to finish; and all the members of DU Trampoline Club, who gave me a reason to stick around. I hope it was worth it!
+
+My thanks go also to my supervisors: Tim, for being patient with me even when I was struggling, and Carl, who often managed to reassure me that I wasn't going down completely the wrong path.
 
 This research is supported by Science Foundation Ireland (SFI) through the CNGL 
 Programme (Grant 12/CE/I2267) in the ADAPT Centre 
@@ -360,6 +382,96 @@ When dealing with any temporal information, there is often a lack of specificity
 
 See also, using semi-intervals to simplify disjunctions of Allen Relations. Minimal sets of maximal strings.
 
+Freksa relations using semi-intervals: the appearance of $\alpha(a)$ within a box represents a negation of the fluent $a$ conjoined with a formula stating that $a$ will be true in a subsequent box; similarly, $\omega(a)$ represents a negation of the fluent $a$ conjoined with a formula stating that $a$ was true in a previous box.
+
+\begin{align}
+%\alpha_a(x) := x \notin P_a \land \exists y(x < y \land y \in P_a \land \forall z(z < y \rightarrow z \notin P_a))\\
+%\omega_a(x) := x \notin P_a \land \exists y(y < x \land y \in P_a \land \forall z(y < z \rightarrow z \notin P_a))
+\alpha_a(x) := \exists y(x < y \land y \in P_a \land \forall z(z < y \rightarrow z \notin P_a))\\
+\omega_a(x) := \exists y(y < x \land y \in P_a \land \forall z(y < z \rightarrow z \notin P_a))
+\end{align}
+Note that it is convenient to write $\alpha(a)$ for $\alpha_a(x)$ when using the box-notation.
+
+A string may be translated to one using semi-intervals by placing $\alpha(f)$ in every box preceding one in which a fluent $f$ appears, and $\omega(f)$ in every box succeeding it, repeating this for each $f \in A$. Thus a string $s = $\EventString{{}|a|b|{}} becomes $si(s) = $\EventString{\alpha(a),\alpha(b)|\alpha(b)|\omega(a)|\omega(a),\omega(b)}, where each of the fluents which originally appeared in the string have also been removed. It should be noticed that strings which use semi-intervals do not (necessarily) feature empty boxes at each end. This is due to the fact that a semi-interval need not be finitely bounded. In fact
+
+This mechanism allows for partially known information to be represented using strings. For example, the string \EventString{\alpha(a), \alpha(b)|{}} represents the knowledge that the events labelled $a$ and $b$ both begin at the same moment, without stating anything about when they each finish---they may end simultaneously, $a$ may finish before $b$, or $b$ may finish before $a$. Which of these states is true is unknown without further data.
+
+Semi-intervals allow for representing a greater range of event relations than the Allen relations do alone. Freksa \citeneeded{} describes 18 new relations which are made up of disjunctions of Allen's relations, based on the concept of cognitive neighbourhoods. That is, groupings of relations that make intuitive sense and can be derived from compositions of Allen relations \nb{expand, clarify ``intuitive", decide between Allen/Allen's, try to use less ``relations"?} \nb{include table or graphic of Freksa's relations, eg p18 or p21}.
+
+Many of the Freksa relations can be captured using the semi-intervals \nb{duh, he designed them that way} in the box-notation.
+
+For example, the relation \textit{older} corresponds with a disjunction of five Allen relations: \textit{before}, \textit{meets}, \textit{overlaps}, \textit{contains}, and \textit{finished by}.
+\begin{figure}[h]
+	\begin{align*}
+	\text{before -- }&\Before{a}{b}\\
+	\text{meets -- }&\Meets{a}{b}\\
+	\text{overlaps -- }&\Overlaps{a}{b}\\
+	\text{contains -- }&\iDuring{a}{b}\\
+	\text{finished by -- }&\iFinishes{a}{b}
+	\end{align*}
+	\caption{The Freksa relation \textit{older}}
+\end{figure}
+The similarities between these five relations becomes more apparent when they are translated to use semi-intervals instead:
+\begin{figure}[h]
+	\begin{align*}
+	\text{before -- }&\siBefore{a}{b}\\
+	\text{meets -- }&\siMeets{a}{b}\\
+	\text{overlaps -- }&\siOverlaps{a}{b}\\
+	\text{contains -- }&\siiDuring{a}{b}\\
+	\text{finished by -- }&\siiFinishes{a}{b}
+	\end{align*}
+	\caption{The Freksa relation \textit{older} using semi-intervals, before block-compressed reduct}
+\end{figure}
+
+Each of these five strings projects (using a block-compressed reduct) to the string \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}}, meaning the relation $a$ \textit{older} $b$ can be represented using just this one string, instead of five. This does raise the question, however, of whether the tradeoffs are worth it: a great reduction in the cardinality of the timeline set can be achieved, but at the cost of using a more complex vocabulary and reducing the precision of the known information.
+
+Unfortunately, only 10 of the 18 Freksa relations can be described using a single string without further complicating the vocabulary which may appear within a box in a string. Since all of these new relations are disjunctions of Allen relations, it follows that it may be acceptable to include disjunctions of semi-intervals inside a box, such as \ebox{\alpha(a) \lor \alpha(b)}, which is interpreted as one might expect: either $\alpha(a)$ appears in the box, or $\alpha(b)$ does, or they both do. This allowance admits a further 5 Freksa relations to be described in single strings. Of the remaining 3 relations, the \textit{unknown} relation may also be described using a single string, but it is trivial, since it encompasses a disjunction of all 13 Allen relations, and is formed by a simple disjunction of all possible semi-inteval symbols: \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}.
+
+Below is a table of the 18 Freksa relations, the Allen relations they comprise, and the string which they will project to. \nb{tidy up ordering of allens}
+
+\begin{figure}[h]
+	\footnotesize
+	\begin{center}
+	\begin{tabular}{c | c | c}
+		\hline
+		Freksa & Allen & string\\
+		\hline
+		unknown & b, bi, m, mi, s, si, f, fi, d, di, o, oi, e & \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}\\
+		older & b, m, o, di, fi & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}}\\
+		younger & bi, mi, oi, d, f & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}}\\
+		head to head & s, si, e & \EventString{\alpha(a),\alpha(b)|{}}\\
+		tail to tail & f, fi, e & \EventString{{}|\omega(a),\omega(b)}\\
+		survived by & b, m, s, d, o & \EventString{{}|\omega(a)|\omega(a),\omega(b)}\\
+		survives & bi, mi, si, di, oi & \EventString{{}|\omega(b)|\omega(a),\omega(b)}\\
+		born before death & b, m, s, si, f, fi, d, di, o, oi, e & \EventString{\alpha(a)|{}|\omega(b)}\\
+		died after birth & bi, mi, s, si, f, fi, d, di, o, oi, e & \EventString{\alpha(b)|{}|\omega(a)}\\
+		precedes & b, m & \EventString{\alpha(b) \lor \omega(a)}\\
+		succeeds & bi, mi & \EventString{\alpha(a) \lor \omega(b)}\\
+		contemporary & s, si, f, fi, d, di, o, oi, e & \EventString{\alpha(a) \lor \alpha(b)|{}|\omega(a) \lor \omega(b)}\\
+		older contemporary & o, fi, di & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}|\omega(a) \lor \omega(b)}\\
+		younger contemporary & oi, f, d & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}|\omega(a) \lor \omega(b)}\\
+		surviving contemporary & di, si, oi & \EventString{\alpha(a)|{}|\omega(b)|\omega(a),\omega(b)}\\
+		survived by contemporary & d, s, o & \EventString{\alpha(b)|{}|\omega(a)|\omega(a),\omega(b)}\\
+		older and survived by & b, m, o & ...\\
+		younger and survives & bi, mi, oi & ...\\
+	\end{tabular}
+	\end{center}
+	\caption{The Freksa relations and the strings they project to}
+\end{figure}
+The last two relations on this list cannot be represented using a single string, and are instead must use conjunctions of pairs of strings: 
+\begin{figure}[h]
+	\footnotesize
+	\begin{center}
+		\begin{tabular}{c | c | c}
+			\hline
+			Freksa & Allen & strings\\
+			\hline
+			older and survived by & b, m, o & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}} $\land$ \EventString{{}|\omega(a)|\omega(a),\omega(b)}\\
+			younger and survives & bi, mi, oi & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}} $\land$ \EventString{{}|\omega(b)|\omega(a),\omega(b)}\\
+		\end{tabular}
+	\end{center}
+	\caption{The remaining Freksa relations and the strings they project to}
+\end{figure}
 \subsection{Enhancing Strings using DRT}\label{sub:enhancing}
 Automatic DRS-parsing of plain text is a task which has recently seen new approaches \citeneeded[ -- shared task, see fsmnlp paper sec 1]. It is possible to leverage the temporal information that features in a DRS to create strings. While the relations generally found using this approach are less specific than those found in TimeML \nb{compare the relations}, the advantage of using DRSs is that elements such as event participants are described.
 

@@ -26,21 +26,21 @@
 \contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{10}
 \contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{10}
 \contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{11}
-\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{12}
-\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{12}
-\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{13}
-\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{13}
-\contentsline {subsubsection}{\numberline {4.3.1}Superposition}{13}
-\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{13}
-\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{13}
-\contentsline {section}{\numberline {5}Implementation}{14}
-\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{14}
-\contentsline {subsection}{\numberline {5.2}Front-end Interface}{14}
-\contentsline {section}{\numberline {6}Evaluation}{15}
-\contentsline {subsection}{\numberline {6.1}Timeline Validity}{15}
-\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{15}
-\contentsline {subsection}{\numberline {6.3}Correctness of Code}{15}
-\contentsline {section}{\numberline {7}Conclusion}{16}
-\contentsline {section}{Bibliography}{17}
-\contentsline {section}{Appendices}{18}
-\contentsline {subsection}{Python Code}{18}
+\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{15}
+\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{16}
+\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{16}
+\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{16}
+\contentsline {subsubsection}{\numberline {4.3.1}Superposition}{16}
+\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{16}
+\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{16}
+\contentsline {section}{\numberline {5}Implementation}{17}
+\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{17}
+\contentsline {subsection}{\numberline {5.2}Front-end Interface}{17}
+\contentsline {section}{\numberline {6}Evaluation}{18}
+\contentsline {subsection}{\numberline {6.1}Timeline Validity}{18}
+\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{18}
+\contentsline {subsection}{\numberline {6.3}Correctness of Code}{18}
+\contentsline {section}{\numberline {7}Conclusion}{19}
+\contentsline {section}{Bibliography}{20}
+\contentsline {section}{Appendices}{21}
+\contentsline {subsection}{Python Code}{21}
