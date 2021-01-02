@@ -1,0 +1,608 @@
+CNN19980213.2130.0155 NEWS STORY 
+
+ ___________________________________ 
+|x2 x1 x3                           |
+|...................................|
+|named(x1,cnn19980213.2130.0155,nam)|
+|named(x2,news,nam)                 |
+|named(x3,story,nam)                |
+|topic(x3)                          |
+|x3 = x1                            |
+|x3 = x2                            |
+|___________________________________|
+
+President Clinton says he is committed to a possible strike against Iraq , despite objections from other countries . 
+
+  _______________________   ______________________  
+ |x4 x3 x2 x1            | |x6 x5                 | 
+ |.......................| |......................| 
+(|named(x1,president,nam)|+|say(x5)               |)
+ |named(x2,clinton,per)  | |  Actor(x5,x2)        | 
+ |named(x3,iraq,geo)     | |  Topic(x5,x6)        | 
+ |male(x2)               | |     ________________ | 
+ |country(x4)            | |    |x8 x7 x7 x7 x7  || 
+ |x2 = x1                | | x6:|................|| 
+ |_______________________| |    |commit(x7)      || 
+                           |    |  Theme(x7,x2)  || 
+                           |    |  Theme(x7,x7)  || 
+                           |    |  against(x7,x3)|| 
+                           |    |  to(x7,x7)     || 
+                           |    |possible(x7)    || 
+                           |    |  from(x7,x8)   || 
+                           |    |  despite(x7,x7)|| 
+                           |    |strike(x7)      || 
+                           |    |objection(x7)   || 
+                           |    |country(x8)     || 
+                           |    |     _______    || 
+                           |    |    |       |   || 
+                           |    |  ¬ |.......|   || 
+                           |    |    |x8 = x4|   || 
+                           |    |    |_______|   || 
+                           |    |________________|| 
+                           |______________________| 
+
+Steve Hurst has that . 
+
+  ___________________   ______________  
+ |x1 x2              | |x3            | 
+ |...................| |..............| 
+(|named(x1,steve,per)|+|have(x3)      |)
+ |named(x2,hurst,per)| |  Actor(x3,x2)| 
+ |thing(x1)          | |  Theme(x3,x1)| 
+ |x2 = x1            | |______________| 
+ |___________________|                  
+
+The US military buildup in the Persian gulf continues apace , more planes headed from the united states and senior officials say Iraq 's president Saddam Hussein can expect punishing air strikes to continue well into the future if he does n't stop building biological and chemical weapons . 
+
+  ____________________________________   _________________________________________________________________________  
+ |x10 x5 x4 x8 x3 x5 x7 x2 x9 x5 x1 x6| |x14 x6 x6 x13 x6 x12 x6 x11 x6 x6                                        | 
+ |....................................| |.........................................................................| 
+(|named(x1,us,org)                    |+|apace(x6)                                                                |)
+ |named(x2,persian,geo)               | |  in(x6,x9)                                                              | 
+ |named(x3,iraq,geo)                  | |  Actor(x6,x6)                                                           | 
+ |named(x4,saddam,per)                | |  Theme(x6,x6)                                                           | 
+ |named(x5,hussein,per)               | |  Theme(x6,x11)                                                          | 
+ |military(x5)                        | |continue(x6)                                                             | 
+ |  Theme(x5,x6)                      | |  Theme(x6,x12)                                                          | 
+ |  Theme(x5,x7)                      | |  from(x6,x7)                                                            | 
+ |  of(x5,x3)                         | |  rel(x6,x11)                                                            | 
+ |  of(x5,x8)                         | |  Theme(x6,x13)                                                          | 
+ |buildup(x6)                         | |more(x6)                                                                 | 
+ |gulf(x9)                            | |  Actor(x6,x13)                                                          | 
+ |united(x5)                          | |  Topic(x6,x14)                                                          | 
+ |state(x7)                           | |plane(x11)                                                               | 
+ |president(x8)                       | |head(x6)                                                                 | 
+ |male(x5)                            | |senior(x6)                                                               | 
+ |future(x10)                         | |official(x13)                                                            | 
+ |x6 = x1                             | |say(x6)                                                                  | 
+ |x9 = x2                             | |x11 = x12                                                                | 
+ |x5 = x4                             | |      __________________________________________________________________ | 
+ |____________________________________| |     |x16 x15                                                           || 
+                                        | x14:|..................................................................|| 
+                                        |     |can(x15)                                                          || 
+                                        |     |  Actor(x15,x5)                                                   || 
+                                        |     |  Topic(x15,x16)                                                  || 
+                                        |     |      ___________________________________________________________ || 
+                                        |     |     |x17 x18 x17 x17 x17                                        ||| 
+                                        |     | x16:|...........................................................||| 
+                                        |     |     |punishing(x17)                                             ||| 
+                                        |     |     |  Theme(x17,x17)                                           ||| 
+                                        |     |     |  of(x17,x17)                                              ||| 
+                                        |     |     |  Actor(x17,x5)                                            ||| 
+                                        |     |     |  Recipient(x17,x17)                                       ||| 
+                                        |     |     |air(x17)                                                   ||| 
+                                        |     |     |  Topic(x17,x18)                                           ||| 
+                                        |     |     |strike(x17)                                                ||| 
+                                        |     |     |expect(x17)                                                ||| 
+                                        |     |     |      ____________________________________________________ ||| 
+                                        |     |     |     |                                                    |||| 
+                                        |     |     | x18:|....................................................|||| 
+                                        |     |     |     |  _____________________________   ________________  |||| 
+                                        |     |     |     | |                             | |x23             | |||| 
+                                        |     |     |     | |.............................| |................| |||| 
+                                        |     |     |     | |     _______________________ |>|continue(x23)   | |||| 
+                                        |     |     |     | |    |x20 x19                || |  Actor(x23,x17)| |||| 
+                                        |     |     |     | |  ¬ |.......................|| |  into(x23,x10) | |||| 
+                                        |     |     |     | |    |stop(x19)              || |well(x23)       | |||| 
+                                        |     |     |     | |    |  Actor(x19,x5)        || |________________| |||| 
+                                        |     |     |     | |    |  Topic(x19,x20)       ||                    |||| 
+                                        |     |     |     | |    |      ________________ ||                    |||| 
+                                        |     |     |     | |    |     |x21 x21 x21 x22 |||                    |||| 
+                                        |     |     |     | |    | x20:|................|||                    |||| 
+                                        |     |     |     | |    |     |biological(x21) |||                    |||| 
+                                        |     |     |     | |    |     |  Theme(x21,x22)|||                    |||| 
+                                        |     |     |     | |    |     |  Theme(x21,x22)|||                    |||| 
+                                        |     |     |     | |    |     |  Actor(x21,x5) |||                    |||| 
+                                        |     |     |     | |    |     |  Theme(x21,x22)|||                    |||| 
+                                        |     |     |     | |    |     |chemical(x21)   |||                    |||| 
+                                        |     |     |     | |    |     |weapon(x22)     |||                    |||| 
+                                        |     |     |     | |    |     |build(x21)      |||                    |||| 
+                                        |     |     |     | |    |     |________________|||                    |||| 
+                                        |     |     |     | |    |_______________________||                    |||| 
+                                        |     |     |     | |_____________________________|                    |||| 
+                                        |     |     |     |____________________________________________________|||| 
+                                        |     |     |___________________________________________________________||| 
+                                        |     |__________________________________________________________________|| 
+                                        |_________________________________________________________________________| 
+
+Saddam will know by our actions and our warning that we will be prepared to act again if we have evidence he is trying to rebuild his weapons of mass destruction capabilities . 
+
+  ____________________   ________________________________________________________________  
+ |x2 x1 x2 x2         | |x4 x3 x2                                                        | 
+ |....................| |................................................................| 
+(|named(x1,saddam,per)|+|know(x2)                                                        |)
+ |action(x2)          | |  Actor(x2,x1)                                                  | 
+ |  of(x2,x1)         | |x2 C x3                                                         | 
+ |  of(x2,x1)         | |  that(x2,x4)                                                   | 
+ |  of(x2,x1)         | |x2 C x3                                                         | 
+ |warning(x2)         | |     __________________________________________________________ | 
+ |person(x1)          | |    |x5 x6                                                     || 
+ |male(x1)            | | x4:|..........................................................|| 
+ |weapon(x2)          | |    |prepare(x5)                                               || 
+ |____________________| |    |  Topic(x5,x1)                                            || 
+                        |    |  Recipient(x5,x6)                                        || 
+                        |    |     ____________________________________________________ || 
+                        |    |    |                                                    ||| 
+                        |    | x6:|....................................................||| 
+                        |    |    |  ____________________________   _________________  ||| 
+                        |    |    | |x7 x8 x7                    | |x12 x11          | ||| 
+                        |    |    | |............................| |.................| ||| 
+                        |    |    | |evidence(x7)                |>|act(x11)         | ||| 
+                        |    |    | |  Topic(x7,x8)              | |  Actor(x11,x1)  | ||| 
+                        |    |    | |  Actor(x7,x1)              | |  Manner(x11,x12)| ||| 
+                        |    |    | |  Theme(x7,x7)              | |again(x12)       | ||| 
+                        |    |    | |have(x7)                    | |_________________| ||| 
+                        |    |    | |     ______________________ |                     ||| 
+                        |    |    | |    |x9 x10                ||                     ||| 
+                        |    |    | | x8:|......................||                     ||| 
+                        |    |    | |    |try(x9)               ||                     ||| 
+                        |    |    | |    |  Actor(x9,x1)        ||                     ||| 
+                        |    |    | |    |  Topic(x9,x10)       ||                     ||| 
+                        |    |    | |    |      _______________ ||                     ||| 
+                        |    |    | |    |     |x2 x2 x2 x2    |||                     ||| 
+                        |    |    | |    | x10:|...............|||                     ||| 
+                        |    |    | |    |     |mass(x2)       |||                     ||| 
+                        |    |    | |    |     |  of(x2,x2)    |||                     ||| 
+                        |    |    | |    |     |  of(x2,x2)    |||                     ||| 
+                        |    |    | |    |     |  of(x2,x2)    |||                     ||| 
+                        |    |    | |    |     |  Actor(x2,x1) |||                     ||| 
+                        |    |    | |    |     |destruction(x2)|||                     ||| 
+                        |    |    | |    |     |  Theme(x2,x2) |||                     ||| 
+                        |    |    | |    |     |capability(x2) |||                     ||| 
+                        |    |    | |    |     |rebuild(x2)    |||                     ||| 
+                        |    |    | |    |     |_______________|||                     ||| 
+                        |    |    | |    |______________________||                     ||| 
+                        |    |    | |____________________________|                     ||| 
+                        |    |    |____________________________________________________||| 
+                        |    |__________________________________________________________|| 
+                        |  by(x2,x3)                                                     | 
+                        |________________________________________________________________| 
+
+In a bit of television diplomacy , Iraq 's deputy foreign minister responded from Baghdad in less than one hour , saying Washington would break international law by attacking without UN approval . 
+
+  ________________________   ____________________________  
+ |x3 x2 x4 x4 x4 x1       | |x7 x5 x6 x5 x5 x5 x5 x5 x5  | 
+ |........................| |............................| 
+(|named(x1,iraq,geo)      |+|respond(x5)                 |)
+ |named(x2,baghdad,geo)   | |  Actor(x5,x4)              | 
+ |named(x3,washington,geo)| |  from(x5,x2)               | 
+ |deputy(x4)              | |  Theme(x5,x5)              | 
+ |  of(x4,x1)             | |  than(x5,x5)               | 
+ |  Theme(x4,x4)          | |hour(x5)                    | 
+ |  Theme(x4,x4)          | |  in(x5,x5)                 | 
+ |foreign(x4)             | |  of(x5,x6)                 | 
+ |minister(x4)            | |  of(x5,x5)                 | 
+ |________________________| |  in(x5,x5)                 | 
+                            |less(x5)                    | 
+                            |  Actor(x5,x4)              | 
+                            |  Topic(x5,x7)              | 
+                            |  for(x5,x5)                | 
+                            |  |x5| = 1                  | 
+                            |bit(x5)                     | 
+                            |television(x6)              | 
+                            |diplomacy(x5)               | 
+                            |say(x5)                     | 
+                            |     ______________________ | 
+                            |    |x8 x8 x8 x8           || 
+                            | x7:|......................|| 
+                            |    |international(x8)     || 
+                            |    |  Theme(x8,x8)        || 
+                            |    |  Actor(x8,x3)        || 
+                            |    |  Theme(x8,x8)        || 
+                            |    |  Actor(x8,x3)        || 
+                            |    |law(x8)               || 
+                            |    |  by(x8,x8)           || 
+                            |    |break(x8)             || 
+                            |    |attack(x8)            || 
+                            |    |     ________________ || 
+                            |    |    |x9 x8           ||| 
+                            |    |  ¬ |................||| 
+                            |    |    |named(x9,un,org)||| 
+                            |    |    |approval(x8)    ||| 
+                            |    |    |  with(x8,x8)   ||| 
+                            |    |    |x8 = x9         ||| 
+                            |    |    |________________||| 
+                            |    |______________________|| 
+                            |____________________________| 
+
+The united states is not authorized to use force before going to the council . 
+
+  ______________   ___________________________  
+ |x3 x1 x2      | |                           | 
+ |..............| |...........................| 
+(|united(x1)    |+|     _____________________ |)
+ |  Theme(x1,x2)| |    |x4 x5                || 
+ |state(x2)     | |  ¬ |.....................|| 
+ |council(x3)   | |    |authorize(x4)        || 
+ |______________| |    |  Topic(x4,x2)       || 
+                  |    |  Recipient(x4,x5)   || 
+                  |    |     _______________ || 
+                  |    |    |x6 x6 x6       ||| 
+                  |    | x5:|...............||| 
+                  |    |    |force(x6)      ||| 
+                  |    |    |  Actor(x6,x2) ||| 
+                  |    |    |  Theme(x6,x6) ||| 
+                  |    |    |  Actor(x6,x2) ||| 
+                  |    |    |  to(x6,x3)    ||| 
+                  |    |    |use(x6)        ||| 
+                  |    |    |  before(x6,x6)||| 
+                  |    |    |go(x6)         ||| 
+                  |    |    |_______________||| 
+                  |    |_____________________|| 
+                  |___________________________| 
+
+President Clinton , meantime , glossed over stern warnings from Moscow on Thursday that US air strikes against Iraq could do serious harm to relations with the Kremlin . 
+
+  _______________________   _____________________________  
+ |x4 x3 x6 x5 x1 x2      | |x2 x2 x2 x7 x2               | 
+ |.......................| |.............................| 
+(|named(x1,president,nam)|+|meantime(x2)                 |)
+ |named(x2,clinton,per)  | |  rel(x2,x2)                 | 
+ |named(x3,iraq,geo)     | |  Actor(x2,x2)               | 
+ |named(x4,kremlin,org)  | |  Topic(x2,x7)               | 
+ |named(x5,moscow,geo)   | |  Theme(x2,x2)               | 
+ |named(x6,thursday,tim) | |gloss(x2)                    | 
+ |x2 = x1                | |  from(x2,x5)                | 
+ |_______________________| |  over(x2,x2)                | 
+                           |  on(x2,x6)                  | 
+                           |stern(x2)                    | 
+                           |warning(x2)                  | 
+                           |     _______________________ | 
+                           |    |x10 x9 x9 x8 x9        || 
+                           | x7:|.......................|| 
+                           |    |named(x8,us,org)       || 
+                           |    |air(x9)                || 
+                           |    |  of(x9,x9)            || 
+                           |    |  against(x9,x3)       || 
+                           |    |  Actor(x9,x9)         || 
+                           |    |  Topic(x9,x10)        || 
+                           |    |strike(x9)             || 
+                           |    |could(x9)              || 
+                           |    |x9 = x8                || 
+                           |    |      ________________ || 
+                           |    |     |x12 x11 x11 x11 ||| 
+                           |    | x10:|................||| 
+                           |    |     |serious(x11)    ||| 
+                           |    |     |  Theme(x11,x11)||| 
+                           |    |     |  Actor(x11,x9) ||| 
+                           |    |     |  Theme(x11,x11)||| 
+                           |    |     |  to(x11,x12)   ||| 
+                           |    |     |harm(x11)       ||| 
+                           |    |     |  with(x11,x4)  ||| 
+                           |    |     |do(x11)         ||| 
+                           |    |     |relation(x12)   ||| 
+                           |    |     |________________||| 
+                           |    |_______________________|| 
+                           |_____________________________| 
+
+We 're trying to find a diplomatic solution . 
+
+  __________   ____________________  
+ |x1        | |x2 x3               | 
+ |..........| |....................| 
+(|person(x1)|+|try(x2)             |)
+ |__________| |  Actor(x2,x1)      | 
+              |  Topic(x2,x3)      | 
+              |     ______________ | 
+              |    |x4 x4 x5      || 
+              | x3:|..............|| 
+              |    |diplomatic(x4)|| 
+              |    |  Theme(x4,x5)|| 
+              |    |  Actor(x4,x1)|| 
+              |    |  Theme(x4,x5)|| 
+              |    |solution(x5)  || 
+              |    |find(x4)      || 
+              |    |______________|| 
+              |____________________| 
+
+And I hope that , whatever happens today , that our relationships with Russia will continue to be productive and constructive and strong , because that 's very important to the future of our peoples . 
+
+  ______________________________________   _____________________________________  
+ |x2 x4 x9 x8 x2 x3 x7 x6 x2 x1 x5 x2 x2| |x10 x10                              | 
+ |......................................| |.....................................| 
+(|named(x1,russia,geo)                  |+|hope(x10)                            |)
+ |person(x2)                            | |  rel(x10,x2)                        | 
+ |  of(x2,x2)                           | |  Actor(x10,x2)                      | 
+ |  of(x2,x1)                           | |  Topic(x10,x10)                     | 
+ |  of(x2,x3)                           | |and(x10)                             | 
+ |  of(x2,x4)                           | |      ______________________________ | 
+ |relationship(x2)                      | |     |x2 x11                        || 
+ |future(x5)                            | | x10:|..............................|| 
+ |person(x1)                            | |     |continue(x2)                  || 
+ |people(x2)                            | |     |  with(x2,x1)                 || 
+ |thing(x6)                             | |     |  Actor(x2,x2)                || 
+ |future(x7)                            | |     |  Topic(x2,x11)               || 
+ |person(x3)                            | |     |      _______________________ || 
+ |people(x2)                            | |     |     |x15 x12 x14 x12 x13 x12||| 
+ |thing(x8)                             | |     | x11:|.......................||| 
+ |future(x9)                            | |     |     |productive(x12)        ||| 
+ |person(x4)                            | |     |     |  Theme(x12,x2)        ||| 
+ |people(x2)                            | |     |     |  because(x12,x13)     ||| 
+ |thing(x2)                             | |     |     |  Theme(x12,x2)        ||| 
+ |______________________________________| |     |     |  because(x12,x14)     ||| 
+                                          |     |     |constructive(x12)      ||| 
+                                          |     |     |  Theme(x12,x2)        ||| 
+                                          |     |     |  because(x12,x15)     ||| 
+                                          |     |     |strong(x12)            ||| 
+                                          |     |     |      ______________   ||| 
+                                          |     |     |     |x5            |  ||| 
+                                          |     |     | x13:|..............|  ||| 
+                                          |     |     |     |important(x5) |  ||| 
+                                          |     |     |     |  Theme(x5,x2)|  ||| 
+                                          |     |     |     |  of(x5,x2)   |  ||| 
+                                          |     |     |     |  to(x5,x5)   |  ||| 
+                                          |     |     |     |very(x5)      |  ||| 
+                                          |     |     |     |______________|  ||| 
+                                          |     |     |      ______________   ||| 
+                                          |     |     |     |x7            |  ||| 
+                                          |     |     | x14:|..............|  ||| 
+                                          |     |     |     |important(x7) |  ||| 
+                                          |     |     |     |  Theme(x7,x6)|  ||| 
+                                          |     |     |     |  of(x7,x2)   |  ||| 
+                                          |     |     |     |  to(x7,x7)   |  ||| 
+                                          |     |     |     |very(x7)      |  ||| 
+                                          |     |     |     |______________|  ||| 
+                                          |     |     |      ______________   ||| 
+                                          |     |     |     |x9            |  ||| 
+                                          |     |     | x15:|..............|  ||| 
+                                          |     |     |     |important(x9) |  ||| 
+                                          |     |     |     |  Theme(x9,x8)|  ||| 
+                                          |     |     |     |  of(x9,x2)   |  ||| 
+                                          |     |     |     |  to(x9,x9)   |  ||| 
+                                          |     |     |     |very(x9)      |  ||| 
+                                          |     |     |     |______________|  ||| 
+                                          |     |     |_______________________||| 
+                                          |     |______________________________|| 
+                                          |  __________   _______________       | 
+                                          | |x16       | |x17 x2         |      | 
+                                          | |..........| |...............|      | 
+                                          | |thing(x16)|?|happen(x2)     |      | 
+                                          | |__________| |  Actor(x2,x16)|      | 
+                                          |              |  Time(x2,x17) |      | 
+                                          |              |  rel(x2,x16)  |      | 
+                                          |              |today(x17)     |      | 
+                                          |              |_______________|      | 
+                                          |_____________________________________| 
+
+One contrary view of the issue presented itself to the president as he arrived in Philadelphia later in the day . 
+
+  __________________________   ____________________  
+ |x4 x1 x2 x3               | |x6 x5 x5 x5         | 
+ |..........................| |....................| 
+(|named(x1,philadelphia,geo)|+|contrary(x5)        |)
+ |issue(x2)                 | |  Theme(x5,x5)      | 
+ |thing(x2)                 | |  of(x5,x2)         | 
+ |president(x3)             | |  Actor(x5,x5)      | 
+ |male(x2)                  | |  Theme(x5,x2)      | 
+ |day(x4)                   | |view(x5)            | 
+ |__________________________| |  to(x5,x3)         | 
+                              |  as(x5,x6)         | 
+                              |  |x5| = 1          | 
+                              |present(x5)         | 
+                              |     ______________ | 
+                              |    |x7            || 
+                              | x6:|..............|| 
+                              |    |arrive(x7)    || 
+                              |    |  Actor(x7,x2)|| 
+                              |    |  in(x7,x1)   || 
+                              |    |  in(x7,x4)   || 
+                              |    |later(x7)     || 
+                              |    |______________|| 
+                              |____________________| 
+
+Nevertheless , the president said Washington would use force if diplomacy fails to force Saddam Hussein to back down . 
+
+  ________________________   ___________________________________________________________  
+ |x3 x1 x2 x4             | |x6 x5                                                      | 
+ |........................| |...........................................................| 
+(|named(x1,saddam,per)    |+|say(x5)                                                    |)
+ |named(x2,hussein,per)   | |  Actor(x5,x4)                                             | 
+ |named(x3,washington,geo)| |  Topic(x5,x6)                                             | 
+ |president(x4)           | |nevertheless(x5)                                           | 
+ |x2 = x1                 | |     _____________________________________________________ | 
+ |________________________| |    |                                                     || 
+                            | x6:|.....................................................|| 
+                            |    |  ______________________________   ________________  || 
+                            |    | |x7 x8 x7                      | |x13 x13         | || 
+                            |    | |..............................| |................| || 
+                            |    | |diplomacy(x7)                 |>|force(x13)      | || 
+                            |    | |  Actor(x7,x7)                | |  Actor(x13,x3) | || 
+                            |    | |  Topic(x7,x8)                | |  Theme(x13,x13)| || 
+                            |    | |fail(x7)                      | |use(x13)        | || 
+                            |    | |     ________________________ | |________________| || 
+                            |    | |    |x9 x10                  ||                    || 
+                            |    | | x8:|........................||                    || 
+                            |    | |    |force(x9)               ||                    || 
+                            |    | |    |  Actor(x9,x7)          ||                    || 
+                            |    | |    |  Recipient(x9,x2)      ||                    || 
+                            |    | |    |  Topic(x9,x10)         ||                    || 
+                            |    | |    |      _________________ ||                    || 
+                            |    | |    |     |x12 x11          |||                    || 
+                            |    | |    | x10:|.................|||                    || 
+                            |    | |    |     |back(x11)        |||                    || 
+                            |    | |    |     |  Actor(x11,x2)  |||                    || 
+                            |    | |    |     |  Manner(x11,x12)|||                    || 
+                            |    | |    |     |down(x12)        |||                    || 
+                            |    | |    |     |_________________|||                    || 
+                            |    | |    |________________________||                    || 
+                            |    | |______________________________|                    || 
+                            |    |_____________________________________________________|| 
+                            |___________________________________________________________| 
+
+The Russian foreign minister , meanwhile , sought to soften the harsh words of his military counterpart , saying on Friday that Russia now feels the US must hold off at least until UN secretary general Kofi Annan visits Baghdad in a last-ditch effort at diplomacy . 
+
+  ________________________________________________   _______________________________  
+ |x7 x5 x6 x10 x4 x6 x2 x1 x6 x6 x9 x6 x3 x6 x6 x8| |x15 x11 x11 x14 x13 x11 x11 x12| 
+ |................................................| |...............................| 
+(|named(x1,russia,geo)                            |+|seek(x11)                      |)
+ |named(x2,us,org)                                | |  Actor(x11,x8)                | 
+ |named(x3,friday,tim)                            | |  Topic(x11,x12)               | 
+ |named(x4,un,org)                                | |  Manner(x11,x11)              | 
+ |named(x5,kofi,per)                              | |  Actor(x11,x13)               | 
+ |named(x6,annan,per)                             | |meanwhile(x11)                 | 
+ |named(x7,baghdad,geo)                           | |  Topic(x11,x14)               | 
+ |russian(x6)                                     | |  on(x11,x3)                   | 
+ |  Theme(x6,x8)                                  | |  Actor(x11,x11)               | 
+ |  Theme(x6,x8)                                  | |  Topic(x11,x15)               | 
+ |  Theme(x6,x9)                                  | |thing(x13)                     | 
+ |  of(x6,x9)                                     | |say(x11)                       | 
+ |foreign(x6)                                     | |must(x11)                      | 
+ |  Theme(x6,x6)                                  | |      ______________           | 
+ |  of(x6,x10)                                    | |     |x9            |          | 
+ |  Theme(x6,x6)                                  | | x12:|..............|          | 
+ |minister(x8)                                    | |     |soften(x9)    |          | 
+ |harsh(x6)                                       | |     |  of(x9,x6)   |          | 
+ |word(x9)                                        | |     |  Actor(x9,x8)|          | 
+ |male(x9)                                        | |     |  Theme(x9,x9)|          | 
+ |military(x6)                                    | |     |______________|          | 
+ |counterpart(x6)                                 | |      _________________        | 
+ |secretary(x10)                                  | |     |x17 x16          |       | 
+ |general(x6)                                     | | x14:|.................|       | 
+ |x6 = x4                                         | |     |feel(x16)        |       | 
+ |x6 = x5                                         | |     |  Actor(x16,x1)  |       | 
+ |________________________________________________| |     |  Theme(x16,x2)  |       | 
+                                                    |     |  Manner(x16,x17)|       | 
+                                                    |     |now(x17)         |       | 
+                                                    |     |_________________|       | 
+                                                    |      _______________________  | 
+                                                    |     |x20 x19 x18            | | 
+                                                    | x15:|.......................| | 
+                                                    |     |hold(x18)              | | 
+                                                    |     |  Actor(x18,x11)       | | 
+                                                    |     |  Manner(x18,x19)      | | 
+                                                    |     |  until(x18,x20)       | | 
+                                                    |     |off(x19)               | | 
+                                                    |     |      ________________ | | 
+                                                    |     |     |x23 x21 x22 x21 || | 
+                                                    |     | x20:|................|| | 
+                                                    |     |     |visit(x21)      || | 
+                                                    |     |     |  Actor(x21,x6) || | 
+                                                    |     |     |  Theme(x21,x7) || | 
+                                                    |     |     |  Theme(x21,x22)|| | 
+                                                    |     |     |  in(x21,x22)   || | 
+                                                    |     |     |last-ditch(x21) || | 
+                                                    |     |     |  at(x21,x23)   || | 
+                                                    |     |     |effort(x22)     || | 
+                                                    |     |     |diplomacy(x23)  || | 
+                                                    |     |     |________________|| | 
+                                                    |     |_______________________| | 
+                                                    |_______________________________| 
+
+Annan has no trip planned so far . 
+
+  ___________________   _____________________  
+ |x1                 | |                     | 
+ |...................| |.....................| 
+(|named(x1,annan,per)|+|     _______________ |)
+ |___________________| |    |x2 x4 x2 x3 x2 || 
+                       |  ¬ |...............|| 
+                       |    |trip(x2)       || 
+                       |    |  Theme(x2,x3) || 
+                       |    |  Manner(x2,x4)|| 
+                       |    |  Actor(x2,x1) || 
+                       |    |  Theme(x2,x2) || 
+                       |    |plan(x2)       || 
+                       |    |far(x4)        || 
+                       |    |so(x2)         || 
+                       |    |have(x2)       || 
+                       |    |x2 = x3        || 
+                       |    |_______________|| 
+                       |_____________________| 
+
+Meanwhile , secretary of state Madeleine Albright , Berger and defense secretary William Cohen announced plans to travel to an unnamed city in the US heartland next week , to explain to the American people just why military force will be necessary if diplomacy fails . 
+
+  _______________________   _____________________________________________________________________  
+ |x2 x5 x4 x6 x3 x1 x2 x2| |x2 x10 x9 x2 x7 x2 x3 x3 x8                                          | 
+ |.......................| |.....................................................................| 
+(|named(x1,madeleine,per)|+|named(x7,william,per)                                                |)
+ |named(x2,albright,per) | |named(x3,cohen,per)                                                  | 
+ |named(x3,berger,per)   | |defense(x3)                                                          | 
+ |named(x4,us,org)       | |x3 C x8                                                              | 
+ |state(x2)              | |  of(x3,x3)                                                          | 
+ |  of(x2,x2)            | |  of(x3,x2)                                                          | 
+ |  Theme(x2,x5)         | |x3 C x8                                                              | 
+ |heartland(x6)          | |secretary(x2)                                                        | 
+ |american(x2)           | |  rel(x2,x8)                                                         | 
+ |people(x5)             | |  of(x2,x2)                                                          | 
+ |x2 = x1                | |  Topic(x2,x9)                                                       | 
+ |x6 = x4                | |  Topic(x2,x10)                                                      | 
+ |_______________________| |plan(x2)                                                             | 
+                           |  Actor(x2,x2)                                                       | 
+                           |  Theme(x2,x2)                                                       | 
+                           |announce(x2)                                                         | 
+                           |meanwhile(x2)                                                        | 
+                           |x3 = x7                                                              | 
+                           |     ________________                                                | 
+                           |    |x12 x11 x11 x11 |                                               | 
+                           | x9:|................|                                               | 
+                           |    |travel(x11)     |                                               | 
+                           |    |  Actor(x11,x2) |                                               | 
+                           |    |  Theme(x11,x11)|                                               | 
+                           |    |  in(x11,x6)    |                                               | 
+                           |    |  to(x11,x11)   |                                               | 
+                           |    |unnamed(x11)    |                                               | 
+                           |    |  Time(x11,x12) |                                               | 
+                           |    |city(x11)       |                                               | 
+                           |    |week(x12)       |                                               | 
+                           |    |next(x11)       |                                               | 
+                           |    |________________|                                               | 
+                           |      ______________________________________________________________ | 
+                           |     |                                                              || 
+                           | x10:|..............................................................|| 
+                           |     |  ___________   ____________________________________________  || 
+                           |     | |x13        | |                                            | || 
+                           |     | |...........| |............................................| || 
+                           |     | |reason(x13)|?|  ________________   _____________________  | || 
+                           |     | |___________| | |x14 x14         | |x16 x15 x15 x15 x15  | | || 
+                           |     |               | |................| |.....................| | || 
+                           |     |               | |diplomacy(x14)  |>|military(x15)        | | || 
+                           |     |               | |  Actor(x14,x14)| |  Theme(x15,x15)     | | || 
+                           |     |               | |fail(x14)       | |  Theme(x15,x15)     | | || 
+                           |     |               | |________________| |  reason_rel(x15,x13)| | || 
+                           |     |               |                    |  Actor(x15,x2)      | | || 
+                           |     |               |                    |force(x15)           | | || 
+                           |     |               |                    |  Topic(x15,x15)     | | || 
+                           |     |               |                    |  to(x15,x5)         | | || 
+                           |     |               |                    |  Manner(x15,x16)    | | || 
+                           |     |               |                    |necessary(x15)       | | || 
+                           |     |               |                    |explain(x15)         | | || 
+                           |     |               |                    |just(x16)            | | || 
+                           |     |               |                    |_____________________| | || 
+                           |     |               |____________________________________________| || 
+                           |     |______________________________________________________________|| 
+                           |_____________________________________________________________________| 
+
+Steve Hurst , CNN , the state department . 
+
+  ___________________   _________  
+ |x4 x4 x3 x1 x2     | |x2 x2    | 
+ |...................| |.........| 
+(|named(x1,steve,per)|+|topic(x2)|)
+ |named(x2,hurst,per)| |x2 C x2  | 
+ |named(x3,cnn,nam)  | |x2 C x2  | 
+ |state(x4)          | |x3 C x2  | 
+ |  of(x4,x4)        | |x4 C x2  | 
+ |department(x4)     | |_________| 
+ |x2 = x1            |             
+ |___________________|             
+

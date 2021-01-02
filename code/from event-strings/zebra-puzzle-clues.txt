@@ -1,0 +1,16 @@
+nat,col,dri,smo,pet
+['1|2|3|4|5']
+('nat(eng),col(red)')
+('nat(spa),pet(dog)')
+('dri(cof),col(gre)')
+('dri(tea),nat(ukr)')
+('col(ivo)|col(gre)')
+('smo(old),pet(sna)')
+('smo(koo),col(yel)')
+['1|2|3,dri(mil)|4|5']
+['1,nat(nor)|2|3|4|5']
+('smo(che)|pet(fox)')+('pet(fox)|smo(che)')
+('smo(koo)|pet(hor)')+('pet(hor)|smo(koo)')
+('smo(luc),dri(ora)')
+('nat(jap),smo(par)')
+('nat(nor)|col(blu)')+('col(blu)|nat(nor)')

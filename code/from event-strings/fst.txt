@@ -1,0 +1,14 @@
+Iq0 -------x:pre(y)------> q1
+    -------y:pre(x)------> q2
+    -------x,y:eps-------> q3
+    --eps:pre(x),pre(y)--> q4 --x:pre(y)--> q6 --------y:post(x)------> q9   --eps:post(x),post(y)--> Fq-1
+                                               --------x,y:eps--------> q10  -------x:post(y)-------> q9
+                                                                             -------y:post(x)-------> q9
+                                                                             --eps:post(x),post(y)--> Fq-1
+                                               ---eps:pre(y),post(x)--> q11  -------y:post(x)-------> q9
+                              --y:pre(x)--> q7 --------x:post(y)------> q9
+                                               --------x,y:eps--------> q10
+                                               ---eps:pre(x),post(y)--> q12  -------x:post(y)-------> q9
+                              --x,y:eps---> q8 -------x:post(y)-------> q9
+                                               -------y:post(x)-------> q9
+                                               --eps:post(x),post(y)--> Fq-1

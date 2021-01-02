@@ -1,0 +1,16 @@
+temp,weat,traf,task,mood
+['mon|tue|wed|thu|fri']
+('temp(mild),weat(foggy)')
+('temp(warm),mood(tired)')
+('traf(jam),weat(over)')
+('traf(little),temp(cold)')
+('weat(snow)|weat(over)')
+('task(read),mood(sad)')
+('task(print),weat(rain)')
+['mon|tue|wed,traf(avg)|thu|fri']
+['mon,temp(freeze)|tue|wed|thu|fri']
+('task(staple)|mood(happy)')+('mood(happy)|task(staple)')
+('task(print)|mood(angry)')+('mood(angry)|task(print)')
+('task(file),traf(lots)')
+('temp(hot),task(shred)')
+('temp(freeze)|weat(clear)')+('weat(clear)|temp(freeze)')

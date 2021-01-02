@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finite State Temporality</title>
+</head>
+<body>
+    <h1>Finite State Temporality</h1>
+    <input type="text"/>
+    <ul class="menu">
+        <li><a href="{{ url_for('hello') }}">hello</a></li>
+        <li><a href="{{ url_for('other_page') }}">other</a></li>
+        <li><a href="{{ url_for('index_page') }}">index</a></li>
+      </ul>
+    {% block content %}
+    <h3>Str: {{string}}</h3>
+    {% endblock %}
+    <script>
+    document.querySelector('input').addEventListener('input', e => {
+        e.preventDefault()
+        console.log(e.target.value)
+    })
+    </script>
+</body>
+</html>
