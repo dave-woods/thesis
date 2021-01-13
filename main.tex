@@ -332,7 +332,7 @@ Strings, as entities comprised of sequential components, have an intuitive compa
 A lot of information can be derived from a text document, depending on what one is looking for. Here, the focus is on isolating the events and times that are mentioned or implied in the text. By extracting this information, a timeline is built which gives a picture of the content of the document, which may reveal insights not obvious when looking at the text as a whole.
 
 \subsubsection{Inferring New Information}\label{ssub:inferring}
-A text which has been manually annotated for temporal inforamation will typically mark up the most important relations between events, at least as the annotator saw them. By extracting and making plain the timeline, any inconsistencies are immediately revealed, whether these are the fault of a problematic document or human error. Further, relations between times and events which were not previously obvious can be spelled out clearly.
+A text which has been manually annotated for temporal information will typically mark up the most important relations between events, at least as the annotator saw them. By extracting and making plain the timeline, any inconsistencies are immediately revealed, whether these are the fault of a problematic document or human error. Further, relations between times and events which were not previously obvious can be spelled out clearly.
 
 This can be extended over multiple documents by keeping track of the semantics of the elements in a string---being able to map between the symbols and their meanings---and linking documents which refer to the same events. This can provide a way for checking consistency between reports which originate from different sources, or a way for augmenting an existing timeline with new data.
 
@@ -425,7 +425,7 @@ The similarities between these five relations becomes more apparent when they ar
 
 Each of these five strings projects (using a block-compressed reduct) to the string \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}}, meaning the relation $a$ \textit{older} $b$ can be represented using just this one string, instead of five. This does raise the question, however, of whether the tradeoffs are worth it: a great reduction in the cardinality of the timeline set can be achieved, but at the cost of using a more complex vocabulary and reducing the precision of the known information.
 
-Unfortunately, only 10 of the 18 Freksa relations can be described using a single string without further complicating the vocabulary which may appear within a box in a string. Since all of these new relations are disjunctions of Allen relations, it follows that it may be acceptable to include disjunctions of semi-intervals inside a box, such as \ebox{\alpha(a) \lor \alpha(b)}, which is interpreted as one might expect: either $\alpha(a)$ appears in the box, or $\alpha(b)$ does, or they both do. This allowance admits a further 5 Freksa relations to be described in single strings. Of the remaining 3 relations, the \textit{unknown} relation may also be described using a single string, but it is trivial, since it encompasses a disjunction of all 13 Allen relations, and is formed by a simple disjunction of all possible semi-inteval symbols: \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}.
+Unfortunately, only 10 of the 18 Freksa relations can be described using a single string without further complicating the vocabulary which may appear within a box in a string. Since all of these new relations are disjunctions of Allen relations, it follows that it may be acceptable to include disjunctions of semi-intervals inside a box, such as \ebox{\alpha(a) \lor \alpha(b)}, which is interpreted as one might expect: either $\alpha(a)$ appears in the box, or $\alpha(b)$ does, or they both do. This allowance admits a further 5 Freksa relations to be described in single strings. Of the remaining 3 relations, the \textit{unknown} relation may also be described using a single string, but it is trivial, since it encompasses a disjunction of all 13 Allen relations, and is formed by a simple disjunction of all possible semi-inteval symbols: \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}, or even more simply, with a string consisting of just a single empty box: \ebox{}.
 
 Below is a table of the 18 Freksa relations, the Allen relations they comprise, and the string which they will project to. \nb{tidy up ordering of allens}
 
@@ -436,7 +436,7 @@ Below is a table of the 18 Freksa relations, the Allen relations they comprise, 
 		\hline
 		Freksa & Allen & string\\
 		\hline
-		unknown & b, bi, m, mi, s, si, f, fi, d, di, o, oi, e & \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}\\
+		unknown & b, bi, m, mi, s, si, f, fi, d, di, o, oi, e & \ebox{}\\
 		older & b, m, o, di, fi & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}}\\
 		younger & bi, mi, oi, d, f & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}}\\
 		head to head & s, si, e & \EventString{\alpha(a),\alpha(b)|{}}\\
@@ -485,11 +485,28 @@ Discourse relations are also a thing here.
 \subsubsection{VerbNet and WordNet}\label{ssub:verbwordnet}
 Two resources which are used in PMB and that can be leveraged are VerbNet, which supplies the semantic roles in a DRS, and WordNet, which is used to specify the particular sense of a verb (or other word). The version of Boxer used in the PMB includes this information in its output.
 
-This data can be useful when trying to make links between events which have not been given a specific relation. For example, finding the closest hypernym between two verbs, or checking verbs which share participants may help to inform the building of relations (see \ref{ssub:ontology})
+This data can be useful when trying to make links between events which have not been given a specific relation. For example, finding the closest hypernym between two verbs, or checking verbs which share participants may help to inform the building of relations (see \ref{ssub:ontology}).
 
 \subsection{Reasoning with Strings}\label{sub:reasoning}
+Strings of events are used to reason about the temporal information they contain: to infer a linear ordering and new relations between the events that were not previously stated. There are several methods which can be employed depending on the specific results that are desired.
 
-\subsubsection{Superposition}\label{ssub:superposition}
+Superposition of strings creates new strings which feature all of the constraints of their ``parent" strings, and new relations can be derived by taking the projections of these strings in relation to an intersection of the parent vocabularies. Using resources such as VerbNet and WordNet (see \ref{ssub:verbwordnet}), the lexical semantics can be leveraged in order to suggest links between events which were not previously explicitly related. Additionally, residuals are employed to determine what relations may need to hold in order for other inferences to be made.
+
+\subsubsection{Superposition and Projection}\label{ssub:superposition}
+Having extracted strings from an annotated document, such as one of those in the TimeBank \citeneeded{} corpus, superposition can be used to work out the relations which are not yet made explicit. Strings model sets of constraints between the events they mention, and when two strings are superposed, all of these constraints also hold in the resulting language's strings. This can be shown through an example:
+\begin{align}
+\Before{a}{b} \spvc \Before{b}{c} = \EventString{{}|a|{}|b|{}|c|{}}
+\end{align}
+The constraint that event $a$ occurs before event $b$ holds in $s = \Before{a}{b}$, and also in the resulting string\footnote{Note that the result of a superposition is a language, but if its cardinality is 1, it can be conflated with its sole member string.} $s'' = \EventString{{}|a|{}|b|{}|c|{}}$. In order to prove this, take the \textit{projection} of $s''$ with respect to the vocabulary of $s$, and see that it is equal to $s$:
+\begin{align}
+\pi_{voc(s)}(s'') &= \bc(\rho_{voc(s)}(\EventString{{}|a|{}|b|{}|c|{}}))\\ \notag
+				  &= \bc(\EventString{{}|a|{}|b|{}|{}|{}})\\ \notag
+				  &= \Before{a}{b} = s
+\end{align}
+The string $s''$ thus \textit{projects} to the string $s$, which says that the information in $s$ is contained within $s''$.
+
+Similarly, the constraint that event $b$ occurs before event $c$ holds in both $s' = \Before{b}{c}$ and in $s''$. While this is not newly inferred information, superposition has taken the constraints from two strings and represented them using a single string. However, while $s''$ projects to both $s$ and $s'$, it also projects to the string \Before{a}{c}, which represents the constraint that event $a$ occurs before event $c$. This constraint was not represented in either $s$ or $s'$, but is represented in $s''$. Thus, a new relation between events has been discovered and made explicit. 
+
 
 \subsubsection{Event Ontology}\label{ssub:ontology}
 

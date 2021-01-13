@@ -29,18 +29,18 @@
 \contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{15}
 \contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{16}
 \contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{16}
-\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{16}
-\contentsline {subsubsection}{\numberline {4.3.1}Superposition}{16}
-\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{16}
-\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{16}
-\contentsline {section}{\numberline {5}Implementation}{17}
-\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{17}
-\contentsline {subsection}{\numberline {5.2}Front-end Interface}{17}
-\contentsline {section}{\numberline {6}Evaluation}{18}
-\contentsline {subsection}{\numberline {6.1}Timeline Validity}{18}
-\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{18}
-\contentsline {subsection}{\numberline {6.3}Correctness of Code}{18}
-\contentsline {section}{\numberline {7}Conclusion}{19}
-\contentsline {section}{Bibliography}{20}
-\contentsline {section}{Appendices}{21}
-\contentsline {subsection}{Python Code}{21}
+\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{17}
+\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{17}
+\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{18}
+\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{18}
+\contentsline {section}{\numberline {5}Implementation}{19}
+\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{19}
+\contentsline {subsection}{\numberline {5.2}Front-end Interface}{19}
+\contentsline {section}{\numberline {6}Evaluation}{20}
+\contentsline {subsection}{\numberline {6.1}Timeline Validity}{20}
+\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{20}
+\contentsline {subsection}{\numberline {6.3}Correctness of Code}{20}
+\contentsline {section}{\numberline {7}Conclusion}{21}
+\contentsline {section}{Bibliography}{22}
+\contentsline {section}{Appendices}{23}
+\contentsline {subsection}{Python Code}{23}
