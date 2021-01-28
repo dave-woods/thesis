@@ -300,14 +300,18 @@ A number of operations are described for working with these strings, in particul
 The strings are then shown as applied to creating a functional timeline from the temporal information in a piece of text, and also how they may be useful elsewhere, such as in the area of scheduling, using a variation of the Zebra Puzzle \citeneeded{}.
 
 \subsection{Strings for Times and Events}\label{sub:strings}
-A string is a basic computational entity, defined as a finite sequence of symbols selected from some finite alphabet $A$. They are amenable to manipulation using finite-state methods, something lacking in the infinite models of predicate logic.
+A string is a basic computational entity, defined as a finite sequence of symbols selected from some finite alphabet. They are amenable to manipulation using finite-state methods, something lacking in the infinite models of predicate logic. \nb{Should probably have a citation here?}
 
 How should events be labelled? Some say an event is defined in part by its participants \citeneeded{}. Many of the procedures defined in this work which use these strings operate primarily on a syntactic level rather than depending on the lexical semantics of individual words, in order to produce an approach that works broadly. As such, in most cases, simple labels suffice for the purposes of describing the mechanics used here---this follows TimeML's standard of using labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, it will be useful to keep reference to a fuller picture of the data when possible, particularly when drawing inferences (see \ref{ssub:inferring} and \ref{ssub:ontology}).
 
 \subsubsection{Creating Strings}\label{ssub:creating}
-In order to create a string, first fix a set $A$ of symbols which represent the times and events under discussion. 
+In order to create a string, first fix a set $A$ of symbols which represent the times and events under discussion, such that each $a \in A$ will be understood as naming an event or time. The powerset of $A$ will serve as a finite alphabet $\Sigma = 2^A$ of a string $s \in \Sigma^*$.
 
-Sets of strings are languages \selfnote{Maybe mention this in \ref{sub:strings} rather than here? See how it goes}.
+Sets of strings are languages \selfnote{Maybe mention this in \ref{sub:strings} rather than here? See how it goes}. Languages allow for grouping strings based on some property, such as their source, which will permit the introducion of ambiguity as will be shown in more detail in \ref{ssub:superposition}. For example,
+\begin{align}
+	L = \{\EventString{a|b|c}, \EventString{a|c|b}\}
+\end{align}
+where the language $L$ contains two strings which represent different---albeit related---sequences of events. Note that, for the sake of convenience, a language containing a single string can be conflated with its sole member string. This is generally a useful admittance for discussion purposes when chaining together string operations, as some operations will result in a language which would be fed into a new operation.
 
 \subsubsection{Granularity: Points vs Intervals vs Semi-intervals}\label{ssub:granularity}
 A decision must be made in regards to what is regarded as `primitive' in a string, in terms of whether a basic component is considered as instantaneous, or as having some duration. In the first view, only points exist, and so an event will have a beginning and an ending (left and right borders), each of which represented by a symbol in the string. In the second, entire intervals are used instead of points. Two points may only be related in three ways: \textless, =, \textgreater. Two intervals, however, may be related in thirteen different ways, precisely, the Allen Relations \citeneeded{}. 
@@ -321,7 +325,51 @@ Ultimately, intervals are chosen for a number of reasons: primarily because ISO-
 \subsubsection{String Operations}\label{ssub:operations}
 Many many operations. The most important is \textbf{superposition} (and it's more advanced forms)! Also we have block-compression, reduct, vocabulary, projection, border translations. Note also that there are equivalent operations for strings which use points instead of intervals.
 
-Discuss the language level operations here too.
+{\color{red} Discuss the language level operations here too.}
+
+\paragraph{Block Compression:}
+Since the length of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ is not tied to its real duration, it is also not required that the length of time represented by any $\sigma_i$ is equal to that represented by any $\sigma_j$, for $i \neq j$. Similarly, if a fluent symbol $a \in A$ appears in both $\sigma_i$ and $\sigma_{i+1}$, this does not imply that the event represented by $a$ has a duration twice as long as if it had only appeared in $\sigma_i$. Indeed, the symbol $a$ may appear in any number of consecutive positions in $s$ without affecting the interpretation of the real length of time of the event it represents. Further, if the string features a repeating component, i.e. $\sigma_i = \sigma_{i+1}$ for any $1 \le i < n$, the interpretation of the string is not affected by the deletion of one of either $\sigma_i$ or $\sigma_{i+1}$. For example, the interpretation of the string \EventString{a|a|a,b|b|b} is equivalent to the interpretation of the string \EventString{a|a,b|b}. A string featuring repetitions is said to \textit{stutter}.
+
+As a result, the \textit{block compression} $\bc(s)$ of a string $s$ may be introduced, which removes any stutter present in $s$. This is defined as \citep{fernando2015semantics, woods2017towards}:
+\begin{align}\label{def:bc}
+\bc(s) := 
+\begin{cases}
+	~~s & \text{if \textit{length}}(s) \leq 1\\
+	~~\bc(\sigma s') & \text{if } s = \sigma \sigma s'\\
+	~~\sigma \bc(\sigma' s') & \text{if } s = \sigma \sigma' s' \text{ with } \sigma \neq \sigma'
+\end{cases}
+\end{align}
+Stutter may also be induced in a \textit{stutterless} string by using the inverse of block compression, which will generate infinitely many strings:
+\begin{align}
+\bc^{-1}(\bc(s)) = \sigma_1^+ \sigma_2^+ \cdots \sigma_n^+ ~~~ \mbox{ if } \bc(s) = \sigma_1 \sigma_2 \cdots \sigma_n
+\end{align}
+Since these strings all block compress to the same string, they are said to be \textit{\bc -equivalent}. Precisely, strings $s$ and $s'$ are \bc -equivalent iff $\bc(s) = \bc(s')$. This ability to generate infinitely many strings which have an equivalent interpretation allows for varying the length of a string as will be required in order to form a useful notion of superposition (see (\ref{def:async-superposition})).
+
+\paragraph{Superposition:}
+In its most basic form, the \textit{superposition} $s \sp s'$ of two strings $s = \sigma_1\sigma_2\cdots\sigma_n$ and $s' = \sigma'_1\sigma'_2\cdots\sigma'_n$ of equal length $n$ is simply their component-wise union:
+
+\begin{align}\label{def:superposition}
+	\sigma_1\sigma_2\cdots\sigma_n \sp \sigma'_1\sigma'_2\cdots\sigma'_n = (\sigma_1 \cup \sigma'_1)(\sigma_2 \cup \sigma'_2)\cdots(\sigma_n \cup \sigma'_n)
+\end{align}
+For example:
+\begin{align}\label{ex:superposition}
+	\EventString{a|b|c} \sp{} \EventString{a|c|d} = \EventString{a|b,c|c,d}
+\end{align}
+This is easily extended to pairs of languages $L \sp L'$ by collecting the superpositions of strings of equal lengths in each language:
+\begin{align}\label{def:lang-superposition}
+	L \sp L' = \bigcup_{n \ge 0}\{ s \sp s' | s \in L \cap \Sigma^n, s' \in L' \cap \Sigma^n\}
+\end{align}
+The result $L \sp L'$ of superposing two languages $L$ and $L'$ is also a language \nb{Don't forget to mention the connection to regular languages and FSA here}, and if $L$ and $L'$ are regular languages, then $L \sp L'$ is also regular. If $L$ is accepted by the finite automaton $\langle Q, (2^A)^*, (q \sta{\sigma}{\to} r), q_0, F \rangle$ and $L'$ is accepted by the finite automaton $\langle Q', (2^{A'})^*, (q' \sta{\sigma'}{\to} r'), q'_0, F' \rangle$ then $L \sp L'$ is computed by a finite automaton composed of the automata accepting each $L$ and $L'$: $\langle Q \times Q', (2^{A \cup A'})^*, ((q, q') \sta{(\sigma \cup \sigma')}{\to} (r, r')), (q_0, q'_0), F \times F' \rangle$.
+
+Using languages provides more flexibility than strings alone, since non-determinism can be accounted for through variations between strings within a language. For example, in (\ref{ex:lang-superposition}) below, the result of the superposition reflects the alternate event sequences in the strings of the first input language.
+
+\begin{align}\label{ex:lang-superposition}
+	\{\EventString{a|b|c}, \EventString{a|c|b}\} \sp \{\EventString{a|c|d}\} = \{\EventString{a|b,c|c,d}, \EventString{a|c|b,d}\}
+\end{align}
+
+\begin{align}\label{def:async-superposition}
+	stuff
+\end{align}
 
 \subsection{Applications}\label{sub:applications}
 The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
@@ -503,9 +551,9 @@ The constraint that event $a$ occurs before event $b$ holds in $s = \Before{a}{b
 				  &= \bc(\EventString{{}|a|{}|b|{}|{}|{}})\\ \notag
 				  &= \Before{a}{b} = s
 \end{align}
-The string $s''$ thus \textit{projects} to the string $s$, which says that the information in $s$ is contained within $s''$.
+The string $s''$ thus \textit{projects} to the string $s$, which says that the information in $s$ is contained within $s''$. Similarly, the constraint that event $b$ occurs before event $c$ holds in both $s' = \Before{b}{c}$ and in $s''$; $s''$ projects to $s'$.
 
-Similarly, the constraint that event $b$ occurs before event $c$ holds in both $s' = \Before{b}{c}$ and in $s''$. While this is not newly inferred information, superposition has taken the constraints from two strings and represented them using a single string. However, while $s''$ projects to both $s$ and $s'$, it also projects to the string \Before{a}{c}, which represents the constraint that event $a$ occurs before event $c$. This constraint was not represented in either $s$ or $s'$, but is represented in $s''$. Thus, a new relation between events has been discovered and made explicit. 
+Since $s''$ projects to both to both $s$ and $s'$, $s''$ also models the constraints that are represented by both $s$ and $s'$, using a single string rather than two strings. However, $s''$ also projects to the string \Before{a}{c}, which represents the constraint that event $a$ occurs before event $c$. This constraint was not represented in either $s$ or $s'$, but is represented in $s''$. Thus, a new relation between events has been discovered and made explicit. 
 
 
 \subsubsection{Event Ontology}\label{ssub:ontology}
