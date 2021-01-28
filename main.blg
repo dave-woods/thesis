@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: refs.bib
-You've used 11 entries,
+Warning--there's a number but no series in fernando2015semantics
+You've used 12 entries,
             1940 wiz_defined-function locations,
-            546 strings with 5690 characters,
-and the built_in function-call counts, 4875 in all, are:
-= -- 489
-> -- 174
-< -- 12
-+ -- 58
-- -- 58
-* -- 389
-:= -- 794
-add.period$ -- 34
-call.type$ -- 11
-change.case$ -- 82
-chr.to.int$ -- 11
-cite$ -- 11
-duplicate$ -- 211
-empty$ -- 355
-format.name$ -- 75
-if$ -- 997
+            554 strings with 5883 characters,
+and the built_in function-call counts, 5430 in all, are:
+= -- 547
+> -- 189
+< -- 15
++ -- 62
+- -- 62
+* -- 430
+:= -- 877
+add.period$ -- 38
+call.type$ -- 12
+change.case$ -- 88
+chr.to.int$ -- 12
+cite$ -- 13
+duplicate$ -- 238
+empty$ -- 400
+format.name$ -- 80
+if$ -- 1121
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 12
-newline$ -- 59
-num.names$ -- 33
-pop$ -- 93
+missing$ -- 13
+newline$ -- 64
+num.names$ -- 38
+pop$ -- 99
 preamble$ -- 1
-purify$ -- 84
+purify$ -- 90
 quote$ -- 0
-skip$ -- 163
+skip$ -- 186
 stack$ -- 0
-substring$ -- 351
-swap$ -- 62
-text.length$ -- 5
+substring$ -- 395
+swap$ -- 74
+text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 62
-warning$ -- 0
-while$ -- 43
+type$ -- 68
+warning$ -- 1
+while$ -- 49
 width$ -- 0
-write$ -- 145
+write$ -- 160
+(There was 1 warning)
