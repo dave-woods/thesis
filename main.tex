@@ -305,7 +305,10 @@ A string is a basic computational entity, defined as a finite sequence of symbol
 How should events be labelled? Some say an event is defined in part by its participants \citeneeded{}. Many of the procedures defined in this work which use these strings operate primarily on a syntactic level rather than depending on the lexical semantics of individual words, in order to produce an approach that works broadly. As such, in most cases, simple labels suffice for the purposes of describing the mechanics used here---this follows TimeML's standard of using labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, it will be useful to keep reference to a fuller picture of the data when possible, particularly when drawing inferences (see \ref{ssub:inferring} and \ref{ssub:ontology}).
 
 \subsubsection{Creating Strings}\label{ssub:creating}
-In order to create a string, first fix a set $A$ of symbols which represent the times and events under discussion, such that each $a \in A$ will be understood as naming an event or time. The powerset of $A$ will serve as a finite alphabet $\Sigma = 2^A$ of a string $s \in \Sigma^*$.
+% We fix a finite set A of fluents (temporal propositions), and encode sets of these fluents as symbols to allow any number of them to hold at a time (as in Fernando, 2016). A string s = α 1 · · · α n of subsets α i of A can be construed as a finite model consisting of n moments of time i ∈ {1, . . . , n} with α i specifying all fluents (in A) that (as unary predicates) hold simultaneously at i.
+In order to create a string, first it is necessary to fix a set $A$ of symbols which represent the times and events under discussion, such that each $a \in A$ will be understood as naming a \textit{fluent}---a temporal proposition which holds as a unary predicate at a particular time. A string $s = \sigma_1\sigma_2\cdots\sigma_n$ of subsets $\sigma_i$ of $A$ is interpreted as a finite model of $n$ moments of time, with $i \in \{1, 2, \ldots, n\}$. Each $\sigma_i$ specifies all those fluents which hold simultaneously at $i$ \nb{this is more or less the same as in ISA-13 -- should cite?}.
+
+The powerset of $A$ will serve as a finite alphabet $\Sigma = 2^A$ of a string $s \in \Sigma^*$.
 
 Sets of strings are languages \selfnote{Maybe mention this in \ref{sub:strings} rather than here? See how it goes}. Languages allow for grouping strings based on some property, such as their source, which will permit the introducion of ambiguity as will be shown in more detail in \ref{ssub:superposition}. For example,
 \begin{align}
@@ -520,6 +523,8 @@ The last two relations on this list cannot be represented using a single string,
 	\end{center}
 	\caption{The remaining Freksa relations and the strings they project to}
 \end{figure}
+
+While having to use a conjunction of strings may seem like a confounding issue which prevents all the relations from being representable by a single string, it is in fact less problematic than allowing disjunction inside a box, in some ways.
 \subsection{Enhancing Strings using DRT}\label{sub:enhancing}
 Automatic DRS-parsing of plain text is a task which has recently seen new approaches \citeneeded[ -- shared task, see fsmnlp paper sec 1]. It is possible to leverage the temporal information that features in a DRS to create strings. While the relations generally found using this approach are less specific than those found in TimeML \nb{compare the relations}, the advantage of using DRSs is that elements such as event participants are described.
 

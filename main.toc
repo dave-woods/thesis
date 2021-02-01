@@ -21,7 +21,7 @@
 \contentsline {paragraph}{Block Compression:}{8}
 \contentsline {paragraph}{Superposition:}{9}
 \contentsline {subsection}{\numberline {3.2}Applications}{10}
-\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{10}
+\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{11}
 \contentsline {subsubsection}{\numberline {3.2.2}Inferring New Information}{11}
 \contentsline {subsubsection}{\numberline {3.2.3}Scheduling (Zebra Puzzle)}{12}
 \contentsline {section}{\numberline {4}Methods}{13}
