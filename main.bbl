@@ -5,6 +5,12 @@ Allen, J.~F. (1983).
 \newblock {Maintaining Knowledge About Temporal Intervals}.
 \newblock {\em Communications of the ACM}, 26(11):832--843.
 
+\bibitem[\protect\astroncite{Aristotle}{}]{aristotlePhysicsIV}
+Aristotle.
+\newblock {The Internet Classics Archive: Physics IV}.
+\newblock \url{http://classics.mit.edu/Aristotle/physics.4.iv.html}.
+\newblock Accessed: 2018-08-12.
+
 \bibitem[\protect\astroncite{Bos}{2008}]{Bos2008}
 Bos, J. (2008).
 \newblock {Wide-Coverage Semantic Analysis with Boxer}.
@@ -41,6 +47,23 @@ Kamp, H. and Reyle, U. (1993).
   Semantics of Natural Language, Formal Logic and DRT}}.
 \newblock Dordrecht: Kluwer.
 
+\bibitem[\protect\astroncite{Kowalski and Sergot}{1986}]{Kowalski1986}
+Kowalski, R. and Sergot, M. (1986).
+\newblock {A Logic-based Calculus of Events}.
+\newblock {\em New Generation Computing}, 4(1):67--95.
+
+\bibitem[\protect\astroncite{Miller and Shanahan}{1999}]{Miller1999}
+Miller, R. and Shanahan, M. (1999).
+\newblock {The Event Calculus in Classical Logic–Alternative
+  Axiomatizations}.
+\newblock {\em Electronic Transactions on Artificial Intelligence}, 3:77--105.
+
+\bibitem[\protect\astroncite{Mueller}{2008}]{Mueller2008}
+Mueller, E.~T. (2008).
+\newblock {Event Calculus}.
+\newblock In {\em Foundations of Artificial Intelligence}, volume~3, pages
+  671--708.
+
 \bibitem[\protect\astroncite{Pustejovsky et~al.}{2005}]{Pustejovsky2005}
 Pustejovsky, J., Knippen, R., Littman, J., and Saur{\'{i}}, R. (2005).
 \newblock {Temporal and Event Information in Natural Language Text}.
@@ -58,6 +81,12 @@ Pustejovsky, J., Verhagen, M., Sauri, R., Littman, J., Gaizauskas, R., Katz,
 Reichenbach, H. (1947).
 \newblock {\em Elements of symbolic logic}.
 \newblock New York: Macmillan.
+
+\bibitem[\protect\astroncite{Shanahan}{1997}]{shanahan1997solving}
+Shanahan, M. (1997).
+\newblock {\em Solving the Frame Problem: A Mathematical Investigation of the
+  Common Sense Law of Inertia}.
+\newblock MIT press.
 
 \bibitem[\protect\astroncite{Woods and Fernando}{2018}]{woods2018improving}
 Woods, D. and Fernando, T. (2018).
