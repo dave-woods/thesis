@@ -17,10 +17,10 @@
 \contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{5}
 \contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{7}
 \contentsline {subsubsection}{\numberline {3.1.2}Granularity: Points vs Intervals vs Semi-intervals}{8}
-\contentsline {subsubsection}{\numberline {3.1.3}String Operations}{8}
+\contentsline {subsubsection}{\numberline {3.1.3}String Operations}{9}
 \contentsline {paragraph}{Vocabulary:}{9}
 \contentsline {paragraph}{Block Compression:}{9}
-\contentsline {paragraph}{Superposition:}{10}
+\contentsline {paragraph}{Superposition:}{11}
 \contentsline {subsection}{\numberline {3.2}Applications}{12}
 \contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{12}
 \contentsline {subsubsection}{\numberline {3.2.2}Inferring New Information}{13}

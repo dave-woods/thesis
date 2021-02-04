@@ -1,2 +1,6 @@
 {
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.view.pdf.backgroundColor": "#1E1E1E",
+    "latex-workshop.view.pdf.tab.editorGroup": "left",
+    "latex-workshop.view.pdf.viewer": "tab"
 }

@@ -32,7 +32,7 @@ Fernando, T. and Nairn, R. (2005).
 
 \bibitem[\protect\astroncite{Fernando et~al.}{2019}]{fernando2019mso}
 Fernando, T., Woods, D., and Vogel, C. (2019).
-\newblock Mso with tests and reducts.
+\newblock {MSO with tests and reducts}.
 \newblock In {\em Proceedings of the 14th International Conference on
   Finite-State Methods and Natural Language Processing}, pages 27--36.
 
@@ -51,6 +51,14 @@ Kamp, H. and Reyle, U. (1993).
 Kowalski, R. and Sergot, M. (1986).
 \newblock {A Logic-based Calculus of Events}.
 \newblock {\em New Generation Computing}, 4(1):67--95.
+
+\bibitem[\protect\astroncite{McCarthy and
+  Hayes}{1969}]{Mccarthy69somephilosophical}
+McCarthy, J. and Hayes, P.~J. (1969).
+\newblock {Some Philosophical Problems from the Standpoint of Artificial
+  Intelligence}.
+\newblock In {\em Machine Intelligence}, pages 463--502. Edinburgh University
+  Press.
 
 \bibitem[\protect\astroncite{Miller and Shanahan}{1999}]{Miller1999}
 Miller, R. and Shanahan, M. (1999).
