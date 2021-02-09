@@ -170,7 +170,7 @@
 %\usepackage[nottoc,numbib]{tocbibind} %This includes the bibliography as a numbered section in the TOC
 \usepackage[nottoc]{tocbibind}
 
-\usepackage[capitalise]{cleveref}
+\usepackage{cleveref}
 \crefname{section}{\textbf{\S}}{\textbf{\S}}
 
 \doublespacing
@@ -336,11 +336,20 @@ In order to create a string, first it is necessary to fix a set $\mathcal{V}$ of
 
 The set $\mathcal{V}$ will be known as a \textit{vocabulary}, and the powerset of $\mathcal{V}$ will serve as a finite alphabet $\Sigma = 2^{\mathcal{V}}$ of a string $s \in \Sigma^*$. Accordingly, at each position $i$ in the string $s$, the \textit{component} $\sigma_i$ will be a (possibly empty) set of the fluents which hold at that position.
 
-Sets of strings are languages \selfnote{Maybe mention this in \cref{sub:strings} rather than here? See how it goes}. Languages allow for grouping strings based on some property, such as their source, which will permit the introducion of ambiguity as will be shown in more detail in \cref{ssub:superposition}. For example,
+\nb{Mention here about the box notation? Or earlier? I think here is appropriate}
+
+Sets of strings are languages \selfnote{Maybe mention this in \cref{sub:strings} rather than here? See how it goes}. Languages allow for grouping strings based on some property, such as their source, which will permit the introducion of ambiguity as will be shown in more detail in \cref{ssub:superposition} (see p. \pageref{ex:lang-superposition}). For example,
 \begin{align}
 	L = \{\EventString{a|b|c}, \EventString{a|c|b}\}
 \end{align}
-where the language $L$ contains two strings which represent different---albeit related---sequences of events. Note that, for the sake of convenience, a language containing a single string can be conflated with its sole member string. This is generally a useful admittance for discussion\nb{what?} purposes when chaining together string operations, as some operations will result in a language which would be fed into a new operation.
+where the language $L$ contains two strings which represent different---albeit related---sequences of events.
+
+Note that a language containing only a single string may be conflated with its sole member, and vice versa. This is a useful admittance, particularly in regards to superposition and other string operations (see \cref{ssub:operations}), when it may be necessary to, for example, superpose a string and a language, in which case the string is conflated with a language containing just that string. \label{pt:conflation}
+% This is generally a useful admittance for discussion\nb{what?} purposes when chaining together string operations, as some operations will result in a language which would be fed into a new operation.
+
+\subsubsection{Strings as MSO Models}
+
+Strings of symbols representing events as described in \cref{ssub:creating} may be interpreted as finite models of Monadic Second-Order Logic (MSO) \nb{In transfer I just pointed the reader towards \citet{Libkin2012} for a discussion -- should maybe go into at least some small detail in the main text this time?}.
 
 \subsubsection{Granularity: Points vs Intervals vs Semi-intervals}\label{ssub:granularity}
 A decision must be made in regards to what is regarded as `primitive' in a string, in terms of whether a basic component is considered as instantaneous, or as having some duration. In the first view, only points exist, and so an event will have a beginning and an ending (left and right borders), each of which represented by a symbol in the string. In the second, entire intervals are used instead of points. Two points may only be related in three ways: \textless, =, \textgreater. Two intervals, however, may be related in thirteen different ways, precisely, the Allen Relations \citeneeded{}. 
@@ -354,20 +363,20 @@ Ultimately, intervals are chosen for a number of reasons: primarily because ISO-
 \subsubsection{String Operations}\label{ssub:operations}
 Many many operations. The most important is \textbf{superposition} (and it's more advanced forms)! Also we have block-compression, reduct, vocabulary, projection, border translations. Note also that there are equivalent operations for strings which use points instead of intervals.
 
-{\color{red} Discuss the language level operations here too.}
+\nb{Discuss the language level operations here too.}
 
 \paragraph{Vocabulary:}
 The \textit{vocabulary} $\mathcal{V}$ of a string or language is the set of fluents which appear in it. For an arbitrary string $s = \sigma_1\sigma_2\cdots\sigma_n$, the vocabulary of $s$ may be determined by taking the union of its components:
 \begin{align}
-	\mathcal{V}_s = \sigma_1 \cup \sigma_2 \cup \cdots \cup \sigma_n
+	\mathcal{V}_s := \sigma_1 \cup \sigma_2 \cup \cdots \cup \sigma_n
 \end{align}
 and the vocabulary of a language is just the union of the vocabularies of the strings it contains:
 \begin{align}
-	\mathcal{V}_L = \bigcup \{\mathcal{V}_s ~|~ s \in L \}
+	\mathcal{V}_L := \bigcup \{\mathcal{V}_s ~|~ s \in L \}
 \end{align}
 
 \paragraph{Block Compression:}
-Since the length of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ does not reflect its real duration (due to the understanding that strings model intertial worlds---see \cref{sub:strings} p. \pageref{sub:strings}), it is also not required that the length of time represented by any $\sigma_i$ is equal to that represented by any $\sigma_j$, for $i \neq j$. Similarly, if a fluent symbol $v \in \mathcal{V}$ from the vocabulary appears in both $\sigma_i$ and $\sigma_{i+1}$, this does not imply that the event represented by $v$ has a duration twice as long as if it had only appeared in $\sigma_i$. Indeed, the symbol $v$ may appear in any number of consecutive positions in $s$ without affecting the interpretation of the real length of time of the event it represents. Further, if the string features a repeating component, i.e. $\sigma_i = \sigma_{i+1}$ for any $1 \le i < n$, the interpretation of the string is not affected by the deletion of one of either $\sigma_i$ or $\sigma_{i+1}$. For example, the interpretation of the string \EventString{a|a|a,b|b|b} is equivalent to the interpretation of the string \EventString{a|a,b|b}. A string featuring repetitions is said to \textit{stutter}.
+Since the length of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ does not reflect its real duration (due to the understanding that strings model intertial worlds---see \cref{sub:strings} p. \pageref{sub:strings}), it is also not required that the length of time represented by any $\sigma_i$ is equal to that represented by any $\sigma_j$, for $i \neq j$. Similarly, if a fluent symbol $v \in \mathcal{V}$ from the vocabulary appears in both $\sigma_i$ and $\sigma_{i+1}$, this does not imply that the event represented by $v$ has a duration twice as long as if it had only appeared in $\sigma_i$. Indeed, the symbol $v$ may appear in any number of consecutive positions in $s$ without affecting the interpretation of the real length of time of the event it represents. Further, if the string features a repeating component, i.e. $\sigma_i = \sigma_{i+1}$ for any $1 \le i < n$, the interpretation of the string is not affected by the deletion of one of either $\sigma_i$ or $\sigma_{i+1}$. So for example, the interpretation of the string \EventString{a|a|a,b|b|b} is equal to the interpretation of the string \EventString{a|a,b|b}. A string featuring such repetitions is said to contain \textit{stutter}.
 
 As a result, the \textit{block compression} $\bc(s)$ of a string $s$ may be introduced, which removes any stutter present in $s$. This is defined as \citep{fernando2015semantics, woods2017towards}:
 \begin{align}\label{def:bc}
@@ -378,17 +387,21 @@ As a result, the \textit{block compression} $\bc(s)$ of a string $s$ may be intr
 	~~\sigma \bc(\sigma' s') & \text{if } s = \sigma \sigma' s' \text{ with } \sigma \neq \sigma'
 \end{cases}
 \end{align}
-Stutter may also be induced in a string which is \textit{stutterless} (it does not contain stutter) by using the inverse of block compression, which will generate infinitely many strings:
-\begin{align}
-\bc^{-1}(\bc(s)) = \sigma_1^+ \sigma_2^+ \cdots \sigma_n^+ ~~~ \mbox{ if } \bc(s) = \sigma_1 \sigma_2 \cdots \sigma_n
+Stutter may also be induced in a string which is \textit{stutterless} (it does not contain stutter) by using the inverse of block compression, which will generate infinitely many strings\footnote{If the string $s$ features stutter, then $\bc^{-1}(s)$ will not contain any strings with a length shorter than $s$, including $\bc(s)$. To capture all possible \bc-equivalent strings, $s$ is block compressed before the inverse is applied.}:
+\begin{align}\label{def:inverse-bc}
+\bc^{-1}(\bc(s)) := \sigma_1^+ \sigma_2^+ \cdots \sigma_n^+ ~~~ \mbox{ if } \bc(s) = \sigma_1 \sigma_2 \cdots \sigma_n
 \end{align}
+For example:
+\begin{align}\label{ex:inverse-bc}
+	\bc^{-1}(\EventString{a|c}) = \{\EventString{a|c}, \EventString{a|a|c}, \EventString{a|c|c}, \EventString{a|a|c|c}, \ldots\}
+	\end{align}
 Since these strings all block compress to the same string, they can be said to be equivalent under block compression. Specifically, strings $s$ and $s'$ are \textit{\bc -equivalent} iff $\bc(s) = \bc(s')$. This ability to generate infinitely many strings which have an equivalent interpretation allows for varying the length of a string as will be required in order to form a useful notion of superposition (see p. \pageref{def:async-superposition}).
 
 \paragraph{Superposition:}\label{para:str-op-sp}
 In its most basic form, the \textit{superposition} $s \sp s'$ of two strings $s = \sigma_1\sigma_2\cdots\sigma_n$ and $s' = \sigma'_1\sigma'_2\cdots\sigma'_n$ of equal length $n$ is simply their component-wise union:
 
 \begin{align}\label{def:superposition}
-	\sigma_1\sigma_2\cdots\sigma_n \sp \sigma'_1\sigma'_2\cdots\sigma'_n = (\sigma_1 \cup \sigma'_1)(\sigma_2 \cup \sigma'_2)\cdots(\sigma_n \cup \sigma'_n)
+	\sigma_1\sigma_2\cdots\sigma_n \sp \sigma'_1\sigma'_2\cdots\sigma'_n := (\sigma_1 \cup \sigma'_1)(\sigma_2 \cup \sigma'_2)\cdots(\sigma_n \cup \sigma'_n)
 \end{align}
 For example:
 \begin{align}\label{ex:superposition}
@@ -396,18 +409,39 @@ For example:
 \end{align}
 This is easily extended to pairs of languages $L \sp L'$ by collecting the superpositions of strings of equal lengths in each language:
 \begin{align}\label{def:lang-superposition}
-	L \sp L' = \bigcup_{n \ge 0}\{ s \sp s' | s \in L \cap \Sigma^n, s' \in L' \cap \Sigma^n\}
+	L \sp L' := \bigcup_{n \ge 0}\{ s \sp s' | s \in L \cap \Sigma^n, s' \in L' \cap \Sigma^n\}
 \end{align}
-The result $L \sp L'$ of superposing two languages $L$ and $L'$ is also a language \nb{Don't forget to mention the connection to regular languages and FSA here}, and if $L$ and $L'$ are regular languages, then $L \sp L'$ is also regular. If $L$ is accepted by the finite automaton $\langle Q, (2^\mathcal{V})^*, (q \sta{\sigma}{\to} r), q_0, F \rangle$ and $L'$ is accepted by the finite automaton $\langle Q', (2^{\mathcal{V}'})^*, (q' \sta{\sigma'}{\to} r'), q'_0, F' \rangle$ then $L \sp L'$ is computed by a finite automaton composed of the automata accepting each $L$ and $L'$: $\langle Q \times Q', (2^{\mathcal{V} \cup \mathcal{V}'})^*, ((q, q') \sta{(\sigma \cup \sigma')}{\to} (r, r')), (q_0, q'_0), F \times F' \rangle$.
+The result $L \sp L'$ of superposing two languages $L$ and $L'$ is also a language \nb{Don't forget to mention the connection to regular languages and FSA here}, and if $L$ and $L'$ are regular languages, then $L \sp L'$ is also regular. If $L$ is accepted by the finite automaton $\langle Q, (2^\mathcal{V})^*, (q \sta{\sigma}{\to} r), q_0, F \rangle$ and $L'$ is accepted by the finite automaton $\langle Q', (2^{\mathcal{V}'})^*, (q' \sta{\sigma'}{\to} r'), q'_0, F' \rangle$ then $L \sp L'$ is computed by a finite automaton composed of the automata accepting each $L$ and $L'$: $\langle Q \times Q', (2^{\mathcal{V} \cup \mathcal{V}'})^*, ((q, q') \sta{(\sigma \cup \sigma')}{\to} (r, r')), (q_0, q'_0), F \times F' \rangle$. \nb{expand on this and its importance}
 
-Using languages provides more flexibility than strings alone, since non-determinism can be accounted for through variations between strings within a language. For example, in \cref{ex:lang-superposition} below, the result of the superposition reflects the alternate event sequences in the strings of the first input language.
+Using languages provides more flexibility than strings alone, since non-determinism can be accounted for through variations between strings within a language. For example, in \cref{ex:lang-superposition} below, the result of the superposition accounts for the alternate event sequences in the strings of the first input language.
 
 \begin{align}\label{ex:lang-superposition}
 	\{\EventString{a|b|c}, \EventString{a|c|b}\} \sp \{\EventString{a|c|d}\} = \{\EventString{a|b,c|c,d}, \EventString{a|c|b,d}\}
 \end{align}
+This may reflect a situation where there is uncertainty as to the correct order of events---in this case a language is useful to collect all of the possible alternatives, which can then be still be superposed with other languages. 
+
+In order to extend this operation further, it is necessary to remove the restriction that only strings of equal length may be superposed together. This is desirable so as to allow arbitrary numbers of events to appear in strings, and to superpose strings which may be of unknown length. For example, the operation in \cref{ex:unequal-lengths} below cannot be calculated, and even if the strings were instead singleton members of languages and those languages were superposed, the result would just be the empty set.
+
+\begin{align}\label{ex:unequal-lengths}
+	(\EventString{a|b} \sp \EventString{c|d}) \sp (\EventString{a|b|c} \sp \EventString{a|c|d})
+	= \EventString{a,c|b,d} \sp \EventString{a|b,c|c,d}
+	= undefined
+\end{align}
+
+To achieve this, \bc-equivalence is exploited and the \textit{inverse block compression} operation (see \cref{def:inverse-bc}, p. \pageref{def:inverse-bc}) is leveraged. Since, by inducing stutter in a string, infinitely many new strings of greater or equal length can be generated which are \bc-equivalent to the starting string, it is effectively possible to force a pair of strings to be of equal length.
+
+So, the \textit{asynchronous superposition} $s \spasync s'$ of two strings $s$ and $s'$ is defined as the language obtained by applying block compression to the results of superposition between the languages which are respectively \bc-equivalent to each of $s$ and $s'$\footnote{Note that $\bc(s) = \bc(s') \Longleftrightarrow s \in \bc^{-1}(\bc(s'))$}:
 
 \begin{align}\label{def:async-superposition}
-	stuff
+	s \spasync s' := \{\bc(s'') ~|~ s'' \in \bc^{-1}(\bc(s)) \sp \bc^{-1}(\bc(s'))\}
+\end{align}
+
+Now the strings in \cref{ex:unequal-lengths} can be superposed using asynchronous superposition, as in \cref{ex:async-superposition} below: \nb{double check the below output, not sure of prolog quality... (turing:www/super/superposition.pl)}
+% | ?- spbc_set([[a,c],[b,d]], [[a],[b,c],[c,d]], L).
+% L = [[[a,c],[a,b,c],[a,c,d],[b,c,d]], [[a,c],[a,b,c],[b,c,d]], [[a,c],[a,b,d],[b,c,d]] ,[[a,c],[b,c,d]]].
+
+\begin{align}\label{ex:async-superposition}
+	\EventString{a,c|b,d} \spasync \EventString{a|b,c|c,d} = \{&\EventString{a,c|a,b,d|b,c,d}, \EventString{a,c|a,b,c|b,c,d},\\&\EventString{a,c|a,b,c|a,c,d|b,c,d}, \EventString{a,c|b,c,d}\}\notag
 \end{align}
 
 \subsection{Applications}\label{sub:applications}

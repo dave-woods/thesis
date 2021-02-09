@@ -8,45 +8,45 @@ Warning--I'm ignoring Kowalski1986's extra "year" field
 Warning--empty year in aristotlePhysicsIV
 Warning--there's a number but no series in fernando2015semantics
 Warning--empty publisher in Mueller2008
-You've used 18 entries,
+You've used 19 entries,
             1940 wiz_defined-function locations,
-            595 strings with 6838 characters,
-and the built_in function-call counts, 7785 in all, are:
-= -- 793
-> -- 249
-< -- 24
-+ -- 80
-- -- 80
-* -- 611
-:= -- 1259
-add.period$ -- 58
-call.type$ -- 18
-change.case$ -- 126
-chr.to.int$ -- 18
-cite$ -- 21
-duplicate$ -- 344
-empty$ -- 580
-format.name$ -- 110
-if$ -- 1606
+            604 strings with 7000 characters,
+and the built_in function-call counts, 8288 in all, are:
+= -- 849
+> -- 256
+< -- 26
++ -- 82
+- -- 82
+* -- 644
+:= -- 1332
+add.period$ -- 62
+call.type$ -- 19
+change.case$ -- 132
+chr.to.int$ -- 19
+cite$ -- 22
+duplicate$ -- 371
+empty$ -- 624
+format.name$ -- 113
+if$ -- 1721
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 19
-newline$ -- 95
-num.names$ -- 56
-pop$ -- 136
+missing$ -- 20
+newline$ -- 100
+num.names$ -- 59
+pop$ -- 143
 preamble$ -- 1
-purify$ -- 129
+purify$ -- 135
 quote$ -- 0
-skip$ -- 270
+skip$ -- 292
 stack$ -- 0
-substring$ -- 572
-swap$ -- 104
-text.length$ -- 10
+substring$ -- 616
+swap$ -- 115
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 102
+type$ -- 108
 warning$ -- 3
-while$ -- 71
+while$ -- 76
 width$ -- 0
-write$ -- 239
+write$ -- 254
 (There were 4 warnings)
