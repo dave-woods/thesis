@@ -1,52 +1,52 @@
-This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: refs.bib
 Warning--I'm ignoring Kowalski1986's extra "year" field
---line 303 of file refs.bib
+--line 152 of file refs.bib
 Warning--empty year in aristotlePhysicsIV
 Warning--there's a number but no series in fernando2015semantics
 Warning--empty publisher in Mueller2008
-You've used 19 entries,
+You've used 21 entries,
             1940 wiz_defined-function locations,
-            604 strings with 7000 characters,
-and the built_in function-call counts, 8288 in all, are:
-= -- 849
-> -- 256
-< -- 26
-+ -- 82
-- -- 82
-* -- 644
-:= -- 1332
-add.period$ -- 62
-call.type$ -- 19
-change.case$ -- 132
-chr.to.int$ -- 19
-cite$ -- 22
-duplicate$ -- 371
-empty$ -- 624
-format.name$ -- 113
-if$ -- 1721
+            615 strings with 7253 characters,
+and the built_in function-call counts, 9086 in all, are:
+= -- 933
+> -- 270
+< -- 29
++ -- 86
+- -- 86
+* -- 705
+:= -- 1459
+add.period$ -- 68
+call.type$ -- 21
+change.case$ -- 144
+chr.to.int$ -- 21
+cite$ -- 24
+duplicate$ -- 410
+empty$ -- 691
+format.name$ -- 119
+if$ -- 1888
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 20
-newline$ -- 100
-num.names$ -- 59
-pop$ -- 143
+missing$ -- 22
+newline$ -- 110
+num.names$ -- 65
+pop$ -- 154
 preamble$ -- 1
-purify$ -- 135
+purify$ -- 147
 quote$ -- 0
-skip$ -- 292
+skip$ -- 322
 stack$ -- 0
-substring$ -- 616
-swap$ -- 115
-text.length$ -- 11
+substring$ -- 683
+swap$ -- 126
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 108
+type$ -- 120
 warning$ -- 3
-while$ -- 76
+while$ -- 85
 width$ -- 0
-write$ -- 254
+write$ -- 281
 (There were 4 warnings)

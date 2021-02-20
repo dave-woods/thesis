@@ -23,6 +23,17 @@ Fernando, T. (2015).
 \newblock In Lappin, S. and Fox, C., editors, {\em The Handbook of Contemporary
   Semantic Theory}, number August, pages 203--236. John Wiley {\&} Sons.
 
+\bibitem[\protect\astroncite{Fernando}{2016}]{fernando2016regular}
+Fernando, T. (2016).
+\newblock {On Regular Languages Over Power Sets}.
+\newblock {\em Journal of Language Modelling}, 4(1):29--56.
+
+\bibitem[\protect\astroncite{Fernando}{2018}]{Fernando2018}
+Fernando, T. (2018).
+\newblock {Intervals and Events with and without Points}.
+\newblock In {\em Workshop on Logic and Algorithms in Computational Linguistics
+  2018 (LACompLing2018)}, pages 34--46, Stockholm.
+
 \bibitem[\protect\astroncite{Fernando and
   Nairn}{2005}]{fernando2005entailments}
 Fernando, T. and Nairn, R. (2005).
@@ -52,11 +63,11 @@ Kowalski, R. and Sergot, M. (1986).
 \newblock {A Logic-based Calculus of Events}.
 \newblock {\em New Generation Computing}, 4(1):67--95.
 
-\bibitem[\protect\astroncite{Libkin}{2012}]{Libkin2012}
-Libkin, L. (2012).
+\bibitem[\protect\astroncite{Libkin}{2004}]{Libkin2004}
+Libkin, L. (2004).
 \newblock {Monadic Second-Order Logic and Automata}.
-\newblock In {\em Elements of Finite Model Theory}, pages 113--140. Springer
-  Berlin Heidelberg, Berlin, Heidelberg.
+\newblock In {\em Elements of Finite Model Theory}, pages 113--140.
+  Springer-Verlag, Berlin, Heidelberg.
 
 \bibitem[\protect\astroncite{McCarthy and
   Hayes}{1969}]{Mccarthy69somephilosophical}
