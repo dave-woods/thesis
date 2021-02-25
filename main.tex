@@ -350,7 +350,7 @@ where the language $L$ contains two strings which represent different---albeit r
 Note that a language containing only a single string may be conflated with its sole member, and vice versa. This is a useful admittance, particularly in regards to superposition and other string operations (see \cref{ssub:operations}), when it may be necessary to, for example, superpose a string and a language, in which case the string is conflated with a language containing just that string. \label{pt:conflation}
 % This is generally a useful admittance for discussion\nb{what?} purposes when chaining together string operations, as some operations will result in a language which would be fed into a new operation.
 
-\subsubsection{Strings as MSO Models}
+\subsubsection{Strings as MSO Models}\label{ssub:mso}
 
 Strings of symbols representing events as described in \cref{ssub:creating} may be interpreted as finite models of Monadic Second-Order Logic (MSO) \nb{In transfer I just pointed the reader towards \citet{Libkin2004} for a discussion -- should maybe go into at least some small detail in the main text this time? Or should that go into the lit review?}. MSO is a fragment of Second-Order Logic that restricts quantification so as to be permitted solely for unary predicates, which is equivalent to quantification over sets---this is due to the fact that a unary predicate may be effectively described by the set of terms for which that predicate is true.\citeneeded{}
 
@@ -392,8 +392,25 @@ Given an arbitrary MSO$_{\mathcal{V}}$ model $M$, the string $str(M)$ which desc
 	\sigma_i := \{v \in \mathcal{V} ~|~ i \in \llbracket P_v \rrbracket \}
 \end{align}
 \nb{Really not sure how I feel about this last bit}\citeneeded[ -- Fernando 2016 regular goes into depth about a lot of this stuff]
+\nb{Need to say something about $\llbracket A \rrbracket_M$ being the interpretation of $A$ relative to the model $M$}
 
 There is a theorem due to B\"{u}chi, Elgot, and Trakhtenbrot (see, for example, \citet[p.124, Theorem 7.21]{Libkin2004}) which states that sentences $\phi$ of MSO capture regular languages, i.e. MSO-definability is equivalent to regularity.
+
+%%%%%%%%%%%%
+\paragraph{Analogous Strings}\label{para:analogous-strings}
+A string $s$ will be said to be \textit{analogous} \nb{I'm not sure where to put this section/para} to some other string $s'$ if the MSO models (see \cref{ssub:mso}) corresponding to each string are isomorphic---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping the vocabulary of $s$ to the vocabulary of $s'$, and for every $v \in \mathcal{V}_s, \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket$:
+\begin{align}
+	s \sim s' \Longleftrightarrow  mod(s) \cong mod(s')
+\end{align}
+For example, in \cref{ex:analog}, \Before{a}{b} is analogous to \Before{c}{d}, while in \cref{ex:not-analog} \Before{a}{b} is not analogous to \Overlaps{c}{d}
+\begin{align}
+	\Before{a}{b} &\sim \Before{c}{d}\label{ex:analog}\\
+	\Before{a}{b} &\nsim \Overlaps{c}{d}\label{ex:not-analog}
+\end{align}
+Determining whether strings are analogous is useful when ascertaining the relations between events appearing in a string. If the relations between events in a string $s$ are known, and another string $s'$ can be shown to be analogous to $s$, then the relations between the events that appear in $s'$ are also known\footnote{For example, the string on the left hand side of \cref{ex:analog} says that event $a$ is \textit{before} event $b$, and since the string on the right hand side is analogous, THEN event $c$ must be \textit{before} event $d$.}. By employing this concept in conjunction with that of projection (see p. \pageref{para:str-op-projection}) and a set of reference strings---such as those modelling Allen's relations (see \cref{tab:allen-rels-strings})---it becomes simple to determine which relations appear in a string.
+
+Further, if a pair of strings are shown to be analogous, this can make any calculations or processing involving these strings to be more efficient: any set of operations applied to one of the strings would produce the same result if applied to the other, so there is no need to apply them to both.
+%%%%%%%%%%%%
 
 \subsubsection{Granularity: Points vs Intervals vs Semi-intervals}\label{ssub:granularity}
 A decision must be made in regards to what is regarded as `primitive' in a string, in terms of whether a basic component is considered as instantaneous, or as having some duration. In the first view, only points exist, and so an event will have a beginning and an ending (left and right borders), each of which represented by a symbol in the string. In the second, entire intervals are used instead of points. Two points may only be related in three ways: \textless, =, \textgreater. Two intervals, however, may be related in thirteen different ways, precisely, the Allen Relations \citeneeded{}. 
@@ -405,6 +422,8 @@ A third option exists: semi-intervals, as described by \cite{Freksa1992}. By tre
 Ultimately, intervals are chosen for a number of reasons: primarily due to the fact that ISO-TimeML, the international standard for temporal annotation, uses intervals for its TLINKs, but also they seem the most intuitive \nb{This is vague and subjective; defend it better}.
 
 It's worth noting that there are translations available between the different granularities.
+
+\nb{Need to say something in here about the bounded finite intervals.}
 
 \subsubsection{String Operations}\label{ssub:operations}
 Many many operations. The most important is \textbf{superposition} (and it's more advanced forms)! Also we have block-compression, reduct, vocabulary, projection, border translations. Note also that there are equivalent operations for strings which use points instead of intervals.
@@ -420,7 +439,7 @@ and the vocabulary of a language is just the union of the vocabularies of the st
 \begin{align}
 	\mathcal{V}_L := \bigcup \{\mathcal{V}_s ~|~ s \in L \}
 \end{align}
-
+% Determining a string's vocabulary permits some operations to be chained 
 \paragraph{Block Compression:}
 Since the length of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ does not reflect its real duration (due to the understanding that strings model intertial worlds---see \cref{sub:strings} p. \pageref{sub:strings}), it is also not required that the length of time represented by any $\sigma_i$ is equal to that represented by any $\sigma_j$, for $i \neq j$. Similarly, if a fluent symbol $v \in \mathcal{V}$ from the vocabulary appears in both $\sigma_i$ and $\sigma_{i+1}$, this does not imply that the event represented by $v$ has a duration twice as long as if it had only appeared in $\sigma_i$. Indeed, the symbol $v$ may appear in any number of consecutive positions in $s$ without affecting the interpretation of the real length of time of the event it represents. Further, if the string features a repeating component, i.e. $\sigma_i = \sigma_{i+1}$ for any $1 \le i < n$, the interpretation of the string is not affected by the deletion of one of either $\sigma_i$ or $\sigma_{i+1}$. So for example, the interpretation of the string \EventString{a|a|a,b|b|b} is equal to the interpretation of the string \EventString{a|a,b|b}. A string featuring such repetitions is said to contain \textit{stutter}.
 
@@ -444,7 +463,7 @@ For example:
 Since these strings all block compress to the same string, they can be said to be equivalent under block compression. Specifically, strings $s$ and $s'$ are \textit{\bc -equivalent} iff $\bc(s) = \bc(s')$. This ability to generate infinitely many strings which have an equivalent interpretation allows for varying the length of a string as will be required in order to form a useful notion of superposition (see p. \pageref{def:initial-async-superposition}).
 
 \paragraph{Superposition:}\label{para:str-op-sp}
-In its most basic form, the \textit{superposition} $s \sp s'$ of two strings $s = \sigma_1\sigma_2\cdots\sigma_n$ and $s' = \sigma'_1\sigma'_2\cdots\sigma'_n$ of equal length $n$ is simply their component-wise union:
+In its most basic form, the \textit{superposition} $s \sp s'$ of two strings $s = \sigma_1\sigma_2\cdots\sigma_n$ and $s' = \sigma'_1\sigma'_2\cdots\sigma'_n$ of equal length $n$ is simply their component-wise union\footnote{The vocabulary of the resulting string is, as might be expected, the union of the vocabularies of the original strings: $\mathcal{V}_{s \sp s'} = \mathcal{V}_s \cup \mathcal{V}_{s'}$.}:
 
 \begin{align}\label{def:superposition}
 	\sigma_1\sigma_2\cdots\sigma_n \sp \sigma'_1\sigma'_2\cdots\sigma'_n := (\sigma_1 \cup \sigma'_1)(\sigma_2 \cup \sigma'_2)\cdots(\sigma_n \cup \sigma'_n)
@@ -497,7 +516,7 @@ In order to tackle this back to something finite and to avoid generation of larg
 	pad_k(\bc(s)) &:= \sigma_1^+ \sigma_2^+ \cdots \sigma_n^+ \cap \Sigma^k ~~~ \mbox{ if } \bc(s) = \sigma_1 \sigma_2 \cdots \sigma_n\\
 	&=\{\sigma_1^{k_1}\sigma_2^{k_2}\cdots\sigma_n^{k_n} ~|~ k_1,\ldots,k_n \ge 1, \sum_{i = 1}^{n}k_i = k  \}\notag
 \end{align}
-The language produced by padding a string is a strict subset of the language produced by performing inverse block compression on that same string. For example, using the same string as \cref{ex:inverse-bc}:
+The language produced by padding a string is a proper subset of the language produced by performing inverse block compression on that same string. For example, using the same string as \cref{ex:inverse-bc}:
 \begin{align}\label{ex:padk}
 	pad_3(\EventString{a|c}) = \{\EventString{a|a|c}, \EventString{a|c|c}\}
 \end{align}
@@ -514,12 +533,83 @@ Similarly, in \cref{ex:async-superposition}, the first input string has events $
 
 This stands in contrast to the concept of \bc-equivalence, where strings have an equal interpretation regardless of how much or how little stutter is present. By using superposition as is currently presented, information is in fact lost rather than gained when strings are combined. The next two operations aim to resolve this issue.
 
-\paragraph{Reduct}\label{para:str-op-reduct}
-Big string to lil string
+\paragraph{Reduct:}\label{para:str-op-reduct}
+It will be useful to be able to alter the vocabulary of a string---in particular, to shrink it---so as to control which events are mentioned. If a string contains, for instance, five events, but only two of these are relevant to the application, there is sense in being able to focus on those two.
 
-\paragraph{Projection}\label{para:str-op-projection}
-One of the most important ones
-% should these two come under the same heading? proj as an op is really just bc reduct...
+As such, for any set $A$, the $A$-\textit{reduct} $\rho_A$ of a string $s=\sigma_1\sigma_2\cdots\sigma_n$ is defined as the componentwise intersection of $s$ with $A$ \citep{fernando2016regular,woods2018improving}:
+\begin{align}
+	\rho_A(\sigma_1\sigma_2\cdots\sigma_n) := (\sigma_1 \cap A)(\sigma_2 \cap A)\cdots(\sigma_n \cap A)
+\end{align}
+The resulting new string has a vocabulary of $A$, but the remaining fluents are still in the same relative positions to each other as in the original:
+\begin{align}
+	\mathcal{V}_{\rho_A(s)} &= A\\
+	(\forall a \in A)~\llbracket P_a \rrbracket_{mod(s)} &= \llbracket P_a \rrbracket_{mod(\rho_A(s))}
+\end{align}
+For example, with the string $s = \EventString{{}|a,b|a,b,c|a,c,d|a,e|e|{}}$ and $A=\{a,d\}$, the $A$-reduct of $s$ is:
+\begin{align}\label{ex:reduct}
+	\rho_{\{a,d\}}(\EventString{{}|a,b|a,b,c|a,c,d|a,e|e|{}}) = \EventString{{}|a|a|a,d|a|{}|{}}
+\end{align}
+The resulting string in \cref{ex:reduct} contains only the events of interest (those mentioned in $A$), without loss of information. That is, the relative ordering of the events in the result string is the same as that in the input. The result string can additionally be block compressed to derive the simplest representation of the information it contains\footnote{In the case of \cref{ex:reduct,ex:bc-reduct}, the event $a$ \textit{contains} the event $d$, according to Allen's relations \citep{allen1983maintaining}\refneeded.}:
+\begin{align}\label{ex:bc-reduct}
+	\bc(\EventString{{}|a|a|a,d|a|{}|{}}) = \EventString{{}|a|a,d|a|{}}
+\end{align}
+
+\paragraph{Projection:}\label{para:str-op-projection}
+This process is streamlined through the use of \textit{projection}, where the $A$-projection $\pi_A$ of a string $s$ is simply the block compressed reduct of $s$ relative to $A$:
+\begin{align}
+	\pi_A(s) := \bc(\rho_A(s))
+\end{align}
+It will be said that a string $s$ \textit{projects to} another string $s'$, $s \sqsupseteq s'$, if the $\mathcal{V}_{s'}$-projection of $s$ is equal to $s'$:
+\begin{align}
+	s \sqsupseteq s' \Longleftrightarrow  \pi_{\mathcal{V}_{s'}}(s) = s'
+\end{align}
+If $s$ projects to $s'$, then all of the information represented within $s'$ is also represented in $s$---$s$ effectively ``contains'' $s'$.
+
+Borrowing from the examples in \cref{ex:reduct,ex:bc-reduct}, the temporal data represented by the string on the right hand side of \cref{ex:projects-to} is also contained in the string on the left hand side:
+\begin{align}\label{ex:projects-to}
+	\EventString{{}|a,b|a,b,c|a,c,d|a,e|e|{}} \sqsupseteq \EventString{{}|a|a,d|a|{}}
+\end{align}
+It is worth noting that, if strings $s$ and $s'$ share the same vocabulary, but are not equal, then neither can $s$ project to $s'$ nor $s'$ project to $s$---this scenario suggests that $s$ and $s'$ are incompatible, that they describe contradictory sequences of the same events:
+\begin{align}\label{impl:cannot-project}
+	\mathcal{V}_s = \mathcal{V}_{s'} \wedge s \neq s' \Longrightarrow \lnot (s \sqsupseteq s' \lor s' \sqsupseteq s)
+\end{align}
+A language $L$ can be said to project to another language $L'$ if every string $s \in L$ projects to every string $s' \in L'$:
+\begin{align}
+	L \sqsupseteq L' \Longleftrightarrow  (\forall s \in L)(\forall s' \in L')~s \sqsupseteq s'
+\end{align}
+This notion of projection is particularly useful, allowing for temporal reasoning when used in conjunction with the concept of \textit{analogous} strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}). Particular events can be simply extracted from larger, more complex strings, and compared against reference to determine the relations between and ordering of the events of interest.
+
+Importantly, projection will also be used to enrich the asynchronous superposition (see p. \pageref{def:async-superposition}) operation, injecting the currently-lacking ``semantic-ness'' by ensuring that all results of superposing a pair of strings project to each of their input strings.
+
+\paragraph{Vocabulary-constrained Superposition:}
+The current core issue with asynchronous superposition $\spasync$ is that data can become lost or ``corrupted'' when combining strings. In general, if a string generated by superposition does not project back to both of the strings that were superposed to generate it, then information has been lost.
+
+For example, in \cref{ex:async-superposition} (p. \pageref{ex:async-superposition}), none of the result strings contain the information that is represented in the input strings. This can be verified by testing whether any string in the result set projects to either of the inputs, which they do not:
+\begin{center}
+	\begin{tabular}[h!]{r c l | r c l}
+		\EventString{a,c|a,b,c|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|a,b,c|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
+		\EventString{a,c|a,b,d|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|a,b,d|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
+		\EventString{a,c|a,b,c|a,c,d|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|a,b,c|a,c,d|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
+		\EventString{a,c|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
+	\end{tabular}
+	\captionof{figure}{Failed projections for \cref{ex:async-superposition}}\label{tab:failed-projections}
+\end{center}
+In fact, every string in \cref{ex:async-superposition} shares the same vocabulary, so by \cref{impl:cannot-project}, it is not possible for any to project to any other. It is, in general, possible for asynchronous superposition $s \spasync s'$ to produce results such that they can project to the strings $s$ and $s'$ which generated them (see \cref{ex:overgen} below). However, in the case where the vocabularies of the two strings are identical, then none of the results will project to the original strings. In fact, the intersection of the vocabularies of $s$ and $s'$ can be used to determine whether none, some, or all of the results will project back\footnote{Assuming that $s \neq s'$.}:
+\begin{subequations}
+	\begin{align}
+		\mathcal{V}_s \cap \mathcal{V}_{s'} = \mathcal{V}_s = \mathcal{V}_{s'} &~\Longrightarrow~ \forall s'' \in s \spasync s'~\lnot(s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionA}\\
+		\mathcal{V}_s \cap \mathcal{V}_{s'} = \emptyset &~\Longrightarrow~ \forall s'' \in s \spasync s'~(s'' \sqsupseteq s \land s'' \sqsupseteq s')\label{impl:voc-intersectionB}\\
+		\text{else} &~\Longrightarrow~ \exists s'' \in s \spasync s'~(s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionC}
+	\end{align}
+\end{subequations}
+\nb{\cref{impl:voc-intersectionA} follows from \cref{impl:cannot-project}, and the next one is true because disjoint vocabs, and the last one iunno it just is. Maybe leave out this line.}
+
+%%%%%%%%%
+Here goes the bit that says that \citet{woods2017towards} used generation then test, but this was sloooooow. Then magical \citet{woods2018improving} did generation AND test, and that was like totes way better yo.
+\begin{align}\label{ex:overgen}
+	sooooo many strings
+\end{align}
+%%%%%%%%%
 
 \subsection{Applications}\label{sub:applications}
 The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
