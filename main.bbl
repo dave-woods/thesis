@@ -17,16 +17,32 @@ Bos, J. (2008).
 \newblock In {\em Proceedings of the 2008 Conference on Semantics in Text
   Processing - STEP '08}, pages 277--286.
 
+\bibitem[\protect\astroncite{Derczynski and Gaizauskas}{2013}]{Derczynski2013}
+Derczynski, L. and Gaizauskas, R. (2013).
+\newblock {Empirical Validation of Reichenbach's Tense Framework}.
+\newblock In {\em Proceedings of the 10th International Conference on
+  Computational Semantics (IWCS 2013)}, pages 71--82.
+
+\bibitem[\protect\astroncite{Fernando}{2004}]{Fernando2004}
+Fernando, T. (2004).
+\newblock {A Finite-State Approach to Events in Natural Language semantics}.
+\newblock {\em Journal of Logic and Computation}, 14(1):79--92.
+
 \bibitem[\protect\astroncite{Fernando}{2015}]{fernando2015semantics}
 Fernando, T. (2015).
 \newblock {The Semantics of Tense and Aspect: A Finite-State Perspective}.
 \newblock In Lappin, S. and Fox, C., editors, {\em The Handbook of Contemporary
   Semantic Theory}, number August, pages 203--236. John Wiley {\&} Sons.
 
-\bibitem[\protect\astroncite{Fernando}{2016}]{fernando2016regular}
-Fernando, T. (2016).
+\bibitem[\protect\astroncite{Fernando}{2016a}]{fernando2016regular}
+Fernando, T. (2016a).
 \newblock {On Regular Languages Over Power Sets}.
 \newblock {\em Journal of Language Modelling}, 4(1):29--56.
+
+\bibitem[\protect\astroncite{Fernando}{2016b}]{fernando2016prior}
+Fernando, T. (2016b).
+\newblock {Prior and Temporal Sequences for Natural Language}.
+\newblock {\em Synthese}, 193(11):3625--3637.
 
 \bibitem[\protect\astroncite{Fernando}{2018}]{Fernando2018}
 Fernando, T. (2018).
@@ -112,6 +128,11 @@ Shanahan, M. (1997).
 \newblock {\em Solving the Frame Problem: A Mathematical Investigation of the
   Common Sense Law of Inertia}.
 \newblock MIT press.
+
+\bibitem[\protect\astroncite{Van~Lambalgen and Hamm}{2008}]{van2008proper}
+Van~Lambalgen, M. and Hamm, F. (2008).
+\newblock {\em The Proper Treatment of Events}, volume~6.
+\newblock John Wiley \& Sons.
 
 \bibitem[\protect\astroncite{Woods and Fernando}{2018}]{woods2018improving}
 Woods, D. and Fernando, T. (2018).

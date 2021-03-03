@@ -45,6 +45,9 @@ def get_components(string):
     except AttributeError:
         return string
 
+def string_from_components(components):
+    return '|'.join([','.join(c) for c in components])
+
 def vocabulary(string):
     try:
         components = get_components(string)
@@ -54,6 +57,9 @@ def vocabulary(string):
 
 def string_length(string):
     return len(string.split('|'))
+
+def sort_fluents(string):
+    return '|'.join([','.join(sorted(x.split(','))) for x in string.split('|')])
 
 def string_equals(a, b):
     return [sorted(x.split(',')) for x in a.split('|')] == [sorted(x.split(',')) for x in b.split('|')]
@@ -81,6 +87,39 @@ def projects_to(a, b):
 def delete_empty_boxes(string):
     components = get_components(string)
     return '|'.join([','.join(c) for c in components if c not in [[], ['']]])
+
+def basic_sp(string_a, string_b):
+    components_a = get_components(string_a)
+    components_b = get_components(string_b)
+    return sort_fluents(string_from_components([nonempty_union(a, b) for (a, b) in zip(components_a, components_b)]))
+
+def basic_sp_lang(lang_a, lang_b):
+    result = []
+    for a in lang_a:
+        for b in lang_b:
+            result.append(basic_sp(a, b))
+    return list(frozenset(result))
+
+def pad(string, length):
+    sl = string_length(string)
+    if length < sl:
+        return []
+    elif length == sl:
+        return [string]
+    else:
+        result = []
+        for s in pad(string, length-1):
+            c = get_components(s)
+            result = result + [string_from_components(c[:i] + [c[i]] + c[i:]) for i in range(len(c))]
+        return list(frozenset(result))
+
+def async_sp(string_a, string_b):
+    len_a = string_length(string_a)
+    len_b = string_length(string_b)
+    pad_len = len_a + len_b - 1
+    padded_a = pad(string_a, pad_len)
+    padded_b = pad(string_b, pad_len)
+    return list(frozenset(map(lambda s: block_compress(s), basic_sp_lang(padded_a, padded_b))))
 
 # can this also be made into a generator?? I think so
 def superpose(string_a, string_b, vocab_a = None, vocab_b = None, remove_negated_pairs = True):

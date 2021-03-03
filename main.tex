@@ -155,7 +155,19 @@
 \DeclareListParser{\PipeParser}{|}
 \newcommand{\EventString}[1]{
 	\renewcommand*{\do}[1]{\ebox{##1}}%
-	\PipeParser{#1}
+	\PipeParser{#1}%
+}
+
+\newenvironment{ctable}[3][]
+{
+	\def\myctabenvargumentII{#3}
+	\def\myctabenvargumentLABEL{#1}
+	\begin{center}
+		\begin{tabular}[h!]{#2}
+}{
+		\end{tabular}
+		\captionof{table}{\myctabenvargumentII}\myctabenvargumentLABEL
+	\end{center}
 }
 
 \newcommand{\xmltag}[2][]{\texttt{\textless{}#2#1\textgreater{}}}
@@ -319,7 +331,10 @@ The strings are then shown as applied to creating a functional timeline from the
 \subsection{Strings for Times and Events}\label{sub:strings}
 A string is a basic computational entity, defined as a finite sequence of symbols selected from some finite alphabet. They are amenable to manipulation using finite-state methods, something lacking in the infinite models of predicate logic. \nb{Should probably have a citation here?}
 
-Strings as described and used throughout this work model the concept of inertial worlds, wherein a state will persist unless and until it is altered. The intuition for viewing inertia as a default state seems to go at least as far back as Aristotle (``But neither does time exist without change'' in \textit{\citetalias{aristotlePhysicsIV}}), and is known by the term \textit{commonsense law of inertia} \citep[p. 19]{shanahan1997solving}. This notion is also present in the Event Calculus, which represents the effects of actions on fluents in order to reason about change \citep{Kowalski1986,Miller1999,Mueller2008}. Building this inertial world view into strings allows for certain flexibilities, as real duration does not need to be accounted for when, for example, superposing strings in order to determine the relations between the events they mention (see \cref{para:str-op-sp} p. \pageref{para:str-op-sp}, \cref{ssub:superposition}). Additionally, this inertiality\nb{word?}---coupled with the fact that strings are explicit as to whether a particular fluent holds or does not hold at any particular point in time---means that the classic issue of the frame problem is avoided (see \citet[pp. 30-31]{Mccarthy69somephilosophical}).\footnote{The frame problem is an issue that can arise in first-order logic representations of the world, whereby specifying the conditions which change as the result of an action is not sufficient to entail that no other conditions have changed.}
+Strings as described and used throughout this work are used to represent sequences of events and time periods such that the linear order and inter-relations of these events and times are clearly apparent, while unnecessary repetition of information is avoided. For example, where $js = \text{``John sleeps''}$, $fa = \text{``The fire alarm sounds''}$, and $lt = \text{``Last Tuesday''}$, the sentence ``John slept through the fire alarm last Tuesday'' might be represented by the string \EventString{{}|lt|js,lt|fa,js,lt|js,lt|lt|{}}\footnote{It is worth noting that, although tense and aspect are often abstracted away from the string models, this is not a necessity, and speech and reference times may be represented in the same way as event times \citep{fernando2016regular,Derczynski2013,reichenbach1947elements}.} (an explanation follows in \cref{ssub:creating}).
+
+These strings model the concept of inertial worlds, wherein a state will persist unless and until it is altered. The intuition for viewing inertia as a default state seems to go at least as far back as Aristotle (``But neither does time exist without change'' in \textit{\citetalias{aristotlePhysicsIV}}), and is known by the term \textit{commonsense law of inertia} \citep[p. 19]{shanahan1997solving}. This notion is also present in the Event Calculus, which represents the effects of actions on fluents in order to reason about change \citep{Kowalski1986,Miller1999,Mueller2008}.
+Building this inertial world view into strings allows for certain flexibilities, as real duration does not need to be accounted for when, for example, superposing strings in order to determine the relations between the events they mention (see \cref{para:str-op-sp}, p. \pageref{para:str-op-sp}; \cref{ssub:superposition}). Additionally, this inertiality\nb{word?}---coupled with the fact that strings are explicit as to whether a particular fluent holds or does not hold at any particular point in time---means that the classic issue of the frame problem is avoided (see \citet[pp. 30-31]{Mccarthy69somephilosophical}).\footnote{The frame problem is an issue that can arise in first-order logic representations of the world, whereby specifying the conditions which change as the result of an action is not sufficient to entail that no other conditions have changed.}
 
 \nb{Would be useful to discuss logical circumscription and show/discuss how strings are an application since fluents not in the vocabulary are not relevant to the string, and fluents not mentioned in a box are implicitly not true at that time point (but can be made true through superposition) -- is this still circumscription?}
 
@@ -329,19 +344,33 @@ Strings as described and used throughout this work model the concept of inertial
 
 \nb{Perhaps talk about forces, a la Tim's paper? since it couples with the inertia idea, i.e. nothing changes without a force to change it. It's probably too much to mention Newton's 1st law...?}
 
-A \textit{fluent} is a condition which may change over time, and is understood here as a temporal proposition---some event, time period, or state which may change (which hereafter will also be referred to as an event, as in \citet{Pustejovsky2005}). Sets of fluents will be encoded as symbols so that any number of them may hold at once. \nb{This para sucks}
+A \textit{fluent} is a condition which may change over time, and is understood here\footnote{Following the convention set out and used by \citet{Mccarthy69somephilosophical}, \citet{van2008proper}, \citet{fernando2016prior}, among others.} as naming a temporal proposition---some event, time period, or state which may change (which hereafter will also be referred to as an event, as in \citet{Pustejovsky2005}). Sets of fluents will be encoded as symbols so that any number of them may hold at once. \nb{This para sucks}
 
 How should events be labelled? Some say an event is defined in part by its participants \citeneeded{}. Many of the procedures defined in this work which use these strings operate primarily on a syntactic level rather than depending on the lexical semantics of individual words, in order to produce an approach that works broadly. As such, in most cases, simple labels suffice for the purposes of describing the mechanics used here---this follows TimeML's standard of using labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, it will be useful to keep reference to a fuller picture of the data when possible, particularly when drawing inferences (see \cref{ssub:inferring} and \cref{ssub:ontology}).
 
 \subsubsection{Creating Strings}\label{ssub:creating}
 % We fix a finite set A of fluents (temporal propositions), and encode sets of these fluents as symbols to allow any number of them to hold at a time (as in Fernando, 2016). A string s = α 1 · · · α n of subsets α i of A can be construed as a finite model consisting of n moments of time i ∈ {1, . . . , n} with α i specifying all fluents (in A) that (as unary predicates) hold simultaneously at i.
-In order to create a string, first it is necessary to fix a finite set $\mathcal{V}$ of symbols which represent the times and events under discussion, such that each $v \in \mathcal{V}$ will be understood as naming a \textit{fluent} as a unary predicate which holds at a particular time. A string $s = \sigma_1\sigma_2\cdots\sigma_n$ of subsets $\sigma_i$ of $\mathcal{V}$ is interpreted as a finite model of $n$ moments of time, with $i \in \{1, 2, \ldots, n\}$. Each $\sigma_i$ specifies all those fluents which hold simultaneously at $i$ \nb{this is more or less the same as in ISA-13 -- should cite?}.
+In order to create a string, first it is necessary to fix a finite set $\mathcal{V}$ of symbols which represent the times and events under discussion, such that each $v \in \mathcal{V}$ will be understood as naming a \textit{fluent} as a unary predicate which holds at a particular time. A string $s = \sigma_1\sigma_2\cdots\sigma_n$ of subsets $\sigma_i$ of $\mathcal{V}$ is interpreted as a finite model of $n$ moments of time, with $i \in \{1, 2, \ldots, n\}$.
 
 The set $\mathcal{V}$ will be known as a \textit{vocabulary}, and the powerset of $\mathcal{V}$ will serve as a finite alphabet $\Sigma = 2^{\mathcal{V}}$ of a string $s \in \Sigma^*$. Accordingly, at each position $i$ in the string $s$, the \textit{component} $\sigma_i$ will be a (possibly empty) set of the fluents which hold at that position.
 
-\nb{Mention here about the box notation? Or earlier? I think here is appropriate}
+The chronology of a string is read from left to right, and thus, each component of the string depicts one of the $n$ moments similar to a snapshot, or a frame of a film reel, and specifies the set of exactly those fluents which hold simultaneously at the $i^{th}$ moment. A string does not (necessarily) give any sense of real duration, due to the fact that it models an inertial world  (see also \cref{para:block-compression}, p. \pageref{para:block-compression}). A fluent $a \in \sigma_i$ is understood to be occurring before another fluent $b \in \sigma_j$ if $i < j$ and $b \notin \sigma_i$; if $a \in \sigma_i$ and $b \in \sigma_i$, then $a$ and $b$ are understood as occurring at the same time\nb{this is more or less the same as in ISA-13 -- should cite?}.
 
-Sets of strings are languages \selfnote{Maybe mention this in \cref{sub:strings} rather than here? See how it goes}. Languages allow for grouping strings based on some property, such as their source, which will permit the introduction of ambiguity as will be shown in more detail in \cref{ssub:superposition} (see p. \pageref{ex:lang-superposition}). For example,
+For convenience of notation, boxes \ebox{\cdot} are used instead of curly braces $\{\cdot\}$ to denotate the sets which make up each component $\sigma_i$ of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ (as in \citet{Fernando2004,fernando2015semantics,fernando2016prior})---for example, the string $\{\}\{a\}\{a,b\}\{b\}\{\}$ is written as \EventString{{}|a|a,b|b|{}}. This lends to the intuition that the strings may be read as strips of film, or as panels of a comic, with the same narrative-style layout as a timeline. An empty box \ebox{} is drawn for the empty set $\emptyset$: this is a string of length 1, a moment of time during which no fluent $v \in \mathcal{V}$ holds. This should not be confused with the empty string $\epsilon$, which has length 0, and contains no temporal information.
+
+It will be said that for any event $a$ occuring in a string $s = \sigma_1\sigma_2\cdots\sigma_n$, $a$ may not \textit{judder}---that is, if $a$ appears in multiple positions of the string, then those positions are contiguous; there are no gaps between appearances of $a$ in $s$:
+\begin{align}\label{impl:contiguous-events}
+	a \in \sigma_i \wedge a \in \sigma_j \wedge i < j \Longrightarrow (\forall k, i < k < j)~ a \in \sigma_k
+\end{align}
+If some string, such as in \cref{ex:judder-invalid}, features judder in this way, it is said to be invalid. Judder can, if necessary, be treated by subindexing an event---for example, a juddering event $a$ becomes separate sub-events $\{a_1, a_2, a_3\}$, as in \cref{ex:judder-valid}.
+\begin{subequations}
+	\begin{align}
+		* \EventString{a|{}|a|{}|a}\label{ex:judder-invalid} ~-~& \text{invalid}\\
+		\EventString{a_1|{}|a_2|{}|a_3}\label{ex:judder-valid} ~-~& \text{valid}
+	\end{align}
+\end{subequations}
+
+Sets of strings are languages \selfnote{Maybe mention this in \cref{sub:strings} rather than here? See how it goes}. Languages allow for grouping strings based on some property, such as their source, which will permit the introduction of ambiguity as will be shown in more detail in \cref{ssub:superposition} (see also p. \pageref{ex:lang-superposition}). For example,
 \begin{align}
 	L = \{\EventString{a|b|c}, \EventString{a|c|b}\}
 \end{align}
@@ -349,6 +378,8 @@ where the language $L$ contains two strings which represent different---albeit r
 
 Note that a language containing only a single string may be conflated with its sole member, and vice versa. This is a useful admittance, particularly in regards to superposition and other string operations (see \cref{ssub:operations}), when it may be necessary to, for example, superpose a string and a language, in which case the string is conflated with a language containing just that string. \label{pt:conflation}
 % This is generally a useful admittance for discussion\nb{what?} purposes when chaining together string operations, as some operations will result in a language which would be fed into a new operation.
+
+
 
 \subsubsection{Strings as MSO Models}\label{ssub:mso}
 
@@ -396,6 +427,8 @@ Given an arbitrary MSO$_{\mathcal{V}}$ model $M$, the string $str(M)$ which desc
 
 There is a theorem due to B\"{u}chi, Elgot, and Trakhtenbrot (see, for example, \citet[p.124, Theorem 7.21]{Libkin2004}) which states that sentences $\phi$ of MSO capture regular languages, i.e. MSO-definability is equivalent to regularity.
 
+\nb{more here}
+
 %%%%%%%%%%%%
 \paragraph{Analogous Strings}\label{para:analogous-strings}
 A string $s$ will be said to be \textit{analogous} \nb{I'm not sure where to put this section/para} to some other string $s'$ if the MSO models (see \cref{ssub:mso}) corresponding to each string are isomorphic---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping the vocabulary of $s$ to the vocabulary of $s'$, and for every $v \in \mathcal{V}_s, \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket$:
@@ -440,7 +473,7 @@ and the vocabulary of a language is just the union of the vocabularies of the st
 	\mathcal{V}_L := \bigcup \{\mathcal{V}_s ~|~ s \in L \}
 \end{align}
 % Determining a string's vocabulary permits some operations to be chained 
-\paragraph{Block Compression:}
+\paragraph{Block Compression:}\label{para:block-compression}
 Since the length of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ does not reflect its real duration (due to the understanding that strings model intertial worlds---see \cref{sub:strings} p. \pageref{sub:strings}), it is also not required that the length of time represented by any $\sigma_i$ is equal to that represented by any $\sigma_j$, for $i \neq j$. Similarly, if a fluent symbol $v \in \mathcal{V}$ from the vocabulary appears in both $\sigma_i$ and $\sigma_{i+1}$, this does not imply that the event represented by $v$ has a duration twice as long as if it had only appeared in $\sigma_i$. Indeed, the symbol $v$ may appear in any number of consecutive positions in $s$ without affecting the interpretation of the real length of time of the event it represents. Further, if the string features a repeating component, i.e. $\sigma_i = \sigma_{i+1}$ for any $1 \le i < n$, the interpretation of the string is not affected by the deletion of one of either $\sigma_i$ or $\sigma_{i+1}$. So for example, the interpretation of the string \EventString{a|a|a,b|b|b} is equal to the interpretation of the string \EventString{a|a,b|b}. A string featuring such repetitions is said to contain \textit{stutter}.
 
 As a result, the \textit{block compression} $\bc(s)$ of a string $s$ may be introduced, which removes any stutter present in $s$. This is defined as \citep{fernando2015semantics, woods2017towards}:
@@ -529,9 +562,9 @@ It's worth noting here that neither basic superposition $\sp$ nor asynchronous s
 
 For instance, in \cref{ex:superposition}, the second of the operand strings has the event $c$ appearing in a box to the left of (before) the event $d$, whereas the result has $c$ and $d$ occuring in the same box together, which states that they were occurring at the same moment.
 
-Similarly, in \cref{ex:async-superposition}, the first input string has events $a$ and $c$ appearing in the same box, while the second input string has $a$ appearing in a box before $c$. While this should seem like a contradiction which should not have viable results, the operation instead produces a set of strings.
+Similarly, in \cref{ex:async-superposition}, the first input string has events $a$ and $c$ appearing in the same box, while the second input string has $a$ appearing in a box before $c$. While this should seem like a contradiction which should not have viable results, the operation instead produces a set of four strings, the second and third of which are invalid according to \cref{impl:contiguous-events}: in \EventString{a,c|a,b,d|b,c,d} the event $c$ occurs in positions 1 and 3 but not position 2, and in \EventString{a,c|a,b,c|a,c,d|b,c,d} the event $b$ occurs in positions 2 and 4 but not in position 3.
 
-This stands in contrast to the concept of \bc-equivalence, where strings have an equal interpretation regardless of how much or how little stutter is present. By using superposition as is currently presented, information is in fact lost rather than gained when strings are combined. The next two operations aim to resolve this issue.
+This stands in contrast to the concept of \bc-equivalence, where strings have an equal interpretation regardless of how much or how little stutter is present. By using superposition as it is currently presented, information is often, in fact, lost rather than gained when strings are combined. The next two operations, \textit{reduct} and \textit{projection}, aim to assist in the resolution of this issue.
 
 \paragraph{Reduct:}\label{para:str-op-reduct}
 It will be useful to be able to alter the vocabulary of a string---in particular, to shrink it---so as to control which events are mentioned. If a string contains, for instance, five events, but only two of these are relevant to the application, there is sense in being able to focus on those two.
@@ -553,6 +586,16 @@ The resulting string in \cref{ex:reduct} contains only the events of interest (t
 \begin{align}\label{ex:bc-reduct}
 	\bc(\EventString{{}|a|a|a,d|a|{}|{}}) = \EventString{{}|a|a,d|a|{}}
 \end{align}
+It's worth noting that for any pair of strings $s$ and $s'$ with equal length and disjoint vocabularies, the reduct of the result of basic (not asynchronous) superposition $s \sp s'$ with respect to each of the strings' vocabularies is equal to the string itself:
+\begin{align}\label{impl:disjoint-vocab-reduct}
+	\mathcal{V}_{s} \cap \mathcal{V}_{s'} = \emptyset \Longrightarrow \rho_{\mathcal{V}_{s}}(s \sp s') = s \text{ and } \rho_{\mathcal{V}_{s'}}(s \sp s') = s'
+\end{align}
+For example, with $s = \EventString{a|b}$ and $s' = \EventString{c|d}$, $\mathcal{V}_s = \{a,b\}$ and $\mathcal{V}_{s'} = \{c,d\}$:
+\begin{align}\label{ex:disjoint-vocab-reduct}
+	s \sp s' &= \EventString{a,c|b,d}\\
+	\rho_{\{a,b\}}(\EventString{a,c|b,d}) &= \EventString{a|b}\notag\\
+	\rho_{\{c,d\}}(\EventString{a,c|b,d}) &= \EventString{c|d}\notag
+\end{align}
 
 \paragraph{Projection:}\label{para:str-op-projection}
 This process is streamlined through the use of \textit{projection}, where the $A$-projection $\pi_A$ of a string $s$ is simply the block compressed reduct of $s$ relative to $A$:
@@ -563,7 +606,7 @@ It will be said that a string $s$ \textit{projects to} another string $s'$, $s \
 \begin{align}
 	s \sqsupseteq s' \Longleftrightarrow  \pi_{\mathcal{V}_{s'}}(s) = s'
 \end{align}
-If $s$ projects to $s'$, then all of the information represented within $s'$ is also represented in $s$---$s$ effectively ``contains'' $s'$.
+If $s$ projects to $s'$, then all of the information represented within $s'$ is also represented in $s$---$s$ effectively ``contains'' $s'$. Trivially, any block compressed string $s = \bc(s)$ will project to itself, since the reduct of $s$ with respect to its own vocabulary is $s$.
 
 Borrowing from the examples in \cref{ex:reduct,ex:bc-reduct}, the temporal data represented by the string on the right hand side of \cref{ex:projects-to} is also contained in the string on the left hand side:
 \begin{align}\label{ex:projects-to}
@@ -581,8 +624,8 @@ This notion of projection is particularly useful, allowing for temporal reasonin
 
 Importantly, projection will also be used to enrich the asynchronous superposition (see p. \pageref{def:async-superposition}) operation, injecting the currently-lacking ``semantic-ness'' by ensuring that all results of superposing a pair of strings project to each of their input strings.
 
-\paragraph{Vocabulary-constrained Superposition:}
-The current core issue with asynchronous superposition $\spasync$ is that data can become lost or ``corrupted'' when combining strings. In general, if a string generated by superposition does not project back to both of the strings that were superposed to generate it, then information has been lost.
+\paragraph{Generate and Test:}\label{para:gen-and-test}
+The predominant issue with asynchronous superposition $\spasync$ as it stands is that it needs not \textit{preserve projections}---that is, data can become lost or ``corrupted'' when combining strings. If a string generated by superposition does not project back to both of the strings that were superposed to generate it, then information has effectively been lost, as it has become impossible to return to the original event relation data. Only those result strings in $s \spasync s'$ which do project back can be said to be a valid result of the superposition, in terms of preserving the temporal information.
 
 For example, in \cref{ex:async-superposition} (p. \pageref{ex:async-superposition}), none of the result strings contain the information that is represented in the input strings. This can be verified by testing whether any string in the result set projects to either of the inputs, which they do not:
 \begin{center}
@@ -592,24 +635,49 @@ For example, in \cref{ex:async-superposition} (p. \pageref{ex:async-superpositio
 		\EventString{a,c|a,b,c|a,c,d|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|a,b,c|a,c,d|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
 		\EventString{a,c|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
 	\end{tabular}
-	\captionof{figure}{Failed projections for \cref{ex:async-superposition}}\label{tab:failed-projections}
+	\captionof{table}{Failed projections for \cref{ex:async-superposition}}\label{tab:failed-projections}
 \end{center}
-In fact, every string in \cref{ex:async-superposition} shares the same vocabulary, so by \cref{impl:cannot-project}, it is not possible for any to project to any other. It is, in general, possible for asynchronous superposition $s \spasync s'$ to produce results such that they can project to the strings $s$ and $s'$ which generated them (see \cref{ex:overgen} below). However, in the case where the vocabularies of the two strings are identical, then none of the results will project to the original strings. In fact, the intersection of the vocabularies of $s$ and $s'$ can be used to determine whether none, some, or all of the results will project back\footnote{Assuming that $s \neq s'$.}:
-\begin{subequations}
-	\begin{align}
-		\mathcal{V}_s \cap \mathcal{V}_{s'} = \mathcal{V}_s = \mathcal{V}_{s'} &~\Longrightarrow~ \forall s'' \in s \spasync s'~\lnot(s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionA}\\
-		\mathcal{V}_s \cap \mathcal{V}_{s'} = \emptyset &~\Longrightarrow~ \forall s'' \in s \spasync s'~(s'' \sqsupseteq s \land s'' \sqsupseteq s')\label{impl:voc-intersectionB}\\
-		\text{else} &~\Longrightarrow~ \exists s'' \in s \spasync s'~(s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionC}
-	\end{align}
-\end{subequations}
-\nb{\cref{impl:voc-intersectionA} follows from \cref{impl:cannot-project}, and the next one is true because disjoint vocabs, and the last one iunno it just is. Maybe leave out this line.}
+In fact, every string in \cref{ex:async-superposition} shares the same vocabulary, so by \cref{impl:cannot-project}, it is not possible for any to project to any other.% It is, in general, possible for asynchronous superposition $s \spasync s'$ to produce results such that they can project to the strings $s$ and $s'$ which generated them (see \cref{ex:overgen} below).
 
-%%%%%%%%%
-Here goes the bit that says that \citet{woods2017towards} used generation then test, but this was sloooooow. Then magical \citet{woods2018improving} did generation AND test, and that was like totes way better yo.
-\begin{align}\label{ex:overgen}
-	sooooo many strings
+In the case where the vocabularies of the two strings are identical, then none of the results will project to the original strings\footnote{This assumes that $s \neq s'$. In the case where $s = s'$, there is exactly one string $s'' \in s \spasync s'$ such that $s = s' = s''$.}. This implication follows from \cref{impl:cannot-project}, since the vocabulary of every string $s'' \in s \spasync s'$ is $\mathcal{V}_{s \cup s'} = \mathcal{V}_s = \mathcal{V}_{s'}$:
+\begin{align}
+	\mathcal{V}_s \cap \mathcal{V}_{s'} = \mathcal{V}_s = \mathcal{V}_{s'} &~\Longrightarrow~ (\forall s'' \in s \spasync s')~\lnot (s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionA}
 \end{align}
-%%%%%%%%%
+The implication of \cref{impl:voc-intersectionA} can be used to avoid unuseful superpositions: since the operation $\spasync$ has the potential to generate a large number of new strings, which can become costly from a computational perspective, it is prudent to test ahead of time whether every generated string will be spurious and unable to project back---as seen in \Cref{tab:failed-projections}.
+
+Conversely, if the vocabularies of the input strings are disjoint, then every resulting string will project back, due to \cref{impl:disjoint-vocab-reduct}:
+\begin{align}
+	\mathcal{V}_s \cap \mathcal{V}_{s'} = \emptyset &~\Longrightarrow~ (\forall s'' \in s \spasync s')~s'' \sqsupseteq s \land s'' \sqsupseteq s'\label{impl:voc-intersectionB}
+\end{align}
+%\\\text{else} &~\Longrightarrow~ (\exists s'' \in s \spasync s')~s'' \sqsupseteq s \lor s'' \sqsupseteq s'\label{impl:voc-intersectionC}
+% counter-example: |a|b|c| &* |d|c|b|
+This can be seen by returning to the example in \cref{ex:disjoint-vocab-reduct}:%, with $s = \EventString{a|b}$ and $s' = \EventString{c|d}$, $\mathcal{V}_s = \{a,b\}$ and $\mathcal{V}_{s'} = \{c,d\}$:
+\begin{align}\label{ex:spasync-disjoint-vocab}
+	\EventString{a|b} \spasync \EventString{c|d} = \{\EventString{a,c|a,d|b,d}, \EventString{a,c|b,d}, \EventString{a,c|b,c|b,d}\}
+\end{align}
+\begin{center}
+	\begin{tabular}[h!]{r c l | r c l}
+		\EventString{a,c|a,d|b,d}&$\sqsupseteq$&\EventString{a|b}&\EventString{a,c|a,d|b,d}&$\sqsupseteq$&\EventString{c|d}\\
+		\EventString{a,c|b,d}&$\sqsupseteq$&\EventString{a|b}&\EventString{a,c|b,d}&$\sqsupseteq$&\EventString{c|d}\\
+		\EventString{a,c|b,c|b,d}&$\sqsupseteq$&\EventString{a|b}&\EventString{a,c|b,c|b,d}&$\sqsupseteq$&\EventString{c|d}
+	\end{tabular}
+	\captionof{table}{Preserved projections of \cref{ex:spasync-disjoint-vocab}}\label{tab:spasync-disjoint-vocab}
+\end{center}
+% ---as in \cref{impl:voc-intersectionA}---or uninformative---as in \cref{impl:voc-intersectionB}
+However, in general, the vocabularies of the input strings to asynchronous superposition may overlap without being equal. In this case, some number of the resulting strings may project back, and thus it is necessary to test whether each result is valid. This approach of generating then testing was initially taken in \citet{woods2017towards}\footnote{Albeit, the testing algorithm used there was based on matching string positions rather than projections.} to ensure that only valid strings were finally produced. Yet, this is not without issue either---consider the following example:
+\begin{align}\label{ex:overgen}
+	\Before{a}{b} \spasync \Before{b}{c} = \{&\EventString{{}|a,b|{}|b,c|{}}, \EventString{{}|b|a,b|{}|b,c|{}}, \EventString{{}|b|a|{}|b,c|{}},\\
+	&\EventString{{}|b|a|c|b,c|{}}, \EventString{{}|b|a|c|b|{}}, \ldots\}\notag
+\end{align}
+The language result of \cref{ex:overgen} contains 270 strings, and in fact, only one of these will project back to both of the input strings: namely, \EventString{{}|a|{}|b|{}|c|{}}. This makes an intuitive sense, since the inputs are \cBefore{a}{b} and \cBefore{b}{c}, and this result string is the only possibility where the linear ordering of the events $a$, $b$, and $c$ is retained.
+
+Using projection to test each of the generated strings in \cref{ex:overgen} and rejecting those which fail to project back to the inputs will produce the singular correct result, though it is rather inefficient. 269 (over 99\%) of the generated results must be discarded in this example.
+
+\nb{in woods and fernando 2018, integrated testing}
+
+\paragraph{Vocabulary-constrained Superposition:}\label{para:str-op-vc-sp}
+
+
 
 \subsection{Applications}\label{sub:applications}
 The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
@@ -622,8 +690,7 @@ A lot of information can be derived from a text document, depending on what one 
 \nb{dunno where this table goes yet, just fixing the broken reference}
 \nb{decide about (consistently) using `b' or `\textless' for the before relation}
 \begin{center}
-	\onehalfspacing
-	\begin{tabular}{c|c|c||c|c|c}
+	\begin{tabular}[h!]{c|c|c||c|c|c}
 		$R$ & $a~R~b$ & $\mbox{$\cal{S}$}_R(a,b)$ & $R^{-1}$ & $a~R^{-1}~b$ & $\mbox{$\cal{S}$}_{R^{-1}}(a,b)$ \\
 		\hline
 		$<$ & $a$ before $b$ & \Before{a}{b} & $>$ & $a$ after $b$ & \After{a}{b} \\
@@ -640,7 +707,7 @@ A lot of information can be derived from a text document, depending on what one 
 		
 		= & $a$ equals $b$ & \Equals{a}{b} & & &
 	\end{tabular}
-	\captionof{figure}{Allen interval relations in strings}\label{tab:allen-rels-strings}
+	\captionof{table}{Allen interval relations in strings}\label{tab:allen-rels-strings}
 \end{center}
 
 \subsubsection{Inferring New Information}\label{ssub:inferring}
@@ -750,10 +817,9 @@ Unfortunately, only 10 of the 18 Freksa relations can be described using a singl
 
 Below is a table of the 18 Freksa relations, the Allen relations they comprise, and the string which they will project to. \nb{tidy up ordering of allens}
 
-\begin{figure}[h]
+\begin{center}
 	\footnotesize
-	\begin{center}
-	\begin{tabular}{c | c | c}
+	\begin{tabular}[h!]{c | c | c}
 		\hline
 		Freksa & Allen & string\\
 		\hline
@@ -776,23 +842,20 @@ Below is a table of the 18 Freksa relations, the Allen relations they comprise, 
 		older and survived by & b, m, o & ...\\
 		younger and survives & bi, mi, oi & ...\\
 	\end{tabular}
-	\end{center}
-	\caption{The Freksa relations and the strings they project to}
-\end{figure}
+	\captionof{table}{The Freksa relations and the strings they project to}
+\end{center}
 The last two relations on this list cannot be represented using a single string, and are instead must use conjunctions of pairs of strings: 
-\begin{figure}[h]
+\begin{center}
 	\footnotesize
-	\begin{center}
-		\begin{tabular}{c | c | c}
-			\hline
-			Freksa & Allen & strings\\
-			\hline
-			older and survived by & b, m, o & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}} $\land$ \EventString{{}|\omega(a)|\omega(a),\omega(b)}\\
-			younger and survives & bi, mi, oi & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}} $\land$ \EventString{{}|\omega(b)|\omega(a),\omega(b)}\\
-		\end{tabular}
-	\end{center}
-	\caption{The remaining Freksa relations and the strings they project to}
-\end{figure}
+	\begin{tabular}[h!]{c | c | c}
+		\hline
+		Freksa & Allen & strings\\
+		\hline
+		older and survived by & b, m, o & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}} $\land$ \EventString{{}|\omega(a)|\omega(a),\omega(b)}\\
+		younger and survives & bi, mi, oi & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}} $\land$ \EventString{{}|\omega(b)|\omega(a),\omega(b)}\\
+	\end{tabular}
+	\captionof{table}{The remaining Freksa relations and the strings they project to}
+\end{center}
 
 While having to use a conjunction of strings may seem like a confounding issue which prevents all the relations from being representable by a single string, it is in fact less problematic than allowing disjunction inside a box, in some ways.
 \subsection{Enhancing Strings using DRT}\label{sub:enhancing}
