@@ -2,6 +2,8 @@
 \contentsline {section}{Abstract}{ii}
 \contentsline {section}{Acknowledgements}{iii}
 \contentsline {section}{Related Publications}{iv}
+\contentsline {section}{Table of Contents}{v}
+\contentsline {section}{List of Tables}{viii}
 \contentsline {section}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {2}Relevant Literature}{2}
 \contentsline {subsection}{\numberline {2.1}Times and Events}{2}
@@ -27,30 +29,30 @@
 \contentsline {paragraph}{Reduct:}{20}
 \contentsline {paragraph}{Projection:}{22}
 \contentsline {paragraph}{Generate and Test:}{23}
-\contentsline {paragraph}{Vocabulary-constrained Superposition:}{26}
-\contentsline {subsection}{\numberline {3.2}Applications}{26}
-\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{26}
-\contentsline {subsubsection}{\numberline {3.2.2}Inferring New Information}{27}
-\contentsline {subsubsection}{\numberline {3.2.3}Scheduling (Zebra Puzzle)}{28}
-\contentsline {section}{\numberline {4}Methods}{29}
-\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{29}
-\contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{29}
-\contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{30}
-\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{35}
-\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{35}
-\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{36}
-\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{36}
-\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{37}
-\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{38}
-\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{38}
-\contentsline {section}{\numberline {5}Implementation}{39}
-\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{39}
-\contentsline {subsection}{\numberline {5.2}Front-end Interface}{39}
-\contentsline {section}{\numberline {6}Evaluation}{41}
-\contentsline {subsection}{\numberline {6.1}Timeline Validity}{41}
-\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{41}
-\contentsline {subsection}{\numberline {6.3}Correctness of Code}{41}
-\contentsline {section}{\numberline {7}Conclusion}{42}
-\contentsline {section}{Bibliography}{43}
-\contentsline {section}{Appendices}{45}
-\contentsline {subsection}{Python Code}{45}
+\contentsline {paragraph}{Vocabulary Constrained Superposition:}{27}
+\contentsline {subsection}{\numberline {3.2}Applications}{30}
+\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{31}
+\contentsline {subsubsection}{\numberline {3.2.2}Inferring New Information}{32}
+\contentsline {subsubsection}{\numberline {3.2.3}Scheduling (Zebra Puzzle)}{33}
+\contentsline {section}{\numberline {4}Methods}{38}
+\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{38}
+\contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{38}
+\contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{39}
+\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{43}
+\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{43}
+\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{44}
+\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{44}
+\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{44}
+\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{45}
+\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{46}
+\contentsline {section}{\numberline {5}Implementation}{47}
+\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{47}
+\contentsline {subsection}{\numberline {5.2}Front-end Interface}{47}
+\contentsline {section}{\numberline {6}Evaluation}{48}
+\contentsline {subsection}{\numberline {6.1}Timeline Validity}{48}
+\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{48}
+\contentsline {subsection}{\numberline {6.3}Correctness of Code}{48}
+\contentsline {section}{\numberline {7}Conclusion}{49}
+\contentsline {section}{Bibliography}{50}
+\contentsline {section}{Appendices}{53}
+\contentsline {subsection}{Python Code}{53}

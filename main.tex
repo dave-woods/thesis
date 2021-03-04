@@ -153,7 +153,7 @@
 % Use {} for empty box
 \usepackage{etoolbox}
 \DeclareListParser{\PipeParser}{|}
-\newcommand{\EventString}[1]{
+\newcommand{\EventString}[1]{%
 	\renewcommand*{\do}[1]{\ebox{##1}}%
 	\PipeParser{#1}%
 }
@@ -275,7 +275,11 @@ During the course of my studies, I was an author on three papers that were accep
 	\item ``MSO with tests and reducts" (Fernando, Woods, and Vogel, \citeyear{fernando2019mso}), discussing differing string granularities in the context of tests within Monadic Second Order logic. Presented at the 14th International Conference on Finite-State Methods and Natural Language Processing in Dresden, Germany.
 \end{itemize}
 \newpage
+\addcontentsline{toc}{section}{Table of Contents}
 \tableofcontents
+\newpage
+% \listoffigures
+\listoftables
 \newpage
 \pagenumbering{arabic}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -293,10 +297,10 @@ The concept of time has fascinated researchers for millenia, and as such, a grea
 \subsubsection{Allen Relations}\label{ssub:allen}
 The seminal work of James F. Allen's \textit{Maintaining Knowledge about Temporal Intervals} has pushed the field since its publication in  \citeyear{allen1983maintaining}, and indeed the framework he described drives some of the design decisions in the present work.
 \subsubsection{Tense and Aspect}\label{ssub:tenseaspect}
-Reichenbach's (\citeyear{reichenbach1947elements}) theory of tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect. \selfnote{Bring up TEA here. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block-compression. Tim mentioned that this is a difference from Schwer's S-Words.}
+Reichenbach's (\citeyear{reichenbach1947elements}) theory of tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect. \selfnote{Bring up TEA here. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block compression. Tim mentioned that this is a difference from Schwer's S-Words.}
 %theoretically, if event time can be an interval, so could the speech and reference times, which would lead to even more aspects
 % Reichenbach, Vendler, TEA
-% Aspect hypothesis of dowty - build from statives - this is behind block-compression/destuttering
+% Aspect hypothesis of dowty - build from statives - this is behind block compression/destuttering
 % as difference for Schwer s-words
 \subsection{Temporal Annotation}\label{sub:annotation}
 Ideally, a human using an artificially intelligent system won't have to consider annotation, except in the case when that itself is the goal. In any case, for now annotated text is a crucial source of data for working with models such as are presented in this work. When it comes to temporal annotation, the international standard is TimeML, specifically ISO-TimeML. \selfnote{Also talk about Tango and Verhagen's T-BOX.}
@@ -431,7 +435,7 @@ There is a theorem due to B\"{u}chi, Elgot, and Trakhtenbrot (see, for example, 
 
 %%%%%%%%%%%%
 \paragraph{Analogous Strings}\label{para:analogous-strings}
-A string $s$ will be said to be \textit{analogous} \nb{I'm not sure where to put this section/para} to some other string $s'$ if the MSO models (see \cref{ssub:mso}) corresponding to each string are isomorphic---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping the vocabulary of $s$ to the vocabulary of $s'$, and for every $v \in \mathcal{V}_s, \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket$:
+A string $s$ will be said to be \textit{analogous} to some other string $s'$ if the MSO models (see \cref{ssub:mso}) \nb{I'm not sure where to put this section/para, so might need to remove this ref} corresponding to each string are, to a sense, isomorphic---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping the vocabulary of $s$ to the vocabulary of $s'$, and for every $v \in \mathcal{V}_s, \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket$:
 \begin{align}
 	s \sim s' \Longleftrightarrow  mod(s) \cong mod(s')
 \end{align}
@@ -459,7 +463,7 @@ It's worth noting that there are translations available between the different gr
 \nb{Need to say something in here about the bounded finite intervals.}
 
 \subsubsection{String Operations}\label{ssub:operations}
-Many many operations. The most important is \textbf{superposition} (and it's more advanced forms)! Also we have block-compression, reduct, vocabulary, projection, border translations. Note also that there are equivalent operations for strings which use points instead of intervals.
+Many many operations. The most important is \textbf{superposition} (and it's more advanced forms)! Also we have block compression, reduct, vocabulary, projection, border translations. Note also that there are equivalent operations for strings which use points instead of intervals.
 
 \nb{Discuss the language level operations here too.}
 
@@ -530,21 +534,13 @@ So, the \textit{asynchronous superposition} $s \spasync s'$ of two strings $s$ a
 \begin{align}\label{def:initial-async-superposition}
 	s \spasync s' := \{\bc(s'') ~|~ s'' \in \bc^{-1}(\bc(s)) \sp \bc^{-1}(\bc(s'))\}
 \end{align}
-Now the strings in \cref{ex:unequal-lengths} can be superposed using asynchronous superposition, as in \cref{ex:async-superposition} below: \nb{double check the below output, not sure of prolog quality... (turing:www/super/superposition.pl)}
-% | ?- spbc_set([[a,c],[b,d]], [[a],[b,c],[c,d]], L).
-% L = [
-% 	[[a,c],[a,b,c],[a,c,d],[b,c,d]],
-% 	[[a,c],[a,b,c],[b,c,d]],
-% 	[[a,c],[a,b,d],[b,c,d]],
-% 	[[a,c],[b,c,d]]
-% 	].
-
+Now the strings in \cref{ex:unequal-lengths} can be superposed using asynchronous superposition, as in \cref{ex:async-superposition} below:
 \begin{align}\label{ex:async-superposition}
 	\EventString{a,c|b,d} \spasync \EventString{a|b,c|c,d} = \{&\EventString{a,c|a,b,c|b,c,d}, \EventString{a,c|a,b,d|b,c,d},\\&\EventString{a,c|a,b,c|a,c,d|b,c,d}, \EventString{a,c|b,c,d}\}\notag
 \end{align}
 However, one slightly problematic aspect of this definition is the fact that $\bc^{-1}$ maps from a string to an infinite language. While this is not an issue from a theoretical standpoint, since $\spasync$ collects the set of block compressed strings from the superposition of these languages, from a practical and computational standpoint anything infinite is inconvenient.
 
-In order to tackle this back to something finite and to avoid generation of large amounts of redundant information, in \citet[p. 127]{woods2017towards} an upper bound of $n + n' - 1$ is established for the maximum length of any string produced via asynchronous superposition $s \spasync s'$, where $n$ and $n'$ are the (nonzero) lengths of the strings $s$ and $s'$, respectively. This work additionally introduces the operation $pad_k$, which will perform inverse block compression on a string, but will only produce strings of a given length $k > 0$:
+In order to tackle this back to something finite and to avoid generation of large amounts of redundant information, in \citet[p. 127]{woods2017towards} an upper bound of $n + n' - 1$\label{def:sp-upper-bound-length} is established for the maximum length of any string produced via asynchronous superposition $s \spasync s'$, where $n$ and $n'$ are the (nonzero) lengths of the strings $s$ and $s'$, respectively. This work additionally introduces the operation $pad_k$, which will perform inverse block compression on a string, but will only produce strings of a given length $k > 0$:
 \begin{align}\label{def:padk}
 	pad_k(\bc(s)) &:= \sigma_1^+ \sigma_2^+ \cdots \sigma_n^+ \cap \Sigma^k ~~~ \mbox{ if } \bc(s) = \sigma_1 \sigma_2 \cdots \sigma_n\\
 	&=\{\sigma_1^{k_1}\sigma_2^{k_2}\cdots\sigma_n^{k_n} ~|~ k_1,\ldots,k_n \ge 1, \sum_{i = 1}^{n}k_i = k  \}\notag
@@ -635,7 +631,7 @@ For example, in \cref{ex:async-superposition} (p. \pageref{ex:async-superpositio
 		\EventString{a,c|a,b,c|a,c,d|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|a,b,c|a,c,d|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
 		\EventString{a,c|b,c,d}&$\not\sqsupseteq$&\EventString{a,c|b,d}&\EventString{a,c|b,c,d}&$\not\sqsupseteq$&\EventString{a|b,c|c,d}\\
 	\end{tabular}
-	\captionof{table}{Failed projections for \cref{ex:async-superposition}}\label{tab:failed-projections}
+	\captionof{table}{Failed projections for \cref{ex:async-superposition}.}\label{tab:failed-projections}
 \end{center}
 In fact, every string in \cref{ex:async-superposition} shares the same vocabulary, so by \cref{impl:cannot-project}, it is not possible for any to project to any other.% It is, in general, possible for asynchronous superposition $s \spasync s'$ to produce results such that they can project to the strings $s$ and $s'$ which generated them (see \cref{ex:overgen} below).
 
@@ -661,31 +657,126 @@ This can be seen by returning to the example in \cref{ex:disjoint-vocab-reduct}:
 		\EventString{a,c|b,d}&$\sqsupseteq$&\EventString{a|b}&\EventString{a,c|b,d}&$\sqsupseteq$&\EventString{c|d}\\
 		\EventString{a,c|b,c|b,d}&$\sqsupseteq$&\EventString{a|b}&\EventString{a,c|b,c|b,d}&$\sqsupseteq$&\EventString{c|d}
 	\end{tabular}
-	\captionof{table}{Preserved projections of \cref{ex:spasync-disjoint-vocab}}\label{tab:spasync-disjoint-vocab}
+	\captionof{table}{Preserved projections of \cref{ex:spasync-disjoint-vocab}.}\label{tab:spasync-disjoint-vocab}
 \end{center}
 % ---as in \cref{impl:voc-intersectionA}---or uninformative---as in \cref{impl:voc-intersectionB}
-However, in general, the vocabularies of the input strings to asynchronous superposition may overlap without being equal. In this case, some number of the resulting strings may project back, and thus it is necessary to test whether each result is valid. This approach of generating then testing was initially taken in \citet{woods2017towards}\footnote{Albeit, the testing algorithm used there was based on matching string positions rather than projections.} to ensure that only valid strings were finally produced. Yet, this is not without issue either---consider the following example:
-\begin{align}\label{ex:overgen}
-	\Before{a}{b} \spasync \Before{b}{c} = \{&\EventString{{}|a,b|{}|b,c|{}}, \EventString{{}|b|a,b|{}|b,c|{}}, \EventString{{}|b|a|{}|b,c|{}},\\
-	&\EventString{{}|b|a|c|b,c|{}}, \EventString{{}|b|a|c|b|{}}, \ldots\}\notag
+However, in general, the vocabularies of the input strings to asynchronous superposition may overlap without being equal. It might be assumed that, in this case, some number greater than 0 but less than all of the resulting strings may project back---however, this assumption does not hold in fact. A counter-example is readily found:
+\begin{align}\label{ex:spasync-overlap-vocab}
+	\EventString{a|b} \spasync \EventString{b|c} = \{\EventString{a,b|a,c|b,c}, \EventString{a,b|b,c}, \EventString{a,b|b|b,c}\}
+\end{align}
+\begin{center}
+	\begin{tabular}[h!]{r c l | r c l}
+		\EventString{a,b|a,c|b,c}&$\not\sqsupseteq$&\EventString{a|b}&\EventString{a,b|a,c|b,c}&$\not\sqsupseteq$&\EventString{b|c}\\
+		\EventString{a,b|b,c}&$\not\sqsupseteq$&\EventString{a|b}&\EventString{a,b|b,c}&$\not\sqsupseteq$&\EventString{b|c}\\
+		\EventString{a,b|b|b,c}&$\not\sqsupseteq$&\EventString{a|b}&\EventString{a,b|b|b,c}&$\not\sqsupseteq$&\EventString{b|c}
+	\end{tabular}
+	\captionof{table}{Failed projections for \cref{ex:spasync-overlap-vocab}.}\label{tab:failed-projections-overlap}
+\end{center}
+Thus it is necessary to test whether each result of a superposition is valid when neither \cref{impl:voc-intersectionA} nor \cref{impl:voc-intersectionB} are true. This approach of generating then testing was initially taken in \citet{woods2017towards}\footnote{Albeit, the testing algorithm used there was based on matching string positions rather than projections.} to ensure that only valid strings were finally produced. Yet, this is not without issue either---consider the following examples:
+\begin{align}
+	\Before{a}{b} \spasync \Before{b}{c} = \{&\EventString{{}|a,b|{}|b,c|{}}, \EventString{{}|b|a,b|{}|b,c|{}}, \EventString{{}|b|a|{}|b,c|{}},\label{ex:overgen}\\
+	&\EventString{{}|b|a|c|b,c|{}}, \EventString{{}|b|a|c|b|{}}, \ldots\}\notag\\
+	\EventString{{}|a|b|c|{}} \spasync \EventString{{}|d|c|b|{}} = \{&\EventString{{}|a,d|a,c|b|c|{}}, \EventString{{}|d|a,d|b,d|b,c|{}}, \EventString{{}|d|c|b|a,b|b|c|{}},\label{ex:overgen-none}\\
+	&\EventString{{}|a|b|c|{}|d|c|b|{}}, \EventString{{}|a|b|c,d|c|b,c|b|{}}, \ldots\}\notag
 \end{align}
 The language result of \cref{ex:overgen} contains 270 strings, and in fact, only one of these will project back to both of the input strings: namely, \EventString{{}|a|{}|b|{}|c|{}}. This makes an intuitive sense, since the inputs are \cBefore{a}{b} and \cBefore{b}{c}, and this result string is the only possibility where the linear ordering of the events $a$, $b$, and $c$ is retained.
 
-Using projection to test each of the generated strings in \cref{ex:overgen} and rejecting those which fail to project back to the inputs will produce the singular correct result, though it is rather inefficient. 269 (over 99\%) of the generated results must be discarded in this example.
+Using projection to test each of the generated strings in \cref{ex:overgen} and rejecting those which fail to project back to the inputs will produce the singular correct result, though it is rather inefficient: 269 (over 99\%) of the generated results must be discarded in this example. The language result of \cref{ex:overgen-none} contains 257 strings, and this time 100\% of them must be discarded: not one of the results projects back to both of the inputs. Clearly, the computational effort required to produce so many non-viable strings is entirely wasted, and so a modified approach is required to avoid this issue.
 
-\nb{in woods and fernando 2018, integrated testing}
+In \citet{woods2018improving}, a new version of superposition is defined which integrates projection-based testing into the generation process. This prevents problematic strings from ever being produced, improving on the efficiency of asynchronous superposition.
 
-\paragraph{Vocabulary-constrained Superposition:}\label{para:str-op-vc-sp}
+\paragraph{Vocabulary Constrained Superposition:}\label{para:str-op-vc-sp}
+In order to define \textit{vocabulary constrained superposition} $\spvc$\!, begin by fixing an infinite set of fluents $\Theta$. Then for any string $s$, the set of finite subsets of $\Theta$ is $Fin(\Theta)$ such that $s \in Fin(\Theta)^*$. Given a pair of finite subsets of $\Theta$, $\Sigma \in Fin(\Theta)$ and $\Sigma' \in Fin(\Theta)$, an operation $\spsigma: (Fin(\Theta)^* \times Fin(\Theta)^*) \rightarrow 2^{Fin(\Theta)^*}$ is defined, mapping a pair of strings $s$ and $s'$ to a language $s \spsigma s'$ as follows, where $\epsilon$ is the empty string (of length 0)\footnote{It follows from this definition that any string in $s \spsigma{} s'$ will have a length less than $n+n'$ where $n$ and $n'$ are the lengths of $s$ and $s'$, respectively, which is the same upper bound found in \citet{woods2017towards} (see p. \pageref{def:sp-upper-bound-length}).}:
 
+\begin{subequations}\label{def:sp-sigma}
+	\begin{align}
+		\epsilon \spsigma \epsilon &:= \{\epsilon\}\\
+		\epsilon \spsigma s &:= \emptyset ~~~~\text{ if } s \neq \epsilon\\
+		s \spsigma \epsilon &:= \emptyset ~~~~\text{ if } s \neq \epsilon
+	\end{align}
+	and with $\sigma \in Fin(\Theta), \sigma' \in Fin(\Theta)$
 
+	\begin{equation}
+		\sigma s \spsigma \sigma' s' :=
+		\begin{cases}\label{def:sp-sigmaD}
+			~\{(\sigma \cup \sigma') s'' ~|~ s'' \in L(\sigma, s, \sigma', s', \Sigma, \Sigma')\} &\text{if } \Sigma \cap \sigma' \subseteq \sigma \mbox{ and } \Sigma' \cap \sigma \subseteq \sigma'\\
+			~\emptyset &\text{otherwise}
+		\end{cases}
+	\end{equation}
+	where
+	\begin{equation}
+		L(\sigma, s, \sigma', s', \Sigma, \Sigma') := (\sigma s \spsigma s') ~\cup~ (s \spsigma \sigma' s') ~\cup~ (s \spsigma s')
+	\end{equation}
+\end{subequations}
+If $\Sigma = \Sigma' = \emptyset$, then the condition in the first case of \cref{def:sp-sigmaD} ($\Sigma \cap \sigma' \subseteq \sigma \mbox{ and } \Sigma' \cap \sigma \subseteq \sigma'$) holds vacuously, and $\spsigma$ becomes effectively identical to asynchronous superposition $\spasync$\!. Otherwise, this condition can be used to eject those strings which do not project back to both $s$ and $s'$, according to Proposition 1 and Corollary 2 in \citet[p. 81]{woods2018improving}, reproduced below.
+
+\noindent
+\textbf{Proposition 1.} {\sl For all $\Sigma \in Fin(\Theta), \Sigma' \in Fin(\Theta)$ and $s \in Fin(\Theta)^*, s' \in Fin(\Theta)^*$, $s \spsigma s'$ selects those strings from asynchronous superposition $s \spsigma[\emptyset, \emptyset] s'$ which project to both the $\Sigma$-projection of $s$ and the $\Sigma'$-projection of $s'$}:
+\begin{align}
+s \spsigma s' ~=~ \{s'' \in s \spsigma[\emptyset, \emptyset] s' ~|~
+s'' \sqsupseteq \pi_{\Sigma}(s) \wedge s'' \sqsupseteq \pi_{\Sigma'}(s')\}
+\end{align}
+
+\noindent
+\textbf{Corollary 2.} {\sl For all $s \in Fin(\Theta)^*, s' \in Fin(\Theta)^*$ such that $s$ and $s'$ are stutterless, if $\Sigma = \mathcal{V}_s$ and $\Sigma' =\mathcal{V}_{s'}$, then $s \spsigma s'$ selects those strings from asynchronous superposition $s \spsigma[\emptyset, \emptyset] s'$ which project to $s$ and $s'$}:
+\begin{align}
+s \spsigma s' = \{s''\in s \spsigma[\emptyset, \emptyset] s' ~|~ s'' \sqsupseteq s \wedge s'' \sqsupseteq s'\}
+\end{align}
+\doublespacing
+According to Corollary 2, \textit{vocabulary constrained superposition} $\spvc$ can be used to preserve temporal information under projection during superposition:
+\begin{align}
+s \spvc s' :=  s \spsigma[\mathcal{V}_s, \mathcal{V}_{s'}] s'
+\end{align}
+Now, this new form of superposition can be used for the same example as \cref{ex:overgen}, and only the one valid result will be produced:
+\begin{align}
+	\Before{a}{b} \spvc \Before{b}{c} = \{\EventString{{}|a|{}|b|{}|c|{}}\}
+\end{align}
+Note that this result is still a language (a set of strings), and that there may be more than one string in this language, depending on the input strings. Where each input's vocabulary has a cardinality of 2, and the intersection of their vocabularies has cardinality of 1, then the number of result strings from the vocabulary constrained superposition of the inputs corresponds with the transitivity table in \citet[Fig. 4]{allen1983maintaining}. For example, \cref{ex:spvc-allen-transitivity} shows the string \cOverlaps{a}{b} superposed with \cDuring{b}{c}, and according to Allen's transitivity table there should be three results, corresponding to \cDuring{a}{c}, \cOverlaps{a}{c}, and \cStarts{a}{c}, and in fact this is the result shown by \Cref{tab:spvc-allen-transitivity-projections}.
+\begin{align}\label{ex:spvc-allen-transitivity}
+	\Overlaps{a}{b} \spvc \During{b}{c} = \{&\EventString{{}|c|a,c|a,b,c|b,c|c|{}}, \EventString{{}|a|a,c|a,b,c|b,c|c|{}},\\
+	&\EventString{{}|a,c|a,b,c|b,c|c|{}}\}\notag
+\end{align}
+\begin{center}
+	\begin{tabular}[h!]{r c l}
+		\EventString{{}|c|a,c|a,b,c|b,c|c|{}}&$\sqsupseteq$&\During{a}{c}\\
+		\EventString{{}|a|a,c|a,b,c|b,c|c|{}}&$\sqsupseteq$&\Overlaps{a}{c}\\
+		\EventString{{}|a,c|a,b,c|b,c|c|{}}&$\sqsupseteq$&\Starts{a}{c}
+	\end{tabular}
+	\captionof{table}{Projections of \cref{ex:spvc-allen-transitivity} matching Allen's transitivities.}\label{tab:spvc-allen-transitivity-projections}
+\end{center}
+In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an Intel i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings} (p. \pageref{tab:allen-rels-strings}) is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
+\begin{center}
+	\begin{tabular}{c|c|c|c}
+	& $\bullet = *$ & $\bullet = v\!c$ & Decrease in time\\
+	\hline
+	\Before{a}{b} $\&_{\bullet}$ \After{a}{b} & 0.3207ms &  0.0180ms & 94.39\%\\
+	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+	\Before{a}{b} $\&_{\bullet}$ \After{c}{b} & 0.3207ms & 0.0659ms & 79.45\%\\
+	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+	\Before{a}{b} $\&_{\bullet}$ \After{d}{c} & 22.4016ms & 5.3616ms & 76.07\%\\
+	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$
+	\end{tabular}
+	\captionof{table}{Fragment of speed comparison between $\spasync$ and $\spvc$.}
+	\label{tab:speedtest}
+\end{center}
+The mean percentage decrease for all pairs with identical vocabularies using vocabulary constrained superposition was 74.28\%. With one shared fluent, the mean decrease was 34.11\%, and with no fluents in common, it was 64.51\%.
+
+The main operations for string-based finite-state temporality have now been defined: block compression, reduct, projection, and (vocabulary constrained) superposition. These operation may be leveraged in a number of ways in order to create useful applications.
 
 \subsection{Applications}\label{sub:applications}
-The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
+% The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
+Having discussed how to create and manipulate strings which represent temporal data such as the linear order and inter-relations of a set of events, the following sections will explore some of the applications of this technology, including the ability to extract a timeline from a text, to verify that a document's narrative is internally consistent in terms of its event relations, and to infer new information based on the extracted event relations. Permitting external constraints to be placed on strings can allow for further uses, including in areas such as scheduling problems.\nb{flesh this out(?)}
 
 \subsubsection{Timelines from Texts}\label{ssub:timelines}
-Strings, as entities comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---though not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality \citeneeded[ -- see Sec 1 para 1 of: \url{https://onlinelibrary.wiley.com/doi/full/10.1111/cogs.12804}]{}. Regardless of spatial orientation, this perception of time maps well to a sequential representation as is found with strings. Perceived directionality of time is not an issue, as it is a small modification to change the direction of a string.
+Strings, as entities which are comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---although not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality (even absent vision, see \citet{bottini2015space})---\citet[pp. 42--43]{lakoff2008metaphors}, for example, discusses the metaphor of ``Time is a moving object'', where the future is perceived as moving towards us, and \citet[p. 542]{mitchell1980spatial} argues that ``we literally cannot `tell time' without the mediation of space''. Often, time is visualised as a line which travels along a three-dimensional axis, with events appearing as points along the line, although according to \citet[p. 14]{rosenberg2013cartographies}, the particular modern definition of a \textit{timeline} as a ``single axis and a regular, measured distribution of dates ... is not even 250 years old''.
+
+Regardless of the spatial orientation or directionality, this perception of time as coming from somewhere and going to somewhere else maps well to a sequential representation. The core concept being that, if two events exist at different moments in time, then they can be put in some kind of spatial ordering corresponding to the temporal ordering. The strings described in \cref{sub:strings} are used to model sequences of events in such a way that they can be read in a manner similar to a series of snapshots or film reel, or like the panels of a comic: each ``image'' or moment of time features all of the events which are occuring at that time (relative to some fixed vocabulary of events).
+
+\nb{brain gave up around here -- something about Gantt charts? an image or table or diagram or just an example string would be nice}
 
 A lot of information can be derived from a text document, depending on what one is looking for. Here, the focus is on isolating the events and times that are mentioned or implied in the text. By extracting this information, a timeline is built which gives a picture of the content of the document, which may reveal insights not obvious when looking at the text as a whole.
+
+\nb{something about using spvc to check for inconsistencies in a doc}
 
 \nb{dunno where this table goes yet, just fixing the broken reference}
 \nb{decide about (consistently) using `b' or `\textless' for the before relation}
@@ -707,7 +798,7 @@ A lot of information can be derived from a text document, depending on what one 
 		
 		= & $a$ equals $b$ & \Equals{a}{b} & & &
 	\end{tabular}
-	\captionof{table}{Allen interval relations in strings}\label{tab:allen-rels-strings}
+	\captionof{table}{Allen interval relations in strings.}\label{tab:allen-rels-strings}
 \end{center}
 
 \subsubsection{Inferring New Information}\label{ssub:inferring}
@@ -721,24 +812,96 @@ Additionally, conclusions can be drawn about whether certain inferences can be m
 Scheduling is a problem. The Zebra/Einstein Puzzle is another problem. They may seem dissimilar, but in fact, there are a number of parallels. Both problems can be viewed as constraint satisfaction problems. Although the Zebra Puzzle concerns physical constraints, these can be modelled as sequences for which one can use strings to represent. If a ``house" is conceptualised as a box in a string i.e. a set, the elements contained within are the properties of that house according to the puzzle. For example, $\{red, english, zebra, oj, kools\}$. The left/right spatial relations are thought of in the same way as the previous/next boxes in a string.
 
 Below is presented a variant of the puzzle using clues pertaining to temporal relations instead of spatial ones.
-%\newpage
-%a
-%\newpage
-%a
-%\newpage
-%a
-%\newpage
-%a
-%\newpage
-%a
-%\newpage
-%a
-%\newpage
-%a
-%\newpage
-%a
-%\newpage
-%a
+
+\noindent
+The clues to the puzzle are as follows:
+\begin{enumerate}
+	\item There are five weekdays.
+	\item The foggy day is mild.
+	\item I am tired on the warm day.
+	\item There is a traffic jam on the overcast day.
+	\item It is cold on the day with little traffic.
+	\item It is overcast the day after it snows.
+	\item I'm sad the day that I'm reading.
+	\item It rains the day I have printing to do.
+	\item The traffic is average in the middle of the week.
+	\item It's freezing at the beginning of the week.
+	\item The stapling is done the day before or the day after I'm happy.
+	\item Printing happens the day before or the day after I'm angry.
+	\item There is a lot of traffic the day that filing happens.
+	\item Shredding happens the day it's hot.
+	\item It's freezing the day before or the day after the weather is clear.
+	\captionof{table}{Temporal Zebra puzzle clues in English.}
+\end{enumerate}
+Using these clues, it should be possible to answer these questions:
+\begin{itemize}
+	\item What day is there no traffic?
+	\item What day am I curious? 
+\end{itemize}
+The puzzle makes three assumptions: first, that the values as presented are \textit{discrete} rather than continuous---``freezing'' and ``cold'', for example, are similar concepts (indeed, if the weather is freezing, then it is also cold), but for the purposes of this puzzle they are treated as being separate and unrelated; second, that each value lasts for only one day---if it rains on one of the days, it will not rain on any other; and third, each day only has one value per attribute---for example, only one task can be performed on any given day.
+
+For each of the given clues, a constraint can be constructed from one or more strings. Additional constraints can be formed to represent the external assumptions, and by superposing these constraints together, a solution to the puzzle can be found. The strings corresponding to each clue are as follows:
+\begin{enumerate}
+	\item $\EventString{mon|tue|wed|thu|fri}$
+	\item $\{ \EventString{{}|fog,mild},\EventString{{}|fog,mild|{}},\EventString{fog,mild|{}} \}$
+	\item $\{ \EventString{{}|tired,warm},\EventString{{}|tired,warm|{}},\EventString{tired,warm|{}} \}$
+	\item $\{ \EventString{{}|jammed,overcast},\EventString{{}|jammed,overcast|{}},\EventString{jammed,overcast|{}} \}$
+	\item $\{ \EventString{{}|cold,little},\EventString{{}|cold,little|{}},\EventString{cold,little|{}} \}$
+	\item $\{ \EventString{{}|snow|overcast},\EventString{{}|snow|overcast|{}},\EventString{snow|overcast|{}} \}$
+	\item $\{ \EventString{{}|sad,reading},\EventString{{}|sad,reading|{}},\EventString{sad,reading|{}} \}$
+	\item $\{ \EventString{{}|rain,printing},\EventString{{}|rain,printing|{}},\EventString{rain,printing|{}} \}$
+	\item $\EventString{{}|{}|average|{}|{}}$
+	\item $\EventString{freezing|{}|{}|{}|{}}$
+	\item $\{ \EventString{{}|stapling|happy},\EventString{{}|stapling|happy|{}},\EventString{stapling|happy|{}},\\\EventString{{}|happy|stapling},\EventString{{}|happy|stapling|{}},\EventString{happy|stapling|{}} \}$
+	\item $\{ \EventString{{}|printing|angry},\EventString{{}|printing|angry|{}},\EventString{printing|angry|{}},\\\EventString{{}|angry|printing},\EventString{{}|angry|printing|{}},\EventString{angry|printing|{}} \}$
+	\item $\{ \EventString{{}|lots,filing},\EventString{{}|lots,filing|{}},\EventString{lots,filing|{}} \}$
+	\item $\{ \EventString{{}|shredding,hot},\EventString{{}|shredding,hot|{}},\EventString{shredding,hot|{}} \}$
+	\item $\{ \EventString{{}|freezing|clear},\EventString{{}|freezing|clear|{}},\EventString{freezing|clear|{}},\\\EventString{{}|clear|freezing},\EventString{{}|clear|freezing|{}},\EventString{clear|freezing|{}} \}$
+	\captionof{table}{Temporal Zebra puzzle clues as strings.}\label{tab:zebra-clue-strings}
+\end{enumerate}
+For most of the clues, the constraint is formed from a language: when event $a$ and $b$ occur on the same day, they will appear in the same box, but it's unknown whether they occur at the beginning of the week (\EventString{a,b|{}}), the end of the week (\EventString{{}|a,b}), or somewhere in the middle (\EventString{{}|a,b|{}}), and so all of the possibilities appear together.
+
+Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values\footnote{The five day names as seen in the first clue of \Cref{tab:zebra-clue-strings} are not required for the puzzle: a string of five empty boxes will suffice. The names are included purely for convenience of reading.}. The vocabulary $\mathcal{V}$ of the puzzle is the union of the Attributes:
+\begin{itemize}
+	\item Weather = $\{rain,clear,fog,snow,overcast\}$
+	\item Temperature = $\{freezing,cold,mild,warm,hot\}$
+	\item Traffic = $\{none,little,average,lots,jammed\}$
+	\item Tasks = $\{printing,stapling,reading,filing,shredding\}$
+	\item Mood = $\{happy,angry,sad,tired,curious\}$
+\end{itemize}
+The external constraints are formalised as follows:
+\begin{align}
+	&\text{``Each Value only lasts for one day.''}\notag\\
+	&(\forall v \in \mathcal{V})~ x \in \llbracket P_v \rrbracket \Longrightarrow (\forall v' \in \mathcal{V})~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket\label{impl:zebra-constraintsA}\\
+	&\text{``Each day only contains one Value for each Attribute.''}\notag\\
+	&(\forall A \in Attributes)~ x \in \llbracket P_v \rrbracket \wedge v \in A \Longrightarrow (\forall v' \in A)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket\label{impl:zebra-constraintsB}
+\end{align}
+One further constraint is needed due to the nature of superposition allowing for the result of superposing two strings to be longer than either of the input strings:
+\begin{align}
+	&\text{``There are only 5 days.''}&\notag\\
+	&(\forall v \in \mathcal{V})~ x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5\label{impl:zebra-constraintsC}
+\end{align}
+Now, superposing all of the languages in \Cref{tab:zebra-clue-strings} and taking into account the constraints in \cref{impl:zebra-constraintsA,impl:zebra-constraintsB,impl:zebra-constraintsC}, the (singular) result string is generated (abbreviating each Value to its first two letters):
+\begin{align}
+	\EventString{ra,fr,pr,ha|cl,co,li,st,an|fo,mi,av,re,sa|sn,wa,lo,fi,ti|ov,ho,ja,sh}
+\end{align}
+Finally, superposing this string with languages representing the questions that were asked, the solution can be found:
+\begin{itemize}
+	\item $\{\EventString{{}|none}, \EventString{{}|none|{}}, \EventString{none|{}}\}$
+	\item $\{\EventString{{}|curious}, \EventString{{}|curious|{}}, \EventString{curious|{}}\}$
+\end{itemize}
+\begin{align}\label{ex:zebra-string-solution}
+	\EventString{ra,fr,pr,ha,\underline{no}|cl,co,li,st,an|fo,mi,av,re,sa|sn,wa,lo,fi,ti|ov,ho,ja,sh,\underline{cu}}
+\end{align}
+\begin{ctable}{r || c | c | c | c | c }{Solution to Temporal Zebra Puzzle as in \cref{ex:zebra-string-solution}.}
+	 & Mon & Tue & Wed & Thu & Fri\\\hline
+	Weather & $rain$ & $clear$ & $fog$ & $snow$ & $overcast$\\
+	Temperature & $freezing$ & $cold$ & $mild$ & $warm$ & $hot$\\
+	Traffic & $\underline{none}$ & $little$ & $average$ & $lots$ & $jammed$\\
+	Task & $printing$ & $stapling$ & $reading$ & $filing$ & $shredding$\\
+	Mood & $happy$ & $angry$ & $sad$ & $tired$ & $\underline{curious}$
+\end{ctable}
+\nb{how does this connect with scheduling?}
 
 \newpage
 \section{Methods}\label{sec:methods}
@@ -772,11 +935,7 @@ Freksa relations using semi-intervals: the appearance of $\alpha(a)$ within a bo
 Note that it is convenient to write $\alpha(a)$ for $\alpha_a(x)$ when using the box-notation.
 
 A string may be translated to one using semi-intervals by placing $\alpha(f)$ in every box preceding one in which a fluent $f$ appears, and $\omega(f)$ in every box succeeding it, repeating this for each $f \in A$.\par
-Thus a string 
-\begin{align}
-	s = \EventString{{}|a|b|{}}
-\end{align}
-becomes \nb{decide on semin-interval translation fn symbol}
+Thus a string $s = \EventString{{}|a|b|{}}$ becomes \nb{decide on semin-interval translation fn symbol}
 \begin{align}
 	\left\lceil s\right\rceil = \EventString{\alpha(a),\alpha(b)|\alpha(b)|\omega(a)|\omega(a),\omega(b)}
 \end{align}
@@ -789,29 +948,29 @@ Semi-intervals allow for representing a greater range of event relations than th
 Many of the Freksa relations can be captured using the semi-intervals \nb{duh, he designed them that way} in the box-notation.
 
 For example, the relation \textit{older} corresponds with a disjunction of five Allen relations: \textit{before}, \textit{meets}, \textit{overlaps}, \textit{contains}, and \textit{finished by}.
-\begin{figure}[h]
-	\begin{align*}
-	\text{before -- }&\Before{a}{b}\\
-	\text{meets -- }&\Meets{a}{b}\\
-	\text{overlaps -- }&\Overlaps{a}{b}\\
-	\text{contains -- }&\iDuring{a}{b}\\
-	\text{finished by -- }&\iFinishes{a}{b}
-	\end{align*}
-	\caption{The Freksa relation \textit{older}}
-\end{figure}
+\begin{center}
+	\begin{tabular}[h!]{r | l}
+	before &\Before{a}{b}\\
+	meets &\Meets{a}{b}\\
+	overlaps &\Overlaps{a}{b}\\
+	contains &\iDuring{a}{b}\\
+	finished by&\iFinishes{a}{b}
+	\end{tabular}
+	\captionof{table}{The Freksa relation \textit{older}.}
+\end{center}
 The similarities between these five relations becomes more apparent when they are translated to use semi-intervals instead:
-\begin{figure}[h]
-	\begin{align*}
-	\text{before -- }&\siBefore{a}{b}\\
-	\text{meets -- }&\siMeets{a}{b}\\
-	\text{overlaps -- }&\siOverlaps{a}{b}\\
-	\text{contains -- }&\siiDuring{a}{b}\\
-	\text{finished by -- }&\siiFinishes{a}{b}
-	\end{align*}
-	\caption{The Freksa relation \textit{older} using semi-intervals, before block-compressed reduct}
-\end{figure}
+\begin{center}
+	\begin{tabular}[h!]{r | l}
+	before &\siBefore{a}{b}\\
+	meets &\siMeets{a}{b}\\
+	overlaps &\siOverlaps{a}{b}\\
+	contains &\siiDuring{a}{b}\\
+	finished by&\siiFinishes{a}{b}
+	\end{tabular}
+	\captionof{table}{The Freksa relation \textit{older} using semi-intervals, before block compressed reduct.}
+\end{center}
 
-Each of these five strings projects (using a block-compressed reduct) to the string \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}}, meaning the relation $a$ \textit{older} $b$ can be represented using just this one string, instead of five. This does raise the question, however, of whether the tradeoffs are worth it: a great reduction in the cardinality of the timeline set can be achieved, but at the cost of using a more complex vocabulary and reducing the precision of the known information.
+Each of these five strings projects (using a block compressed reduct) to the string \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}}, meaning the relation $a$ \textit{older} $b$ can be represented using just this one string, instead of five. This does raise the question, however, of whether the tradeoffs are worth it: a great reduction in the cardinality of the timeline set can be achieved, but at the cost of using a more complex vocabulary and reducing the precision of the known information.
 
 Unfortunately, only 10 of the 18 Freksa relations can be described using a single string without further complicating the vocabulary which may appear within a box in a string. Since all of these new relations are disjunctions of Allen relations, it follows that it may be acceptable to include disjunctions of semi-intervals inside a box, such as \ebox{\alpha(a) \lor \alpha(b)}, which is interpreted as one might expect: either $\alpha(a)$ appears in the box, or $\alpha(b)$ does, or they both do. This allowance admits a further 5 Freksa relations to be described in single strings. Of the remaining 3 relations, the \textit{unknown} relation may also be described using a single string, but it is trivial, since it encompasses a disjunction of all 13 Allen relations, and is formed by a simple disjunction of all possible semi-inteval symbols: \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}, or even more simply, with a string consisting of just a single empty box: \ebox{}.
 
@@ -842,7 +1001,7 @@ Below is a table of the 18 Freksa relations, the Allen relations they comprise, 
 		older and survived by & b, m, o & ...\\
 		younger and survives & bi, mi, oi & ...\\
 	\end{tabular}
-	\captionof{table}{The Freksa relations and the strings they project to}
+	\captionof{table}{The Freksa relations and the strings they project to.}
 \end{center}
 The last two relations on this list cannot be represented using a single string, and are instead must use conjunctions of pairs of strings: 
 \begin{center}
@@ -854,7 +1013,7 @@ The last two relations on this list cannot be represented using a single string,
 		older and survived by & b, m, o & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}} $\land$ \EventString{{}|\omega(a)|\omega(a),\omega(b)}\\
 		younger and survives & bi, mi, oi & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}} $\land$ \EventString{{}|\omega(b)|\omega(a),\omega(b)}\\
 	\end{tabular}
-	\captionof{table}{The remaining Freksa relations and the strings they project to}
+	\captionof{table}{The remaining Freksa relations and the strings they project to.}
 \end{center}
 
 While having to use a conjunction of strings may seem like a confounding issue which prevents all the relations from being representable by a single string, it is in fact less problematic than allowing disjunction inside a box, in some ways.

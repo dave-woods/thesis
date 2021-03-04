@@ -3,50 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: refs.bib
-Warning--I'm ignoring Kowalski1986's extra "year" field
---line 152 of file refs.bib
 Warning--empty year in aristotlePhysicsIV
 Warning--there's a number but no series in fernando2015semantics
 Warning--empty publisher in Mueller2008
-You've used 25 entries,
+You've used 29 entries,
             1940 wiz_defined-function locations,
-            639 strings with 7810 characters,
-and the built_in function-call counts, 10639 in all, are:
-= -- 1090
-> -- 310
-< -- 35
-+ -- 101
-- -- 98
-* -- 834
-:= -- 1713
-add.period$ -- 80
-call.type$ -- 25
-change.case$ -- 169
-chr.to.int$ -- 24
-cite$ -- 28
-duplicate$ -- 477
-empty$ -- 813
-format.name$ -- 139
-if$ -- 2201
+            661 strings with 8378 characters,
+and the built_in function-call counts, 12114 in all, are:
+= -- 1231
+> -- 371
+< -- 38
++ -- 121
+- -- 118
+* -- 963
+:= -- 1973
+add.period$ -- 92
+call.type$ -- 29
+change.case$ -- 197
+chr.to.int$ -- 28
+cite$ -- 32
+duplicate$ -- 533
+empty$ -- 916
+format.name$ -- 167
+if$ -- 2483
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 27
-newline$ -- 130
-num.names$ -- 77
-pop$ -- 178
+missing$ -- 33
+newline$ -- 150
+num.names$ -- 89
+pop$ -- 207
 preamble$ -- 1
-purify$ -- 173
+purify$ -- 203
 quote$ -- 0
-skip$ -- 373
+skip$ -- 414
 stack$ -- 0
-substring$ -- 807
-swap$ -- 142
+substring$ -- 899
+swap$ -- 150
 text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 142
+type$ -- 162
 warning$ -- 3
-while$ -- 100
+while$ -- 112
 width$ -- 0
-write$ -- 333
-(There were 4 warnings)
+write$ -- 383
+(There were 3 warnings)

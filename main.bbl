@@ -17,6 +17,12 @@ Bos, J. (2008).
 \newblock In {\em Proceedings of the 2008 Conference on Semantics in Text
   Processing - STEP '08}, pages 277--286.
 
+\bibitem[\protect\astroncite{Bottini et~al.}{2015}]{bottini2015space}
+Bottini, R., Crepaldi, D., Casasanto, D., Crollen, V., and Collignon, O.
+  (2015).
+\newblock Space and time in the sighted and blind.
+\newblock {\em Cognition}, 141:67--72.
+
 \bibitem[\protect\astroncite{Derczynski and Gaizauskas}{2013}]{Derczynski2013}
 Derczynski, L. and Gaizauskas, R. (2013).
 \newblock {Empirical Validation of Reichenbach's Tense Framework}.
@@ -79,6 +85,11 @@ Kowalski, R. and Sergot, M. (1986).
 \newblock {A Logic-based Calculus of Events}.
 \newblock {\em New Generation Computing}, 4(1):67--95.
 
+\bibitem[\protect\astroncite{Lakoff and Johnson}{2008}]{lakoff2008metaphors}
+Lakoff, G. and Johnson, M. (2008).
+\newblock {\em Metaphors we live by}.
+\newblock University of Chicago press.
+
 \bibitem[\protect\astroncite{Libkin}{2004}]{Libkin2004}
 Libkin, L. (2004).
 \newblock {Monadic Second-Order Logic and Automata}.
@@ -98,6 +109,11 @@ Miller, R. and Shanahan, M. (1999).
 \newblock {The Event Calculus in Classical Logic–Alternative
   Axiomatizations}.
 \newblock {\em Electronic Transactions on Artificial Intelligence}, 3:77--105.
+
+\bibitem[\protect\astroncite{Mitchell}{1980}]{mitchell1980spatial}
+Mitchell, W.~J. (1980).
+\newblock Spatial form in literature: Toward a general theory.
+\newblock {\em Critical Inquiry}, 6(3):539--567.
 
 \bibitem[\protect\astroncite{Mueller}{2008}]{Mueller2008}
 Mueller, E.~T. (2008).
@@ -122,6 +138,12 @@ Pustejovsky, J., Verhagen, M., Sauri, R., Littman, J., Gaizauskas, R., Katz,
 Reichenbach, H. (1947).
 \newblock {\em Elements of symbolic logic}.
 \newblock New York: Macmillan.
+
+\bibitem[\protect\astroncite{Rosenberg and
+  Grafton}{2013}]{rosenberg2013cartographies}
+Rosenberg, D. and Grafton, A. (2013).
+\newblock {\em Cartographies of time: A history of the timeline}.
+\newblock Princeton Architectural Press.
 
 \bibitem[\protect\astroncite{Shanahan}{1997}]{shanahan1997solving}
 Shanahan, M. (1997).
