@@ -143,7 +143,7 @@
 \renewcommand{\phi}{\varphi}
 
 \makeatletter
-\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot{\mathpalette\bigcdot@{0.75}}
 \newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
 \makeatother
 
@@ -435,11 +435,11 @@ There is a theorem due to B\"{u}chi, Elgot, and Trakhtenbrot (see, for example, 
 
 %%%%%%%%%%%%
 \paragraph{Analogous Strings}\label{para:analogous-strings}
-A string $s$ will be said to be \textit{analogous} to some other string $s'$ if the MSO models (see \cref{ssub:mso}) \nb{I'm not sure where to put this section/para, so might need to remove this ref} corresponding to each string are, to a sense, isomorphic---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping the vocabulary of $s$ to the vocabulary of $s'$, and for every $v \in \mathcal{V}_s, \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket$:
+A string $s$ will be said to be \textit{analogous} to some other string $s'$ if the MSO models (see \cref{ssub:mso}) \nb{I'm not sure where to put this section/para, so might need to remove this ref} corresponding to each string can be said to be, in a sense, isomorphic\nb{wiki: bijection, isomorphism;\\\url{https://www.britannica.com/science/isomorphism-mathematics}\\\url{https://mathworld.wolfram.com/Isomorphism.html}\\\url{https://plato.stanford.edu/entries/modeltheory-fo/}}---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping the vocabulary of $s$ to the vocabulary of $s'$, and for every $v \in \mathcal{V}_s, \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket$:
 \begin{align}
 	s \sim s' \Longleftrightarrow  mod(s) \cong mod(s')
 \end{align}
-For example, in \cref{ex:analog}, \Before{a}{b} is analogous to \Before{c}{d}, while in \cref{ex:not-analog} \Before{a}{b} is not analogous to \Overlaps{c}{d}
+\nb{Include a definition of analogy for languages, and also define my usage of $\cong$ above.}For example, in \cref{ex:analog}, \Before{a}{b} is analogous to \Before{c}{d}, while in \cref{ex:not-analog} \Before{a}{b} is not analogous to \Overlaps{c}{d}
 \begin{align}
 	\Before{a}{b} &\sim \Before{c}{d}\label{ex:analog}\\
 	\Before{a}{b} &\nsim \Overlaps{c}{d}\label{ex:not-analog}
@@ -747,13 +747,13 @@ Note that this result is still a language (a set of strings), and that there may
 In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an Intel i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings} (p. \pageref{tab:allen-rels-strings}) is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
 \begin{center}
 	\begin{tabular}{c|c|c|c}
-	& $\bullet = *$ & $\bullet = v\!c$ & Decrease in time\\
+	& $\triangle = *$ & $\triangle = v\!c$ & Decrease in time\\
 	\hline
-	\Before{a}{b} $\&_{\bullet}$ \After{a}{b} & 0.3207ms &  0.0180ms & 94.39\%\\
+	\Before{a}{b} $\&_{\triangle}$ \After{a}{b} & 0.3207ms &  0.0180ms & 94.39\%\\
 	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
-	\Before{a}{b} $\&_{\bullet}$ \After{c}{b} & 0.3207ms & 0.0659ms & 79.45\%\\
+	\Before{a}{b} $\&_{\triangle}$ \After{c}{b} & 0.3207ms & 0.0659ms & 79.45\%\\
 	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
-	\Before{a}{b} $\&_{\bullet}$ \After{d}{c} & 22.4016ms & 5.3616ms & 76.07\%\\
+	\Before{a}{b} $\&_{\triangle}$ \After{d}{c} & 22.4016ms & 5.3616ms & 76.07\%\\
 	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$
 	\end{tabular}
 	\captionof{table}{Fragment of speed comparison between $\spasync$ and $\spvc$.}
@@ -761,14 +761,14 @@ In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, compa
 \end{center}
 The mean percentage decrease for all pairs with identical vocabularies using vocabulary constrained superposition was 74.28\%. With one shared fluent, the mean decrease was 34.11\%, and with no fluents in common, it was 64.51\%.
 
-The main operations for string-based finite-state temporality have now been defined: block compression, reduct, projection, and (vocabulary constrained) superposition. These operation may be leveraged in a number of ways in order to create useful applications.
+The main operations for string-based finite-state temporality have now been defined: block compression, reduct, projection, and (vocabulary constrained) superposition. These operations may be leveraged in a number of ways in order to create useful applications.
 
 \subsection{Applications}\label{sub:applications}
 % The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
 Having discussed how to create and manipulate strings which represent temporal data such as the linear order and inter-relations of a set of events, the following sections will explore some of the applications of this technology, including the ability to extract a timeline from a text, to verify that a document's narrative is internally consistent in terms of its event relations, and to infer new information based on the extracted event relations. Permitting external constraints to be placed on strings can allow for further uses, including in areas such as scheduling problems.\nb{flesh this out(?)}
 
 \subsubsection{Timelines from Texts}\label{ssub:timelines}
-Strings, as entities which are comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---although not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality (even absent vision, see \citet{bottini2015space})---\citet[pp. 42--43]{lakoff2008metaphors}, for example, discusses the metaphor of ``Time is a moving object'', where the future is perceived as moving towards us, and \citet[p. 542]{mitchell1980spatial} argues that ``we literally cannot `tell time' without the mediation of space''. Often, time is visualised as a line which travels along a three-dimensional axis, with events appearing as points along the line, although according to \citet[p. 14]{rosenberg2013cartographies}, the particular modern definition of a \textit{timeline} as a ``single axis and a regular, measured distribution of dates ... is not even 250 years old''.
+Strings, as entities which are comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---although not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality\nb{wiki: timeline;\\\url{https://onlinelibrary.wiley.com/doi/full/10.1111/cogs.12804}\\\url{https://sites.williams.edu/thea228/files/2011/09/Cartographies-of-Time.pdf}\\\url{https://books.google.ie/books?hl=en&lr=&id=DqWqKVzipToC&oi=fnd&pg=PA8&dq=Rosenberg,+Daniel+(2010),+Cartographies+of+Time:+A+History+of+the+Timeline,+Princeton+Architectural+Press&ots=m2BG84e69h&sig=uykTBRs2rIPfmTf6rW0jtWlSBNo&redir_esc=y#v=snippet&q=spatial&f=false}\\\url{https://www.jstor.org/stable/pdf/1343108.pdf?casa_token=JdY5vEGKYgMAAAAA:ykEfao2S22Jekocs5fWyNixqQwM-YD6Os4r5wT-1cNFsLsk7NkAMcI9Y-7Z6GQQNGDgXJpGPpWXRAHrRrV_EQGW-rAR7RlTh9gkBUEdqsem31aBvyKvk}} (even absent vision, see \citet{bottini2015space})---\citet[pp. 42--43]{lakoff2008metaphors}, for example, discusses the metaphor of ``Time is a moving object'', where the future is perceived as moving towards us, and \citet[p. 542]{mitchell1980spatial} argues that ``we literally cannot `tell time' without the mediation of space''. Often, time is visualised as a line which travels along a three-dimensional axis, with events appearing as points along the line, although according to \citet[p. 14]{rosenberg2013cartographies}, the particular modern definition of a \textit{timeline} as a ``single axis and a regular, measured distribution of dates ... is not even 250 years old''.
 
 Regardless of the spatial orientation or directionality, this perception of time as coming from somewhere and going to somewhere else maps well to a sequential representation. The core concept being that, if two events exist at different moments in time, then they can be put in some kind of spatial ordering corresponding to the temporal ordering. The strings described in \cref{sub:strings} are used to model sequences of events in such a way that they can be read in a manner similar to a series of snapshots or film reel, or like the panels of a comic: each ``image'' or moment of time features all of the events which are occuring at that time (relative to some fixed vocabulary of events).
 
@@ -777,29 +777,45 @@ Regardless of the spatial orientation or directionality, this perception of time
 A lot of information can be derived from a text document, depending on what one is looking for. Here, the focus is on isolating the events and times that are mentioned or implied in the text. By extracting this information, a timeline is built which gives a picture of the content of the document, which may reveal insights not obvious when looking at the text as a whole.
 
 \nb{something about using spvc to check for inconsistencies in a doc}
-
 \nb{dunno where this table goes yet, just fixing the broken reference}
 \nb{decide about (consistently) using `b' or `\textless' for the before relation}
+
+A point of interest is that the thirteen interval relations given by the interval algebra of \citet{allen1983maintaining} fall out of the vocabulary constrained superposition of a pair of strings which each feature a single and different finitely-bounded event:
+\begin{align}
+	\mathcal{AR} :=& \{<,>,m,mi,o,oi,d,di,s,si,f,fi,=\}\label{def:allen-rel-set}\\
+	\EventString{{}|a|{}} \spvc \EventString{{}|b|{}} =& \{\mathcal{S}_{\bigcdot}(a,b) ~|~ \bigcdot \in \mathcal{AR}\}
+\end{align}
+Each string $\mathcal{S}_{\bigcdot}(a,b)$ of the result set features one relation $a \bigcdot b$, as shown in \Cref{tab:allen-rels-strings}, reproduced from \citet[p. 79, Table 1]{woods2018improving}.
 \begin{center}
 	\begin{tabular}[h!]{c|c|c||c|c|c}
-		$R$ & $a~R~b$ & $\mbox{$\cal{S}$}_R(a,b)$ & $R^{-1}$ & $a~R^{-1}~b$ & $\mbox{$\cal{S}$}_{R^{-1}}(a,b)$ \\
+		${\bigcdot}$ & $a~{\bigcdot}~b$ & $\mbox{$\cal{S}$}_{\bigcdot}(a,b)$ & ${\bigcdot}^{-1}$ & $a~{\bigcdot}^{-1}~b$ & $\mbox{$\cal{S}$}_{{\bigcdot}^{-1}}(a,b)$ \\
 		\hline
 		$<$ & $a$ before $b$ & \Before{a}{b} & $>$ & $a$ after $b$ & \After{a}{b} \\
-		
 		m & $a$ meets $b$ & \Meets{a}{b} & mi & $a$ met by $b$ & \iMeets{a}{b} \\
-		
 		o & $a$ overlaps $b$ & \Overlaps{a}{b} & oi & $a$ overlapped by $b$ & \iOverlaps{a}{b} \\
-		
 		d & $a$ during $b$ & \During{a}{b} & di & $a$ contains $b$ & \iDuring{a}{b} \\
-		
 		s & $a$ starts $b$ & \Starts{a}{b} & si & $a$ started by $b$ & \iStarts{a}{b} \\
-		
 		f & $a$ finishes $b$ & \Finishes{a}{b} & fi & $a$ finished by $b$ & \iFinishes{a}{b} \\
-		
 		= & $a$ equals $b$ & \Equals{a}{b} & & &
 	\end{tabular}
 	\captionof{table}{Allen interval relations in strings.}\label{tab:allen-rels-strings}
 \end{center}
+Using the notion of analogous strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}), any block compressed string which has a vocabulary of cardinality 2 can be compared to the strings in \Cref{tab:allen-rels-strings}. If such a string $s \sim \mathcal{S}_{\bigcdot}(a,b)$ for some $\bigcdot \in \mathcal{AR}$, then the events appearing in $s$ can also be said to be related by $\bigcdot$. For example, $\iFinishes{c}{d} \sim \mathcal{S}_{\text{fi}}(a,b)$, and thus the relation between the events $c$ and $d$ is ``$c$ finished by $d$''.
+
+This is easily extended beyond strings featuring just two fluents. The relations between the events appearing in the string $s = \EventString{{}|a|{}|b|{}|c|{}}$ can be determined by taking its block compressed reduct relative to the subsets of the vocabulary which have cardinality 2---in this case, $a$ is before $b$, $b$ is before $c$, and $a$ is before $c$. Once these relations have been calculated, the relations between the events in another string $s' = \EventString{{}|d|{}|e|{}|f|{}}$ are immediately available on analogy $s \sim s'$.
+
+While this is a relatively simple example, it can be extended for strings featuring any arbitrary number of events, and perhaps more usefully it can be used to shortcut superpositions and other string operations. For instance, given the pair of strings $s = \Overlaps{a}{b}$ and $s' = \During{b}{c}$, the vocabulary constrained superposition is calculated as in \cref{ex:spvc-allen-transitivity}:
+\begin{align}\label{ex:sp-analogy}
+	s \spvc s' = \{&\EventString{{}|c|a,c|a,b,c|b,c|c|{}}, \EventString{{}|a|a,c|a,b,c|b,c|c|{}},\\
+	&\EventString{{}|a,c|a,b,c|b,c|c|{}}\}\notag
+\end{align}
+Now, given two more strings $t = \Overlaps{x}{y}$ and $t' = \During{y}{z}$ such that $s \sim t$ and $s' \sim t'$, the generated results of superposing $t$ and $t'$ will also be analogous to the results in \cref{ex:sp-analogy}, and so there is no need to calculate $t \spvc t'$. Since the strings are analogous, there is a bijective mapping \nb{ref a definition for analogous strings, also define analogous languages} between the vocabularies $f: (\mathcal{V}_{s} \cup \mathcal{V}_{s'}) \longleftrightarrow (\mathcal{V}_{t} \cup \mathcal{V}_{t'})$, and applying this function $f$ to the results in \cref{ex:sp-analogy} gives the same result as calculating the superposition $t \spvc t'$:
+\begin{align}\label{ex:sp-analogy-equal}
+	f(s \spvc s') = \{&\EventString{{}|z|x,z|x,y,z|y,z|z|{}}, \EventString{{}|x|x,z|x,y,z|y,z|z|{}},\\
+	&\EventString{{}|x,z|x,y,z|y,z|z|{}}\}\notag\\
+	=~&t \spvc t'
+\end{align}
+Again, this is a small example, but with larger numbers of events and more complex strings, leveraging the power of analogous strings has the potential to massively reduce the computational cost to calculate superpositions.
 
 \subsubsection{Inferring New Information}\label{ssub:inferring}
 A text which has been manually annotated for temporal information will typically mark up the most important relations between events, at least as the annotator saw them. By extracting and making plain the timeline, any inconsistencies are immediately revealed, whether these are the fault of a problematic document or human error. Further, relations between times and events which were not previously obvious can be spelled out clearly.
@@ -861,7 +877,7 @@ For each of the given clues, a constraint can be constructed from one or more st
 \end{enumerate}
 For most of the clues, the constraint is formed from a language: when event $a$ and $b$ occur on the same day, they will appear in the same box, but it's unknown whether they occur at the beginning of the week (\EventString{a,b|{}}), the end of the week (\EventString{{}|a,b}), or somewhere in the middle (\EventString{{}|a,b|{}}), and so all of the possibilities appear together.
 
-Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values\footnote{The five day names as seen in the first clue of \Cref{tab:zebra-clue-strings} are not required for the puzzle: a string of five empty boxes will suffice. The names are included purely for convenience of reading.}. The vocabulary $\mathcal{V}$ of the puzzle is the union of the Attributes:
+Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values\footnote{The five day names as seen in the first clue of \Cref{tab:zebra-clue-strings} are not required for the puzzle: a string of five empty boxes suffices. However, the names are included here purely for convenience of reading.}. The vocabulary $\mathcal{V}$ of the puzzle is the union of the Attributes:
 \begin{itemize}
 	\item Weather = $\{rain,clear,fog,snow,overcast\}$
 	\item Temperature = $\{freezing,cold,mild,warm,hot\}$
@@ -881,19 +897,27 @@ One further constraint is needed due to the nature of superposition allowing for
 	&\text{``There are only 5 days.''}&\notag\\
 	&(\forall v \in \mathcal{V})~ x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5\label{impl:zebra-constraintsC}
 \end{align}
-Now, superposing all of the languages in \Cref{tab:zebra-clue-strings} and taking into account the constraints in \cref{impl:zebra-constraintsA,impl:zebra-constraintsB,impl:zebra-constraintsC}, the (singular) result string is generated (abbreviating each Value to its first two letters):
+Now, superposing all of the languages in \Cref{tab:zebra-clue-strings} and taking into account the constraints in \cref{impl:zebra-constraintsA,impl:zebra-constraintsB,impl:zebra-constraintsC}, the (singular) result string is generated (each Value is displayed here abbreviated to its first two letters):
 \begin{align}
 	\EventString{ra,fr,pr,ha|cl,co,li,st,an|fo,mi,av,re,sa|sn,wa,lo,fi,ti|ov,ho,ja,sh}
 \end{align}
-Finally, superposing this string with languages representing the questions that were asked, the solution can be found:
+Finally, superposing this string with languages representing the questions that were asked, a string containing the full ``week schedule" is obtained (\cref{ex:zebra-string-full-solution}), and by taking the reduct of this string relative to $\{none,curious\}$ the solution to the puzzle can be found (\cref{ex:zebra-string-solution-reduct}, and superposed with a string of weekday names for ease of reading in \cref{ex:zebra-string-solution-weekdays}):
 \begin{itemize}
 	\item $\{\EventString{{}|none}, \EventString{{}|none|{}}, \EventString{none|{}}\}$
 	\item $\{\EventString{{}|curious}, \EventString{{}|curious|{}}, \EventString{curious|{}}\}$
 \end{itemize}
-\begin{align}\label{ex:zebra-string-solution}
-	\EventString{ra,fr,pr,ha,\underline{no}|cl,co,li,st,an|fo,mi,av,re,sa|sn,wa,lo,fi,ti|ov,ho,ja,sh,\underline{cu}}
-\end{align}
-\begin{ctable}{r || c | c | c | c | c }{Solution to Temporal Zebra Puzzle as in \cref{ex:zebra-string-solution}.}
+\begin{subequations}
+	\begin{gather}
+		\footnotesize
+		s = \EventString{ra,fr,pr,ha,\underline{no}|cl,co,li,st,an|fo,mi,av,re,sa|sn,wa,lo,fi,ti|ov,ho,ja,sh,\underline{cu}}\label{ex:zebra-string-full-solution}\\
+		\footnotesize
+		\rho_{\{none,curious\}}(s) = \EventString{\underline{none}|{}|{}|{}|\underline{curious}}\label{ex:zebra-string-solution-reduct}\\
+		\footnotesize
+		\rho_{\{none,curious\}}(s) \sp \EventString{mon|tue|wed|thu|fri} = \EventString{mon,\underline{none}|tue|wed|thu|fri,\underline{curious}}\label{ex:zebra-string-solution-weekdays}
+	\end{gather}
+\end{subequations}
+Thus the answer is that ``there is no traffic on the first day of the week", and ``I am curious on the last day of the week". This result is reproduced in \Cref{tab:zebra-solution} below for the sake of completeness.
+\begin{ctable}[\label{tab:zebra-solution}]{r || c | c | c | c | c }{Solution to Temporal Zebra puzzle as in \cref{ex:zebra-string-full-solution}.}
 	 & Mon & Tue & Wed & Thu & Fri\\\hline
 	Weather & $rain$ & $clear$ & $fog$ & $snow$ & $overcast$\\
 	Temperature & $freezing$ & $cold$ & $mild$ & $warm$ & $hot$\\
@@ -920,7 +944,7 @@ After creating strings from the \xmltag{TLINK}s, the next step is to start build
 The various relations can be combined according to the table in \cite{allen1983maintaining} \citeneeded[ -- get the page and figure number], reproduced in \cref{ssub:allen} \refneeded{}, and again below using strings in table \refneeded{}. The advantage to using strings is that the extension beyond three events is simple \nb{Defend this -- I think there is something in ISA13 paper -- or remove}. It should be noted that several combinations of relations produce a disjunction of relations, which follows from the fact that these combinations of $a \bigcdot b$ and $b \bigcdot c$ don't provide enough information to determine the exact relation $a \bigcdot c$. It may be possible to narrow this down, though, with the addition of further relations connecting other intervals ($d,e,f,...$) with some or all of $a,b,c$.
 
 \subsubsection{Handling Incomplete Data}\label{ssub:incomplete}
-When dealing with any temporal information, there is often a lack of specificity that means temporal closure cannot be calculated. For example, knowing that event $a$ occurred before event $c$ \Before{a}{c} and that event $b$ also occurred before $c$ \Before{b}{c} does not impart any information on the relation between $a$ and $b$. If this is all of the available data, then it is only possible to choose this relation $a \bigcdot b$ with a precision of $\frac{1}{13}$ chance. However, further information which includes other relations for each of $a$ and $b$ individually may eventually reveal their connection.
+When dealing with any temporal information, there is often a lack of specificity that means temporal closure cannot be calculated. For example, knowing that event $a$ occurred before event $c$, as in \Before{a}{c}, and that event $b$ also occurred before $c$, as in \Before{b}{c}, does not impart any information on the relation between $a$ and $b$. If this is all of the available data, then it is only possible to choose this relation $a \bigcdot b, ~\bigcdot \in \mathcal{AR}$ with a precision of 1 in 13 chance. However, further information which includes other relations for each of $a$ and $b$ individually may eventually reveal their connection.
 
 See also, using semi-intervals to simplify disjunctions of Allen Relations. Minimal sets of maximal strings.
 
@@ -929,8 +953,8 @@ Freksa relations using semi-intervals: the appearance of $\alpha(a)$ within a bo
 \begin{align}
 %\alpha_a(x) := x \notin P_a \land \exists y(x < y \land y \in P_a \land \forall z(z < y \rightarrow z \notin P_a))\\
 %\omega_a(x) := x \notin P_a \land \exists y(y < x \land y \in P_a \land \forall z(y < z \rightarrow z \notin P_a))
-\alpha_a(x) := \exists y(x < y \land y \in P_a \land \forall z(z < y \rightarrow z \notin P_a))\\
-\omega_a(x) := \exists y(y < x \land y \in P_a \land \forall z(y < z \rightarrow z \notin P_a))
+\alpha_a(x) ~:=~ \exists y(x < y ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z(z < y \Longrightarrow z \notin \llbracket P_a \rrbracket))\\
+\omega_a(x) ~:=~ \exists y(y < x ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z(y < z \Longrightarrow z \notin \llbracket P_a \rrbracket))
 \end{align}
 Note that it is convenient to write $\alpha(a)$ for $\alpha_a(x)$ when using the box-notation.
 
