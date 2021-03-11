@@ -23,11 +23,24 @@ Bottini, R., Crepaldi, D., Casasanto, D., Crollen, V., and Collignon, O.
 \newblock Space and time in the sighted and blind.
 \newblock {\em Cognition}, 141:67--72.
 
+\bibitem[\protect\astroncite{Buchner and Funke}{1993}]{buchner1993finite}
+Buchner, A. and Funke, J. (1993).
+\newblock Finite-state automata: Dynamic task environments in problem-solving
+  research.
+\newblock {\em The Quarterly Journal of Experimental Psychology},
+  46(1):83--118.
+
 \bibitem[\protect\astroncite{Derczynski and Gaizauskas}{2013}]{Derczynski2013}
 Derczynski, L. and Gaizauskas, R. (2013).
 \newblock {Empirical Validation of Reichenbach's Tense Framework}.
 \newblock In {\em Proceedings of the 10th International Conference on
   Computational Semantics (IWCS 2013)}, pages 71--82.
+
+\bibitem[\protect\astroncite{Elgot and Rabin}{1966}]{elgot1966decidability}
+Elgot, C.~C. and Rabin, M.~O. (1966).
+\newblock Decidability and undecidability of extensions of second (first) order
+  theory of (generalized) successor.
+\newblock {\em The Journal of Symbolic Logic}, 31(2):169--181.
 
 \bibitem[\protect\astroncite{Fernando}{2004}]{Fernando2004}
 Fernando, T. (2004).
@@ -80,6 +93,13 @@ Kamp, H. and Reyle, U. (1993).
   Semantics of Natural Language, Formal Logic and DRT}}.
 \newblock Dordrecht: Kluwer.
 
+\bibitem[\protect\astroncite{Khourshid}{2015}]{khourshid_2015}
+Khourshid, D. (2015).
+\newblock {XState}.
+\newblock
+  \url{https://xstate.js.org/docs/about/concepts.html#finite-state-machines}.
+\newblock Accessed: 2021-03-10.
+
 \bibitem[\protect\astroncite{Kowalski and Sergot}{1986}]{Kowalski1986}
 Kowalski, R. and Sergot, M. (1986).
 \newblock {A Logic-based Calculus of Events}.
@@ -95,6 +115,11 @@ Libkin, L. (2004).
 \newblock {Monadic Second-Order Logic and Automata}.
 \newblock In {\em Elements of Finite Model Theory}, pages 113--140.
   Springer-Verlag, Berlin, Heidelberg.
+
+\bibitem[\protect\astroncite{McCarthy}{1980}]{mccarthy1980circumscription}
+McCarthy, J. (1980).
+\newblock Circumscription—a form of non-monotonic reasoning.
+\newblock {\em Artificial intelligence}, 13(1-2):27--39.
 
 \bibitem[\protect\astroncite{McCarthy and
   Hayes}{1969}]{Mccarthy69somephilosophical}
@@ -126,6 +151,12 @@ Pustejovsky, J., Knippen, R., Littman, J., and Saur{\'{i}}, R. (2005).
 \newblock {Temporal and Event Information in Natural Language Text}.
 \newblock {\em Language Resources and Evaluation}, 39(2-3):123--164.
 
+\bibitem[\protect\astroncite{Pustejovsky et~al.}{2010}]{pustejovsky2010iso}
+Pustejovsky, J., Lee, K., Bunt, H., and Romary, L. (2010).
+\newblock {ISO-TimeML: An International Standard for Semantic Annotation}.
+\newblock In {\em Proceedings of the Seventh International Conference on
+  Language Resources and Evaluation (LREC'10)}, pages 394--397.
+
 \bibitem[\protect\astroncite{Pustejovsky
   et~al.}{2006}]{pustejovsky2006timebank}
 Pustejovsky, J., Verhagen, M., Sauri, R., Littman, J., Gaizauskas, R., Katz,
@@ -151,10 +182,34 @@ Shanahan, M. (1997).
   Common Sense Law of Inertia}.
 \newblock MIT press.
 
+\bibitem[\protect\astroncite{Stangroom}{2009}]{stangroom2009einstein}
+Stangroom, J. (2009).
+\newblock {\em Einstein's Riddle: Riddles, Paradoxes, and Conundrums to Stretch
+  Your Mind}.
+\newblock Bloomsbury USA.
+
+\bibitem[\protect\astroncite{Thielscher}{1999}]{thielscher1999situation}
+Thielscher, M. (1999).
+\newblock From situation calculus to fluent calculus: State update axioms as a
+  solution to the inferential frame problem.
+\newblock {\em Artificial intelligence}, 111(1-2):277--299.
+
 \bibitem[\protect\astroncite{Van~Lambalgen and Hamm}{2008}]{van2008proper}
 Van~Lambalgen, M. and Hamm, F. (2008).
 \newblock {\em The Proper Treatment of Events}, volume~6.
 \newblock John Wiley \& Sons.
+
+\bibitem[\protect\astroncite{Veanes et~al.}{2012}]{veanes2012symbolic}
+Veanes, M., Hooimeijer, P., Livshits, B., Molnar, D., and Bjorner, N. (2012).
+\newblock Symbolic finite state transducers: Algorithms and applications.
+\newblock In {\em Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium
+  on Principles of programming languages}, pages 137--150.
+
+\bibitem[\protect\astroncite{Wintner}{2007}]{wintner2007finite}
+Wintner, S. (2007).
+\newblock Finite-state technology as a programming environment.
+\newblock In {\em International Conference on Intelligent Text Processing and
+  Computational Linguistics}, pages 97--106. Springer.
 
 \bibitem[\protect\astroncite{Woods and Fernando}{2018}]{woods2018improving}
 Woods, D. and Fernando, T. (2018).
@@ -167,5 +222,12 @@ Woods, D., Fernando, T., and Vogel, C. (2017).
 \newblock {Towards Efficient String Processing of Annotated Events}.
 \newblock In {\em Proceedings of the 13th Joint ISO-ACL Workshop on
   Interoperable Semantic Annotation (ISA-13)}, pages 124--133.
+
+\bibitem[\protect\astroncite{Yu}{1997}]{yu1997regular}
+Yu, S. (1997).
+\newblock {Regular Languages}.
+\newblock In Rozenberg, G. and Salomaa, A., editors, {\em Handbook of Formal
+  Languages, Volume. 1: Word, Language, Grammar}, pages 41--110.
+  Springer-Verlag New York, Inc., New York, NY.
 
 \end{thebibliography}

@@ -6,45 +6,45 @@ Database file #1: refs.bib
 Warning--empty year in aristotlePhysicsIV
 Warning--there's a number but no series in fernando2015semantics
 Warning--empty publisher in Mueller2008
-You've used 29 entries,
+You've used 39 entries,
             1940 wiz_defined-function locations,
-            661 strings with 8378 characters,
-and the built_in function-call counts, 12114 in all, are:
-= -- 1231
-> -- 371
-< -- 38
-+ -- 121
-- -- 118
-* -- 963
-:= -- 1973
-add.period$ -- 92
-call.type$ -- 29
-change.case$ -- 197
-chr.to.int$ -- 28
-cite$ -- 32
-duplicate$ -- 533
-empty$ -- 916
-format.name$ -- 167
-if$ -- 2483
+            724 strings with 10262 characters,
+and the built_in function-call counts, 16338 in all, are:
+= -- 1664
+> -- 498
+< -- 50
++ -- 161
+- -- 158
+* -- 1301
+:= -- 2661
+add.period$ -- 125
+call.type$ -- 39
+change.case$ -- 265
+chr.to.int$ -- 38
+cite$ -- 42
+duplicate$ -- 717
+empty$ -- 1238
+format.name$ -- 221
+if$ -- 3350
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 33
-newline$ -- 150
-num.names$ -- 89
-pop$ -- 207
+missing$ -- 43
+newline$ -- 201
+num.names$ -- 121
+pop$ -- 274
 preamble$ -- 1
-purify$ -- 203
+purify$ -- 272
 quote$ -- 0
-skip$ -- 414
+skip$ -- 558
 stack$ -- 0
-substring$ -- 899
-swap$ -- 150
-text.length$ -- 14
+substring$ -- 1228
+swap$ -- 201
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 162
+type$ -- 220
 warning$ -- 3
-while$ -- 112
+while$ -- 153
 width$ -- 0
-write$ -- 383
+write$ -- 515
 (There were 3 warnings)

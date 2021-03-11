@@ -1,13 +1,13 @@
-\contentsline {table}{\numberline {1}{\ignorespaces Failed projections for \cref {ex:async-superposition}.\relax }}{24}
-\contentsline {table}{\numberline {2}{\ignorespaces Preserved projections of \cref {ex:spasync-disjoint-vocab}.\relax }}{25}
-\contentsline {table}{\numberline {3}{\ignorespaces Failed projections for \cref {ex:spasync-overlap-vocab}.\relax }}{25}
-\contentsline {table}{\numberline {4}{\ignorespaces Projections of \cref {ex:spvc-allen-transitivity} matching Allen's transitivities.\relax }}{29}
-\contentsline {table}{\numberline {5}{\ignorespaces Fragment of speed comparison between $\nobreakspace {}\&_*\nobreakspace {}$ and $\nobreakspace {}\&_{v\tmspace -\thinmuskip {.1667em}c}\nobreakspace {}$.\relax }}{30}
-\contentsline {table}{\numberline {6}{\ignorespaces Allen interval relations in strings.\relax }}{32}
-\contentsline {table}{\numberline {7}{\ignorespaces Temporal Zebra puzzle clues in English.\relax }}{35}
-\contentsline {table}{\numberline {8}{\ignorespaces Temporal Zebra puzzle clues as strings.\relax }}{37}
-\contentsline {table}{\numberline {9}{\ignorespaces Solution to Temporal Zebra puzzle as in \cref {ex:zebra-string-full-solution}.\relax }}{39}
-\contentsline {table}{\numberline {10}{\ignorespaces The Freksa relation \textit {older}.\relax }}{43}
-\contentsline {table}{\numberline {11}{\ignorespaces The Freksa relation \textit {older} using semi-intervals, before block compressed reduct.\relax }}{43}
-\contentsline {table}{\numberline {12}{\ignorespaces The Freksa relations and the strings they project to.\relax }}{44}
-\contentsline {table}{\numberline {13}{\ignorespaces The remaining Freksa relations and the strings they project to.\relax }}{45}
+\contentsline {table}{\numberline {1}{\ignorespaces Failed projections for \cref {ex:async-superposition}.\relax }}{28}
+\contentsline {table}{\numberline {2}{\ignorespaces Preserved projections of \cref {ex:spasync-disjoint-vocab}.\relax }}{29}
+\contentsline {table}{\numberline {3}{\ignorespaces Failed projections for \cref {ex:spasync-overlap-vocab}.\relax }}{29}
+\contentsline {table}{\numberline {4}{\ignorespaces Projections of \cref {ex:spvc-allen-transitivity} matching Allen's transitivities.\relax }}{33}
+\contentsline {table}{\numberline {5}{\ignorespaces Fragment of speed comparison between $\nobreakspace {}\&_*\nobreakspace {}$ and $\nobreakspace {}\&_{v\tmspace -\thinmuskip {.1667em}c}\nobreakspace {}$.\relax }}{34}
+\contentsline {table}{\numberline {6}{\ignorespaces Allen interval relations in strings.\relax }}{36}
+\contentsline {table}{\numberline {7}{\ignorespaces Temporal Zebra puzzle clues in English.\relax }}{39}
+\contentsline {table}{\numberline {8}{\ignorespaces Temporal Zebra puzzle clues as strings.\relax }}{41}
+\contentsline {table}{\numberline {9}{\ignorespaces Solution to Temporal Zebra puzzle as in \cref {ex:zebra-string-full-solution}.\relax }}{43}
+\contentsline {table}{\numberline {10}{\ignorespaces The Freksa relation \textit {older}.\relax }}{47}
+\contentsline {table}{\numberline {11}{\ignorespaces The Freksa relation \textit {older} using semi-intervals, before block compressed reduct.\relax }}{47}
+\contentsline {table}{\numberline {12}{\ignorespaces The Freksa relations and the strings they project to.\relax }}{48}
+\contentsline {table}{\numberline {13}{\ignorespaces The remaining Freksa relations and the strings they project to.\relax }}{49}
