@@ -5,6 +5,11 @@ Allen, J.~F. (1983).
 \newblock {Maintaining Knowledge About Temporal Intervals}.
 \newblock {\em Communications of the ACM}, 26(11):832--843.
 
+\bibitem[\protect\astroncite{Allen and Ferguson}{1994}]{allen1994actions}
+Allen, J.~F. and Ferguson, G. (1994).
+\newblock Actions and events in interval temporal logic.
+\newblock {\em Journal of logic and computation}, 4(5):531--579.
+
 \bibitem[\protect\astroncite{Aristotle}{}]{aristotlePhysicsIV}
 Aristotle.
 \newblock {The Internet Classics Archive: Physics IV}.
@@ -87,9 +92,14 @@ Freksa, C. (1992).
 \newblock {Temporal Reasoning Based on Semi-Intervals}.
 \newblock {\em {Artificial Intelligence}}, 54:199--227.
 
+\bibitem[\protect\astroncite{Hamblin}{1972}]{hamblin1972instants}
+Hamblin, C.~L. (1972).
+\newblock Instants and intervals.
+\newblock In {\em The Study of Time}, pages 324--331. Springer.
+
 \bibitem[\protect\astroncite{Kamp and Reyle}{1993}]{Kamp1993}
 Kamp, H. and Reyle, U. (1993).
-\newblock {\em {From Discourse to Logic; An Introduction to Mod- eltheoretic
+\newblock {\em {From Discourse to Logic; An Introduction to Model-theoretic
   Semantics of Natural Language, Formal Logic and DRT}}.
 \newblock Dordrecht: Kluwer.
 
@@ -104,6 +114,11 @@ Khourshid, D. (2015).
 Kowalski, R. and Sergot, M. (1986).
 \newblock {A Logic-based Calculus of Events}.
 \newblock {\em New Generation Computing}, 4(1):67--95.
+
+\bibitem[\protect\astroncite{Kumar}{2005}]{kumar2005effective}
+Kumar, P.~P. (2005).
+\newblock Effective use of gantt chart for managing large scale projects.
+\newblock {\em Cost engineering}, 47(7):14.
 
 \bibitem[\protect\astroncite{Lakoff and Johnson}{2008}]{lakoff2008metaphors}
 Lakoff, G. and Johnson, M. (2008).
@@ -194,6 +209,12 @@ Thielscher, M. (1999).
   solution to the inferential frame problem.
 \newblock {\em Artificial intelligence}, 111(1-2):277--299.
 
+\bibitem[\protect\astroncite{Trakhtenbrot}{1953}]{trakhtenbrot1953recursive}
+Trakhtenbrot, B.~A. (1953).
+\newblock On recursive separability.
+\newblock {\em Doklady Akademii Nauk SSSR}, 88(6):953--956.
+\newblock In Russian.
+
 \bibitem[\protect\astroncite{Van~Lambalgen and Hamm}{2008}]{van2008proper}
 Van~Lambalgen, M. and Hamm, F. (2008).
 \newblock {\em The Proper Treatment of Events}, volume~6.
@@ -204,6 +225,11 @@ Veanes, M., Hooimeijer, P., Livshits, B., Molnar, D., and Bjorner, N. (2012).
 \newblock Symbolic finite state transducers: Algorithms and applications.
 \newblock In {\em Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium
   on Principles of programming languages}, pages 137--150.
+
+\bibitem[\protect\astroncite{Verhagen}{2005}]{Verhagen2005}
+Verhagen, M. (2005).
+\newblock {Temporal closure in an annotation environment}.
+\newblock {\em Language Resources and Evaluation}, 39(2-3):211--241.
 
 \bibitem[\protect\astroncite{Wintner}{2007}]{wintner2007finite}
 Wintner, S. (2007).

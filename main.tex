@@ -26,6 +26,7 @@
 % - Remind examiners regularly of core concepts, don't expect them to remember %
 % - Should lit review cover smaller topics eg scheduling or just major themes? %
 % - Sections should have conclusions as well as openings                       %
+% - Table references should be capitalised                                     %
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -102,19 +103,19 @@
 \newcommand{\iStarts}[2]{\ebox{}\nbiStarts{#1}{#2}\ebox{}}
 \newcommand{\iFinishes}[2]{\ebox{}\nbiFinishes{#1}{#2}\ebox{}}
 
-\newcommand{\cBefore}[2]{``$#1$  before $#2$'' -- \Before{#1}{#2}}
-\newcommand{\cMeets}[2]{``$#1$ meets $#2$'' -- \Meets{#1}{#2}}
-\newcommand{\cOverlaps}[2]{``$#1$ overlaps $#2$'' -- \Overlaps{#1}{#2}}
-\newcommand{\cDuring}[2]{``$#1$ during $#2$'' -- \During{#1}{#2}}
-\newcommand{\cStarts}[2]{``$#1$ starts $#2$'' -- \Starts{#1}{#2}}
-\newcommand{\cFinishes}[2]{``$#1$ finishes $#2$'' -- \Finishes{#1}{#2}}
-\newcommand{\cEquals}[2]{``$#1$ equals $#2$'' -- \Equals{#1}{#2}}
-\newcommand{\cAfter}[2]{``$#1$ after $#2$'' -- \After{#1}{#2}}
-\newcommand{\ciMeets}[2]{``$#1$ imet by $#2$'' -- \iMeets{#1}{#2}}
-\newcommand{\ciOverlaps}[2]{``$#1$ overlapped by $#2$'' -- \iOverlaps{#1}{#2}}
-\newcommand{\ciDuring}[2]{``$#1$ contains $#2$'' -- \iDuring{#1}{#2}}
-\newcommand{\ciStarts}[2]{``$#1$ started by $#2$'' -- \iStarts{#1}{#2}}
-\newcommand{\ciFinishes}[2]{``$#1$ finished by $#2$'' -- \iFinishes{#1}{#2}}
+\newcommand{\cBefore}[2]{`$#1$  before $#2$' -- \Before{#1}{#2}}
+\newcommand{\cMeets}[2]{`$#1$ meets $#2$' -- \Meets{#1}{#2}}
+\newcommand{\cOverlaps}[2]{`$#1$ overlaps $#2$' -- \Overlaps{#1}{#2}}
+\newcommand{\cDuring}[2]{`$#1$ during $#2$' -- \During{#1}{#2}}
+\newcommand{\cStarts}[2]{`$#1$ starts $#2$' -- \Starts{#1}{#2}}
+\newcommand{\cFinishes}[2]{`$#1$ finishes $#2$' -- \Finishes{#1}{#2}}
+\newcommand{\cEquals}[2]{`$#1$ equals $#2$' -- \Equals{#1}{#2}}
+\newcommand{\cAfter}[2]{`$#1$ after $#2$' -- \After{#1}{#2}}
+\newcommand{\ciMeets}[2]{`$#1$ imet by $#2$' -- \iMeets{#1}{#2}}
+\newcommand{\ciOverlaps}[2]{`$#1$ overlapped by $#2$' -- \iOverlaps{#1}{#2}}
+\newcommand{\ciDuring}[2]{`$#1$ contains $#2$' -- \iDuring{#1}{#2}}
+\newcommand{\ciStarts}[2]{`$#1$ started by $#2$' -- \iStarts{#1}{#2}}
+\newcommand{\ciFinishes}[2]{`$#1$ finished by $#2$' -- \iFinishes{#1}{#2}}
 
 
 \newcommand{\siBefore}[2]{\ebox{\alpha(#1),\alpha(#2)}\ebox{\alpha(#2)}\ebox{\alpha(#2),\omega(#1)}\ebox{\omega(#1)}\ebox{\omega(#1),\omega(#2)}}
@@ -139,6 +140,7 @@
 \newcommand{\spasync}{~\&_*~}
 \newcommand{\spsigma}[1][\Sigma, \Sigma']{~\&_{#1}~}
 \newcommand{\spvc}{~\&_{v\!c}~}
+\newcommand{\V}{\mathcal{V}}
 
 \renewcommand{\emptyset}{\varnothing}
 \renewcommand{\phi}{\varphi}
@@ -183,6 +185,9 @@
 
 %\usepackage[nottoc,numbib]{tocbibind} %This includes the bibliography as a numbered section in the TOC
 \usepackage[nottoc]{tocbibind}
+% This includes paragraphs in TOC, but references to paras will be messed up
+% \setcounter{tocdepth}{4}
+% \setcounter{secnumdepth}{4}
 
 \usepackage{cleveref}
 \crefname{section}{\textbf{\S}}{\textbf{\S}}
@@ -271,15 +276,15 @@ During the course of my studies, I was an author on three papers that were accep
 
 \begin{itemize}
 	% \citefullauthor not working??
-	\item ``Towards Efficient String Processing of Annotated Events" (Woods, Fernando, and Vogel, \citeyear{woods2017towards}), describing the use of strings to model temporal data such as could be found in text annotated with ISO-TimeML. Presented at the 13th Joint ISO-ACL Workshop on Interoperable Semantic Annotation in Montpellier, France.
-	\item ``Improving String Processing for Temporal Relations" (Woods and Fernando, \citeyear{woods2018improving}), discussing refinements to the previously described string-based model, such as varied granularity. Presented at the 14th Joint ISO-ACL Workshop on Interoperable Semantic Annotation, colocated with COLING 2018 in Santa F\'{e}, New Mexico, USA.
-	\item ``MSO with tests and reducts" (Fernando, Woods, and Vogel, \citeyear{fernando2019mso}), discussing differing string granularities in the context of tests within Monadic Second Order logic. Presented at the 14th International Conference on Finite-State Methods and Natural Language Processing in Dresden, Germany.
+	\item \textit{Towards Efficient String Processing of Annotated Events} (Woods, Fernando, and Vogel, \citeyear{woods2017towards}), describing the use of strings to model temporal data such as could be found in text annotated with ISO-TimeML. Presented at the 13th Joint ISO-ACL Workshop on Interoperable Semantic Annotation in Montpellier, France.
+	\item \textit{Improving String Processing for Temporal Relations} (Woods and Fernando, \citeyear{woods2018improving}), discussing refinements to the previously described string-based model, such as varied granularity. Presented at the 14th Joint ISO-ACL Workshop on Interoperable Semantic Annotation, colocated with COLING 2018 in Santa F\'{e}, New Mexico, USA.
+	\item \textit{MSO with tests and reducts} (Fernando, Woods, and Vogel, \citeyear{fernando2019mso}), discussing differing string granularities in the context of tests within Monadic Second Order logic. Presented at the 14th International Conference on Finite-State Methods and Natural Language Processing in Dresden, Germany.
 \end{itemize}
 \newpage
 \addcontentsline{toc}{section}{Table of Contents}
 \tableofcontents
 \newpage
-% \listoffigures
+\listoffigures
 \listoftables
 \newpage
 \pagenumbering{arabic}
@@ -289,14 +294,105 @@ During the course of my studies, I was an author on three papers that were accep
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:intro}
-This thesis will explore and describe the use of strings as models to represent temporal information---data concerning times and events---for use in computational systems which deal with knowledge-based reasoning in some way. Such systems rely on temporal information in order to perform accurately. For example, a question-answering system that is asked ``Will it rain next week?" must be able to locate itself temporally such that it knows what the current time is, the relation between that time and the queried time, and whether raining events have been forecast during the period that it defines using the phrase ``next week".
+This thesis will explore and describe the use of strings as models to represent temporal information---data concerning times and events---for use in computational systems which deal with knowledge-based reasoning in some way. Such systems rely on temporal information in order to perform accurately. For example, a question-answering system that is asked ``Will it rain next week?'' must be able to locate itself temporally such that it knows what the current time is, the relation between that time and the queried time, and whether raining events have been forecast during the period that it defines using the phrase `next week'.
 \newpage
 \section{Relevant Literature}\label{sec:litreview}
-In this chapter, the existing literature related to the major topics of the thesis are reviewed and analysed. A gap is identified, which the remaineder of this work seeks to fill.
+In this chapter, the existing literature related to the major topics of the thesis are reviewed and analysed. \nb{Write more here later.} A gap is identified, which the remainder of this work seeks to fill.
 \subsection{Times and Events}\label{sub:timesevents}
 The concept of time has fascinated researchers for millenia, and as such, a great deal of work exists on the topic. What follows here focuses on the formal study of temporality in language.
-\subsubsection{Allen Relations}\label{ssub:allen}
-The seminal work of James F. Allen's \textit{Maintaining Knowledge about Temporal Intervals} has pushed the field since its publication in  \citeyear{allen1983maintaining}, and indeed the framework he described drives some of the design decisions in the present work.
+\subsubsection{Allen's Interval Algebra}\label{ssub:allen}
+% The seminal work of James F. Allen's \textit{Maintaining Knowledge about Temporal Intervals} has pushed the field since its publication in  \citeyear{allen1983maintaining}, and indeed the framework he described drives some of the design decisions in the present work.
+Much of the present work draws its roots in James F. \citeauthor{allen1983maintaining}'s work \textit{Maintaining Knowledge about Temporal Intervals} \citeyearpar{allen1983maintaining}, both directly and indirectly via the many systems which have built upon it in the years since it was first published. In this seminal paper, Allen described a framework for the use of temporal intervals as primitives to represent events and time periods, as opposed to points on the real line. There are four key criteria given as being of primary importance in guiding the design of this framework \citeyearpar[p. 833]{allen1983maintaining}, all of which also feature in the system of representation described in the present work (see \cref{sub:strings}):
+\begin{enumerate}
+\onehalfspacing
+\item The representation should allow for the fact that much temporal information is relative rather than precise.
+\item Uncertainty of information should be allowed for, such as when the precise relation between two times is unknown (though constraints on the relation may exist).
+\item The granularity of reasoning should be flexible---that is, capable of dealing with years and seconds in the same manner.
+\item Reasoning should assume that states will persist unless there is some evidence to the contrary. In other words, \textit{change} is the marker of progression of time. 
+\end{enumerate}
+Part of the motivation for using intervals rather than points is stated as follows:
+
+{
+\onehalfspacing
+\begin{quotation}
+\noindent
+``There seems to be a strong intuition that, given an event, we can always `turn up the magnification' and look at its structure. ... Since the only times we consider will be times of events, it appears that we can always decompose times into subparts. Thus the formal notion of a time point, which would not be decomposable, is not useful.'' \citep[p. 834]{allen1983maintaining}
+\end{quotation}
+}
+\noindent
+For example, taking just the event \textit{Going-Home} from the sentence ``I went home after work last night'', it could be conceptually broken down into sub-events that make up parts of the whole: \textit{Leaving-Work}, \textit{Commuting}, and \textit{Arriving-Home}. Each of these could be again further subdivided, repeatedly, as desired. However, if an event is given a specified time, such as ``I went home at midnight'', this seems to be a little trickier to deal with---`last night' is plainly referring to an interval of time during which the \textit{Going-Home} event occurs, while `midnight' appears to be an instantaneous moment of time. Nevertheless, the \textit{Going-Home} event can still be subdivided in the same manner, which shows that even times that appear to intuitively points may be thought of as intervals as well.
+
+Allen makes further argument for the use of intervals as primitive, disallowing zero-width time points, with an illuminating example involving a lightbulb being switched on: there must be an interval of time when the light was off, followed by an interval when it was on, but whether these intervals are open or closed presents another issue. If both intervals are open, then there is some point of time between the two when the light is neither on nor off; however, if both are closed, then there is some time point when the light is both on and off. This fault can be resolved by having the intervals be open at one end and closed at the other, although Allen calls this an artificial solution which ``emphasizes that a model of time based on points on the real line does not correspond to our intuitive notion of time'' \citeyearpar[p. 834]{allen1983maintaining}.
+
+However, this argument that temporal intervals are counter-intuitive if they are open on one end and closed at the other has not been universally accepted---for example, the event calculus \citep{Kowalski1986,Miller1999,Mueller2008} describes a predicate \textit{Initiates}$(e, f, t)$ which states that some event $e$ occurs at a timepoint $t$, and the temporal proposition $f$ is true after $t$. In the lightbulb example, this is equivalent to using intervals which are open on the lower end and closed at the higher, which can be interpreted as meaning the light is not on at the initial moment of switching it on, but is afterwards. Similarly, \citet{Fernando2018} describes using an open left border and closed right border as a means for event representation.
+
+Allen goes on to formally present and label the thirteen possible relations which may exist between two temporal intervals, which can be thought of as six invertible relations (before, meets, overlaps, during, starts, finishes) and one symmetric (equals). \Cref{tab:allens-pictorial}, reproduced from \citet[p. 835, Figure 2]{allen1983maintaining} shows these relations along with the symbols typically used to abbreviate them, and examples of some events represented graphically as strings of `X' and `Y' demonstrating the relations. These are often referred to as Allen's interval relations, or simply the \textit{Allen relations}.
+\begin{center}
+	\begin{tabular}{| c c c c |}
+		\hline
+		\textbf{Relation} & \textbf{Symbol} & \textbf{Symbol for Inverse}  & \textbf{Pictoral Example} \\
+		X \textit{before} Y & \textless & \textgreater & \verb|XXX YYY| \\
+		X \textit{equal} Y & = & = & \verb|XXX| \\[-15pt]
+		& & & \verb|YYY| \\
+		X \textit{meets} Y & m & mi & \verb|XXXYYY| \\
+		X \textit{overlaps} Y & o & oi & \verb|XXX | \\[-15pt]
+		& & & \verb| YYY| \\
+		X \textit{during} Y & d & di & \verb| XXX  | \\[-15pt]
+		& & & \verb|YYYYYY| \\
+		X \textit{starts} Y & s & si & \verb|XXX  | \\[-15pt]
+		& & & \verb|YYYYY| \\
+		X \textit{finishes} Y & f & fi & \verb|  XXX| \\[-15pt]
+		& & & \verb|YYYYY| \\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Allen interval relations \citep[p. 835, Figure 2]{allen1983maintaining}.}
+	\label{tab:allens-pictorial}
+\end{center}
+These relations form a cornerstone both within this work (see \Cref{tab:allen-rels-strings}) and elsewhere---they are a fundamental part of the specification of ISO-TimeML \citep{pustejovsky2010iso} (see \cref{ssub:timeml}), the international standard markup language for temporal annotation, where they are used, as one might expect\footnote{Albeit with slightly different labels and omitting \textit{overlaps}---see \Cref{fig:tlink-allen-translation}.}, as the possible relation types between a pair of events tagged elsewhere in a document. \citet{Freksa1992} also describes his larger set of \textit{semi-interval} relations in terms of disjunctions of the Allen relations---see also \cref{ssub:granularity} and \cref{ssub:incomplete}.
+
+The framework proposed by Allen uses a directed graph as its basis, in which the nodes represent intervals, and the arcs are labelled according to the relation (or, in the case of uncertainty, relations---see \Cref{tab:allen-trans-table}) between the intervals. It is assumed that complete information about the relations in the network is maintained---that is, there are no nodes without an edge between them, as the transitivities between the various relations are to be computed as necessary---for instance, on the addition of a new interval into the network.
+
+To illustrate, given a graph representing some pair of events $X$ and $Y$ such that $X$ is \textit{before} $Y$ (\Cref{fig:simple-transitivity} (a)), a third node representing the event $Z$ is added, with the additional information that $Y$ occurs \textit{before} $Z$ (\Cref{fig:simple-transitivity} (b)). The relation between $X$ and $Z$ can then be calculated, using the fact that it has been constrained from thirteen possibilities to just one due to the transitivity rules which apply to the Allen relations---in this case, $X$ \textless{} $Y$ and $Y$ \textless{} $Z$ results in $X$ \textless{} $Z$ (\Cref{fig:simple-transitivity} (c))---see also \Cref{tab:allen-trans-table}.
+\begin{center}
+	\begin{figure}[h]
+		\includegraphics[width=\textwidth]{images/simple-transitivity}
+	\end{figure}
+	\captionof{figure}{Simple graph network showing the computation of a transitivity.}
+	\label{fig:simple-transitivity}
+\end{center}
+If there is a single label on every arc in the graph (of which there should be $N(N - 1)/2$ for $N$ nodes), then the complete \textit{temporal closure} has been calculated. This is a difficult (though desirable) goal given any real world data, as discourse often features incomplete or vague temporal information.\nb{See \citet{Verhagen2005} for a discussion on temporal closure, write this in.}
+
+\citet[p. 836]{allen1983maintaining} also gives a $12 \times 12$ transitivity table (a fragment of which is reproduced below in \Cref{tab:allen-trans-table}) which gives the possible relations between two intervals A and C, given the relations \textbf{r1} between A and B, and \textbf{r2} between B and C (omitting the `equal' relation). A smaller fragment of this table is given in \citet[p. 130]{woods2017towards} showing these transitivities interpreted as superpositions of strings (see Section \ref{sec:fst}). One immediate advantage of the string approach comes from the fact that the strings may describe the relations between more than three events at once.
+
+An algorithm is detailed \citep[p. 835]{allen1983maintaining} for the propogation of constraints upon the addition of new information to the network, using the transitivity table to update all arcs in the network as necessary. While Allen notes that there are some issues with the algorithm (specifically he mentions the space requirement, which is somewhat high at $O(N^2)$ space for $N$ temporal intervals, and the fact that the algorithm doesn't guarantee consistency in larger than three-node networks (a limit which is improved upon in this work---see \cref{sub:applications}), and \citet[p. 219]{Verhagen2005} also notes an $O(N^3)$ time complexity), it does give an upper bound to the number of modifications that can be made to the network, regardless of the number of constraints added, as $13 \times \frac{(N - 1)(N - 2)}{2}$, and ``the average amount of work for each addition is essentially linear (i.e., $N$ additions take $O(N^2)$ time; one addition on average takes $O(N)$ time)" \citeyearpar[p. 837]{allen1983maintaining}. This is still quite high, given that it is not unusual for documents of the TimeBank corpus to feature fifty intervals or more, and some are in the hundreds \citep[p. 213]{Verhagen2005}.
+
+\begin{center}
+	\onehalfspacing
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		\diagbox{A \textbf{r1} B}{B \textbf{r2} C} & \textless{} & d & o & m & s & f\\
+		\hline
+		`before' \textless{} & \textless{} & \textless{} o m d s & \textless{} & \textless{} & \textless{} & \textless{} o m d s\\
+		\hline
+		`during' d & \textless{} & d & \textless{} o m d s & \textless{} & d & d\\
+		\hline
+		`overlaps' o & \textless{} & o d s & \textless{} o m & \textless{} & o & o d s\\
+		\hline
+		`meets' m & \textless{} & o d s & \textless{} & \textless{} & m & o d s\\
+		\hline
+		`starts' s & \textless{} & d & \textless{} o m & \textless{} & s & d\\
+		\hline
+		`finishes' f & \textless{} & d & o d s & m & d & f\\
+		\hline
+	\end{tabular}
+	\captionof{table}{Fragment of Allen's transitivity table \citeyearpar[p. 836, Figure 4]{allen1983maintaining}.}
+	\label{tab:allen-trans-table}
+\end{center}
+\cite[p. 838]{allen1983maintaining} also describes a method for grouping clusters of intervals which are fully computed in terms of the relations between them, termed ``reference intervals" due to the fact that each interval $I_i$ in the group $\{I_1, I_2, ..., I_n\}$ will reference some new interval $R_m$ (where $m$ is an index on the number of reference intervals). The motivation for these is to reduce the space requirements while maintaining as much of the inferential power as possible. Allen shows how, since these reference intervals are just treated as normal intervals, they may themselves be grouped into a cluster, and thus allow for the creation of hierarchies of intervals which may be useful for scenarios such as when a path search algorithm is to be used. These are not currently implemented in the present work, but they may be useful as a way to address documents with high numbers of intervals.
+
+Allen's work was and remains highly influential in the field as the approach is intuitive and straight-forward, as well as being easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language" \citep[p. 123]{Pustejovsky2005}.
+
+
 \subsubsection{Tense and Aspect}\label{ssub:tenseaspect}
 Reichenbach's (\citeyear{reichenbach1947elements}) theory of tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect. \selfnote{Bring up TEA here. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block compression. Tim mentioned that this is a difference from Schwer's S-Words.}
 %theoretically, if event time can be an interval, so could the speech and reference times, which would lead to even more aspects
@@ -310,6 +406,31 @@ Ideally, a human using an artificially intelligent system won't have to consider
 TimeML \citep{Pustejovsky2005} was initially designed with the goal of improving question-answering systems by marking up texts so as to give events explicit temporal locations.
 
 TimeML vs ISO-TimeML: the ISO version is the standard. However, the TimeBank corpus uses the older version.
+
+\begin{center}
+	\begin{tabular}{|c c|}
+		\hline
+		\textbf{TLINK} & \textbf{Allen}\\
+		\hline
+		\texttt{SIMULTANEOUS} & \textit{equal} =\\
+		\texttt{IDENTITY} & \textit{equal} =\\
+		\texttt{BEFORE} & \textit{before} \textless{}\\
+		\texttt{AFTER} & \textit{after} \textgreater{}\\
+		\texttt{IBEFORE} & \textit{meets} m\\
+		\texttt{IAFTER} & \textit{met by} mi\\
+		\texttt{INCLUDES} & \textit{contains} di\\
+		\texttt{IS\_INCLUDED} & \textit{during} d\\
+		\texttt{DURING} & \textit{during} d\\
+		\texttt{DURING\_INV} & \textit{contains} di\\
+		\texttt{BEGINS} & \textit{starts} s\\
+		\texttt{BEGUN\_BY} & \textit{started by} si\\
+		\texttt{ENDS} & \textit{finshes} f\\
+		\texttt{ENDED\_BY} & \textit{finished by} fi\\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Possible values of a TLINK's relType attribute and their Allen relation counterparts.}
+	\label{fig:tlink-allen-translation}
+\end{center}
 
 \subsubsection{TimeBank}\label{ssub:timebank}
 The TimeBank corpus \citep{pustejovsky2006timebank} collects news articles that were manually annotated with TimeML. While it does contain some inconsistencies as a result of human error, it remains one of the largest sources for documents marked up with TimeML.
@@ -333,7 +454,7 @@ Following the intuition that sequences of (possibly overlapping) events and time
 
 The mechanics of these temporal strings are shown in detail, along with an explanation on the methods of their creation, and a discussion on the granularity of temporal information that should be included within a string---that is, what level of detail should be considered when representing events in this manner. A number of operations are subsequently described for working with these strings, in particular \textit{superposition} for the composition of multiple strings and combining the data found within them. The availability of these manipulations will prove useful when reasoning about event relations, and also in maximising data density, as will be seen in \cref{sub:extracting} and \cref{sub:reasoning}.
 
-A description follows of how strings may be applied in the creation of timelines, representations which contain the temporal information---events, times, and the relations between them---as extracted from an annotated piece of text, which has uses in the areas of, for instance, automatic summary-generation, fact-checking, and question-answering systems. Additionally, the techniques which are laid out in \cref{ssub:operations} may be augmented with additional constraints so that strings can be used to model scheduling restrictions---for instance, that in a given system some event $a$ must occur before some other event $b$, but may not be occurring while $c$ is occurring---and the superposition of these amounts to constraint satisfaction. A variation of the well-known Zebra Puzzle (also referred to as ``Einstein's Riddle'', as it is occasionally attributed to Albert Einstein---see \citet[p. 10]{stangroom2009einstein}) which uses temporal properties in place of spatial constraints is provided, exemplifying this particular usage of strings.
+A description follows of how strings may be applied in the creation of timelines, representations which contain the temporal information---events, times, and the relations between them---as extracted from an annotated piece of text, which has uses in the areas of, for instance, automatic summary-generation, fact-checking, and question-answering systems. Additionally, the techniques which are laid out in \cref{ssub:operations} may be augmented with additional constraints so that strings can be used to model scheduling restrictions---for instance, that in a given system some event $a$ must occur before some other event $b$, but may not be occurring while $c$ is occurring---and the superposition of these amounts to constraint satisfaction. A variation of the well-known Zebra Puzzle (also referred to as `Einstein's Riddle', as it is occasionally attributed to Albert Einstein---see \citet[p. 10]{stangroom2009einstein}) which uses temporal properties in place of spatial constraints is provided, exemplifying this particular usage of strings.
 
 \subsection{Strings for Times and Events}\label{sub:strings}
 A string is a basic computational entity, defined as a finite sequence of symbols selected from some finite alphabet. They are amenable to manipulation using finite-state methods, something lacking in the infinite models of predicate logic. \nb{Should probably have a citation here?}
@@ -341,7 +462,7 @@ A string is a basic computational entity, defined as a finite sequence of symbol
 Strings as described and used throughout this work are used to represent sequences of events and time periods such that the linear order and inter-relations of these events and times are clearly apparent, while unnecessary repetition of information is avoided. For example, where $js =$ ``John sleeps'', $fa =$ ``The fire alarm sounds'', and $lt =$ ``Last Tuesday'', the sentence ``John slept through the fire alarm last Tuesday'' might be represented by the string \EventString{{}|lt|js,lt|fa,js,lt|js,lt|lt|{}}\footnote{It is worth noting that, although tense and aspect are often abstracted away from the string models, this is not a necessity, and speech and reference times may be represented in the same way as event times \citep{fernando2016regular,Derczynski2013,reichenbach1947elements}.} (a detailed explanation follows in \cref{ssub:creating}).
 
 These strings model the concept of inertial worlds, wherein a state will persist unless and until it is altered. The intuition for viewing inertia as a default state seems to go at least as far back as Aristotle (``But neither does time exist without change'' in \textit{\citetalias{aristotlePhysicsIV}}), and is known by the term \textit{commonsense law of inertia} \citep[p. 19]{shanahan1997solving}. This notion is also present in the Event Calculus, which represents the effects of actions on fluents in order to reason about change \citep{Kowalski1986,Miller1999,Mueller2008}, and in the Fluent Calculus \citep{thielscher1999situation}, which asserts that a state will be unaltered after an event, except for just those conditions which the event changes.
-Building this inertial world view into strings allows for certain flexibilities, as real duration does not need to be accounted for\footnote{Real-time durations may still be represented using strings, but the depiction will not (necessarily) align with the assumption that one string should be longer than another if it features events that have a longer duration.} when, for example, superposing strings in order to determine the relations between the events they mention (see \cref{para:str-op-sp}, p. \pageref{para:str-op-sp}; \cref{ssub:superposition}). \citet[p. 44]{Fernando2018} also directly connects the notion of ``No change unless forced'' with strings, using it to motivate the concept of actions creating change. Additionally, the built-in inertiality---coupled with the fact that strings are explicit as to whether a particular \textit{fluent} holds or does not hold at any particular point in time---means that, for string-based representations of events and times, the classic issue of the frame problem\footnote{The frame problem is an issue that can arise in first-order logic representations of the world, whereby specifying the conditions which change as the result of an action is not sufficient to entail that no other conditions have changed.} is avoided (see \citet[pp. 30-31]{Mccarthy69somephilosophical}).
+Building this inertial world view into strings allows for certain flexibilities, as real duration does not need to be accounted for\footnote{Real-time durations may still be represented using strings, but the depiction will not (necessarily) align with the assumption that one string should be longer than another if it features events that have a longer duration.} when, for example, superposing strings in order to determine the relations between the events they mention (see \cref{para:str-op-sp}, p. \pageref{para:str-op-sp}; \cref{ssub:superposition}). \citet[p. 44]{Fernando2018} also directly connects the notion of ``No change unless forced'' with strings, using it to motivate the concept of actions creating change. Additionally, the built-in inertiality---coupled with the fact that strings are explicit as to whether a particular \textit{fluent} holds or does not hold at any particular moment in time---means that, for string-based representations of events and times, the classic issue of the frame problem\footnote{The frame problem is an issue that can arise in first-order logic representations of the world, whereby specifying the conditions which change as the result of an action is not sufficient to entail that no other conditions have changed.} is avoided (see \citet[pp. 30-31]{Mccarthy69somephilosophical}).
 
 % \nb{Would be useful to discuss logical circumscription and show/discuss how strings are an application since fluents not in the vocabulary are not relevant to the string, and fluents not mentioned in a box are implicitly not true at that time point (but can be made true through superposition) -- is this still circumscription?}
 
@@ -356,15 +477,15 @@ In most cases, simple identifiers suffice for the purposes of labelling fluents 
 . This follows TimeML's standard \citep{pustejovsky2010iso} of using identification labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, in some instances, particularly when drawing inferences (see \cref{ssub:inferring} and \cref{ssub:ontology}) using semantic roles or lexical semantics, it will be useful to use a fuller labelling system, and so a string \EventString{{}|js|{}} would be rendered instead as \EventString{{}|sleeps(john)|{}}.
 
 \subsubsection{Creating Strings}\label{ssub:creating}
-In order to create a string, first it is necessary to fix a finite set $\mathcal{V}$ of symbols which represent the times and events under discussion, such that each $v \in \mathcal{V}$ will be understood as naming a \textit{fluent} as a unary predicate which holds at a particular time. A string $s = \sigma_1\sigma_2\cdots\sigma_n$ of subsets $\sigma_i$ of $\mathcal{V}$ is interpreted as a finite model of $n$ moments of time, with $i \in \{1, 2, \ldots, n\}$.
+In order to create a string, first it is necessary to fix a finite set $\V$ of symbols which represent the times and events under discussion, such that each $v \in \V$ will be understood as naming a \textit{fluent} as a unary predicate which holds at a particular time. A string $s = \sigma_1\sigma_2\cdots\sigma_n$ of subsets $\sigma_i$ of $\V$ is interpreted as a finite model of $n$ discrete, contiguous moments of time, with $i \in \{1, 2, \ldots, n\}$.
 
-The set $\mathcal{V}$ will be known as a \textit{vocabulary}, and the powerset of $\mathcal{V}$ will serve as a finite alphabet $\Sigma = 2^{\mathcal{V}}$ of a string $s \in \Sigma^*$. Accordingly, at each position $i$ in the string $s$, the \textit{component} $\sigma_i$ will be a (possibly empty) set of the fluents which hold at that position.
+The set $\V$ will be known as a \textit{vocabulary}, and the powerset of $\V$ will serve as a finite alphabet $\Sigma = 2^{\V}$ of a string $s \in \Sigma^*$. Accordingly, at each position $i$ in the string $s$, the \textit{component} $\sigma_i$ will be a (possibly empty) set of the fluents which hold at that position.
 
-The chronology of a string is read from left to right, and thus, each component of the string depicts one of the $n$ moments similar to a snapshot, or a frame of a film reel, and specifies the set of exactly those fluents which hold simultaneously at the $i^{th}$ moment\footnote{Conversely, the set $\mathcal{V}-\sigma_i$ specifies exactly those fluents which \textit{do not} hold at the $i^{th}$ moment. This relates to the notion of logical circumscription \citep{mccarthy1980circumscription}, wherein if a formula is not known to be true, then it must be false.}. A string does not (necessarily) give any sense of real duration, due to the fact that it models an inertial world  (see also \cref{para:block-compression}, p. \pageref{para:block-compression}). A fluent $a \in \sigma_i$ is understood to be occurring before another fluent $b \in \sigma_j$ if $i < j$ and $b \notin \sigma_i$; if $a \in \sigma_i$ and $b \in \sigma_i$, then $a$ and $b$ are understood as occurring at the same time.%\nb{this is more or less the same as in ISA-13 -- should cite?}.
+The chronology of a string is read from left to right, and thus, each component of the string depicts one of the $n$ moments similar to a snapshot, or a frame of a film reel, and specifies the set of exactly those fluents which hold simultaneously at the $i^{th}$ moment\footnote{Conversely, the set $\V-\sigma_i$ specifies exactly those fluents which \textit{do not} hold at the $i^{th}$ moment. This relates to the notion of logical circumscription \citep{mccarthy1980circumscription}, wherein if a formula is not known to be true, then it must be false.}. A string does not (necessarily) give any indication of real-time duration, due to the fact that it models an inertial world, and thus if a symbol occurs in several string components, this is not implicative of the fluent associated with that symbol occurring multiple times, nor of the fluent's real-time duration being necessarily different to another fluent whose associated symbol only occurs in a single string component (see also \cref{para:block-compression}, p. \pageref{para:block-compression}). A fluent $a \in \sigma_i$ is understood to be occurring before another fluent $b \in \sigma_j$ if $i < j$ and $b \notin \sigma_i$; if $a \in \sigma_i$ and $b \in \sigma_i$, then $a$ and $b$ are understood as occurring at the same time.%\nb{this is more or less the same as in ISA-13 -- should cite?}.
 
-For convenience of notation, boxes \ebox{\cdot} are used instead of curly braces $\{\cdot\}$ to denotate the sets which make up each component $\sigma_i$ of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ (as in \citet{Fernando2004,fernando2015semantics,fernando2016prior})---for example, the string $\{\}\{a\}\{a,b\}\{b\}\{\}$ is written as \EventString{{}|a|a,b|b|{}}. This lends to the intuition that the strings may be read as strips of film, or as panels of a comic, with the same narrative-style layout as a timeline. An empty box \ebox{} is drawn for the empty set $\emptyset$: this is a string of length 1, a moment of time during which no fluent $v \in \mathcal{V}$ holds. This should not be confused with the empty string $\epsilon$, which has length 0, and contains no temporal information.
+For convenience of notation, boxes \ebox{\cdot} are used instead of curly braces $\{\cdot\}$ to denotate the sets which make up each component $\sigma_i$ of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ (as in \citet{Fernando2004,fernando2015semantics,fernando2016prior})---for example, the string $\{\}\{a\}\{a,b\}\{b\}\{\}$ is written as \EventString{{}|a|a,b|b|{}}. This lends to the intuition that the strings may be read as strips of film, or as panels of a comic, with the same narrative-style layout as a timeline\footnote{It is worth pointing out here that, as each box is a set, the order of fluents appearing in it is immaterial---for instance, \EventString{a,b} is exactly equivalent to \EventString{b,a}, where in both cases, $a$ is co-occurring with $b$. This contrasts with \EventString{a|b} vs \EventString{b|a}, where in the first case $a$ is occurring before $b$, and in the second, the converse is true.}. An empty box \ebox{} is drawn for the empty set $\emptyset$: this is a string of length 1, a moment of time during which no fluent $v \in \V$ holds. This should not be confused with the empty string $\epsilon$, which has length 0, and contains no temporal information.
 
-It will be said that for any event $a$ occuring in a string $s = \sigma_1\sigma_2\cdots\sigma_n$, $a$ may not \textit{judder}---that is, if $a$ appears in multiple positions of the string, then those positions are contiguous; there are no gaps between appearances of $a$ in $s$:
+It will be said that for any event $a$ occurring in a string $s = \sigma_1\sigma_2\cdots\sigma_n$, $a$ may not \textit{judder}---that is, if $a$ appears in multiple positions of the string, then those positions are contiguous; there are no gaps between appearances of $a$ in $s$:
 \begin{align}\label{impl:contiguous-events}
 	a \in \sigma_i \wedge a \in \sigma_j \wedge i < j \Longrightarrow (\forall k, i < k < j)~ a \in \sigma_k
 \end{align}
@@ -418,7 +539,7 @@ Generally, for any string $s = \sigma_1\sigma_2\cdots\sigma_n$ with length $n \g
 \end{align}
 Since $s$ is restricted to being a finitely bounded string, $[n]$ is also finite, and thus the MSO model described by $s$ must also be finite.
 
-The vocabulary $\mathcal{V}$ is the set of fluents which appear in $s$, and for each $v \in \mathcal{V}$, the set of positions during which $v$ (as a fluent) occurs $\llbracket P_v \rrbracket$ is a subset of $[n]$, and if there exists some $x \in [n]$ such that $x \in \llbracket P_v \rrbracket$, then $P_v$ holds at $x$, as in \cref{impl:prop-interpretation}:
+The vocabulary $\V$ is the set of fluents which appear in $s$, and for each $v \in \V$, the set of positions during which $v$ (as a fluent) occurs $\llbracket P_v \rrbracket$ is a subset of $[n]$, and if there exists some $x \in [n]$ such that $x \in \llbracket P_v \rrbracket$, then $P_v$ holds at $x$, as in \cref{impl:prop-interpretation}:
 \begin{align}
 	\llbracket P_v \rrbracket &\subseteq [n]\\
 	P_v(x) \Longleftrightarrow& ~x \in \llbracket P_v \rrbracket
@@ -427,23 +548,23 @@ The successor relation which links each string position to the next is also defi
 \begin{align}
 	S_n := \{(i, i+1) ~|~ i \in [n - 1]\}
 \end{align}
-Now, for each $v \in \mathcal{V}$, the predicate $P_v$ specifies all the string positions in which $v$ occurs:
+Now, for each $v \in \V$, the predicate $P_v$ specifies all the string positions in which $v$ occurs:
 \begin{align}\label{def:str-positions}
 	\llbracket P_v \rrbracket := \{i \in [n] ~|~ v \in \sigma_i\}
 \end{align}
-If MSO$_{\mathcal{V}}$ is the set of sentences (closed formulas, with no free variables) of MSO whose vocabulary is limited to subsets of $\mathcal{V}$, then an MSO$_{\mathcal{V}}$ model $mod(s)$---which is described by the string $s$---is defined by the tuple \citep{fernando2016regular}:
+If MSO$_{\V}$ is the set of sentences (closed formulas, with no free variables) of MSO whose vocabulary is limited to subsets of $\V$, then an MSO$_{\V}$ model $mod(s)$---which is described by the string $s$---is defined by the tuple \citep{fernando2016regular}:
 \begin{align}
-	mod(s) := \langle [n], S_n, \{\llbracket P_v \rrbracket ~|~ v \in \mathcal{V}\} \rangle
+	mod(s) := \langle [n], S_n, \{\llbracket P_v \rrbracket ~|~ v \in \V\} \rangle
 \end{align}
-Given an arbitrary MSO$_{\mathcal{V}}$ model $M$, the string $str(M)$ which describes it can be obtained by inverting \cref{def:str-positions} to get each set $\sigma_i \in str(M)$, for $i \in [n]$, where $\llbracket P_v \rrbracket_M$ is the interpretation of the predicate $P_v$ relative to the model $M$\footnote{In general, for a given string $s$, it will be convenient to write the interpretation of a property $P$ relative to the MSO$_{\mathcal{V}}$ model described by $s$, $\llbracket P \rrbracket_{mod(s)}$, as simply $\llbracket P \rrbracket_s$.}:
+Given an arbitrary MSO$_{\V}$ model $M$, the string $str(M)$ which describes it can be obtained by inverting \cref{def:str-positions} to get each set $\sigma_i \in str(M)$, for $i \in [n]$, where $\llbracket P_v \rrbracket_M$ is the interpretation of the predicate $P_v$ relative to the model $M$\footnote{In general, for a given string $s$, it will be convenient to write the interpretation of a property $P$ relative to the MSO$_{\V}$ model described by $s$, $\llbracket P \rrbracket_{mod(s)}$, as simply $\llbracket P \rrbracket_s$.}:
 \begin{align}
-	\sigma_i := \{v \in \mathcal{V} ~|~ i \in \llbracket P_v \rrbracket_M \}
+	\sigma_i := \{v \in \V ~|~ i \in \llbracket P_v \rrbracket_M \}
 \end{align}
-There is a fundamental theorem which was independently put forward by B\"{u}chi, Elgot, and Trakhtenbrot \cite[p. 30]{fernando2016regular}\footnote{A proof is given in \citet[p.124, Theorem 7.21]{Libkin2004}.} which states that sentences $\phi$ of MSO capture regular languages---that is, \textit{the MSO-definability of a language is equivalent to its regularity}. This leads to the following definition in \citet[p. 35]{Fernando2018} of the set of regular languages over the powerset $2^{\mathcal{V}}$ of the vocabulary $\mathcal{V}$\footnote{The powerset $2^{\mathcal{V}}$ is used here in place of the usual $\mathcal{V}$, due to the fact that strings may allow any number of fluents $v \in \mathcal{V}$ to hold at once.}, given by the sentences $\phi$ of MSO$_{\mathcal{V}}$:
-\begin{align}
-	\{s \in (2^{\mathcal{V}})^* ~|~ mod(s) \models \phi \}
+There is a fundamental theorem which was independently put forward by B\"{u}chi, Elgot, and Trakhtenbrot \cite[p. 30]{fernando2016regular}\footnote{A proof is given in \citet[p.124, Theorem 7.21]{Libkin2004}.} which states that sentences $\phi$ of MSO capture regular languages---that is, \textit{the MSO-definability of a language is equivalent to its regularity}. This leads to the following definition in \citet[p. 35]{Fernando2018} of the set of regular languages over the powerset $2^{\V}$ of the vocabulary $\V$\footnote{The powerset $2^{\V}$ is used here in place of the usual $\V$, due to the fact that strings may allow any number of fluents $v \in \V$ to hold at once.}, given by the sentences $\phi$ of MSO$_{\V}$:
+\begin{align}\label{def:mso-regularity}
+	\{s \in (2^{\V})^* ~|~ mod(s) \models \phi \}
 \end{align}
-Thus, languages of temporal strings are regular, and as such are open to manipulation and reasoning using finite-state techniques, due to the equivalence between regular languages and finite automata according to Kleene's theorem (see, for example, \citet[p. 41]{yu1997regular}). For instance, the entailment of one regular language by another is decidable, which is not the case for First-Order Logic \citep{elgot1966decidability}. This translates to being able to determine whether one string entails another, which is a powerful feature for ascertaining the relations which appear in a particular string, and for reasoning with them (see \cref{para:str-op-projection}, p. \pageref{para:str-op-projection}; \cref{ssub:superposition}).
+Thus, languages of temporal strings are regular, and as such are open to manipulation and reasoning using finite-state techniques, due to the equivalence between regular languages and finite automata according to Kleene's theorem (see, for example, \citet[p. 41]{yu1997regular}). For instance, the entailment of one regular language by another is decidable, which is not the case for First-Order Logic \citep{trakhtenbrot1953recursive,elgot1966decidability}. This translates to being able to determine whether one string entails another, which is a powerful feature for ascertaining the relations which appear in a particular string, and for reasoning with them (see \cref{para:str-op-projection}, p. \pageref{para:str-op-projection}; \cref{ssub:superposition}).
 % \nb{more here, would be good to have some examples of an MSO-sentence eg fernando2016a p.33}
 
 The fact that strings can be construed as models of MSO gives rise to a convenient method of comparison between strings, whereby the set of temporal relations (see \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings}) found in one string $s$ may be said to be equal to the set of relations in another string $s'$ if $s$ and $s'$ are analogous.
@@ -451,9 +572,9 @@ The fact that strings can be construed as models of MSO gives rise to a convenie
 \paragraph{Analogous Strings}\label{para:analogous-strings}
 A string $s$ will be said to be \textit{analogous} to some other string $s'$ if the MSO models corresponding to each string can be said to be, in a sense, isomorphic%
 % \nb{wiki: bijection, isomorphism;\\\url{https://www.britannica.com/science/isomorphism-mathematics}\\\url{https://mathworld.wolfram.com/Isomorphism.html}\\\url{https://plato.stanford.edu/entries/modeltheory-fo/}}
----that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping between the vocabulary of $s$ and the vocabulary of $s'$, and for every fluent $v \in \mathcal{V}_s$, its image $f(v) \in \mathcal{V}_{s'}$ appears in only those same strings positions in $s'$ as $v$ appears in $s$:
+---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping between the vocabulary of $s$ and the vocabulary of $s'$, and for every fluent $v \in \V_s$, its image $f(v) \in \V_{s'}$ appears in only those same strings positions in $s'$ as $v$ appears in $s$:
 \begin{align}
-	mod(s) &\cong mod(s') \Longleftrightarrow \\\notag &\text{length}(s) = \text{length}(s') \land (\exists f: \mathcal{V}_s \leftrightarrow \mathcal{V}_{s'})((\forall v \in \mathcal{V}_s) \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket)\\
+	mod(s) &\cong mod(s') \Longleftrightarrow \\\notag &\text{length}(s) = \text{length}(s') \land (\exists f: \V_s \leftrightarrow \V_{s'})((\forall v \in \V_s) \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket)\\
 	mod(s) &\cong mod(s') \Longleftrightarrow s \sim s'
 \end{align}
 For example, in \cref{ex:analog}, \Before{a}{b} is analogous to \Before{c}{d}, while in \cref{ex:not-analog} \Before{a}{b} is not analogous to \Overlaps{c}{d}
@@ -469,39 +590,71 @@ Determining whether strings are analogous is useful when ascertaining the relati
 
 Further, if a pair of strings are shown to be analogous, this can make any calculations or processing involving these strings to be more efficient: any set of operations applied to one of the strings would produce the same result if applied to the other, so there is no need to apply them to both. This is expanded upon further in \cref{ssub:timelines}, see p. \pageref{ex:sp-analogy}.
 %%%%%%%%%%%%
+% Lead into granularity?
 
-\subsubsection{Granularity: Points, Intervals, and Semi-intervals}\label{ssub:granularity}
+\subsubsection{Granularity: Points and Intervals}\label{ssub:granularity}
+The vocabulary from which a string's alphabet is constructed is a set of fluents, or temporal propositions---for example ``John sleeps'' $Sleeps(john, t)$, where $Sleeps$ is a predicate and $john$ is an individual for which $Sleeps$ holds true for some time $t$. However, it has not yet been made explicit whether $t$ should be an instantaneous point in time, or some temporal interval which has a non-zero duration. The need for this distinction is presented below.
 
+In order for a string such as in \cref{ex:subintervals} to be valid, where some event $a$ occurs in multiple positions in the string, $a$ must be an interval: a period of time with a beginning and an ending, and $a$ is occurring between these.
+\begin{align}\label{ex:subintervals}
+	\EventString{{}|a|a,b|{}}
+\end{align}
+This allows for $a$ to be represented via subdivisions\footnote{An interval may be subdivided theoretically \textit{ad infinitum}, though the constraint of a finite vocabulary prevents this from occurring within a string.} across the components within the string, such that the event $a$ is understood as beginning at its first (leftmost) occurrence, and ending after its last (rightmost)---as long as it appears in a component, the event is occurring at that moment. While a point is instantaneous and therefore indivisible, an interval may be split into an arbitrary number of contiguous subintervals in this way, which allows for the representation of other events co-occurring with a specific subdivision of an interval, as in \cref{ex:subintervals}, where $a$ is occurring during two string positions $\llbracket P_a \rrbracket = \{2, 3\}$, while $b$ is only occurring during a single string position, $\llbracket P_b \rrbracket = \{3\}$. In this example, the real-time interval duration $\iota$ of position 3 is equal to that of the event $b$, which is also the span of time during which $a$ and $b$ are co-occurring. The summed duration $\iota'$ of positions 2 and 3 is equal to that of the event $a$, and so the duration of position 2 (the span of time in which $a$ is occurring, but $b$ has not begun) is equal to $\iota' - \iota$.
 
-A decision must be made in regards to what is regarded as `primitive' in a string, in terms of whether a basic component is considered as instantaneous, or as having some duration. In the first view, only points exist, and so an event will have a beginning and an ending (left and right borders), each of which represented by a symbol in the string. In the second, entire intervals are used instead of points. Two points may only be related in three ways: \textless, =, \textgreater. Two intervals, however, may be related in thirteen different ways, precisely, the Allen Relations \citeneeded{}. 
+If $a$ and $b$ represent points of time, then the string in \cref{ex:subintervals} is invalid---since a point is instantaneous, it may not occur at multiple string positions, which are discrete moments of time. Additionally, it is not possible for one point to have a shorter duration than another, and thus the fact that $b$ occurs at the end of $a$ is lost. \citet{allen1983maintaining} also discusses the logical and physical issues with allowing events to be representable as instantaneous points, but there is also a cognitive issue, discussed in \citet{Freksa1992}, where events must have some non-zero duration in order to be perceivable \citep{hamblin1972instants}.
 
-There are advantages to each approach: ... e.g. intervals are intuitive and infinitely divisible and allow for more specific relation-labels; points are simpler and incomplete information doesn't break the system by forcing disjunctions.
+That is not to say that this information cannot be represented in a string using points, but instead, a translation from events to \textit{event borders} must occur, where event borders are points representing the beginnings and endings of events. \citet{Fernando2018} uses $l(a)$ as the (open) left border and $r(a)$ as the (closed) right border of some event $a$---the \textit{granularity} is altered to focus on the event borders (as points) rather than on the events (as intervals). In keeping with the analogy of strings being similar to strips of film, the change of granularity is akin to altering the level of `camera zoom' to focus on details which were previously considered simply as parts of the whole.
 
-A third option exists: semi-intervals, as described by \cite{Freksa1992}. By treating the borders of an event as intervals, this expands the number of available relations between two events to 31.
+This change does introduce additional complexity to the vocabulary, with the new set $\breve{\V}$ constructed from the old $\V$ \cite[p. 37]{Fernando2018}:
+\begin{align}
+	L &= \{ ~l(v) ~|~ v \in \V~ \}&\notag\\
+	R &= \{ ~r(v) ~|~ v \in \V~ \}&\notag\\
+	\breve{\V} &:= L \cup R &\text{if } L, R, \text{ and } \V \text{ are pairwise disjoint.}
+\end{align}
+The cardinality of $\breve{\V}$ is thus twice that of $\V$, with two symbols required to represent the same information of a single interval. The translation from a string $s = \sigma_1\sigma_2\cdots\sigma_n$ whose symbols are events (intervals) to a string $\breve{s} = \breve{\sigma_1}\breve{\sigma_2}\cdots\breve{\sigma_n}$ whose symbols are event borders (points) is given as \cite[p. 38]{Fernando2018}:
+\begin{align}
+	\breve{\sigma_i} := \begin{cases}
+		\{ r(a) ~|~ a \in \sigma_i \} & \text{if}~ i = n\\
+		\{ l(a) ~|~ a \in \sigma_{i+1} - \sigma_i \} \cup \{ r(a) ~|~ a \in \sigma_{i} - \sigma_{i+1} \} & \text{if}~ i < n
+	\end{cases}
+\end{align}
+The symbol $l(a)$ appearing in $\breve{\sigma_i}$ says that the event $a$ is not occurring at position $i$, but is occurring at position $i+1$. The symbol $r(a)$ appearing in $\breve{\sigma_i}$ says that $a$ is occurring at position $i$, but is not occurring at position $i+1$. Using event borders in this way, the string in \cref{ex:subintervals} would be translated to be drawn as:
+\begin{align}
+	\EventString{l(a)|l(b)|r(a),r(b)|{}}
+\end{align}
+Points are, in some ways, simpler than intervals---for instance, two points may be related in just three ways (\textless, =, and \textgreater), while a pair of intervals have thirteen possible relations between them (precisely, the set of relations given by Allen's interval algebra \citep{allen1983maintaining}, see \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings}). Additionally, focusing on the borders of events opens up a pathway to representing incomplete information, by omitting one of the beginning or ending of an event from the vocabulary of a string, it is left unspecified, which is often the case in natural language. For example, in \cref{ex:points-incomplete} below, it is known that the events $a$ and $b$ begin simultaneously, but it is not known when $a$ ends:
+\begin{align}\label{ex:points-incomplete}
+	\EventString{l(a),l(b)|r(b)|{}}
+\end{align}
+This situation cannot be simply represented using ordinary intervals, since for any symbol in a string's vocabulary, its appearance or non-appearance in a string component indicates explicitly whether or not the event is occurring at that moment, with no option for `possibly occurring'.
 
-Ultimately, intervals are chosen for a number of reasons: primarily due to the fact that ISO-TimeML, the international standard for temporal annotation, uses intervals for its TLINKs, but also they seem the most intuitive \nb{This is vague and subjective; defend it better}.
+This work, however, will primarily consider intervals as the basic unit of representation for fluents. When looking at a particular string component, it is more straightforward to tell whether some event $a$ is occurring at that moment if the symbol $a$ appears within that component, than to have to either check backwards and forwards through the string to see if the event has begun ($l(a)$ appears somewhere to the left of the component of interest) and not yet ended ($r(a)$ does not appear to the left of the component of interest), or to have to perform a translation. This also more closely mirrors the intuition of the analogy with panels of a comic strip or frames of a reel of film, such that all events which are occurring at any particular moment are `visible' within that panel or frame (string component). There is further a higher level of descriptiveness that can be achieved with thirteen relations between a pair of intervals, as opposed to requiring a set of four points to achieve the same.% Allowing for a combination of points and intervals to appear in a string only complicates the vocabulary and operations further.
 
-It's worth noting that there are translations available between the different granularities.
+Chiefly, however, among reasons to generally consider intervals as primitive is the fact that ISO-TimeML, the international standard for temporal annotation \cite{pustejovsky2010iso}, considers events and event-like entities to be intervals, and uses relations which are based in \citet{allen1983maintaining}'s set of interval relations. Further, \citet[p. 201]{Freksa1992} agrees with Allen from a cognitive perspective that events should not be ``represented by points on the real line'', and additionally describes the concept of \textit{semi-intervals}---using intervals to represent the beginnings and endings of events---which allows for treating incomplete information similar to using points (as in \cref{ex:points-incomplete} above), and expanding the number of possible relations to a set of 31 options. Nonetheless, semi-intervals do, again, introduce an additional level of complexity over plain intervals, and are discussed more completely in \cref{ssub:incomplete}.
 
-In general, it is assumed that any text which will be used as a source of strings for this work will feature only \textit{finite events}. The fluents which represent these events will therefore hold for a finite amount of time, and thus intervals appearing in strings will be \textit{bounded} \citeneeded[Allen and Ferguson 94]{}. That is, for some event $a$, there is some time \textit{immediately before} $a$ holds during which $a$ does not hold, and similarly, there is some time \textit{immediately after} $a$ holds during which $a$ does not hold. This fact is represented through the use of bounding empty sets, and so any given string will both begin and end with an empty set, drawn as an empty box \ebox{}. The framework does not, in fact, require this assumption to be true---compare the bounded (finite) interval $a$, drawn as \EventString{{}|a|{}}, and the non-bounded (infinite) interval $b$, drawn as \EventString{b}---and indeed, it is convenient to go beyond it when discussing the handling of incomplete data, although this moves away from plain intervals to semi-intervals (see \cref{ssub:incomplete}).
+% It's worth noting that there are translations available between the different granularities.
+
+It is worth noting here that, in general, in this work it is also assumed that any text which will be used as a source for the creation of strings will feature only \textit{finite events}. The fluents which represent these events will therefore hold for a finite amount of time, and thus intervals appearing in strings will be \textit{bounded} \citep{allen1994actions}. That is, for some event $a$, there is some time \textit{immediately before} $a$ holds during which $a$ does not hold, and similarly, there is some time \textit{immediately after} $a$ holds during which $a$ does not hold. This fact is represented through the use of bounding empty sets, and so any given string will both begin and end with an empty set, drawn as an empty box \ebox{}\footnote{Equivalently, as a formula of MSO: $(\forall v \in \V)~ \lnot P_v(1) \land \lnot P_v(n)$.}. The framework does not, in fact, require this assumption to be true---compare the bounded (finite) interval $a$, drawn as \EventString{{}|a|{}}, and the non-bounded (infinite) interval $b$, drawn as \EventString{b}---and indeed, it is convenient to go beyond it when discussing the handling of incomplete data, although this moves away from plain intervals to semi-intervals (see \cref{ssub:incomplete}).
+
+The following section describes a number of operations which may be used with interval-based strings, though it should be pointed out that for each operation there is an equivalent which may be used for a string which treats event borders as basic instead of events.
 
 \subsubsection{String Operations}\label{ssub:operations}
 % Many many operations. The most important is \textbf{superposition} (and it's more advanced forms)! Also we have block compression, reduct, vocabulary, projection, border translations. Note also that there are equivalent operations for strings which use points instead of intervals.
 A number of operations are available for the manipulation and description of strings which represent sequences of times and events, and these are detailed below. Key among these is \textit{superposition} (basic, asynchronous, and vocabulary-constrained), which may be used to combine the information from multiple strings, but additionally defined are: an operation to find the vocabulary of arbitrary strings; block compression, which removes duplicate string components; reduct, which filters a string to only contain a specified set of events; and projection, whereby a string can be said to contain the same temporal data as another. Many of these operations are also available at the language level, in general by performing the particular desired operation on each string within the language.
 
 \paragraph{Vocabulary:}
-The \textit{vocabulary} $\mathcal{V}$ of a string or language is the set of fluents which appear in it. For an arbitrary string $s = \sigma_1\sigma_2\cdots\sigma_n$, the vocabulary $\mathcal{V}_s$ of $s$ may be determined by taking the union of the string's components:
+The \textit{vocabulary} $\V$ of a string or language is the set of fluents which appear in it. For an arbitrary string $s = \sigma_1\sigma_2\cdots\sigma_n$, the vocabulary $\V_s$ of $s$ may be determined by taking the union of the string's components:
 \begin{align}
-	\mathcal{V}_s := \sigma_1 \cup \sigma_2 \cup \cdots \cup \sigma_n
+	\V_s := \sigma_1 \cup \sigma_2 \cup \cdots \cup \sigma_n
 \end{align}
 and the vocabulary of a language is just the union of the vocabularies of the strings it contains:
 \begin{align}
-	\mathcal{V}_L := \bigcup \{\mathcal{V}_s ~|~ s \in L \}
+	\V_L := \bigcup \{\V_s ~|~ s \in L \}
 \end{align}
 The vocabulary of a string is a key factor in the calculation of many other operations, notably projection (p. \pageref{para:str-op-projection}) and vocabulary-constrained superposition (p. \pageref{para:str-op-vc-sp}).
 % Determining a string's vocabulary permits some operations to be chained 
 \paragraph{Block Compression:}\label{para:block-compression}
-Since the length of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ does not reflect its real duration (due to the understanding that strings model intertial worlds---see \cref{sub:strings} p. \pageref{sub:strings}), it is also not required that the length of time represented by any $\sigma_i$ is equal to that represented by any $\sigma_j$, for $i \neq j$. Similarly, if a fluent symbol $v \in \mathcal{V}$ from the vocabulary appears in both $\sigma_i$ and $\sigma_{i+1}$, this does not imply that the event represented by $v$ has a duration twice as long as if it had only appeared in $\sigma_i$. Indeed, the symbol $v$ may appear in any number of consecutive positions in $s$ without affecting the interpretation of the real length of time of the event it represents. Further, if the string features a repeating component, i.e. $\sigma_i = \sigma_{i+1}$ for any $1 \le i < n$, the interpretation of the string is not affected by the deletion of one of either $\sigma_i$ or $\sigma_{i+1}$. So for example, the interpretation of the string \EventString{a|a|a,b|b|b} is equal to the interpretation of the string \EventString{a|a,b|b}. A string featuring such repetitions is said to contain \textit{stutter}.
+Since the length of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ does not reflect its real duration (due to the understanding that strings model intertial worlds---see \cref{sub:strings} p. \pageref{sub:strings}), it is also not required that the length of time represented by any $\sigma_i$ is equal to that represented by any $\sigma_j$, for $i \neq j$. Similarly, if a fluent symbol $v \in \V$ from the vocabulary appears in both $\sigma_i$ and $\sigma_{i+1}$, this does not imply that the event represented by $v$ has a duration twice as long as if it had only appeared in $\sigma_i$. Indeed, the symbol $v$ may appear in any number of consecutive positions in $s$ without affecting the interpretation of the real length of time of the event it represents. Further, if the string features a repeating component, i.e. $\sigma_i = \sigma_{i+1}$ for any $1 \le i < n$, the interpretation of the string is not affected by the deletion of one of either $\sigma_i$ or $\sigma_{i+1}$. So for example, the interpretation of the string \EventString{a|a|a,b|b|b} is equal to the interpretation of the string \EventString{a|a,b|b}. A string featuring such repetitions is said to contain \textit{stutter}.
 
 As a result, the \textit{block compression} $\bc(s)$ of a string $s$ may be introduced, which removes any stutter present in $s$. This is defined as \citep{fernando2015semantics, woods2017towards}:
 \begin{align}\label{def:bc}
@@ -523,7 +676,7 @@ For example:
 Since these strings all block compress to the same string, they can be said to be equivalent under block compression. Specifically, strings $s$ and $s'$ are \textit{\bc -equivalent} iff $\bc(s) = \bc(s')$. This ability to generate infinitely many strings which have an equivalent interpretation allows for varying the length of a string as will be required in order to form a useful notion of superposition (see p. \pageref{def:initial-async-superposition}).
 
 \paragraph{Superposition:}\label{para:str-op-sp}
-In its most basic form, the \textit{superposition} $s \sp s'$ of two strings $s = \sigma_1\sigma_2\cdots\sigma_n$ and $s' = \sigma'_1\sigma'_2\cdots\sigma'_n$ of equal length $n$ is simply their component-wise union\footnote{The vocabulary of the resulting string is, as might be expected, the union of the vocabularies of the original strings: $\mathcal{V}_{s \sp s'} = \mathcal{V}_s \cup \mathcal{V}_{s'}$.}:
+In its most basic form, the \textit{superposition} $s \sp s'$ of two strings $s = \sigma_1\sigma_2\cdots\sigma_n$ and $s' = \sigma'_1\sigma'_2\cdots\sigma'_n$ of equal length $n$ is simply their component-wise union\footnote{The vocabulary of the resulting string is, as might be expected, the union of the vocabularies of the original strings: $\V_{s \sp s'} = \V_s \cup \V_{s'}$.}:
 
 \begin{align}\label{def:superposition}
 	\sigma_1\sigma_2\cdots\sigma_n \sp \sigma'_1\sigma'_2\cdots\sigma'_n := (\sigma_1 \cup \sigma'_1)(\sigma_2 \cup \sigma'_2)\cdots(\sigma_n \cup \sigma'_n)
@@ -536,7 +689,7 @@ This is easily extended to pairs of languages $L \sp L'$ by collecting the super
 \begin{align}\label{def:lang-superposition}
 	L \sp L' := \bigcup_{n \ge 0}\{ s \sp s' | s \in L \cap \Sigma^n, s' \in L' \cap \Sigma^n\}
 \end{align}
-The result $L \sp L'$ of superposing two languages $L$ and $L'$ is also a language \nb{Don't forget to mention the connection to regular languages and FSA here}, and if $L$ and $L'$ are regular languages, then $L \sp L'$ is also regular \citep[p. 126]{woods2017towards}. If $L$ is accepted by the finite automaton $\langle Q, (2^{\mathcal{V}_{L}})^*, (q \sta{\sigma}{\to} r), q_0, F \rangle$ and $L'$ is accepted by the finite automaton $\langle Q', (2^{\mathcal{V}_{L'}})^*, (q' \sta{\sigma'}{\to} r'), q'_0, F' \rangle$ then $L \sp L'$ is computed by a finite automaton composed of the automata accepting each $L$ and $L'$: $\langle Q \times Q', (2^{\mathcal{V}_L \cup \mathcal{V}_{L'}})^*, ((q, q') \sta{(\sigma \cup \sigma')}{\to} (r, r')), (q_0, q'_0), F \times F' \rangle$. \nb{expand on this and its importance}
+The result $L \sp L'$ of superposing two languages $L$ and $L'$ is also a language, and if $L$ and $L'$ are regular languages (due to strings being finite models of Monadic Second-Order Logic and the theorem due to B\"uchi, Elgot, and Trakhtenbrot---see \cref{ssub:mso}, p. \pageref{def:mso-regularity}), then $L \sp L'$ is also regular (\citealp{Fernando2004}; \citealp[p. 126]{woods2017towards}). If $L$ is accepted by the finite automaton $\langle Q, (2^{\V_{L}})^*, (q \sta{\sigma}{\to} r), q_0, F \rangle$ and $L'$ is accepted by the finite automaton $\langle Q', (2^{\V_{L'}})^*, (q' \sta{\sigma'}{\to} r'), q'_0, F' \rangle$ then $L \sp L'$ is computed by a finite automaton composed of the automata accepting each $L$ and $L'$: $\langle Q \times Q', (2^{\V_L \cup \V_{L'}})^*, ((q, q') \sta{(\sigma \cup \sigma')}{\to} (r, r')), (q_0, q'_0), F \times F' \rangle$.% \nb{expand on this and its importance}
 
 Using languages provides more flexibility than strings alone, since non-determinism can be accounted for through variations between strings within a language. For example, in \cref{ex:lang-superposition} below, the result of the superposition accounts for the alternate event sequences in the strings of the first input language.
 \begin{align}\label{ex:lang-superposition}
@@ -579,7 +732,7 @@ By using this padding operation in place of the inverse block compression in an 
 \end{align}
 It's worth noting here that neither basic superposition $\sp$ nor asynchronous superposition $\spasync$ place any importance on the semantic content contained within the strings over which they operate. That is to say, they are entirely syntactical operations, and any meaningful information represented by a given string is liable to be lost once it has been superposed with some other string.
 
-For instance, in \cref{ex:superposition}, the second of the operand strings has the event $c$ appearing in a box to the left of (before) the event $d$, whereas the result has $c$ and $d$ occuring in the same box together, which states that they were occurring at the same moment.
+For instance, in \cref{ex:superposition}, the second of the operand strings has the event $c$ appearing in a box to the left of (before) the event $d$, whereas the result has $c$ and $d$ occurring in the same box together, which states that they were occurring at the same moment.
 
 Similarly, in \cref{ex:async-superposition}, the first input string has events $a$ and $c$ appearing in the same box, while the second input string has $a$ appearing in a box before $c$. While this should seem like a contradiction which should not have viable results, the operation instead produces a set of four strings, the second and third of which are invalid according to \cref{impl:contiguous-events}: in \EventString{a,c|a,b,d|b,c,d} the event $c$ occurs in positions 1 and 3 but not position 2, and in \EventString{a,c|a,b,c|a,c,d|b,c,d} the event $b$ occurs in positions 2 and 4 but not in position 3.
 
@@ -594,7 +747,7 @@ As such, for any set $A$, the $A$-\textit{reduct} $\rho_A$ of a string $s=\sigma
 \end{align}
 The resulting new string has a vocabulary of $A$, but the remaining fluents are still in the same relative positions to each other as in the original:
 \begin{align}
-	\mathcal{V}_{\rho_A(s)} &= A\\
+	\V_{\rho_A(s)} &= A\\
 	(\forall a \in A)~\llbracket P_a \rrbracket_{mod(s)} &= \llbracket P_a \rrbracket_{mod(\rho_A(s))}
 \end{align}
 For example, with the string $s = \EventString{{}|a,b|a,b,c|a,c,d|a,e|e|{}}$ and $A=\{a,d\}$, the $A$-reduct of $s$ is:
@@ -607,9 +760,9 @@ The resulting string in \cref{ex:reduct} contains only the events of interest (t
 \end{align}
 It's worth noting that for any pair of strings $s$ and $s'$ with equal length and disjoint vocabularies, the reduct of the result of basic (not asynchronous) superposition $s \sp s'$ with respect to each of the strings' vocabularies is equal to the string itself:
 \begin{align}\label{impl:disjoint-vocab-reduct}
-	\mathcal{V}_{s} \cap \mathcal{V}_{s'} = \emptyset \Longrightarrow \rho_{\mathcal{V}_{s}}(s \sp s') = s \text{ and } \rho_{\mathcal{V}_{s'}}(s \sp s') = s'
+	\V_{s} \cap \V_{s'} = \emptyset \Longrightarrow \rho_{\V_{s}}(s \sp s') = s \text{ and } \rho_{\V_{s'}}(s \sp s') = s'
 \end{align}
-For example, with $s = \EventString{a|b}$ and $s' = \EventString{c|d}$, $\mathcal{V}_s = \{a,b\}$ and $\mathcal{V}_{s'} = \{c,d\}$:
+For example, with $s = \EventString{a|b}$ and $s' = \EventString{c|d}$, $\V_s = \{a,b\}$ and $\V_{s'} = \{c,d\}$:
 \begin{align}\label{ex:disjoint-vocab-reduct}
 	s \sp s' &= \EventString{a,c|b,d}\\
 	\rho_{\{a,b\}}(\EventString{a,c|b,d}) &= \EventString{a|b}\notag\\
@@ -621,11 +774,11 @@ This process is streamlined through the use of \textit{projection}, where the $A
 \begin{align}
 	\pi_A(s) := \bc(\rho_A(s))
 \end{align}
-It will be said that a string $s$ \textit{projects to} another string $s'$, $s \sqsupseteq s'$, if the $\mathcal{V}_{s'}$-projection of $s$ is equal to $s'$:
+It will be said that a string $s$ \textit{projects to} another string $s'$, $s \sqsupseteq s'$, if the $\V_{s'}$-projection of $s$ is equal to $s'$:
 \begin{align}
-	s \sqsupseteq s' \Longleftrightarrow  \pi_{\mathcal{V}_{s'}}(s) = s'
+	s \sqsupseteq s' \Longleftrightarrow  \pi_{\V_{s'}}(s) = s'
 \end{align}
-If $s$ projects to $s'$, then all of the information represented within $s'$ is also represented in $s$---$s$ effectively ``contains'' $s'$. Trivially, any block compressed string $s = \bc(s)$ will project to itself, since the reduct of $s$ with respect to its own vocabulary is $s$.
+If $s$ projects to $s'$, then all of the information represented within $s'$ is also represented in $s$---$s$ effectively `contains' $s'$. Trivially, any block compressed string $s = \bc(s)$ will project to itself, since the reduct of $s$ with respect to its own vocabulary is $s$.
 
 Borrowing from the examples in \cref{ex:reduct,ex:bc-reduct}, the temporal data represented by the string on the right hand side of \cref{ex:projects-to} is also contained in the string on the left hand side:
 \begin{align}\label{ex:projects-to}
@@ -633,7 +786,7 @@ Borrowing from the examples in \cref{ex:reduct,ex:bc-reduct}, the temporal data 
 \end{align}
 It is worth noting that, if strings $s$ and $s'$ share the same vocabulary, but are not equal, then neither can $s$ project to $s'$ nor $s'$ project to $s$---this scenario suggests that $s$ and $s'$ are incompatible, that they describe contradictory sequences of the same events:
 \begin{align}\label{impl:cannot-project}
-	\mathcal{V}_s = \mathcal{V}_{s'} \wedge s \neq s' \Longrightarrow \lnot (s \sqsupseteq s' \lor s' \sqsupseteq s)
+	\V_s = \V_{s'} \wedge s \neq s' \Longrightarrow \lnot (s \sqsupseteq s' \lor s' \sqsupseteq s)
 \end{align}
 A language $L$ can be said to project to another language $L'$ if every string $s \in L$ projects to every string $s' \in L'$:
 \begin{align}
@@ -641,10 +794,10 @@ A language $L$ can be said to project to another language $L'$ if every string $
 \end{align}
 This notion of projection is particularly useful, allowing for temporal reasoning when used in conjunction with the concept of \textit{analogous} strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}). Particular events can be simply extracted from larger, more complex strings, and compared against reference to determine the relations between and ordering of the events of interest.
 
-Importantly, projection will also be used to enrich the asynchronous superposition (see p. \pageref{def:async-superposition}) operation, injecting the currently-lacking ``semantic-ness'' by ensuring that all results of superposing a pair of strings project to each of their input strings.
+Importantly, projection will also be used to enrich the asynchronous superposition (see p. \pageref{def:async-superposition}) operation, injecting the currently-lacking `semantic-ness' by ensuring that all results of superposing a pair of strings project to each of their input strings.
 
 \paragraph{Generate and Test:}\label{para:gen-and-test}
-The predominant issue with asynchronous superposition $\spasync$ as it stands is that it needs not \textit{preserve projections}---that is, data can become lost or ``corrupted'' when combining strings. If a string generated by superposition does not project back to both of the strings that were superposed to generate it, then information has effectively been lost, as it has become impossible to return to the original event relation data. Only those result strings in $s \spasync s'$ which do project back can be said to be a valid result of the superposition, in terms of preserving the temporal information.
+The predominant issue with asynchronous superposition $\spasync$ as it stands is that it needs not \textit{preserve projections}---that is, data can become lost or `corrupted' when combining strings. If a string generated by superposition does not project back to both of the strings that were superposed to generate it, then information has effectively been lost, as it has become impossible to return to the original event relation data. Only those result strings in $s \spasync s'$ which do project back can be said to be a valid result of the superposition, in terms of preserving the temporal information.
 
 For example, in \cref{ex:async-superposition} (p. \pageref{ex:async-superposition}), none of the result strings contain the information that is represented in the input strings. This can be verified by testing whether any string in the result set projects to either of the inputs, which they do not:
 \begin{center}
@@ -658,19 +811,19 @@ For example, in \cref{ex:async-superposition} (p. \pageref{ex:async-superpositio
 \end{center}
 In fact, every string in \cref{ex:async-superposition} shares the same vocabulary, so by \cref{impl:cannot-project}, it is not possible for any to project to any other.% It is, in general, possible for asynchronous superposition $s \spasync s'$ to produce results such that they can project to the strings $s$ and $s'$ which generated them (see \cref{ex:overgen} below).
 
-In the case where the vocabularies of the two strings are identical, then none of the results will project to the original strings\footnote{This assumes that $s \neq s'$. In the case where $s = s'$, there is exactly one string $s'' \in s \spasync s'$ such that $s = s' = s''$.}. This implication follows from \cref{impl:cannot-project}, since the vocabulary of every string $s'' \in s \spasync s'$ is $\mathcal{V}_{s \cup s'} = \mathcal{V}_s = \mathcal{V}_{s'}$:
+In the case where the vocabularies of the two strings are identical, then none of the results will project to the original strings\footnote{This assumes that $s \neq s'$. In the case where $s = s'$, there is exactly one string $s'' \in s \spasync s'$ such that $s = s' = s''$.}. This implication follows from \cref{impl:cannot-project}, since the vocabulary of every string $s'' \in s \spasync s'$ is $\V_{s \cup s'} = \V_s = \V_{s'}$:
 \begin{align}
-	\mathcal{V}_s \cap \mathcal{V}_{s'} = \mathcal{V}_s = \mathcal{V}_{s'} &~\Longrightarrow~ (\forall s'' \in s \spasync s')~\lnot (s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionA}
+	\V_s \cap \V_{s'} = \V_s = \V_{s'} &~\Longrightarrow~ (\forall s'' \in s \spasync s')~\lnot (s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionA}
 \end{align}
 The implication of \cref{impl:voc-intersectionA} can be used to avoid unuseful superpositions: since the operation $\spasync$ has the potential to generate a large number of new strings, which can become costly from a computational perspective, it is prudent to test ahead of time whether every generated string will be spurious and unable to project back---as seen in \Cref{tab:failed-projections}.
 
 Conversely, if the vocabularies of the input strings are disjoint, then every resulting string will project back, due to \cref{impl:disjoint-vocab-reduct}:
 \begin{align}
-	\mathcal{V}_s \cap \mathcal{V}_{s'} = \emptyset &~\Longrightarrow~ (\forall s'' \in s \spasync s')~s'' \sqsupseteq s \land s'' \sqsupseteq s'\label{impl:voc-intersectionB}
+	\V_s \cap \V_{s'} = \emptyset &~\Longrightarrow~ (\forall s'' \in s \spasync s')~s'' \sqsupseteq s \land s'' \sqsupseteq s'\label{impl:voc-intersectionB}
 \end{align}
 %\\\text{else} &~\Longrightarrow~ (\exists s'' \in s \spasync s')~s'' \sqsupseteq s \lor s'' \sqsupseteq s'\label{impl:voc-intersectionC}
 % counter-example: |a|b|c| &* |d|c|b|
-This can be seen by returning to the example in \cref{ex:disjoint-vocab-reduct}:%, with $s = \EventString{a|b}$ and $s' = \EventString{c|d}$, $\mathcal{V}_s = \{a,b\}$ and $\mathcal{V}_{s'} = \{c,d\}$:
+This can be seen by returning to the example in \cref{ex:disjoint-vocab-reduct}:%, with $s = \EventString{a|b}$ and $s' = \EventString{c|d}$, $\V_s = \{a,b\}$ and $\V_{s'} = \{c,d\}$:
 \begin{align}\label{ex:spasync-disjoint-vocab}
 	\EventString{a|b} \spasync \EventString{c|d} = \{\EventString{a,c|a,d|b,d}, \EventString{a,c|b,d}, \EventString{a,c|b,c|b,d}\}
 \end{align}
@@ -741,14 +894,14 @@ s'' \sqsupseteq \pi_{\Sigma}(s) \wedge s'' \sqsupseteq \pi_{\Sigma'}(s')\}
 \end{align}
 
 \noindent
-\textbf{Corollary 2.} {\sl For all $s \in Fin(\Theta)^*, s' \in Fin(\Theta)^*$ such that $s$ and $s'$ are stutterless, if $\Sigma = \mathcal{V}_s$ and $\Sigma' =\mathcal{V}_{s'}$, then $s \spsigma s'$ selects those strings from asynchronous superposition $s \spsigma[\emptyset, \emptyset] s'$ which project to $s$ and $s'$}:
+\textbf{Corollary 2.} {\sl For all $s \in Fin(\Theta)^*, s' \in Fin(\Theta)^*$ such that $s$ and $s'$ are stutterless, if $\Sigma = \V_s$ and $\Sigma' =\V_{s'}$, then $s \spsigma s'$ selects those strings from asynchronous superposition $s \spsigma[\emptyset, \emptyset] s'$ which project to $s$ and $s'$}:
 \begin{align}
 s \spsigma s' = \{s''\in s \spsigma[\emptyset, \emptyset] s' ~|~ s'' \sqsupseteq s \wedge s'' \sqsupseteq s'\}
 \end{align}
 \doublespacing
 According to Corollary 2, \textit{vocabulary-constrained superposition} $\spvc$ can be used to preserve temporal information under projection during superposition:
 \begin{align}\label{def:vc-superposition}
-s \spvc s' :=  s \spsigma[\mathcal{V}_s, \mathcal{V}_{s'}] s'
+s \spvc s' :=  s \spsigma[\V_s, \V_{s'}] s'
 \end{align}
 Now, this new form of superposition can be used for the same example as \cref{ex:overgen}, and only the one valid result will be produced:
 \begin{align}
@@ -788,20 +941,40 @@ The main operations for string-based finite-state temporality have now been defi
 
 \subsection{Applications}\label{sub:applications}
 % The following will outline some of the ways that the use of string-based FST can applied to problems in NLP.
-Having discussed how to create and manipulate strings which represent temporal data such as the linear order and inter-relations of a set of events, the following sections will explore some of the applications of this technology, including the ability to extract a timeline from a text, to verify that a document's narrative is internally consistent in terms of its event relations, and to infer new information based on the extracted event relations. Permitting external constraints to be placed on strings can allow for further uses, including in areas such as scheduling problems.\nb{flesh this out(?)}
+Having discussed how to create and manipulate strings which represent temporal data---the linear order and inter-relations of a set of events---the following will explore some of the possible applications of this technology, including the ability to create timelines from annotated texts, to verify that the narrative structure of an annotated text is internally consistent with regards to the relations it depicts between its events, and to infer information not explicitly stated in an annotated text based on the event relations that can be extracted. These abilities can be used as part of tooling for the automatic aiding of creation of temporal annotation in new texts, for automated generation of summaries of a text, or fact-checking via corroboration of event sequences between sources.
+
+Additionally, strings can be used as a tool for other, related applications which deal with sequential data through the use of external constraints. An example of such an application is given via a solution to a variant of the well-known Zebra Puzzle which models temporal constraints (that is, scheduling constraints) rather than spatial ones.
+% Permitting external constraints to be placed on strings can allow for further uses, including in areas such as scheduling problems.\nb{flesh this out(?)}
 
 \subsubsection{Timelines from Texts}\label{ssub:timelines}
-Strings, as entities which are comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---although not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality\nb{wiki: timeline;\\\url{https://onlinelibrary.wiley.com/doi/full/10.1111/cogs.12804}\\\url{https://sites.williams.edu/thea228/files/2011/09/Cartographies-of-Time.pdf}\\\url{https://books.google.ie/books?hl=en&lr=&id=DqWqKVzipToC&oi=fnd&pg=PA8&dq=Rosenberg,+Daniel+(2010),+Cartographies+of+Time:+A+History+of+the+Timeline,+Princeton+Architectural+Press&ots=m2BG84e69h&sig=uykTBRs2rIPfmTf6rW0jtWlSBNo&redir_esc=y#v=snippet&q=spatial&f=false}\\\url{https://www.jstor.org/stable/pdf/1343108.pdf?casa_token=JdY5vEGKYgMAAAAA:ykEfao2S22Jekocs5fWyNixqQwM-YD6Os4r5wT-1cNFsLsk7NkAMcI9Y-7Z6GQQNGDgXJpGPpWXRAHrRrV_EQGW-rAR7RlTh9gkBUEdqsem31aBvyKvk}} (even absent vision, see \citet{bottini2015space})---\citet[pp. 42--43]{lakoff2008metaphors}, for example, discusses the metaphor of ``Time is a moving object'', where the future is perceived as moving towards us, and \citet[p. 542]{mitchell1980spatial} argues that ``we literally cannot `tell time' without the mediation of space''. Often, time is visualised as a line which travels along a three-dimensional axis, with events appearing as points along the line, although according to \citet[p. 14]{rosenberg2013cartographies}, the particular modern definition of a \textit{timeline} as a ``single axis and a regular, measured distribution of dates ... is not even 250 years old''.
+Strings, as entities which are comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---although not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality
+% \nb{wiki: timeline;\\\url{https://onlinelibrary.wiley.com/doi/full/10.1111/cogs.12804}\\\url{https://sites.williams.edu/thea228/files/2011/09/Cartographies-of-Time.pdf}\\\url{https://books.google.ie/books?hl=en&lr=&id=DqWqKVzipToC&oi=fnd&pg=PA8&dq=Rosenberg,+Daniel+(2010),+Cartographies+of+Time:+A+History+of+the+Timeline,+Princeton+Architectural+Press&ots=m2BG84e69h&sig=uykTBRs2rIPfmTf6rW0jtWlSBNo&redir_esc=y#v=snippet&q=spatial&f=false}\\\url{https://www.jstor.org/stable/pdf/1343108.pdf?casa_token=JdY5vEGKYgMAAAAA:ykEfao2S22Jekocs5fWyNixqQwM-YD6Os4r5wT-1cNFsLsk7NkAMcI9Y-7Z6GQQNGDgXJpGPpWXRAHrRrV_EQGW-rAR7RlTh9gkBUEdqsem31aBvyKvk}}
+(even absent vision, see \citet{bottini2015space})---\citet[pp. 42--43]{lakoff2008metaphors}, for example, discusses the metaphor of ``Time is a moving object'', where the future is perceived as moving towards us, and \citet[p. 542]{mitchell1980spatial} argues that ``we literally cannot `tell time' without the mediation of space''. Often, time is visualised as a line which travels along a three-dimensional axis, with events appearing as points or spans along the line, although according to \citet[p. 14]{rosenberg2013cartographies}, the particular modern definition of a \textit{timeline} as a ``single axis and a regular, measured distribution of dates ... is not even 250 years old''.
 
-Regardless of the spatial orientation or directionality, this perception of time as coming from somewhere and going to somewhere else maps well to a sequential representation. The core concept being that, if two events exist at different moments in time, then they can be put in some kind of spatial ordering corresponding to the temporal ordering. The strings described in \cref{sub:strings} are used to model sequences of events in such a way that they can be read in a manner similar to a series of snapshots or film reel, or like the panels of a comic: each ``image'' or moment of time features all of the events which are occuring at that time (relative to some fixed vocabulary of events).
+Regardless of the spatial orientation or directionality, this perception of time as coming from somewhere and going to somewhere else maps well to a sequential representation. The core concept being that, if two events exist at different moments in time, then they can be put in some kind of spatial ordering corresponding to the temporal ordering. The strings described in \cref{sub:strings} are used to model sequences of events in such a way that they can be read in a manner similar to a series of snapshots or film reel, or like the panels of a comic: each `image' or moment of time features all of the events which are occurring at that time (relative to some fixed vocabulary of events).
 
-\nb{brain gave up around here -- something about Gantt charts? an image or table or diagram or just an example string would be nice}
+An example of timelines in use is via Gantt charts, also known as harmonograms, which are a kind of bar chart that---like strings---display events over time. They are often used as a visual aid to show project schedules or similar temporal data \citep{kumar2005effective}. %\citep{gantt1910work,kumar2005effective}.
+The vertical axis shows the events mentioned in the chart, and the horizontal axis represents time intervals, with the width of the bars showing the duration of each event, and the beginnings and endings also illustrated by the bars' horizontal placement. See, for example, \Cref{ex:gantt-chart} below.
+
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.9\textwidth]{images/gantt-chart-example.png}
+		\captionof{figure}{A Gantt chart featuring six events.}\label{ex:gantt-chart}
+	\end{figure}
+\end{center}
+
+A chart like this is a useful visual display tool, though it can become a little unwieldy with large numbers of events. Compare the same temporal data in \Cref{ex:gantt-chart} shown in a single string in \cref{ex:gantt-string}:
+\begin{align}\label{ex:gantt-string}
+	\EventString{{}|a|a,b|a,b,c|b,c|b|b,d|b,d,e|e|f|{}}
+\end{align}
+No matter how many events may be of interest, if all beginnings, endings, and durations are known (such as they could be displayed in a Gantt chart), then they can be represented in a single string, with reducts and projections available in order to focus an analysis on a subset of events if desired, demonstrating a compact method of representing the timeline. However, in general, a text does not provide
+
+
 
 A lot of information can be derived from a text document, depending on what one is looking for. Here, the focus is on isolating the events and times that are mentioned or implied in the text. By extracting this information, a timeline is built which gives a picture of the content of the document, which may reveal insights not obvious when looking at the text as a whole.
 
-\nb{something about using spvc to check for inconsistencies in a doc}
-\nb{dunno where this table goes yet, just fixing the broken reference}
-\nb{decide about (consistently) using `b' or `\textless' for the before relation}
+% \nb{something about using spvc to check for inconsistencies in a doc}
 
 A point of interest is that the thirteen interval relations given by the interval algebra of \citet{allen1983maintaining} fall out of the vocabulary-constrained superposition of a pair of strings which each feature a single and different finitely-bounded event:
 \begin{align}
@@ -823,7 +996,7 @@ Each string $\mathcal{S}_{\bigcdot}(a,b)$ of the result set features one relatio
 	\end{tabular}
 	\captionof{table}{Allen interval relations in strings.}\label{tab:allen-rels-strings}
 \end{center}
-Using the notion of analogous strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}), any block compressed string which has a vocabulary of cardinality 2 can be compared to the strings in \Cref{tab:allen-rels-strings}. If such a string $s \sim \mathcal{S}_{\bigcdot}(a,b)$ for some $\bigcdot \in \mathcal{AR}$, then the events appearing in $s$ can also be said to be related by $\bigcdot$. For example, $\iFinishes{c}{d} \sim \mathcal{S}_{\text{fi}}(a,b)$, and thus the relation between the events $c$ and $d$ is ``$c$ finished by $d$''.
+Using the notion of analogous strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}), any block compressed string which has a vocabulary of cardinality 2 can be compared to the strings in \Cref{tab:allen-rels-strings}. If such a string $s \sim \mathcal{S}_{\bigcdot}(a,b)$ for some $\bigcdot \in \mathcal{AR}$, then the events appearing in $s$ can also be said to be related by $\bigcdot$. For example, $\iFinishes{c}{d} \sim \mathcal{S}_{\text{fi}}(a,b)$, and thus the relation between the events $c$ and $d$ is `$c$ finished by $d$'.
 
 This is easily extended beyond strings featuring just two fluents. The relations between the events appearing in the string $s = \EventString{{}|a|{}|b|{}|c|{}}$ can be determined by taking its block compressed reduct relative to the subsets of the vocabulary which have cardinality 2---in this case, $a$ is before $b$, $b$ is before $c$, and $a$ is before $c$. Once these relations have been calculated, the relations between the events in another string $s' = \EventString{{}|d|{}|e|{}|f|{}}$ are immediately available on analogy $s \sim s'$.
 
@@ -832,7 +1005,7 @@ While this is a relatively simple example, it can be extended for strings featur
 	s \spvc s' = \{&\EventString{{}|c|a,c|a,b,c|b,c|c|{}}, \EventString{{}|a|a,c|a,b,c|b,c|c|{}},\\
 	&\EventString{{}|a,c|a,b,c|b,c|c|{}}\}\notag
 \end{align}
-Now, given two more strings $t = \Overlaps{x}{y}$ and $t' = \During{y}{z}$ such that $s \sim t$ and $s' \sim t'$, the generated results of superposing $t$ and $t'$ will also be analogous to the results in \cref{ex:sp-analogy}, and so there is no need to calculate $t \spvc t'$. Since the strings are analogous, there is a bijective mapping \nb{ref a definition for analogous strings, also define analogous languages} between the vocabularies $f: (\mathcal{V}_{s} \cup \mathcal{V}_{s'}) \leftrightarrow (\mathcal{V}_{t} \cup \mathcal{V}_{t'})$, and applying this function $f$ to the results in \cref{ex:sp-analogy} gives the same result as calculating the superposition $t \spvc t'$:
+Now, given two more strings $t = \Overlaps{x}{y}$ and $t' = \During{y}{z}$ such that $s \sim t$ and $s' \sim t'$, the generated results of superposing $t$ and $t'$ will also be analogous to the results in \cref{ex:sp-analogy}, and so there is no need to calculate $t \spvc t'$. Since the strings are analogous, there is a bijective mapping \nb{ref a definition for analogous strings, also define analogous languages} between the vocabularies $f: (\V_{s} \cup \V_{s'}) \leftrightarrow (\V_{t} \cup \V_{t'})$, and applying this function $f$ to the results in \cref{ex:sp-analogy} gives the same result as calculating the superposition $t \spvc t'$:
 \begin{align}\label{ex:sp-analogy-equal}
 	f(s \spvc s') = \{&\EventString{{}|z|x,z|x,y,z|y,z|z|{}}, \EventString{{}|x|x,z|x,y,z|y,z|z|{}},\\
 	&\EventString{{}|x,z|x,y,z|y,z|z|{}}\}\notag\\
@@ -840,15 +1013,15 @@ Now, given two more strings $t = \Overlaps{x}{y}$ and $t' = \During{y}{z}$ such 
 \end{align}
 Again, this is a small example, but with larger numbers of events and more complex strings, leveraging the power of analogous strings has the potential to massively reduce the computational cost to calculate superpositions.
 
-\subsubsection{Inferring New Information}\label{ssub:inferring}
-A text which has been manually annotated for temporal information will typically mark up the most important relations between events, at least as the annotator saw them. By extracting and making plain the timeline, any inconsistencies are immediately revealed, whether these are the fault of a problematic document or human error. Further, relations between times and events which were not previously obvious can be spelled out clearly.
+% \subsubsection{Inferring New Information}\label{ssub:inferring}
+% A text which has been manually annotated for temporal information will typically mark up the most important relations between events, at least as the annotator saw them. By extracting and making plain the timeline, any inconsistencies are immediately revealed, whether these are the fault of a problematic document or human error. Further, relations between times and events which were not previously obvious can be spelled out clearly.
 
-This can be extended over multiple documents by keeping track of the semantics of the elements in a string---being able to map between the symbols and their meanings---and linking documents which refer to the same events. This can provide a way for checking consistency between reports which originate from different sources, or a way for augmenting an existing timeline with new data.
+% This can be extended over multiple documents by keeping track of the semantics of the elements in a string---being able to map between the symbols and their meanings---and linking documents which refer to the same events. This can provide a way for checking consistency between reports which originate from different sources, or a way for augmenting an existing timeline with new data.
 
-Additionally, conclusions can be drawn about whether certain inferences can be made based on existing data by determining the gap between premise strings and strings representing the question statement. That is, deriving the information that could be added to the premises to make the conclusion consistent with the known information (see \cref{ssub:residuals}).
+% Additionally, conclusions can be drawn about whether certain inferences can be made based on existing data by determining the gap between premise strings and strings representing the question statement. That is, deriving the information that could be added to the premises to make the conclusion consistent with the known information (see \cref{ssub:residuals}).
 
 \subsubsection{Scheduling (Zebra Puzzle)}\label{ssub:zebra}
-Scheduling is a problem. The Zebra/Einstein Puzzle is another problem. They may seem dissimilar, but in fact, there are a number of parallels. Both problems can be viewed as constraint satisfaction problems. Although the Zebra Puzzle concerns physical constraints, these can be modelled as sequences for which one can use strings to represent. If a ``house" is conceptualised as a box in a string i.e. a set, the elements contained within are the properties of that house according to the puzzle. For example, $\{red, english, zebra, oj, kools\}$. The left/right spatial relations are thought of in the same way as the previous/next boxes in a string.
+Scheduling is a problem. The Zebra/Einstein Puzzle is another problem. They may seem dissimilar, but in fact, there are a number of parallels. Both problems can be viewed as constraint satisfaction problems. Although the Zebra Puzzle concerns physical constraints, these can be modelled as sequences for which one can use strings to represent. If a `house' is conceptualised as a box in a string i.e. a set, the elements contained within are the properties of that house according to the puzzle. For example, $\{red, english, zebra, oj, kools\}$. The left/right spatial relations are thought of in the same way as the previous/next boxes in a string.
 
 Below is presented a variant of the puzzle using clues pertaining to temporal relations instead of spatial ones.
 
@@ -877,7 +1050,7 @@ Using these clues, it should be possible to answer these questions:
 	\item What day is there no traffic?
 	\item What day am I curious? 
 \end{itemize}
-The puzzle makes three assumptions: first, that the values as presented are \textit{discrete} rather than continuous---``freezing'' and ``cold'', for example, are similar concepts (indeed, if the weather is freezing, then it is also cold), but for the purposes of this puzzle they are treated as being separate and unrelated; second, that each value lasts for only one day---if it rains on one of the days, it will not rain on any other; and third, each day only has one value per attribute---for example, only one task can be performed on any given day.
+The puzzle makes three assumptions: first, that the values as presented are \textit{discrete} rather than continuous---`freezing' and `cold', for example, are similar concepts (indeed, if the weather is freezing, then it is also cold), but for the purposes of this puzzle they are treated as being separate and unrelated; second, that each value lasts for only one day---if it rains on one of the days, it will not rain on any other; and third, each day only has one value per attribute---for example, only one task can be performed on any given day.
 
 For each of the given clues, a constraint can be constructed from one or more strings. Additional constraints can be formed to represent the external assumptions, and by superposing these constraints together, a solution to the puzzle can be found. The strings corresponding to each clue are as follows:
 \begin{enumerate}
@@ -900,7 +1073,7 @@ For each of the given clues, a constraint can be constructed from one or more st
 \end{enumerate}
 For most of the clues, the constraint is formed from a language: when event $a$ and $b$ occur on the same day, they will appear in the same box, but it's unknown whether they occur at the beginning of the week (\EventString{a,b|{}}), the end of the week (\EventString{{}|a,b}), or somewhere in the middle (\EventString{{}|a,b|{}}), and so all of the possibilities appear together.
 
-Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values\footnote{The five day names as seen in the first clue of \Cref{tab:zebra-clue-strings} are not required for the puzzle: a string of five empty boxes suffices. However, the names are included here purely for convenience of reading.}. The vocabulary $\mathcal{V}$ of the puzzle is the union of the Attributes:
+Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values\footnote{The five day names as seen in the first clue of \Cref{tab:zebra-clue-strings} are not required for the puzzle: a string of five empty boxes suffices. However, the names are included here purely for convenience of reading.}. The vocabulary $\V$ of the puzzle is the union of the Attributes:
 \begin{itemize}
 	\item Weather = $\{rain,clear,fog,snow,overcast\}$
 	\item Temperature = $\{freezing,cold,mild,warm,hot\}$
@@ -911,14 +1084,14 @@ Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood)
 The external constraints are formalised as follows:
 \begin{align}
 	&\text{``Each Value only lasts for one day.''}\notag\\
-	&(\forall v \in \mathcal{V})~ x \in \llbracket P_v \rrbracket \Longrightarrow (\forall v' \in \mathcal{V})~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket\label{impl:zebra-constraintsA}\\
+	&(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow (\forall v' \in \V)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket\label{impl:zebra-constraintsA}\\
 	&\text{``Each day only contains one Value for each Attribute.''}\notag\\
 	&(\forall A \in Attributes)~ x \in \llbracket P_v \rrbracket \wedge v \in A \Longrightarrow (\forall v' \in A)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket\label{impl:zebra-constraintsB}
 \end{align}
 One further constraint is needed due to the nature of superposition allowing for the result of superposing two strings to be longer than either of the input strings:
 \begin{align}
 	&\text{``There are only 5 days.''}&\notag\\
-	&(\forall v \in \mathcal{V})~ x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5\label{impl:zebra-constraintsC}
+	&(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5\label{impl:zebra-constraintsC}
 \end{align}
 Now, superposing all of the languages in \Cref{tab:zebra-clue-strings} and taking into account the constraints in \cref{impl:zebra-constraintsA,impl:zebra-constraintsB,impl:zebra-constraintsC}, the (singular) result string is generated (each Value is displayed here abbreviated to its first two letters):
 \begin{align}
@@ -990,7 +1163,7 @@ in which each of the fluents originally appearing in the string $s$ have also be
 
 This mechanism allows for partially known information to be represented using strings. For example, the string \EventString{\alpha(a), \alpha(b)|{}} represents the knowledge that the events labelled $a$ and $b$ both begin at the same moment, without stating anything about when they each finish---they may end simultaneously, $a$ may finish before $b$, or $b$ may finish before $a$. Which of these states is true is unknown without further data.
 
-Semi-intervals allow for representing a greater range of event relations than the Allen relations do alone. Freksa \citeneeded{} describes 18 new relations which are made up of disjunctions of Allen's relations, based on the concept of cognitive neighbourhoods. That is, groupings of relations that make intuitive sense and can be derived from compositions of Allen relations \nb{expand, clarify ``intuitive", decide between Allen/Allen's, try to use less ``relations"?} \nb{include table or graphic of Freksa's relations, eg p18 or p21}.
+Semi-intervals allow for representing a greater range of event relations than the Allen relations do alone. Freksa \citeneeded{} describes 18 new relations which are made up of disjunctions of Allen's relations, based on the concept of cognitive neighbourhoods. That is, groupings of relations that make intuitive sense and can be derived from compositions of Allen relations \nb{expand, clarify `intuitive', decide between Allen/Allen's, try to use less `relations'?} \nb{include table or graphic of Freksa's relations, eg p18 or p21}.
 
 Many of the Freksa relations can be captured using the semi-intervals \nb{duh, he designed them that way} in the box-notation.
 
@@ -1082,7 +1255,7 @@ This data can be useful when trying to make links between events which have not 
 \subsection{Reasoning with Strings}\label{sub:reasoning}
 Strings of events are used to reason about the temporal information they contain: to infer a linear ordering and new relations between the events that were not previously stated. There are several methods which can be employed depending on the specific results that are desired.
 
-Superposition of strings creates new strings which feature all of the constraints of their ``parent" strings, and new relations can be derived by taking the projections of these strings in relation to an intersection of the parent vocabularies. Using resources such as VerbNet and WordNet (see \cref{ssub:verbwordnet}), the lexical semantics can be leveraged in order to suggest links between events which were not previously explicitly related. Additionally, residuals are employed to determine what relations may need to hold in order for other inferences to be made.
+Superposition of strings creates new strings which feature all of the constraints of their `parent' strings, and new relations can be derived by taking the projections of these strings in relation to an intersection of the parent vocabularies. Using resources such as VerbNet and WordNet (see \cref{ssub:verbwordnet}), the lexical semantics can be leveraged in order to suggest links between events which were not previously explicitly related. Additionally, residuals are employed to determine what relations may need to hold in order for other inferences to be made.
 
 \subsubsection{Superposition and Projection}\label{ssub:superposition}
 Having extracted strings from an annotated document, such as one of those in the TimeBank \citeneeded{} corpus, superposition can be used to work out the relations which are not yet made explicit. Strings model sets of constraints between the events they mention, and when two strings are superposed, all of these constraints also hold in the resulting language's strings. This can be shown through an example:
@@ -1118,7 +1291,7 @@ This is the main stuff. Lots of python code all interacting with the data and PM
 Describe all the moving parts, but mostly go into detail about the different API layers (i.e. multiple languages, tooling exposing only certain parts, NLTK having only some parts up to scratch), and the code that I personally wrote to stitch them all together, since that's basically the only sort-of valuable thing in this entire project.
 
 \subsection{Front-end Interface}\label{sub:frontend}
-Brython application with some JS to grease the wheels -- why not TKinter? because HTML and CSS are convenient and widely used tools and allow for a web-based interface as well as an offline tool (electron for packaging? maybe?) why not just use js frontend and python in the backend? python generators are hard, and don't play nice when you want to use `next()' to use an effectively ``pausable" function and get a new value.
+Brython application with some JS to grease the wheels -- why not TKinter? because HTML and CSS are convenient and widely used tools and allow for a web-based interface as well as an offline tool (electron for packaging? maybe?) why not just use js frontend and python in the backend? python generators are hard, and don't play nice when you want to use `next()' to use an effectively `pausable' function and get a new value.
 
 \newpage
 \section{Evaluation}\label{sec:evaluation}

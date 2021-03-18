@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.10/brython.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.10/brython_stdlib.min.js">
+    </script>
+    <title>Annotate</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body onload="brython()">
+    <input id="lz" class="hidden"></input>
+    <div class="help-wrap hidden">
+        <div class="help">
+            <h3>TimeML Annotation</h3>
+            <p>
+                Use the mouse to highlight text, then press 'Tag Event' to tag that text as an event, or press 'Tag Time' to tag that text as a time.
+            </p>
+            <p>
+                Keyboard shortcuts:
+                <ul>
+                    <li>E: Tag Event</li>
+                    <li>T: Tag Time</li>
+                    <li>U: Undo</li>
+                    <li>?: Toggle Help</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <div class="add-details-wrap hidden">
+        <div class="add-details">
+            <h3>Add attributes</h3>
+            <div class="event-attr hidden">
+                Class: <select>
+                    <option value="OCCURRENCE">OCCURRENCE</option>
+                    <option value="PERCEPTION">PERCEPTION</option>
+                    <option value="REPORTING">REPORTING</option>
+                    <option value="ASPECTUAL">ASPECTUAL</option>
+                    <option value="STATE">STATE</option>
+                    <option value="I_STATE">I_STATE</option>
+                    <option value="I_ACTION">I_ACTION</option>
+                </select>
+                <button class="update-attr">Update</button>
+            </div>
+            <div class="time-attr hidden">
+                Type: <select>
+                    <option value="DATE">DATE</option>
+                    <option value="TIME">TIME</option>
+                    <option value="DURATION">DURATION</option>
+                    <option value="SET">SET</option>
+                </select>
+                <button class="update-attr">Update</button>
+            </div>
+        </div>
+    </div>
+    <div class="input-text">
+        <textarea placeholder="Enter text or a TimeML file to annotate"></textarea>
+        <div class="btns">
+            <button>Annotate</button>
+        </div>
+    </div>
+    <div class="text hidden">
+        <pre></pre>
+        <div class="btns">
+            <button id="btn-new">New</button>
+            <button id="btn-export">Export</button>
+        </div>
+    </div>
+    <div class="panel">
+        <p>Select some text, then tag as Event or Time</p>
+        <div class="btns">
+            <button id="btn-undo">Undo</button>
+            <button id="btn-reset">Reset</button>
+            <button id="btn-tag-event">Tag Event</button>
+            <button id="btn-tag-time">Tag Time</button>
+            <button id="btn-help">Help</button>
+        </div>
+        <ul class="event-list"></ul>
+    </div>
+    <div class="string-bank">
+        <h4>String bank <button disabled id="dosp">Superpose</button></h4>
+        <ul class="strings"></ul>
+    </div>
+    <div class="relations">
+        <div>
+        <select class="ev1"></select> is <select class="rel">
+            <option value="b">BEFORE (|a||b|)</option>
+            <option value="bi">AFTER (|b||a|)</option>
+            <option value="m">MEETING (|a|b|)</option>
+            <option value="mi">MET BY (|b|a|)</option>
+            <option value="s">STARTING (|a,b|b|)</option>
+            <option value="si">STARTED BY (|a,b|a|)</option>
+            <option value="f">FINISHING (|b|a,b|)</option>
+            <option value="fi">FINISHED BY (|a|a,b|)</option>
+            <option value="di">CONTAINING (|a|a,b|a|)</option>
+            <option value="d">CONTAINED BY (|b|a,b|b|)</option>
+            <option value="o">OVERLAPPING (|a|a,b|b|)</option>
+            <option value="oi">OVERLAPPED BY (|b|a,b|a|)</option>
+            <option value="e">EQUAL TO (|a,b|)</option>
+        </select> <select class="ev2"></select></div>
+        <button id="createRelation">Set</button>
+    </div>
+    <script type="text/javascript" src="src/script.js"></script>
+    <script type="text/python" src="src/script.py"></script>
+    <script type="text/python" class="webworker" id="myworker">
+    from browser import bind, self
+    import freksa
+    from win_string_functions import superpose_all_langs_sensible
+        
+    @bind(self, "message")
+    def message(evt):
+        """Handle a message sent by the main script.
+        evt.data is the message body.
+        """
+        try:
+            sp = superpose_all_langs_sensible(evt.data, 12)
+            # result = int(evt.data[0]) * int(evt.data[1])
+            # workerResult = f'Result: {result}'
+            # Send a message to the main script.
+            # In the main script, it will be handled by the function bound to
+            # the event "message" for the worker.
+            self.send(list(sp))
+        except:
+            self.send('error')
+    </script>
+</body>
+</html>

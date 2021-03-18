@@ -152,15 +152,15 @@ def checker():
 # print(translate(freksa.pr('a', 'b')[1]))
 # 'α(b)/ω(a)'
 
-before = translate(freksa.b('a', 'b')[0])
-precedes = 'α(b)/ω(a)'
-succeeds = 'α(a)/ω(b)'
+# before = translate(freksa.b('a', 'b')[0])
+# precedes = 'α(b)/ω(a)'
+# succeeds = 'α(a)/ω(b)'
 
-print('old, should be empty ', superpose('|x||y|', 'x'))
-print('old, should be before', superpose(before, precedes))
-print('old, should be empty ', superpose(before, succeeds))
+# print('old, should be empty ', superpose('|x||y|', 'x'))
+# print('old, should be before', superpose(before, precedes))
+# print('old, should be empty ', superpose(before, succeeds))
 
-print()
+# print()
 
 def modified_vocab(components):
     return set(filter(None, reduce(lambda x, y: list(set(x) | set([yyy for yy in y for yyy in yy.split('/')])), components, set())))
@@ -214,14 +214,30 @@ def modified_L(head_a, tail_a, vocab_a, head_b, tail_b, vocab_b):
     part_3 = modified_superpose(tail_a, tail_b, vocab_a, vocab_b)
     return nonempty_union(nonempty_union(part_1, part_2), part_3)
 
-print('new, should be empty ', modified_superpose('|x||y|', 'x'))
-print('new, should be before', modified_superpose(before, precedes))
-print('new, should be empty ', modified_superpose(before, succeeds))
-print('new,                 ', modified_superpose(precedes, succeeds))
-print('new,                 ', modified_superpose('|x||y|', '|z|y,z|y|'))
-# ('sc', 'α(a)||ω(b)|ω(a),ω(b)'), ('bc', 'α(b)||ω(a)|ω(a),ω(b)') ('ct', 'α(a)/α(b)||ω(a)/ω(b)'), ('oc', 'α(a),α(b)|α(b)||ω(a)/ω(b)')
-print('new,                 ', modified_superpose('α(a)||ω(b)|ω(a),ω(b)', translate(freksa.oi('a', 'b')[0])))
-print('new,                 ', list(map(lambda x:x, modified_superpose('α(a)||ω(b)|ω(a),ω(b)', 'α(a)/α(b)||ω(a)/ω(b)'))))
-print('new,                 ', list(map(lambda x:x, modified_superpose('α(a),α(b)|α(b)||ω(a)/ω(b)', 'α(a)/α(b)||ω(a)/ω(b)'))))
-#TODO: should remove disjunctions iff they are satisfied in the same component i.e. |a/b,a| -> |a|, but |a/b| -> |a/b|
-#      should this be done during superposition?
+# print('new, should be empty ', modified_superpose('|x||y|', 'x'))
+# print('new, should be before', modified_superpose(before, precedes))
+# print('new, should be empty ', modified_superpose(before, succeeds))
+# print('new,                 ', modified_superpose(precedes, succeeds))
+# print('new,                 ', modified_superpose('|x||y|', '|z|y,z|y|'))
+# # ('sc', 'α(a)||ω(b)|ω(a),ω(b)'), ('bc', 'α(b)||ω(a)|ω(a),ω(b)') ('ct', 'α(a)/α(b)||ω(a)/ω(b)'), ('oc', 'α(a),α(b)|α(b)||ω(a)/ω(b)')
+# print('new,                 ', modified_superpose('α(a)||ω(b)|ω(a),ω(b)', translate(freksa.oi('a', 'b')[0])))
+# print('new,                 ', list(map(lambda x:x, modified_superpose('α(a)||ω(b)|ω(a),ω(b)', 'α(a)/α(b)||ω(a)/ω(b)'))))
+# print('new,                 ', list(map(lambda x:x, modified_superpose('α(a),α(b)|α(b)||ω(a)/ω(b)', 'α(a)/α(b)||ω(a)/ω(b)'))))
+# #TODO: should remove disjunctions iff they are satisfied in the same component i.e. |a/b,a| -> |a|, but |a/b| -> |a/b|
+# #      should this be done during superposition?
+
+# durand + schwer train problem 2008
+ms = modified_superpose('α(A),α(B),α(E)|', '|ω(A)|ω(A),ω(B)')
+for s in ms:
+    mm = modified_superpose(s, 'α(D),α(F)||ω(B)')
+    for m in mm:
+        mmm = modified_superpose(m, '|ω(E),ω(D)')
+        for m1 in mmm:
+            mm1 = modified_superpose(m1, 'α(D)|ω(C),α(D)|ω(A),ω(C)')
+            for x1 in mm1:
+                if set(vocabulary(reverse_translate(x1))) == set(['A', 'B', 'C', 'D', 'E', 'F']): 
+                    print(reverse_translate(x1))
+            mm2 = modified_superpose(m1, 'α(D)|ω(A),ω(C)')
+            for x1 in mm2:
+                if set(vocabulary(reverse_translate(x1))) == set(['A', 'B', 'C', 'D', 'E', 'F']): 
+                    print(reverse_translate(x1))
