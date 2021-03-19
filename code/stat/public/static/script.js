@@ -17,6 +17,7 @@ function updateState(newState) {
     this.state.prevState = [{...this.state, prevState: null}, ...this.state.prevState.slice(0, 50)]
     this.state = {...this.state, removed: null, ...newState}
     updateDOM()
+    // console.log(state)
 }
 
 function resetState() {
@@ -43,6 +44,12 @@ function getNextId(inserted) {
     let sortedIds = [inserted, ...this.state.ids].map(i => parseInt(i.substring(1)))
     sortedIds.sort((a, b) => a - b)
     return (sortedIds[sortedIds.length - 1] || this.state.nextId) + 1
+}
+
+async function hitAPI() {
+    await fetch('http://localhost:3000/api/test', {mode: 'no-cors'}).then(data => console.log(data)).catch(err => {
+        console.error(err)
+    })
 }
 
 function createMark(tag = 'EVENT') {
@@ -151,6 +158,7 @@ function updateStrings() {
         eventStringItem.textContent = `[${ev.join(', ')}]`
         eventStringsElem.prepend(eventStringItem)
     }
+    document.getElementById('string-count').textContent = `(${this.state.eventStrings.length})`
 }
 
 function addSuperpositionResults(results) {
@@ -394,4 +402,23 @@ document.getElementById('btn-new').addEventListener('click', newAnnotation)
 document.querySelector('.event-attr .update-attr').addEventListener('click', () => {
     const id = document.querySelector('.add-details').dataset.id
     document.querySelector(`[data-id="${id}"].tml-ev-ano`).dataset.eventClass = document.querySelector('.event-attr select').value
+})
+const dosp = document.getElementById('dosp')
+dosp.addEventListener('click', async () => {
+  dosp.textContent = 'Superposing...'
+  const spResult = await fetch('/api/test', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      inputs: this.state.eventStrings
+    })
+  }).then(response => response.json())
+  if (!spResult.error) {
+    // console.log(JSON.parse(spResult.stdout))
+    updateState({eventStrings: [...JSON.parse(spResult.stdout)]})
+  }
+  dosp.textContent = 'Superpose'
 })

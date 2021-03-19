@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.10/brython_stdlib.min.js">
     </script>
     <title>Annotate</title>
-    <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body onload="brython()">
     <input id="lz" class="hidden"></input>
@@ -59,6 +59,7 @@
         <textarea placeholder="Enter text or a TimeML file to annotate"></textarea>
         <div class="btns">
             <button>Annotate</button>
+            <a href="https://www.scss.tcd.ie/~dwoods/thesis/code/example.tml">Sample</a>
         </div>
     </div>
     <div class="text hidden">
@@ -80,7 +81,7 @@
         <ul class="event-list"></ul>
     </div>
     <div class="string-bank">
-        <h4>String bank <button disabled id="dosp">Superpose</button></h4>
+      <h4>String bank <span id="string-count">(0)</span> <button id="dosp">Superpose</button></h4>
         <ul class="strings"></ul>
     </div>
     <div class="relations">
@@ -102,28 +103,8 @@
         </select> <select class="ev2"></select></div>
         <button id="createRelation">Set</button>
     </div>
-    <script type="text/javascript" src="src/script.js"></script>
-    <script type="text/python" src="src/script.py"></script>
-    <script type="text/python" class="webworker" id="myworker">
-    from browser import bind, self
-    import freksa
-    from win_string_functions import superpose_all_langs_sensible
-        
-    @bind(self, "message")
-    def message(evt):
-        """Handle a message sent by the main script.
-        evt.data is the message body.
-        """
-        try:
-            sp = superpose_all_langs_sensible(evt.data, 12)
-            # result = int(evt.data[0]) * int(evt.data[1])
-            # workerResult = f'Result: {result}'
-            # Send a message to the main script.
-            # In the main script, it will be handled by the function bound to
-            # the event "message" for the worker.
-            self.send(list(sp))
-        except:
-            self.send('error')
-    </script>
+    <script type="text/javascript" src="static/script.js"></script>
+    <script type="text/python" src="static/freksa.py"></script>
+    <script type="text/python" src="static/script.py"></script>
 </body>
 </html>
