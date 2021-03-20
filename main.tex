@@ -348,29 +348,33 @@ Allen goes on to formally present and label the thirteen possible relations whic
 	\captionof{figure}{Allen interval relations \citep[p. 835, Figure 2]{allen1983maintaining}.}
 	\label{tab:allens-pictorial}
 \end{center}
-These relations form a cornerstone both within this work (see \Cref{tab:allen-rels-strings}) and elsewhere---they are a fundamental part of the specification of ISO-TimeML \citep{pustejovsky2010iso} (see \cref{ssub:timeml}), the international standard markup language for temporal annotation, where they are used, as one might expect\footnote{Albeit with slightly different labels and omitting \textit{overlaps}---see \Cref{fig:tlink-allen-translation}.}, as the possible relation types between a pair of events tagged elsewhere in a document. \citet{Freksa1992} also describes his larger set of \textit{semi-interval} relations in terms of disjunctions of the Allen relations---see also \cref{ssub:granularity} and \cref{ssub:incomplete}.
+These relations form a cornerstone both within this work (see, for instance, \Cref{tab:allen-rels-strings}) and elsewhere---they are a fundamental part of the specification of ISO-TimeML \citep{pustejovsky2010iso} (see \cref{ssub:timeml}), the international standard markup language for temporal annotation, where they are used, as one might expect\footnote{Albeit with slightly different labels and omitting \textit{overlaps}---see \Cref{fig:tlink-allen-translation}, p. \pageref{fig:tlink-allen-translation}.}, as the possible relation types between a pair of events tagged elsewhere in a document. \citet{Freksa1992} also describes a larger set of \textit{semi-interval} relations in terms of disjunctions of the Allen relations---see also \cref{ssub:granularity} and \cref{ssub:incomplete}.
 
 The framework proposed by Allen uses a directed graph as its basis, in which the nodes represent intervals, and the arcs are labelled according to the relation (or, in the case of uncertainty, relations---see \Cref{tab:allen-trans-table}) between the intervals. It is assumed that complete information about the relations in the network is maintained---that is, there are no nodes without an edge between them, as the transitivities between the various relations are to be computed as necessary---for instance, on the addition of a new interval into the network.
 
-To illustrate, given a graph representing some pair of events $X$ and $Y$ such that $X$ is \textit{before} $Y$ (\Cref{fig:simple-transitivity} (a)), a third node representing the event $Z$ is added, with the additional information that $Y$ occurs \textit{before} $Z$ (\Cref{fig:simple-transitivity} (b)). The relation between $X$ and $Z$ can then be calculated, using the fact that it has been constrained from thirteen possibilities to just one due to the transitivity rules which apply to the Allen relations---in this case, $X$ \textless{} $Y$ and $Y$ \textless{} $Z$ results in $X$ \textless{} $Z$ (\Cref{fig:simple-transitivity} (c))---see also \Cref{tab:allen-trans-table}.
+To illustrate, given a graph representing some pair of events $X$ and $Y$ such that $X$ is \textit{before} $Y$ (\Cref{fig:simple-transitivity} (a)), a third node representing the event $Z$ is added, with the additional information that $Y$ occurs \textit{before} $Z$ (\Cref{fig:simple-transitivity} (b)). The relation between $X$ and $Z$ can then be calculated due to the transitivity rules which apply to the Allen relations---in this case, $X$ \textless{} $Y$ and $Y$ \textless{} $Z$ results in $X$ \textless{} $Z$ (\Cref{fig:simple-transitivity} (c))---see also \Cref{tab:allen-trans-table}.
 \begin{center}
-	\begin{figure}[h]
+	\begin{figure}[h!]
 		\includegraphics[width=\textwidth]{images/simple-transitivity}
+		\captionof{figure}{Simple graph network showing the computation of a transitivity.}
+		\label{fig:simple-transitivity}
 	\end{figure}
-	\captionof{figure}{Simple graph network showing the computation of a transitivity.}
-	\label{fig:simple-transitivity}
 \end{center}
-If there is a single label on every arc in the graph (of which there should be $N(N - 1)/2$ for $N$ nodes), then the complete \textit{temporal closure} has been calculated. This is a difficult (though desirable) goal given any real world data, as discourse often features incomplete or vague temporal information.\nb{See \citet{Verhagen2005} for a discussion on temporal closure, write this in.}
-
-\citet[p. 836]{allen1983maintaining} also gives a $12 \times 12$ transitivity table (a fragment of which is reproduced below in \Cref{tab:allen-trans-table}) which gives the possible relations between two intervals A and C, given the relations \textbf{r1} between A and B, and \textbf{r2} between B and C (omitting the `equal' relation). A smaller fragment of this table is given in \citet[p. 130]{woods2017towards} showing these transitivities interpreted as superpositions of strings (see Section \ref{sec:fst}). One immediate advantage of the string approach comes from the fact that the strings may describe the relations between more than three events at once.
-
-An algorithm is detailed \citep[p. 835]{allen1983maintaining} for the propogation of constraints upon the addition of new information to the network, using the transitivity table to update all arcs in the network as necessary. While Allen notes that there are some issues with the algorithm (specifically he mentions the space requirement, which is somewhat high at $O(N^2)$ space for $N$ temporal intervals, and the fact that the algorithm doesn't guarantee consistency in larger than three-node networks (a limit which is improved upon in this work---see \cref{sub:applications}), and \citet[p. 219]{Verhagen2005} also notes an $O(N^3)$ time complexity), it does give an upper bound to the number of modifications that can be made to the network, regardless of the number of constraints added, as $13 \times \frac{(N - 1)(N - 2)}{2}$, and ``the average amount of work for each addition is essentially linear (i.e., $N$ additions take $O(N^2)$ time; one addition on average takes $O(N)$ time)" \citeyearpar[p. 837]{allen1983maintaining}. This is still quite high, given that it is not unusual for documents of the TimeBank corpus to feature fifty intervals or more, and some are in the hundreds \citep[p. 213]{Verhagen2005}.
+For $N$ nodes (intervals) there are $\frac{N^2-N}{2}$ edges if all new nodes are connected to all existant nodes when they are created. While in \Cref{fig:simple-transitivity} there is one label per edge, there may be as many as $13 \cdot \frac{N^2-N}{2}$ labels per edge if there is no knowledge about any relations. In \Cref{fig:complex-transitivity}, it can be seen that a pair of single-label edges may result in a multiple-label edge by transitivity: the relations $X$ o $Y$ and $Y$ o $Z$ results in the disjunction of $X$ \textless $Z$, $X$ o $Z$, and $X$ m $Z$. Without further data, there is no way to definitively constrain this disjunction to a single relation. If there is a single label for every edge in the graph, this is known as \textit{temporal closure}---as discourse often naturally features incomplete or vague temporal information, calculating the temporal closure is, in general, a difficult goal to achieve, though it is desirable in order to create a representation that is both complete and consistent \citep{Verhagen2005}.
+\begin{center}
+	\begin{figure}[h!]
+		\includegraphics[width=\textwidth]{images/complex-transitivity}
+		\captionof{figure}{Computation of a transitivity with a multiple-label result.}
+		\label{fig:complex-transitivity}
+	\end{figure}
+\end{center}
+\citet[p. 836]{allen1983maintaining} gives a $12 \times 12$\footnote{The equals relation is ommitted, since it is reflexive, symmetric, and transitive, meaning for any relation $\bigcdot$, $((A = B \land B \bigcdot C) \lor (A \bigcdot B \land B = C)) \Longrightarrow A \bigcdot C$.} transitivity table---a $6 \times 6$ fragment of which is reproduced below in \Cref{tab:allen-trans-table}---which provides the relation or relations which may exist between two intervals $A$ and $C$, given the relations $\bigcdot$ between $A$ and $B$, and $\bigcdot'$ between $B$ and $C$. Not shown in \Cref{tab:allen-trans-table} are relation pairs such as $A$ before $B$ and $B$ after $C$---the disjunction of relations between $A$ and $C$ in this case contains all 13 possibilities (in Allen's table, labelled as `no info'), indicating that there are no constraints on the relation between $A$ and $C$. A smaller fragment of this table which shows these transitivities interpreted as superpositions\footnote{See \cref{ssub:operations} for details of superposition.} of strings which represent the various Allen relations is given in \citet[p. 130]{woods2017towards}. One advantage of the string-based approach comes from the fact that a single string may be used to represent an arbitrary (finite) number of events, and all of the relations between them, at once---thus transitivities between, for example, four intervals can be represented as easily as three. \nb{Table of this somewhere?}
 
 \begin{center}
 	\onehalfspacing
 	\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline
-		\diagbox{A \textbf{r1} B}{B \textbf{r2} C} & \textless{} & d & o & m & s & f\\
+		\diagbox{$A \bigcdot B$}{$B \bigcdot' C$} & \textless{} & d & o & m & s & f\\
 		\hline
 		`before' \textless{} & \textless{} & \textless{} o m d s & \textless{} & \textless{} & \textless{} & \textless{} o m d s\\
 		\hline
@@ -388,9 +392,11 @@ An algorithm is detailed \citep[p. 835]{allen1983maintaining} for the propogatio
 	\captionof{table}{Fragment of Allen's transitivity table \citeyearpar[p. 836, Figure 4]{allen1983maintaining}.}
 	\label{tab:allen-trans-table}
 \end{center}
-\cite[p. 838]{allen1983maintaining} also describes a method for grouping clusters of intervals which are fully computed in terms of the relations between them, termed ``reference intervals" due to the fact that each interval $I_i$ in the group $\{I_1, I_2, ..., I_n\}$ will reference some new interval $R_m$ (where $m$ is an index on the number of reference intervals). The motivation for these is to reduce the space requirements while maintaining as much of the inferential power as possible. Allen shows how, since these reference intervals are just treated as normal intervals, they may themselves be grouped into a cluster, and thus allow for the creation of hierarchies of intervals which may be useful for scenarios such as when a path search algorithm is to be used. These are not currently implemented in the present work, but they may be useful as a way to address documents with high numbers of intervals.
+For the propagation of constraints upon the addition of new information to the network, \citet[p. 835]{allen1983maintaining} also details an algorithm using the transitivity table to update all arcs in the network as necessary. While Allen does concede that there are some issues with this algorithm---specifically mentioning the space requirement, which is somewhat high at $O(N^2)$ space for $N$ temporal intervals, and the fact that the algorithm doesn't guarantee consistency in larger than three-node networks\footnote{See \cref{sub:applications} for how this limit may be improved upon by using strings and superposition to automatically reject inconsistencies.\nb{Check this reference}}, and \citet[p. 219]{Verhagen2005} also notes an $O(N^3)$ time complexity---it does give an upper bound of $13 \times \frac{(N - 1)(N - 2)}{2}$ to the number of modifications that can be made to the network, regardless of the number of constraints added. Additionally, ``the average amount of work for each addition is essentially linear (i.e., $N$ additions take $O(N^2)$ time; one addition on average takes $O(N)$ time)'' \citep[p. 837]{allen1983maintaining}. This is still quite high, given that it is not unusual for a given text, annotated documents of the TimeBank \citep{pustejovsky2003timebank,pustejovsky2006timebank} corpus for instance, to feature fifty intervals or more, and some are in the hundreds \citep[p. 213]{Verhagen2005}.
 
-Allen's work was and remains highly influential in the field as the approach is intuitive and straight-forward, as well as being easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language" \citep[p. 123]{Pustejovsky2005}.
+To tackle the space requirements while maintaining as much inferential power as possible, \citet[p. 838]{allen1983maintaining} also describes a method for grouping clusters of intervals which---in regards to the relations between them---are fully computed, termed ``reference intervals''. This is due to the fact that each interval $I_i$ in the cluster $\{I_1, I_2, ..., I_n\}$ will reference one or more new intervals $R_m$ (where $m$ is an index on the number of reference intervals), and these reference intervals will be connected in the graph, which can be used to find relations between nodes which are not directly connected. Since these reference intervals may be treated as normal intervals, they may themselves be grouped into a cluster, and thus hierarchies of intervals may arise.% These are not currently implemented in the present work, but they may be useful as a way to address documents with high numbers of intervals.
+
+Allen's work was and remains highly influential in the field of temporal reasoning and annotation, thanks to an approach which is both intuitive and straight-forward, as well as easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language'' \citep[p. 123]{Pustejovsky2005}. \nb{either add "see blah" or rearrange subsections}
 
 
 \subsubsection{Tense and Aspect}\label{ssub:tenseaspect}
@@ -412,20 +418,20 @@ TimeML vs ISO-TimeML: the ISO version is the standard. However, the TimeBank cor
 		\hline
 		\textbf{TLINK} & \textbf{Allen}\\
 		\hline
-		\texttt{SIMULTANEOUS} & \textit{equal} =\\
-		\texttt{IDENTITY} & \textit{equal} =\\
-		\texttt{BEFORE} & \textit{before} \textless{}\\
-		\texttt{AFTER} & \textit{after} \textgreater{}\\
-		\texttt{IBEFORE} & \textit{meets} m\\
-		\texttt{IAFTER} & \textit{met by} mi\\
-		\texttt{INCLUDES} & \textit{contains} di\\
-		\texttt{IS\_INCLUDED} & \textit{during} d\\
-		\texttt{DURING} & \textit{during} d\\
-		\texttt{DURING\_INV} & \textit{contains} di\\
-		\texttt{BEGINS} & \textit{starts} s\\
-		\texttt{BEGUN\_BY} & \textit{started by} si\\
-		\texttt{ENDS} & \textit{finshes} f\\
-		\texttt{ENDED\_BY} & \textit{finished by} fi\\
+		\texttt{SIMULTANEOUS} & equal \textbf{(=)}\\
+		\texttt{IDENTITY} & equal \textbf{(=)}\\
+		\texttt{BEFORE} & before \textbf{(\textless{})}\\
+		\texttt{AFTER} & after \textbf{(\textgreater{})}\\
+		\texttt{IBEFORE} & meets \textbf{(m)}\\
+		\texttt{IAFTER} & met by \textbf{(mi)}\\
+		\texttt{INCLUDES} & contains \textbf{(di)}\\
+		\texttt{IS\_INCLUDED} & during \textbf{(d)}\\
+		\texttt{DURING} & during \textbf{(d)}\\
+		\texttt{DURING\_INV} & contains \textbf{(di)}\\
+		\texttt{BEGINS} & starts \textbf{(s)}\\
+		\texttt{BEGUN\_BY} & started by \textbf{(si)}\\
+		\texttt{ENDS} & finshes \textbf{(f)}\\
+		\texttt{ENDED\_BY} & finished by \textbf{(fi)}\\
 		\hline
 	\end{tabular}
 	\captionof{figure}{Possible values of a TLINK's relType attribute and their Allen relation counterparts.}
@@ -474,7 +480,8 @@ A fluent is a condition which may change over time---thus a predicate such as $\
 
 % How should events be labelled? Some say an event is defined in part by its participants \citeneeded{}. Many of the procedures defined in this work which use these strings operate primarily on a syntactic level rather than depending on the lexical semantics of individual words, in order to produce an approach that works broadly. As such, i
 In most cases, simple identifiers suffice for the purposes of labelling fluents as they appear in a string---so, for example, $Sleeps(john, t)$ may be labelled as \texttt{"js"}, where the time $t$ being represented by the fluent's position in the string (explained fully in the next section)%, which creates a more compact representation
-. This follows TimeML's standard \citep{pustejovsky2010iso} of using identification labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, in some instances, particularly when drawing inferences (see \cref{ssub:inferring} and \cref{ssub:ontology}) using semantic roles or lexical semantics, it will be useful to use a fuller labelling system, and so a string \EventString{{}|js|{}} would be rendered instead as \EventString{{}|sleeps(john)|{}}.
+. This follows TimeML's standard \citep{pustejovsky2010iso} of using identification labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, in some instances, particularly when drawing inferences (see %\cref{ssub:inferring} and 
+\cref{ssub:ontology}) using semantic roles or lexical semantics, it will be useful to use a fuller labelling system, and so a string \EventString{{}|js|{}} would be rendered instead as \EventString{{}|sleeps(john)|{}}.
 
 \subsubsection{Creating Strings}\label{ssub:creating}
 In order to create a string, first it is necessary to fix a finite set $\V$ of symbols which represent the times and events under discussion, such that each $v \in \V$ will be understood as naming a \textit{fluent} as a unary predicate which holds at a particular time. A string $s = \sigma_1\sigma_2\cdots\sigma_n$ of subsets $\sigma_i$ of $\V$ is interpreted as a finite model of $n$ discrete, contiguous moments of time, with $i \in \{1, 2, \ldots, n\}$.
@@ -983,7 +990,8 @@ A point of interest is that the thirteen interval relations given by the interva
 \end{align}
 Each string $\mathcal{S}_{\bigcdot}(a,b)$ of the result set features one relation $a \bigcdot b$, as shown in \Cref{tab:allen-rels-strings}, reproduced from \citet[p. 79, Table 1]{woods2018improving}.
 \begin{center}
-	\begin{tabular}[h!]{c|c|c||c|c|c}
+	\begin{tabular}[h!]{|c|c|c||c|c|c|}
+		\hline
 		${\bigcdot}$ & $a~{\bigcdot}~b$ & $\mbox{$\cal{S}$}_{\bigcdot}(a,b)$ & ${\bigcdot}^{-1}$ & $a~{\bigcdot}^{-1}~b$ & $\mbox{$\cal{S}$}_{{\bigcdot}^{-1}}(a,b)$ \\
 		\hline
 		$<$ & $a$ before $b$ & \Before{a}{b} & $>$ & $a$ after $b$ & \After{a}{b} \\
@@ -992,7 +1000,8 @@ Each string $\mathcal{S}_{\bigcdot}(a,b)$ of the result set features one relatio
 		d & $a$ during $b$ & \During{a}{b} & di & $a$ contains $b$ & \iDuring{a}{b} \\
 		s & $a$ starts $b$ & \Starts{a}{b} & si & $a$ started by $b$ & \iStarts{a}{b} \\
 		f & $a$ finishes $b$ & \Finishes{a}{b} & fi & $a$ finished by $b$ & \iFinishes{a}{b} \\
-		= & $a$ equals $b$ & \Equals{a}{b} & & &
+		= & $a$ equals $b$ & \Equals{a}{b} & & &\\
+		\hline
 	\end{tabular}
 	\captionof{table}{Allen interval relations in strings.}\label{tab:allen-rels-strings}
 \end{center}
@@ -1020,31 +1029,36 @@ Again, this is a small example, but with larger numbers of events and more compl
 
 % Additionally, conclusions can be drawn about whether certain inferences can be made based on existing data by determining the gap between premise strings and strings representing the question statement. That is, deriving the information that could be added to the premises to make the conclusion consistent with the known information (see \cref{ssub:residuals}).
 
-\subsubsection{Scheduling (Zebra Puzzle)}\label{ssub:zebra}
+\subsubsection{Constraints and Scheduling (Zebra Puzzle)}\label{ssub:zebra}
 Scheduling is a problem. The Zebra/Einstein Puzzle is another problem. They may seem dissimilar, but in fact, there are a number of parallels. Both problems can be viewed as constraint satisfaction problems. Although the Zebra Puzzle concerns physical constraints, these can be modelled as sequences for which one can use strings to represent. If a `house' is conceptualised as a box in a string i.e. a set, the elements contained within are the properties of that house according to the puzzle. For example, $\{red, english, zebra, oj, kools\}$. The left/right spatial relations are thought of in the same way as the previous/next boxes in a string.
 
 Below is presented a variant of the puzzle using clues pertaining to temporal relations instead of spatial ones.
 
 \noindent
 The clues to the puzzle are as follows:
-\begin{enumerate}
-	\item There are five weekdays.
-	\item The foggy day is mild.
-	\item I am tired on the warm day.
-	\item There is a traffic jam on the overcast day.
-	\item It is cold on the day with little traffic.
-	\item It is overcast the day after it snows.
-	\item I'm sad the day that I'm reading.
-	\item It rains the day I have printing to do.
-	\item The traffic is average in the middle of the week.
-	\item It's freezing at the beginning of the week.
-	\item The stapling is done the day before or the day after I'm happy.
-	\item Printing happens the day before or the day after I'm angry.
-	\item There is a lot of traffic the day that filing happens.
-	\item Shredding happens the day it's hot.
-	\item It's freezing the day before or the day after the weather is clear.
+\begin{center}
+	\begin{tabular}[h!]{|l|}
+		\hline
+		There are five weekdays.\\
+		The foggy day is mild.\\
+		I am tired on the warm day.\\
+		There is a traffic jam on the overcast day.\\
+		It is cold on the day with little traffic.\\
+		It is overcast the day after it snows.\\
+		I'm sad the day that I'm reading.\\
+		It rains the day I have printing to do.\\
+		The traffic is average in the middle of the week.\\
+		It's freezing at the beginning of the week.\\
+		The stapling is done the day before or the day after I'm happy.\\
+		Printing happens the day before or the day after I'm angry.\\
+		There is a lot of traffic the day that filing happens.\\
+		Shredding happens the day it's hot.\\
+		It's freezing the day before or the day after the weather is clear.\\
+		\hline
+	\end{tabular}
 	\captionof{table}{Temporal Zebra puzzle clues in English.}
-\end{enumerate}
+\end{center}
+
 Using these clues, it should be possible to answer these questions:
 \begin{itemize}
 	\item What day is there no traffic?

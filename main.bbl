@@ -161,6 +161,14 @@ Mueller, E.~T. (2008).
 \newblock In {\em Foundations of Artificial Intelligence}, volume~3, pages
   671--708.
 
+\bibitem[\protect\astroncite{Pustejovsky
+  et~al.}{2003}]{pustejovsky2003timebank}
+Pustejovsky, J., Hanks, P., Sauri, R., See, A., Gaizauskas, R., Setzer, A.,
+  Radev, D., Sundheim, B., Day, D., Ferro, L., et~al. (2003).
+\newblock {The TIMEBANK Corpus}.
+\newblock In {\em Corpus Linguistics}, volume 2003, pages 647--656. Lancaster,
+  UK.
+
 \bibitem[\protect\astroncite{Pustejovsky et~al.}{2005}]{Pustejovsky2005}
 Pustejovsky, J., Knippen, R., Littman, J., and Saur{\'{i}}, R. (2005).
 \newblock {Temporal and Event Information in Natural Language Text}.

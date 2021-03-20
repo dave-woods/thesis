@@ -9,31 +9,31 @@
 \contentsline {section}{\numberline {2}Relevant Literature}{2}
 \contentsline {subsection}{\numberline {2.1}Times and Events}{2}
 \contentsline {subsubsection}{\numberline {2.1.1}Allen's Interval Algebra}{2}
-\contentsline {subsubsection}{\numberline {2.1.2}Tense and Aspect}{8}
-\contentsline {subsection}{\numberline {2.2}Temporal Annotation}{8}
-\contentsline {subsubsection}{\numberline {2.2.1}ISO-TimeML}{9}
-\contentsline {subsubsection}{\numberline {2.2.2}TimeBank}{10}
-\contentsline {subsection}{\numberline {2.3}Temporal Semantics}{10}
-\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{10}
-\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{10}
-\contentsline {section}{\numberline {3}Finite-State Temporality}{12}
-\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{13}
-\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{15}
-\contentsline {subsubsection}{\numberline {3.1.2}Strings as MSO Models}{18}
-\contentsline {paragraph}{Analogous Strings}{21}
-\contentsline {subsubsection}{\numberline {3.1.3}Granularity: Points and Intervals}{23}
-\contentsline {subsubsection}{\numberline {3.1.4}String Operations}{28}
-\contentsline {paragraph}{Vocabulary:}{28}
-\contentsline {paragraph}{Block Compression:}{29}
-\contentsline {paragraph}{Superposition:}{30}
-\contentsline {paragraph}{Asynchronous Superposition:}{32}
-\contentsline {paragraph}{Reduct:}{35}
-\contentsline {paragraph}{Projection:}{36}
-\contentsline {paragraph}{Generate and Test:}{38}
-\contentsline {paragraph}{Vocabulary-Constrained Superposition:}{41}
-\contentsline {subsection}{\numberline {3.2}Applications}{45}
-\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{45}
-\contentsline {subsubsection}{\numberline {3.2.2}Scheduling (Zebra Puzzle)}{49}
+\contentsline {subsubsection}{\numberline {2.1.2}Tense and Aspect}{9}
+\contentsline {subsection}{\numberline {2.2}Temporal Annotation}{9}
+\contentsline {subsubsection}{\numberline {2.2.1}ISO-TimeML}{10}
+\contentsline {subsubsection}{\numberline {2.2.2}TimeBank}{11}
+\contentsline {subsection}{\numberline {2.3}Temporal Semantics}{11}
+\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{11}
+\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{11}
+\contentsline {section}{\numberline {3}Finite-State Temporality}{13}
+\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{14}
+\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{16}
+\contentsline {subsubsection}{\numberline {3.1.2}Strings as MSO Models}{19}
+\contentsline {paragraph}{Analogous Strings}{22}
+\contentsline {subsubsection}{\numberline {3.1.3}Granularity: Points and Intervals}{24}
+\contentsline {subsubsection}{\numberline {3.1.4}String Operations}{29}
+\contentsline {paragraph}{Vocabulary:}{29}
+\contentsline {paragraph}{Block Compression:}{30}
+\contentsline {paragraph}{Superposition:}{31}
+\contentsline {paragraph}{Asynchronous Superposition:}{33}
+\contentsline {paragraph}{Reduct:}{36}
+\contentsline {paragraph}{Projection:}{37}
+\contentsline {paragraph}{Generate and Test:}{39}
+\contentsline {paragraph}{Vocabulary-Constrained Superposition:}{42}
+\contentsline {subsection}{\numberline {3.2}Applications}{46}
+\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{46}
+\contentsline {subsubsection}{\numberline {3.2.2}Constraints and Scheduling (Zebra Puzzle)}{50}
 \contentsline {section}{\numberline {4}Methods}{55}
 \contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{55}
 \contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{55}
