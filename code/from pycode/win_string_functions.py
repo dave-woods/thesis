@@ -138,7 +138,7 @@ def superpose(string_a, string_b, vocab_a = None, vocab_b = None, remove_negated
     if vocab_a is None and vocab_b is None:
         vocab_a = vocabulary(string_a)
         vocab_b = vocabulary(string_b)
-        return frozenset(map(string_from_components, superpose(string_a, string_b, vocab_a, vocab_b)))
+        return frozenset(map(lambda x: sort_fluents(string_from_components(x)), superpose(string_a, string_b, vocab_a, vocab_b)))
 
     if not components_a and not components_b:
         return [[]]
@@ -169,55 +169,22 @@ def L(head_a, tail_a, vocab_a, head_b, tail_b, vocab_b):
 
 def superpose_sensible(a, b, limit = 0):
     if a == b:
-        return [a]
+        return [frozenset([a])]
     v_a = vocabulary(a)
     v_b = vocabulary(b)
     if v_a == v_b:
         return []
         # raise Exception('Strings containing '+a+' and '+b+' could not be superposed as they are inconsistent.')
     elif len(v_a & v_b) == 0:
-        return []
+        return [frozenset([a]), frozenset([b])]
     else:
         sp = superpose(a, b)
         # if string_length(a) > 0 and string_length(b) > 0 and len(sp) == 0:
         #     raise Exception('Strings containing '+block_compress(reduct(a, v_a & v_b))+' and '+block_compress(reduct(b, v_a & v_b))+' could not be superposed as they are inconsistent.')
         if limit > 0 and len(sp) > limit:
-            return []
+            return [frozenset([a]), frozenset([b])]
         else:
-            return sp
-
-# def superpose_all_sensible(list_of_strings, limit = 0):
-#     if type(list_of_strings) != list:
-#         raise TypeError
-#     elif len(list_of_strings) == 0:
-#         raise Exception('Cannot use empty list')
-#     elif len(list_of_strings) == 1:
-#         yield list_of_strings[0]
-#     else:
-#         yielded = frozenset()
-#         sps = superpose_sensible(list_of_strings[0], list_of_strings[1], limit)
-#         if sps == list_of_strings[:2]:
-#             # [a, b] was returned
-#             if len(list_of_strings) > 2:
-#                 ss1 = frozenset(superpose_all_sensible([list_of_strings[0]] + list_of_strings[2:], limit))
-#                 ss2 = frozenset(superpose_all_sensible([list_of_strings[1]] + list_of_strings[2:], limit))
-#                 new_list = list(ss1 | ss2)
-#                 print(new_list)
-#                 if frozenset(list_of_strings) == frozenset(new_list):
-#                     yield from new_list
-#                 else:
-#                     for s in superpose_all_sensible(new_list, limit):
-#                         if s not in yielded: yield s
-#                         yielded.add(s)
-#             else:
-#                 for s in list_of_strings:
-#                     if s not in yielded: yield s
-#                     yielded.add(s)
-#         else:
-#             for sp in sps:
-#                 for s in superpose_all_sensible([sp] + list_of_strings[2:], limit):
-#                     if s not in yielded: yield s
-#                     yielded.add(s)     
+            return [sp]
 
 def superpose_all(list_of_strings):
     if type(list_of_strings) != list:
@@ -231,71 +198,11 @@ def superpose_all(list_of_strings):
             yield from superpose_all([sp] + list_of_strings[2:])
 
 def superpose_langs_sensible(lang1, lang2, limit = 0):
-    # results = []
+    results = []
     for s1 in lang1:
         for s2 in lang2:
-            v_s1 = vocabulary(s1)
-            v_s2 = vocabulary(s2)
-            if s1 == s2:
-                yield from [s1]
-            elif v_s1 == v_s2:
-                yield
-            elif len(v_s1 & v_s1) == 0:
-                yield from [lang1, lang2]
-            else:
-                sp = superpose(s1, s2)
-                if limit > 0 and len(sp) > limit:
-                    yield from [lang1, lang2]
-                else:
-                    yield [item for item in sp]
-            # results += [item for sublist in superpose_sensible(s1, s2, limit) for item in sublist]
-    # yield from set(results)
-
-# def spals3(lol, res=[], limit = 0):
-#     if len(lol) == 0:
-#         yield from res
-#     else:
-
-
-# def spals2(lol, limit = 0):
-#     results = []
-#     consumed = False
-#     if len(lol) == 1:
-#         return lol
-#     for ll in lol[1:]:
-#         sp = [item for item in superpose_langs_sensible(lol[0], ll, limit) if item is not None]
-#         if len(sp) >= 1 and sp != [lol[0], ll]:
-#             results += sp
-#             consumed = True
-#         elif sp == [lol[0], ll]:
-#             results += [ll]
-#     # print(results)
-#     results = spals2(results, limit)
-#     if not consumed:
-#         results = [lol[0]]+results
-    
-#     return results
-
-
-
-def spals(lol, limit = 0):
-    # print('Entering', lol)
-    if len(lol) == 1:
-        # print('Exiting', lol)
-        yield from lol
-    else:
-        results = set()
-        spa = spals(lol[1:], limit)
-        for l in list(spa):
-            sp = list(superpose_langs_sensible(lol[0], l, limit))
-            # print(l, '&', lol[0], '=', sp)
-            # print('sp', sp)
-            results.add(frozenset([item for sublist in sp for item in sublist]))
-        # print('Exiting', lol)
-        # print('Res', [list(item) for item in results])
-        yield from [list(item) for item in results]
-
-wsjl = [['|a|a,b|a|'], ['|c||d|'], ['|e||d|'], ['|f||d|'], ['|b,e|']]
+            results += [item for sublist in superpose_sensible(s1, s2, limit) for item in sublist]
+    yield from set(results)
 
 def superpose_all_langs_sensible(list_of_langs, limit = 0):
     if type(list_of_langs) != list:
@@ -306,7 +213,7 @@ def superpose_all_langs_sensible(list_of_langs, limit = 0):
         results = dict()
         for s in list_of_langs[0]:
             v = vocabulary(s)
-            if v in results:
+            if v in results and s not in results[v]:
                 results[v].append(s)
             else:
                 results[v] = [s]
@@ -314,39 +221,6 @@ def superpose_all_langs_sensible(list_of_langs, limit = 0):
     else:
         sp = list(superpose_langs_sensible(list_of_langs[0], list_of_langs[1], limit))
         yield from superpose_all_langs_sensible([sp]+list_of_langs[2:], limit)
-
-# def superpose_all_langs_sensible(list_of_langs, limit = 0):
-#     if type(list_of_langs) != list:
-#         raise TypeError
-#     elif len(list_of_langs) == 0:
-#         raise Exception('Cannot use empty list')
-#     elif len(list_of_langs) == 1:
-#         yield from list_of_langs[0]
-#     else:
-#         sp = list(superpose_langs_sensible(list_of_langs[0], list_of_langs[1], limit))
-#         yield from superpose_all_langs_sensible([sp]+list_of_langs[2:], limit)
-
-# def superpose_all_langs_sensible(list_of_langs, limit = 0):
-#     if type(list_of_langs) != list:
-#         raise TypeError
-#     elif len(list_of_langs) == 0:
-#         raise Exception('Cannot use empty list')
-#     elif len(list_of_langs) == 1:
-#         yield list_of_langs[0]
-#     else:
-#         yielded = set()
-#         if len(vocabulary_lang(list_of_langs[0])) < 2:
-#             if frozenset(list_of_langs[0]) not in yielded: yield list_of_langs[0]
-#             yielded.add(frozenset(list_of_langs[0]))
-#             for s in superpose_all_langs_sensible(list_of_langs[1:]):
-#                 if frozenset(s) not in yielded: yield s
-#                 yielded.add(frozenset(s))
-#         else:
-#             for sp in superpose_langs_sensible(list_of_langs[0], list_of_langs[1], limit):
-#                 for s in superpose_all_langs_sensible([list(sp)] + list_of_langs[2:], limit):
-#                     if frozenset(s) not in yielded: yield s
-#                     yielded.add(frozenset(s))
-    # yield from reduce(lambda x,y: [s for s in superpose_langs_sensible(x,y)], list_of_langs)
 
 def superpose_langs(lang1, lang2):
     for s1 in lang1:

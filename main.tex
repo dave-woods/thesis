@@ -180,8 +180,7 @@
 \newcommand{\refneeded}[1][]{{\color{red}[Figure reference needed!#1]}}
 \newcommand{\citeneeded}[1][]{{\color{red}[Citation needed!#1]}}
 
-\newcommand{\selfnote}[1]{{\color{red}[NB\footnote{{\color{red}#1}}]}}
-\newcommand{\nb}{\selfnote}
+\newcommand{\nb}[1]{{\color{red}[NB\footnote{{\color{red}#1}}]}}
 
 %\usepackage[nottoc,numbib]{tocbibind} %This includes the bibliography as a numbered section in the TOC
 \usepackage[nottoc]{tocbibind}
@@ -346,7 +345,7 @@ Allen goes on to formally present and label the thirteen possible relations whic
 		\hline
 	\end{tabular}
 	\captionof{figure}{Allen interval relations \citep[p. 835, Figure 2]{allen1983maintaining}.}
-	\label{tab:allens-pictorial}
+	\label{fig:allens-pictorial}
 \end{center}
 These relations form a cornerstone both within this work (see, for instance, \Cref{tab:allen-rels-strings}) and elsewhere---they are a fundamental part of the specification of ISO-TimeML \citep{pustejovsky2010iso} (see \cref{ssub:timeml}), the international standard markup language for temporal annotation, where they are used, as one might expect\footnote{Albeit with slightly different labels and omitting \textit{overlaps}---see \Cref{fig:tlink-allen-translation}, p. \pageref{fig:tlink-allen-translation}.}, as the possible relation types between a pair of events tagged elsewhere in a document. \citet{Freksa1992} also describes a larger set of \textit{semi-interval} relations in terms of disjunctions of the Allen relations---see also \cref{ssub:granularity} and \cref{ssub:incomplete}.
 
@@ -374,19 +373,19 @@ For $N$ nodes (intervals) there are $\frac{N^2-N}{2}$ edges if all new nodes are
 	\onehalfspacing
 	\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline
-		\diagbox{$A \bigcdot B$}{$B \bigcdot' C$} & \textless{} & d & o & m & s & f\\
+		\diagbox{$A \bigcdot B$}{$B \bigcdot' C$} & \textbf{\textless{}} & \textbf{d} & \textbf{o} & \textbf{m} & \textbf{s} & \textbf{f}\\
 		\hline
-		`before' \textless{} & \textless{} & \textless{} o m d s & \textless{} & \textless{} & \textless{} & \textless{} o m d s\\
+		before \textbf{(\textless{})} & \textless{} & \textless{} o m d s & \textless{} & \textless{} & \textless{} & \textless{} o m d s\\
 		\hline
-		`during' d & \textless{} & d & \textless{} o m d s & \textless{} & d & d\\
+		during \textbf{(d)} & \textless{} & d & \textless{} o m d s & \textless{} & d & d\\
 		\hline
-		`overlaps' o & \textless{} & o d s & \textless{} o m & \textless{} & o & o d s\\
+		overlaps \textbf{(o)} & \textless{} & o d s & \textless{} o m & \textless{} & o & o d s\\
 		\hline
-		`meets' m & \textless{} & o d s & \textless{} & \textless{} & m & o d s\\
+		meets \textbf{(m)} & \textless{} & o d s & \textless{} & \textless{} & m & o d s\\
 		\hline
-		`starts' s & \textless{} & d & \textless{} o m & \textless{} & s & d\\
+		starts \textbf{(s)} & \textless{} & d & \textless{} o m & \textless{} & s & d\\
 		\hline
-		`finishes' f & \textless{} & d & o d s & m & d & f\\
+		finishes \textbf{(f)} & \textless{} & d & o d s & m & d & f\\
 		\hline
 	\end{tabular}
 	\captionof{table}{Fragment of Allen's transitivity table \citeyearpar[p. 836, Figure 4]{allen1983maintaining}.}
@@ -396,17 +395,53 @@ For the propagation of constraints upon the addition of new information to the n
 
 To tackle the space requirements while maintaining as much inferential power as possible, \citet[p. 838]{allen1983maintaining} also describes a method for grouping clusters of intervals which---in regards to the relations between them---are fully computed, termed ``reference intervals''. This is due to the fact that each interval $I_i$ in the cluster $\{I_1, I_2, ..., I_n\}$ will reference one or more new intervals $R_m$ (where $m$ is an index on the number of reference intervals), and these reference intervals will be connected in the graph, which can be used to find relations between nodes which are not directly connected. Since these reference intervals may be treated as normal intervals, they may themselves be grouped into a cluster, and thus hierarchies of intervals may arise.% These are not currently implemented in the present work, but they may be useful as a way to address documents with high numbers of intervals.
 
-Allen's work was and remains highly influential in the field of temporal reasoning and annotation, thanks to an approach which is both intuitive and straight-forward, as well as easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language'' \citep[p. 123]{Pustejovsky2005}. \nb{either add "see blah" or rearrange subsections}
+Allen's work was and remains highly influential in the field of temporal reasoning and annotation, thanks to an approach which is both intuitive and straight-forward, as well as easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language'' \citep[p. 123]{Pustejovsky2005}. \nb{either add "see \cref{sub:annotation}" or rearrange subsections}
 
 
 \subsubsection{Tense and Aspect}\label{ssub:tenseaspect}
-Reichenbach's (\citeyear{reichenbach1947elements}) theory of tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect. \selfnote{Bring up TEA here. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block compression. Tim mentioned that this is a difference from Schwer's S-Words.}
-%theoretically, if event time can be an interval, so could the speech and reference times, which would lead to even more aspects
+Reichenbach's (\citeyear{reichenbach1947elements}) theory of verbal tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect in English and other languages. While verbs are not the only expression of events, these categorisations can convey enough information to temporally locate that event
+
+\nb{Bring up TEA here somewhere. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block compression. Tim mentioned that this is a difference from Schwer's S-Words.}
 % Reichenbach, Vendler, TEA
 % Aspect hypothesis of dowty - build from statives - this is behind block compression/destuttering
 % as difference for Schwer s-words
+
+\citet[p. 72]{reichenbach1947elements} initially presents six tense/aspect combinations of English as arrangements of three temporal points, the `point of the event', the `point of reference', and the `point of speech', which may coincide. These six are: the Simple Past, Past Perfect, Present, Present Perfect, Simple Future, and Future Perfect---see \Cref{fig:reichenback-arrangements}. 
+
+%However, in order to treat the Progressive aspect which English may use, the so-called `point of the event' must in fact be an interval rather than an instantaneous point. In fact, all three time points (typically labelled as $E$ for event time, $R$ for reference time, and $S$ for speech time) may be considered as intervals\footnote{Using combinations of the Progressive and Perfective aspects is admittedly more difficult. For instance, the only difference in \citet{reichenbach1947elements} between Past Perfect and Past Perfect Progressive is that $E$ is treated as an interval in the latter. \citet{Derczynski2013} treat this by splitting $E$ into $E_s$ and $E_f$ for the beginning and ending of $E$, respectively.} while maintaining the initial arrangements to represent the tenses and aspects. This is presented using the Allen relations (see \cref{ssub:allen}) in \Cref{fig:reichenback-arrangements} below.
+
+% This is reproduced in \Cref{fig:reichenback-arrangements} below, with $E$ for the event time, $R$ for the reference time, and $S$ for the speech time:
+
+% \citet[p. 77]{Derczynski2013}: ``PERFECTIVE PROGRESSIVE aspect was converted to PERFECTIVE; this feature value accounts for 20 of 5974 verb events, or 0.34%''
+\begin{center}
+	\begin{tabular}{|c c c|}
+		\hline
+		\textbf{Tense} & \textbf{Example} & \textbf{E, R, S}\\
+		\hline
+		Simple Past & ``I bought the book'' & $(E = R) < S$\\
+		Past Perfect & ``I had bought the book'' & $E < R < S$\\
+		Present & ``I buy the book'' & $E = R = S$\\
+		Present Perfect & ``I have bought the book'' & $E < (R = S)$\\
+		Simple Future & ``I will buy the book'' & $(S = R) < E$\\
+		Future Perfect & ``I will have bought the book'' & $S < E < R$\\
+		% Simple Past Progressive & ``I was buying the book'' & $(E = R) < S$\\
+		% Past Perfect Progressive & ``I had been buying the book'' & $E < R < S$\\
+		% Present Progressive & ``I am buying the book'' & $E = R = S$\\
+		% Present Perfect Progressive & ``I have been buying the book'' & $E < (R = S)$\\
+		% Simple Future Progressive & ``I will be buying the book'' & $(S = R) < E$\\
+		% Future Perfect Progressive & ``I will have been buying the book'' & $S < E < R$\\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Arrangements of the points E, R, and S, from \citet{reichenbach1947elements}.}
+	\label{fig:reichenback-arrangements}
+\end{center}
+
+
+
+
 \subsection{Temporal Annotation}\label{sub:annotation}
-Ideally, a human using an artificially intelligent system won't have to consider annotation, except in the case when that itself is the goal. In any case, for now annotated text is a crucial source of data for working with models such as are presented in this work. When it comes to temporal annotation, the international standard is TimeML, specifically ISO-TimeML. \selfnote{Also talk about Tango and Verhagen's T-BOX.}
+% Mention Bunt in here somewhere!?
+Ideally, a human using an artificially intelligent system won't have to consider annotation, except in the case when that itself is the goal. In any case, for now annotated text is a crucial source of data for working with models such as are presented in this work. When it comes to temporal annotation, the international standard is TimeML, specifically ISO-TimeML. \nb{Also talk about Tango and Verhagen's T-BOX.}
 % Derczinski
 \subsubsection{ISO-TimeML}\label{ssub:timeml}
 TimeML \citep{Pustejovsky2005} was initially designed with the goal of improving question-answering systems by marking up texts so as to give events explicit temporal locations.
@@ -441,14 +476,14 @@ TimeML vs ISO-TimeML: the ISO version is the standard. However, the TimeBank cor
 \subsubsection{TimeBank}\label{ssub:timebank}
 The TimeBank corpus \citep{pustejovsky2006timebank} collects news articles that were manually annotated with TimeML. While it does contain some inconsistencies as a result of human error, it remains one of the largest sources for documents marked up with TimeML.
 \subsection{Temporal Semantics}\label{sub:semantics}
-The following sections describe some of the existing ways that the semantics of times and events can be represented. \selfnote{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST?}
+The following sections describe some of the existing ways that the semantics of times and events can be represented. \nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST?}
 \subsubsection{Discourse Representation Theory}\label{ssub:drt}
 \citet{Kamp1993} introduced Discourse Representation Theory (DRT) as a framework for semantically representing information derived from a text. DRT separates discourse referents (the entities under discussion) from Discourse Representation Structure (DRS) conditions, which describe what is known about the referents.
 
-\selfnote{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
+\nb{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
 % Bunt's use for semantic annotation - can we get his slides from the DCLRS?
 \subsubsection{Boxer}\label{ssub:boxer}
-Automatic parsing of text into DRSs is a popular task \selfnote{Find the shared task from 2019---I'm sure it was on the PMB website, but I can't find it at present}, and \citet{Bos2008} released the first version of the Boxer software which claimed to do this with over 95\% coverage for semantic analysis of newswire texts, though it was noted in the release that performance for temporal data was not as strong as its other areas.
+Automatic parsing of text into DRSs is a popular task \nb{Find the shared task from 2019---I'm sure it was on the PMB website, but I can't find it at present}, and \citet{Bos2008} released the first version of the Boxer software which claimed to do this with over 95\% coverage for semantic analysis of newswire texts, though it was noted in the release that performance for temporal data was not as strong as its other areas.
 
 There is a newer version of Boxer implemented as part of the Parallel Meaning Bank \citeneeded{} toolchain---however, this version had unfortunately not been made available for general use at the time of writing.
 
@@ -741,7 +776,7 @@ It's worth noting here that neither basic superposition $\sp$ nor asynchronous s
 
 For instance, in \cref{ex:superposition}, the second of the operand strings has the event $c$ appearing in a box to the left of (before) the event $d$, whereas the result has $c$ and $d$ occurring in the same box together, which states that they were occurring at the same moment.
 
-Similarly, in \cref{ex:async-superposition}, the first input string has events $a$ and $c$ appearing in the same box, while the second input string has $a$ appearing in a box before $c$. While this should seem like a contradiction which should not have viable results, the operation instead produces a set of four strings, the second and third of which are invalid according to \cref{impl:contiguous-events}: in \EventString{a,c|a,b,d|b,c,d} the event $c$ occurs in positions 1 and 3 but not position 2, and in \EventString{a,c|a,b,c|a,c,d|b,c,d} the event $b$ occurs in positions 2 and 4 but not in position 3.
+Similarly, in \cref{ex:async-superposition}, the first input string has events $a$ and $c$ appearing in the same box, while the second input string has $a$ appearing in a box before $c$. While this should seem like a contradiction which should not have viable results, the operation instead produces a set of four strings, the second and third of which are invalid according to \cref{impl:contiguous-events}, which states that a given fluent may not appear in non-contiguous string positions---in \EventString{a,c|a,b,d|b,c,d} the event $c$ occurs in positions 1 and 3 but not position 2, and in \EventString{a,c|a,b,c|a,c,d|b,c,d} the event $b$ occurs in positions 2 and 4 but not in position 3.
 
 This stands in contrast to the concept of \bc-equivalence, where strings have an equal interpretation regardless of how much or how little stutter is present. By using superposition as it is currently presented, information is often, in fact, lost rather than gained when strings are combined. The next two operations, \textit{reduct} and \textit{projection}, aim to assist in the resolution of this issue.
 
@@ -761,11 +796,11 @@ For example, with the string $s = \EventString{{}|a,b|a,b,c|a,c,d|a,e|e|{}}$ and
 \begin{align}\label{ex:reduct}
 	\rho_{\{a,d\}}(\EventString{{}|a,b|a,b,c|a,c,d|a,e|e|{}}) = \EventString{{}|a|a|a,d|a|{}|{}}
 \end{align}
-The resulting string in \cref{ex:reduct} contains only the events of interest (those mentioned in $A$), without loss of information. That is, the relative ordering of the events in the result string is the same as that in the input. The result string can additionally be block compressed to derive the simplest representation of the information it contains\footnote{In the case of \cref{ex:reduct,ex:bc-reduct}, the event $a$ \textit{contains} the event $d$, according to Allen's relations \citep{allen1983maintaining}\refneeded.}:
+The resulting string in \cref{ex:reduct} contains only the events of interest (those mentioned in $A$), without loss of information. That is, the relative ordering of the events in the result string is the same as that in the input. The result string can additionally be block compressed to derive the simplest representation of the information it contains\footnote{In the case of \cref{ex:reduct,ex:bc-reduct}, the event $a$ \textit{contains} the event $d$, according to Allen's relations \citep{allen1983maintaining}---see also \Cref{fig:allens-pictorial}, p. \pageref{fig:allens-pictorial}.}:
 \begin{align}\label{ex:bc-reduct}
 	\bc(\EventString{{}|a|a|a,d|a|{}|{}}) = \EventString{{}|a|a,d|a|{}}
 \end{align}
-It's worth noting that for any pair of strings $s$ and $s'$ with equal length and disjoint vocabularies, the reduct of the result of basic (not asynchronous) superposition $s \sp s'$ with respect to each of the strings' vocabularies is equal to the string itself:
+It's worth noting that for any pair of strings $s$ and $s'$ with equal length and disjoint vocabularies, the reduct of the result of basic superposition $s \sp s'$ with respect to each of the strings' vocabularies is equal to the string itself:
 \begin{align}\label{impl:disjoint-vocab-reduct}
 	\V_{s} \cap \V_{s'} = \emptyset \Longrightarrow \rho_{\V_{s}}(s \sp s') = s \text{ and } \rho_{\V_{s'}}(s \sp s') = s'
 \end{align}
@@ -775,7 +810,7 @@ For example, with $s = \EventString{a|b}$ and $s' = \EventString{c|d}$, $\V_s = 
 	\rho_{\{a,b\}}(\EventString{a,c|b,d}) &= \EventString{a|b}\notag\\
 	\rho_{\{c,d\}}(\EventString{a,c|b,d}) &= \EventString{c|d}\notag
 \end{align}
-
+This shows how the information contained within $s$ and $s'$ is not lost in the superposition $s \sp s'$. For asynchronous superposition---which is built on basic superposition---this also holds true for each string\footnote{True when the string $s'' \in s \spasync s'$ has been block compressed after the reduct. For example: $\bc(\rho_{\V_s}(s'')) = s$.} in the result language.
 \paragraph{Projection:}\label{para:str-op-projection}
 This process is streamlined through the use of \textit{projection}, where the $A$-projection $\pi_A$ of a string $s$ is simply the block compressed reduct of $s$ relative to $A$:
 \begin{align}
@@ -1066,25 +1101,33 @@ Using these clues, it should be possible to answer these questions:
 \end{itemize}
 The puzzle makes three assumptions: first, that the values as presented are \textit{discrete} rather than continuous---`freezing' and `cold', for example, are similar concepts (indeed, if the weather is freezing, then it is also cold), but for the purposes of this puzzle they are treated as being separate and unrelated; second, that each value lasts for only one day---if it rains on one of the days, it will not rain on any other; and third, each day only has one value per attribute---for example, only one task can be performed on any given day.
 
-For each of the given clues, a constraint can be constructed from one or more strings. Additional constraints can be formed to represent the external assumptions, and by superposing these constraints together, a solution to the puzzle can be found. The strings corresponding to each clue are as follows:
-\begin{enumerate}
-	\item $\EventString{mon|tue|wed|thu|fri}$
-	\item $\{ \EventString{{}|fog,mild},\EventString{{}|fog,mild|{}},\EventString{fog,mild|{}} \}$
-	\item $\{ \EventString{{}|tired,warm},\EventString{{}|tired,warm|{}},\EventString{tired,warm|{}} \}$
-	\item $\{ \EventString{{}|jammed,overcast},\EventString{{}|jammed,overcast|{}},\EventString{jammed,overcast|{}} \}$
-	\item $\{ \EventString{{}|cold,little},\EventString{{}|cold,little|{}},\EventString{cold,little|{}} \}$
-	\item $\{ \EventString{{}|snow|overcast},\EventString{{}|snow|overcast|{}},\EventString{snow|overcast|{}} \}$
-	\item $\{ \EventString{{}|sad,reading},\EventString{{}|sad,reading|{}},\EventString{sad,reading|{}} \}$
-	\item $\{ \EventString{{}|rain,printing},\EventString{{}|rain,printing|{}},\EventString{rain,printing|{}} \}$
-	\item $\EventString{{}|{}|average|{}|{}}$
-	\item $\EventString{freezing|{}|{}|{}|{}}$
-	\item $\{ \EventString{{}|stapling|happy},\EventString{{}|stapling|happy|{}},\EventString{stapling|happy|{}},\\\EventString{{}|happy|stapling},\EventString{{}|happy|stapling|{}},\EventString{happy|stapling|{}} \}$
-	\item $\{ \EventString{{}|printing|angry},\EventString{{}|printing|angry|{}},\EventString{printing|angry|{}},\\\EventString{{}|angry|printing},\EventString{{}|angry|printing|{}},\EventString{angry|printing|{}} \}$
-	\item $\{ \EventString{{}|lots,filing},\EventString{{}|lots,filing|{}},\EventString{lots,filing|{}} \}$
-	\item $\{ \EventString{{}|shredding,hot},\EventString{{}|shredding,hot|{}},\EventString{shredding,hot|{}} \}$
-	\item $\{ \EventString{{}|freezing|clear},\EventString{{}|freezing|clear|{}},\EventString{freezing|clear|{}},\\\EventString{{}|clear|freezing},\EventString{{}|clear|freezing|{}},\EventString{clear|freezing|{}} \}$
-	\captionof{table}{Temporal Zebra puzzle clues as strings.}\label{tab:zebra-clue-strings}
-\end{enumerate}
+For each of the given clues, a constraint can be constructed from one or more strings. Additional constraints can be formed to represent the external assumptions, and by superposing these constraints together, a solution to the puzzle can be found. The strings corresponding to each clue are as follows in \Cref{tab:zebra-clue-strings}:
+\begin{tabular}{|p{\textwidth}|}
+	\hline
+	\begin{itemize}
+		\item $\EventString{mon|tue|wed|thu|fri}$
+		\item $\{ \EventString{{}|fog,mild},\EventString{{}|fog,mild|{}},\EventString{fog,mild|{}} \}$
+		\item $\{ \EventString{{}|tired,warm},\EventString{{}|tired,warm|{}},\EventString{tired,warm|{}} \}$
+		\item $\{ \EventString{{}|jammed,overcast},\EventString{{}|jammed,overcast|{}},\EventString{jammed,overcast|{}} \}$
+		\item $\{ \EventString{{}|cold,little},\EventString{{}|cold,little|{}},\EventString{cold,little|{}} \}$
+		\item $\{ \EventString{{}|snow|overcast},\EventString{{}|snow|overcast|{}},\EventString{snow|overcast|{}} \}$
+		\item $\{ \EventString{{}|sad,reading},\EventString{{}|sad,reading|{}},\EventString{sad,reading|{}} \}$
+		\item $\{ \EventString{{}|rain,printing},\EventString{{}|rain,printing|{}},\EventString{rain,printing|{}} \}$
+		\item $\EventString{{}|{}|average|{}|{}}$
+		\item $\EventString{freezing|{}|{}|{}|{}}$
+		\item $\{ \EventString{{}|stapling|happy},\EventString{{}|stapling|happy|{}},\EventString{stapling|happy|{}},$
+		\item[] $~~\EventString{{}|happy|stapling},\EventString{{}|happy|stapling|{}},\EventString{happy|stapling|{}} \}$
+		\item $\{ \EventString{{}|printing|angry},\EventString{{}|printing|angry|{}},\EventString{printing|angry|{}},$
+		\item[] $~~\EventString{{}|angry|printing},\EventString{{}|angry|printing|{}},\EventString{angry|printing|{}} \}$
+		\item $\{ \EventString{{}|lots,filing},\EventString{{}|lots,filing|{}},\EventString{lots,filing|{}} \}$
+		\item $\{ \EventString{{}|shredding,hot},\EventString{{}|shredding,hot|{}},\EventString{shredding,hot|{}} \}$
+		\item $\{ \EventString{{}|freezing|clear},\EventString{{}|freezing|clear|{}},\EventString{freezing|clear|{}},$
+		\item[] $~~\EventString{{}|clear|freezing},\EventString{{}|clear|freezing|{}},\EventString{clear|freezing|{}} \}$	
+	\end{itemize}\\
+	\hline
+	
+\end{tabular}\captionof{table}{Temporal Zebra puzzle clues as strings.}\label{tab:zebra-clue-strings}
+
 For most of the clues, the constraint is formed from a language: when event $a$ and $b$ occur on the same day, they will appear in the same box, but it's unknown whether they occur at the beginning of the week (\EventString{a,b|{}}), the end of the week (\EventString{{}|a,b}), or somewhere in the middle (\EventString{{}|a,b|{}}), and so all of the possibilities appear together.
 
 Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values\footnote{The five day names as seen in the first clue of \Cref{tab:zebra-clue-strings} are not required for the puzzle: a string of five empty boxes suffices. However, the names are included here purely for convenience of reading.}. The vocabulary $\V$ of the puzzle is the union of the Attributes:
@@ -1127,13 +1170,15 @@ Finally, superposing this string with languages representing the questions that 
 	\end{gather}
 \end{subequations}
 Thus the answer is that ``there is no traffic on the first day of the week", and ``I am curious on the last day of the week". This result is reproduced in \Cref{tab:zebra-solution} below for the sake of completeness.
-\begin{ctable}[\label{tab:zebra-solution}]{r || c | c | c | c | c }{Solution to Temporal Zebra puzzle as in \cref{ex:zebra-string-full-solution}.}
+\begin{ctable}[\label{tab:zebra-solution}]{|r || c | c | c | c | c |}{Solution to Temporal Zebra puzzle as in \cref{ex:zebra-string-full-solution}.}
+	\hline
 	 & Mon & Tue & Wed & Thu & Fri\\\hline
 	Weather & $rain$ & $clear$ & $fog$ & $snow$ & $overcast$\\
 	Temperature & $freezing$ & $cold$ & $mild$ & $warm$ & $hot$\\
 	Traffic & $\underline{none}$ & $little$ & $average$ & $lots$ & $jammed$\\
 	Task & $printing$ & $stapling$ & $reading$ & $filing$ & $shredding$\\
-	Mood & $happy$ & $angry$ & $sad$ & $tired$ & $\underline{curious}$
+	Mood & $happy$ & $angry$ & $sad$ & $tired$ & $\underline{curious}$\\
+	\hline
 \end{ctable}
 \nb{how does this connect with scheduling?}
 
@@ -1149,9 +1194,9 @@ TimeML primarily uses \xmltag{TLINK} tags to annotate relations between marked u
 
 A translation is built from \xmltag{TLINK} to string, using the tag's attributes to provide the data, and the Allen Relations as an intermediary step, as per table \refneeded{}. For example: \nb{example here please}. Any events and times that feature in the document but are not mentioned in a \xmltag{TLINK} are kept aside for now, as there is not a given connection from these events to the rest of the timeline.
 
-After creating strings from the \xmltag{TLINK}s, the next step is to start building the timeline, using the superposition technique described in \cref{ssub:operations}. This allows for connections to be built between events and times that were not explicitly related by the annotation. If every time and event in the text is related to every other time and event, there is \textit{temporal closure} in the text (see \cref{ssub:allen} \nb{See transfer p6 -- maybe include the graph of $n(n-1)/2, n \ge 2$?}). For there to be temporal closure in a TimeML document would be a large amount of work for an annotator, as for $N$ events/times there would be $N(N - 1) / 2$ relations between them, which increases quickly: at $N = 10$ there are 45 relations, at $N = 50$ there are 1225 relations. This becomes unwieldy for a human to annotate, especially given that it is generally understood by the human reader that if $A$ precedes $B$, and $B$ precedes $C$, then $A$ also precedes $C$, so it feels unnecessary to include this latter relation. However, an automated system does not have this inherent knowledge, and needs a way to calculate the implied relations.
+After creating strings from the \xmltag{TLINK}s, the next step is to start building the timeline, using the superposition technique described in \cref{ssub:operations}. This allows for connections to be built between events and times that were not explicitly related by the annotation. If every time and event in the text is related to every other time and event, there is \textit{temporal closure} in the text (see \cref{ssub:allen} \nb{See transfer p6---maybe include the graph of $n(n-1)/2, n \ge 2$?}). For there to be temporal closure in a TimeML document would be a large amount of work for an annotator, as for $N$ events/times there would be $N(N - 1) / 2$ relations between them, which increases quickly: at $N = 10$ there are 45 relations, at $N = 50$ there are 1225 relations. This becomes unwieldy for a human to annotate, especially given that it is generally understood by the human reader that if $A$ precedes $B$, and $B$ precedes $C$, then $A$ also precedes $C$, so it feels unnecessary to include this latter relation. However, an automated system does not have this inherent knowledge, and needs a way to calculate the implied relations.
 
-The various relations can be combined according to the table in \cite{allen1983maintaining} \citeneeded[ -- get the page and figure number], reproduced in \cref{ssub:allen} \refneeded{}, and again below using strings in table \refneeded{}. The advantage to using strings is that the extension beyond three events is simple \nb{Defend this -- I think there is something in ISA13 paper -- or remove}. It should be noted that several combinations of relations produce a disjunction of relations, which follows from the fact that these combinations of $a \bigcdot b$ and $b \bigcdot c$ don't provide enough information to determine the exact relation $a \bigcdot c$. It may be possible to narrow this down, though, with the addition of further relations connecting other intervals ($d,e,f,...$) with some or all of $a,b,c$.
+The various relations can be combined according to the table in \cite{allen1983maintaining} \citeneeded[ -- get the page and figure number], reproduced in \cref{ssub:allen} \refneeded{}, and again below using strings in table \refneeded{}. The advantage to using strings is that the extension beyond three events is simple \nb{Defend this---I think there is something in ISA13 paper---or remove}. It should be noted that several combinations of relations produce a disjunction of relations, which follows from the fact that these combinations of $a \bigcdot b$ and $b \bigcdot c$ don't provide enough information to determine the exact relation $a \bigcdot c$. It may be possible to narrow this down, though, with the addition of further relations connecting other intervals ($d,e,f,...$) with some or all of $a,b,c$.
 
 \subsubsection{Handling Incomplete Data}\label{ssub:incomplete}
 When dealing with any temporal information, there is often a lack of specificity that means temporal closure cannot be calculated. For example, knowing that event $a$ occurred before event $c$, as in \Before{a}{c}, and that event $b$ also occurred before $c$, as in \Before{b}{c}, does not impart any information on the relation between $a$ and $b$. If this is all of the available data, then it is only possible to choose this relation $a \bigcdot b, ~\bigcdot \in \mathcal{AR}$ with a precision of 1 in 13 chance. However, further information which includes other relations for each of $a$ and $b$ individually may eventually reveal their connection.
@@ -1183,23 +1228,31 @@ Many of the Freksa relations can be captured using the semi-intervals \nb{duh, h
 
 For example, the relation \textit{older} corresponds with a disjunction of five Allen relations: \textit{before}, \textit{meets}, \textit{overlaps}, \textit{contains}, and \textit{finished by}.
 \begin{center}
-	\begin{tabular}[h!]{r | l}
+	\begin{tabular}[h!]{|r | l|}
+	\hline
+	\textbf{Relation} & \textbf{String}\\
+	\hline
 	before &\Before{a}{b}\\
 	meets &\Meets{a}{b}\\
 	overlaps &\Overlaps{a}{b}\\
 	contains &\iDuring{a}{b}\\
-	finished by&\iFinishes{a}{b}
+	finished by&\iFinishes{a}{b}\\
+	\hline
 	\end{tabular}
 	\captionof{table}{The Freksa relation \textit{older}.}
 \end{center}
 The similarities between these five relations becomes more apparent when they are translated to use semi-intervals instead:
 \begin{center}
-	\begin{tabular}[h!]{r | l}
+	\begin{tabular}[h!]{|r | l|}
+	\hline
+	\textbf{Relation} & \textbf{String}\\
+	\hline
 	before &\siBefore{a}{b}\\
 	meets &\siMeets{a}{b}\\
 	overlaps &\siOverlaps{a}{b}\\
 	contains &\siiDuring{a}{b}\\
-	finished by&\siiFinishes{a}{b}
+	finished by&\siiFinishes{a}{b}\\
+	\hline
 	\end{tabular}
 	\captionof{table}{The Freksa relation \textit{older} using semi-intervals, before block compressed reduct.}
 \end{center}
@@ -1212,7 +1265,7 @@ Below is a table of the 18 Freksa relations, the Allen relations they comprise, 
 
 \begin{center}
 	\footnotesize
-	\begin{tabular}[h!]{c | c | c}
+	\begin{tabular}[h!]{|c | c | c|}
 		\hline
 		Freksa & Allen & string\\
 		\hline
@@ -1234,18 +1287,20 @@ Below is a table of the 18 Freksa relations, the Allen relations they comprise, 
 		survived by contemporary & d, s, o & \EventString{\alpha(b)|{}|\omega(a)|\omega(a),\omega(b)}\\
 		older and survived by & b, m, o & ...\\
 		younger and survives & bi, mi, oi & ...\\
+		\hline
 	\end{tabular}
 	\captionof{table}{The Freksa relations and the strings they project to.}
 \end{center}
 The last two relations on this list cannot be represented using a single string, and are instead must use conjunctions of pairs of strings: 
 \begin{center}
 	\footnotesize
-	\begin{tabular}[h!]{c | c | c}
+	\begin{tabular}[h!]{|c | c | c|}
 		\hline
 		Freksa & Allen & strings\\
 		\hline
 		older and survived by & b, m, o & \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}} $\land$ \EventString{{}|\omega(a)|\omega(a),\omega(b)}\\
 		younger and survives & bi, mi, oi & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}} $\land$ \EventString{{}|\omega(b)|\omega(a),\omega(b)}\\
+		\hline
 	\end{tabular}
 	\captionof{table}{The remaining Freksa relations and the strings they project to.}
 \end{center}
@@ -1305,11 +1360,11 @@ This is the main stuff. Lots of python code all interacting with the data and PM
 Describe all the moving parts, but mostly go into detail about the different API layers (i.e. multiple languages, tooling exposing only certain parts, NLTK having only some parts up to scratch), and the code that I personally wrote to stitch them all together, since that's basically the only sort-of valuable thing in this entire project.
 
 \subsection{Front-end Interface}\label{sub:frontend}
-Brython application with some JS to grease the wheels -- why not TKinter? because HTML and CSS are convenient and widely used tools and allow for a web-based interface as well as an offline tool (electron for packaging? maybe?) why not just use js frontend and python in the backend? python generators are hard, and don't play nice when you want to use `next()' to use an effectively `pausable' function and get a new value.
+Brython application with some JS to grease the wheels---why not TKinter? because HTML and CSS are convenient and widely used tools and allow for a web-based interface as well as an offline tool (electron for packaging? maybe?) why not just use js frontend and python in the backend? python generators are hard, and don't play nice when you want to use `next()' to use an effectively `pausable' function and get a new value.
 
 \newpage
 \section{Evaluation}\label{sec:evaluation}
-Evaluation was performed on the basis of three main components: asserting that the results produced were not invalid (i.e. did not cause contradictions internally within a string/language or externally within a knowledge-base), performing inferences using the FRACAS semantic test suite, and verifying that all implementation code was tested so as to produce exactly and only the expected results. \nb{how and why does this add \textit{value} -- data is compressed? human readable/intuitive?}
+Evaluation was performed on the basis of three main components: asserting that the results produced were not invalid (i.e. did not cause contradictions internally within a string/language or externally within a knowledge-base), performing inferences using the FRACAS semantic test suite, and verifying that all implementation code was tested so as to produce exactly and only the expected results. \nb{how and why does this add \textit{value}---data is compressed? human readable/intuitive?}
 \subsection{Timeline Validity}\label{sub:validity}
 If data is superposed or otherwise manipulated, no information is lost or falsified in the process.
 \subsection{FRACAS Semantic Test Suite}\label{sub:fracas}

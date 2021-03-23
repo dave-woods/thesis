@@ -2,14 +2,23 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import Head from 'next/head'
 
 import { parseTML } from '../fns/parseTML'
+import { getFreksa } from '../fns/getFreksa'
+
+import Details from '../components/Details'
+import Help from '../components/Help'
+import StringBank from '../components/StringBank'
+import CreateRelation from '../components/CreateRelation'
+import TextEntry from '../components/TextEntry'
+import TextDisplay from '../components/TextDisplay'
+import EventList from '../components/EventList'
 
 export default function Annotate() {
   const [helpDisplayed, setHelpDisplayed] = useState(false)
   const [detailsPaneDisplayed, setDetailsPaneDisplayed] = useState(false)
-  const [textareaValue, setTextareaValue] = useState('')
   const [textHTML, setTextHTML] = useState('')
   const [parsedTlinks, setParsedTlinks] = useState([])
   const [parsedEvents, setParsedEvents] = useState([])
+  const [eventStrings, setEventStrings] = useState([])
   const [nextId, setNextId] = useState(1)
 
   useEffect(() => {
@@ -35,29 +44,31 @@ export default function Annotate() {
       }
   }, [helpDisplayed, detailsPaneDisplayed, nextId])
 
-  const handleTextarea = useCallback(e => {
-    setTextareaValue(e.target.value)
-  }, [textareaValue])
-
-  const grabParse = () => {
-    if (textareaValue.trim() !== '') {
-      const parseResult = parseTML(textareaValue)
-        if (parseResult.transformed) {
-          setTextHTML(parseResult.transformed)
-            setParsedTlinks([...parseResult.tlinks])
-            setParsedEvents([...parseResult.events])
-        } else {
-          setTextHTML(parseResult.imported)
-        }
-    }
+  const grabParse = (textareaValue) => {
+    // if (textareaValue.trim() !== '') {
+      // const parseResult = parseTML(textareaValue)
+      // if (parseResult.transformed) {
+        // setTextHTML(parseResult.transformed)
+        // setParsedEvents([...parseResult.events])
+        // setParsedTlinks([...parseResult.tlinks])
+        // setEventStrings(parseResult.tlinks.map(async tlink => {
+          // const res = await getFreksa(tlink.e1, tlink.e2, tlink.rel)
+          // const data = await res.json()
+          // console.log(data)
+          // return JSON.parse(data.stdout)
+        // }))
+      // } else {
+        // setTextHTML(parseResult.imported)
+      // }
+    // }
   }
 
   const dismissOverlay = e => {
     e.stopPropagation()
-      if (e.currentTarget === e.target) {
-        setHelpDisplayed(false)
-          setDetailsPaneDisplayed(false)
-      }
+    if (e.currentTarget === e.target) {
+      setHelpDisplayed(false)
+      setDetailsPaneDisplayed(false)
+    }
   }
 
   const firstUpdate = useRef(true)
@@ -104,102 +115,23 @@ export default function Annotate() {
 
   return (
     <main id="annotate">
-      <Head>
-        <title>String Temporal Annotation Tool</title>
-      </Head>
-      {helpDisplayed && <div className="help-wrap" onClick={dismissOverlay}>
-        <div className="help">
-          <h3>TimeML Annotation</h3>
-          <p>
-            Use the mouse to highlight text, then press 'Tag Event' to tag that text as an event, or press 'Tag Time' to tag that text as a time.
-          </p>
-          <p>
-            Keyboard shortcuts:
-          </p>
-          <ul>
-            <li>E: Tag Event</li>
-            <li>T: Tag Time</li>
-            <li>U: Undo</li>
-            <li>?: Toggle Help</li>
-          </ul>
-        </div>
-      </div>}
-      {detailsPaneDisplayed && <div className="add-details-wrap" onClick={dismissOverlay}>
-        <div className="add-details">
-          <h3>Add attributes</h3>
-          <div className="event-attr">
-            Class: <select>
-              <option value="OCCURRENCE">OCCURRENCE</option>
-              <option value="PERCEPTION">PERCEPTION</option>
-              <option value="REPORTING">REPORTING</option>
-              <option value="ASPECTUAL">ASPECTUAL</option>
-              <option value="STATE">STATE</option>
-              <option value="I_STATE">I_STATE</option>
-              <option value="I_ACTION">I_ACTION</option>
-            </select>
-            <button className="update-attr">Update</button>
-          </div>
-          <div className="time-attr">
-            Type: <select>
-              <option value="DATE">DATE</option>
-              <option value="TIME">TIME</option>
-              <option value="DURATION">DURATION</option>
-              <option value="SET">SET</option>
-            </select>
-            <button className="update-attr">Update</button>
-          </div>
-        </div>
-      </div>}
-      {!textHTML ? <div className="input-text">
-        <textarea value={textareaValue} onChange={handleTextarea} placeholder="Enter text or a TimeML file to annotate"></textarea>
-          <div className="btns">
-          <button onClick={grabParse}>Annotate</button> <a href="https://www.scss.tcd.ie/~dwoods/thesis/code/example.tml">Sample</a>
-          </div>
-          </div>
-          :
-          <div className="text">
-          <pre dangerouslySetInnerHTML={{ __html: textHTML}}></pre>
-          <div className="btns">
-          <button id="btn-new" onClick={() => setTextHTML(null)}>New</button>
-          <button id="btn-export">Export</button>
-          </div>
-          </div>}
+      <Head><title>String Temporal Annotation Tool</title></Head>
+      {helpDisplayed && <Help dismiss={dismissOverlay} />}
+      {detailsPaneDisplayed && <Details dismiss={dismissOverlay} />}
+      // {!textHTML ? <TextEntry grabParse={grabParse}/> : <TextDisplay text={textHTML} reset={() => setTextHTML('')}/>}
       <div className="panel">
-        <p>Select some text, then tag as Event or Time {nextId}</p>
+        <p>Select some text, then tag as Event or Time</p>
         <div className="btns">
-        <button id="btn-undo">Undo</button>
-        <button id="btn-reset">Reset</button>
-        <button id="btn-tag-event" onClick={() => createMark('EVENT')}>Tag Event</button>
-        <button id="btn-tag-time" onClick={() => createMark('TIMEX3')}>Tag Time</button>
-        <button id="btn-help" onClick={() => setHelpDisplayed(true)}>Help</button>
+          <button id="btn-undo">Undo</button>
+          <button id="btn-reset">Reset</button>
+          <button id="btn-tag-event" onClick={() => createMark('EVENT')}>Tag Event</button>
+          <button id="btn-tag-time" onClick={() => createMark('TIMEX3')}>Tag Time</button>
+          <button id="btn-help" onClick={() => setHelpDisplayed(true)}>Help</button>
         </div>
-        <ul className="event-list">
-        {parsedEvents.map(ev => <li key={ev.id}>{ev.id}: {ev.text}</li>)}
-        </ul>
-        </div>
-        <div className="string-bank">
-        <h4>String bank <button disabled id="dosp">Superpose</button></h4>
-        <ul className="strings"></ul>
-        </div>
-        <div className="relations">
-        <div>
-        <select className="ev1"></select> is <select className="rel">
-        <option value="b">BEFORE (|a||b|)</option>
-        <option value="bi">AFTER (|b||a|)</option>
-        <option value="m">MEETING (|a|b|)</option>
-        <option value="mi">MET BY (|b|a|)</option>
-        <option value="s">STARTING (|a,b|b|)</option>
-        <option value="si">STARTED BY (|a,b|a|)</option>
-        <option value="f">FINISHING (|b|a,b|)</option>
-        <option value="fi">FINISHED BY (|a|a,b|)</option>
-        <option value="di">CONTAINING (|a|a,b|a|)</option>
-        <option value="d">CONTAINED BY (|b|a,b|b|)</option>
-        <option value="o">OVERLAPPING (|a|a,b|b|)</option>
-        <option value="oi">OVERLAPPED BY (|b|a,b|a|)</option>
-        <option value="e">EQUAL TO (|a,b|)</option>
-        </select> <select className="ev2"></select></div>
-        <button id="createRelation">Set</button>
-        </div>
-        </main>
-        )
+        <EventList events={parsedEvents} />
+      </div>
+      <StringBank strings={eventStrings} updateStrings={res => setEventStrings([[...res]])}/>
+      {parsedEvents.length > 0 ? <CreateRelation events={parsedEvents} addRelation={res => setEventStrings(prev => [res, ...prev])}/> : <div className="relations"></div>}
+    </main>
+  )
 }

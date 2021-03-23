@@ -10,12 +10,12 @@
 \contentsline {subsection}{\numberline {2.1}Times and Events}{2}
 \contentsline {subsubsection}{\numberline {2.1.1}Allen's Interval Algebra}{2}
 \contentsline {subsubsection}{\numberline {2.1.2}Tense and Aspect}{9}
-\contentsline {subsection}{\numberline {2.2}Temporal Annotation}{9}
+\contentsline {subsection}{\numberline {2.2}Temporal Annotation}{10}
 \contentsline {subsubsection}{\numberline {2.2.1}ISO-TimeML}{10}
 \contentsline {subsubsection}{\numberline {2.2.2}TimeBank}{11}
-\contentsline {subsection}{\numberline {2.3}Temporal Semantics}{11}
-\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{11}
-\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{11}
+\contentsline {subsection}{\numberline {2.3}Temporal Semantics}{12}
+\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{12}
+\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{12}
 \contentsline {section}{\numberline {3}Finite-State Temporality}{13}
 \contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{14}
 \contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{16}
@@ -38,12 +38,12 @@
 \contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{55}
 \contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{55}
 \contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{56}
-\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{60}
-\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{60}
+\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{61}
+\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{61}
 \contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{61}
-\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{61}
-\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{61}
-\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{62}
+\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{62}
+\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{62}
+\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{63}
 \contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{63}
 \contentsline {section}{\numberline {5}Implementation}{64}
 \contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{64}

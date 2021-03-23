@@ -21,7 +21,7 @@ export default async (req, res) => {
     console.log('hit api')
     console.log('received', req.body.data)
     const data = JSON.stringify(req.body.data)
-    const { stdout, stderr, error } = await executePyScript('./apiscripts/test.py', data)
+    const { stdout, stderr, error } = await executePyScript('./apiscripts/freksa.py', data)
     console.log('executed script')
     res.status(200).json({ stdout, stderr, error })
   }

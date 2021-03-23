@@ -190,8 +190,9 @@ Pustejovsky, J., Verhagen, M., Sauri, R., Littman, J., Gaizauskas, R., Katz,
 
 \bibitem[\protect\astroncite{Reichenbach}{1947}]{reichenbach1947elements}
 Reichenbach, H. (1947).
-\newblock {\em Elements of symbolic logic}.
-\newblock New York: Macmillan.
+\newblock {The Tenses of Verbs}.
+\newblock In {\em Elements of Symbolic Logic}, chapter~51, pages 287--298. The
+  Macmillan Company, New York.
 
 \bibitem[\protect\astroncite{Rosenberg and
   Grafton}{2013}]{rosenberg2013cartographies}

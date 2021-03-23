@@ -234,7 +234,7 @@ function newAnnotation() {
 // Process the XML
 const parseTML = (data) => {
     // Check the XML begins correctly
-    if (!/^(<\?\s*xml version\s*=\s*"1.0"\s*\?>\s*)?<TimeML/.test(data)) {
+    if (!/^(<\?\s*xml version\s*=\s*"1.0"\s*\?>\s*)?<TimeML/i.test(data)) {
         // alert(JSON.stringify({error: 'The file doesn\'t seem to be a valid TimeML file. Is it tagged correctly?'}, null, 2))
         return {
             imported: data
@@ -244,8 +244,17 @@ const parseTML = (data) => {
     const parser = new window.DOMParser()
     const xml = parser.parseFromString(data, 'text/xml')
     const clone = xml.cloneNode(true)
+
+    let nodes = []
+    // console.log([...clone.querySelectorAll('EVENT,TIMEX3')])
+    if (clone.firstChild.getElementsByTagName('TEXT').length === 0) {
+      nodes = clone.firstChild.childNodes
+    } else {
+      nodes = [...clone.firstChild.getElementsByTagName('DCT')[0].childNodes, ...clone.firstChild.getElementsByTagName('TEXT')[0].childNodes]
+    }
+
     const pieces = []
-    for (node of clone.firstChild.childNodes) {
+    for (node of nodes) {
         if (node.nodeName === 'EVENT') {
             const span = document.createElement('span')
             span.classList.add('tml-ev-ano', 'EVENT')
@@ -254,7 +263,6 @@ const parseTML = (data) => {
             span.dataset.id = node.attributes['eid'].value
             updateState({
                 nextId: getNextId(span.dataset.id),
-                // eventStrings: [...this.state.eventStrings, [`|${span.dataset.id}|`]],
                 ids: [...this.state.ids, span.dataset.id]
             })
             pieces.push(span.outerHTML)
@@ -268,7 +276,6 @@ const parseTML = (data) => {
             span.dataset.id = node.attributes['tid'].value
             updateState({
                 nextId: getNextId(span.dataset.id),
-                // eventStrings: [...this.state.eventStrings, [`|${span.dataset.id}|`]],
                 ids: [...this.state.ids, span.dataset.id]
             })
             pieces.push(span.outerHTML)
@@ -280,13 +287,21 @@ const parseTML = (data) => {
     const tlinks = xml.getElementsByTagName('TLINK')
     const lz = document.getElementById('lz')
     
+    const selfRels = []
     for (tlink of tlinks) {
         const { eventInstanceID, timeID, relatedToEventInstance, relatedToTime, relType } = tlink.attributes
         const rel = tmlToAllen[relType.value]
         const e1 = (eventInstanceID ?? timeID).value
         const e2 = (relatedToEventInstance ?? relatedToTime).value
-        lz.value = `${e1},${rel},${e2}`
-        lz.dispatchEvent(new InputEvent('change'))
+        if (e1 === e2) {
+          selfRels.push(`${e1} ${relType.value} ${e2}`)
+        } else {
+          lz.value = `${e1},${rel},${e2}`
+          lz.dispatchEvent(new InputEvent('change'))
+        }
+    }
+    if (selfRels.length > 0) {
+      window.alert('The following inconsistencies were discovered while parsing:\n'+selfRels.join('\n'))
     }
     // const stats = mapped.reduce((acc, tl) => {
     //     const ei = tl.eventInstanceID
@@ -406,14 +421,17 @@ document.querySelector('.event-attr .update-attr').addEventListener('click', () 
 const dosp = document.getElementById('dosp')
 dosp.addEventListener('click', async () => {
   dosp.textContent = 'Superposing...'
-  const spResult = await fetch('/api/test', {
+  const spResult = await fetch('/api/superpose', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      inputs: this.state.eventStrings
+      data: {
+        strings: this.state.eventStrings,
+        limit: 12
+      }
     })
   }).then(response => response.json())
   if (!spResult.error) {
