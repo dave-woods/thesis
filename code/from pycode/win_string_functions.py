@@ -167,6 +167,9 @@ def L(head_a, tail_a, vocab_a, head_b, tail_b, vocab_b):
     part_3 = superpose(tail_a, tail_b, vocab_a, vocab_b)
     return nonempty_union(nonempty_union(part_1, part_2), part_3)
 
+from functools import lru_cache
+
+@lru_cache(maxsize=100)
 def superpose_sensible(a, b, limit = 0):
     if a == b:
         return [frozenset([a])]
@@ -204,6 +207,9 @@ def superpose_langs_sensible(lang1, lang2, limit = 0):
             results += [item for sublist in superpose_sensible(s1, s2, limit) for item in sublist]
     yield from set(results)
 
+# convert list to tuple before use
+# from functools import lru_cache
+# @lru_cache(maxsize=10)
 def superpose_all_langs_sensible(list_of_langs, limit = 0):
     if type(list_of_langs) != list:
         raise TypeError
@@ -220,7 +226,29 @@ def superpose_all_langs_sensible(list_of_langs, limit = 0):
         yield from results.values()
     else:
         sp = list(superpose_langs_sensible(list_of_langs[0], list_of_langs[1], limit))
-        yield from superpose_all_langs_sensible([sp]+list_of_langs[2:], limit)
+        yield from superpose_all_langs_sensible(list_of_langs[2:]+[sp], limit)
+
+wsjl = [['|b,e|'], ['|c||d|'], ['|f||d|'], ['|e||d|'], ['|a|a,b|a|']]
+wsjl2 = [['|a|a,b|a|'], ['|c||d|'], ['|e||d|'], ['|f||d|'], ['|b,e|']]
+wsjl3 = [['|a|b|'], ['|c|'], ['|e|'], ['|f|'], ['|b|a|']]
+
+def sals(lol, limit = 0, depth=0):
+    yl = False
+    for i, l in enumerate(lol):
+        for j, ll in enumerate(lol[i+1:]):
+            if yl:
+                break
+            sp = list(superpose_langs_sensible(l, ll, limit))
+            # print(' '*depth, i,i+1+j,lol)
+            if sp == []:
+                raise Exception('Contradiction: {} and {}'.format(l, ll))
+            elif set(l + ll) == set(sp):
+                pass # no sp
+            else:
+                yl = True
+                yield from sals([sp]+lol[i+1:i+1+j]+lol[i+1+j+1:], limit, depth+1)
+    if not yl:
+        yield from lol
 
 def superpose_langs(lang1, lang2):
     for s1 in lang1:

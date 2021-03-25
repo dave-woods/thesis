@@ -4,7 +4,8 @@ export default function StringBank(props) {
   
   const doSuperposition = async () => {
     setLoading(true)
-    fetch('/api/superpose', {
+    // fetch('/api/superpose', {
+    fetch(process.env.NEXT_PUBLIC_SUPERPOSE_ENDPOINT, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -13,17 +14,15 @@ export default function StringBank(props) {
       body: JSON.stringify({
         data: {
           strings: props.strings,
-          limit: 12
+          limit: props.limit
         }
       })
     }).then(resp => resp.json()).then(data => {
       setLoading(false)
-      if (data.stderr) {
-        window.alert(data.stderr)
-      } else if (data.error) {
-        // console.log(data.error)
+      if (data.error) {
+        console.error(data.error)
       } else {
-        props.updateStrings(JSON.parse(data.stdout))
+        props.updateStrings(data.strings)
       }
     })
   }

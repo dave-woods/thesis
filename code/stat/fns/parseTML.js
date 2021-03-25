@@ -1,8 +1,9 @@
 export const parseTML = inputString => {
     const parser = new window.DOMParser()
-    const xml = parser.parseFromString(inputString, 'text/xml')
+    const xml = parser.parseFromString(inputString.trim(), 'text/xml')
     
     if (xml.documentElement.nodeName == "parsererror" || xml.documentElement.getElementsByTagName('parsererror').length > 0) {
+      console.log(xml)
       return {
         imported: inputString
       }
@@ -66,10 +67,13 @@ export const parseTML = inputString => {
     
     const tlinks = [...xml.getElementsByTagName('TLINK')].map(tlink => {
       const { eventInstanceID, timeID, relatedToEventInstance, relatedToTime, relType } = tlink.attributes
+      const e1 = instances.find(i => eventInstanceID !== undefined && i.eiid === eventInstanceID.value)?.eventID ?? timeID.value
+      const e2 = instances.find(i => relatedToEventInstance !== undefined && i.eiid === relatedToEventInstance.value)?.eventID ?? relatedToTime.value
       return {
         rel: tmlToAllen[relType.value],
-        e1: instances.find(i => eventInstanceID !== undefined && i.eiid === eventInstanceID.value)?.eventID ?? timeID.value,
-        e2: instances.find(i => relatedToEventInstance !== undefined && i.eiid === relatedToEventInstance.value)?.eventID ?? relatedToTime.value
+        e1,
+        e2,
+        warning: e1 === e2
       }
     })
     return {

@@ -4,13 +4,16 @@
 }
 main#annotate {
     display: grid;
-    grid-template-columns: 5fr 2fr;
-    grid-template-rows: 4fr 1fr;
+    grid-template-columns: 5fr 3fr;
+    grid-template-rows: 3fr 1fr;
     padding: 0;
     margin: 0;
     height: 100vh;  
     background-color: #DDEEFF;    
     position: relative;
+}
+#annotate button {
+    cursor: pointer;
 }
 #annotate a {
     text-decoration: underline;
@@ -31,11 +34,23 @@ main#annotate {
     z-index: 10;
 }
 #annotate .help, #annotate .add-details {
-    width: 40%;
+    width: 50%;
     line-height: 1.8;
     background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 2em;
+}
+#annotate .add-details {
+    text-align: center;
+}
+#annotate .add-details .attr-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: left;
+}
+#annotate .add-details .update-attr {
+    margin: 1em auto;
 }
 #annotate .input-text {
     width: 100%;
@@ -161,6 +176,11 @@ main#annotate {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+#annotate .relations ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 #annotate .relations select {
     font-family: monospace;
