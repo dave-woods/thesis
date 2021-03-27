@@ -13,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
         try:
             result['strings'] = getattr(apiscripts.freksa, ll['rel'])(ll['e1'], ll['e2'])
         except Exception as e:
-            result['error'] = e
+            result['error'] = str(e)
 
         self.send_response(200)
         self.send_header('Content-type', 'application/json')

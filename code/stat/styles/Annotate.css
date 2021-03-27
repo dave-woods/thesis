@@ -34,7 +34,7 @@ main#annotate {
     z-index: 10;
 }
 #annotate .help, #annotate .add-details {
-    width: 50%;
+    width: 70%;
     line-height: 1.8;
     background: rgba(0, 0, 0, 0.9);
     color: white;

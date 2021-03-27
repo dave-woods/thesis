@@ -3,25 +3,25 @@ import apiscripts.wsf
 import json
 
 def string_to_rel(string, x):
-    t, m = wsf.analogous_strings(string, '|X||Y|')
+    t, m = apiscripts.wsf.analogous_strings(string, '|X||Y|')
     if t:
         return 'BEFORE' if m[x] == 'X' else 'AFTER'
-    t, m = wsf.analogous_strings(string, '|X|Y|')
+    t, m = apiscripts.wsf.analogous_strings(string, '|X|Y|')
     if t:
         return 'IBEFORE' if m[x] == 'X' else 'IAFTER'
-    t, m = wsf.analogous_strings(string, '|X,Y|')
+    t, m = apiscripts.wsf.analogous_strings(string, '|X,Y|')
     if t:
         return 'SIMULTANEOUS'
-    t, m = wsf.analogous_strings(string, '|X|X,Y|X|')
+    t, m = apiscripts.wsf.analogous_strings(string, '|X|X,Y|X|')
     if t:
         return 'INCLUDES' if m[x] == 'X' else 'DURING'
-    t, m = wsf.analogous_strings(string, '|X|X,Y|')
+    t, m = apiscripts.wsf.analogous_strings(string, '|X|X,Y|')
     if t:
         return 'ENDED_BY' if m[x] == 'X' else 'ENDS'
-    t, m = wsf.analogous_strings(string, '|X,Y|X|')
+    t, m = apiscripts.wsf.analogous_strings(string, '|X,Y|X|')
     if t:
         return 'BEGUN_BY' if m[x] == 'X' else 'BEGINS'
-    t, m = wsf.analogous_strings(string, '|X|X,Y|Y|')
+    t, m = apiscripts.wsf.analogous_strings(string, '|X|X,Y|Y|')
     if t:
         return 'OVERLAPS' if m[x] == 'X' else 'OVERLAPPED_BY'
     return 'UNKNOWN'
@@ -49,7 +49,7 @@ class handler(BaseHTTPRequestHandler):
                 idx += 1
             result['tlinks'] = links
         except Exception as e:
-            result['error'] = e
+            result['error'] = str(e)
 
         self.send_response(200)
         self.send_header('Content-type', 'application/json')

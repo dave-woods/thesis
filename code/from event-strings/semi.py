@@ -108,7 +108,7 @@ def projects_to(a, b):
     return string_equals(b, projection(a, vocabulary(b)))
 
 def to_latex(string):
-    return '\EventString{' + string.replace('||', '|{}|').replace('/', '\lor').replace('α', '\\alpha').replace('ω', '\omega') + '}'
+    return '\EventString{' + re.sub(r'\|$', '|{}', re.sub(r'^\|', '{}|', string)).replace('||', '|{}|').replace('/', '\lor').replace('α', '\\alpha').replace('ω', '\omega') + '}'
     # return '\ebox{' + string.replace('|', '}\ebox{').replace('/', '\lor').replace('α', '\\alpha').replace('ω', '\omega') + '}'
 
 def checker():

@@ -21,7 +21,7 @@ class handler(BaseHTTPRequestHandler):
                 if any(any(apiscripts.wsf.lang_contains_string(lang, ts) for lang in kb) for ts in test_strings):
                     result['status'] = 'found'
         except Exception as e:
-            result['error'] = e
+            result['error'] = str(e)
 
         self.send_response(200)
         self.send_header('Content-type', 'application/json')

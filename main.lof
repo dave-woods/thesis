@@ -2,5 +2,9 @@
 \contentsline {figure}{\numberline {2}{\ignorespaces Simple graph network showing the computation of a transitivity.\relax }}{6}
 \contentsline {figure}{\numberline {3}{\ignorespaces Computation of a transitivity with a multiple-label result.\relax }}{7}
 \contentsline {figure}{\numberline {4}{\ignorespaces Arrangements of the points E, R, and S, from \citet {reichenbach1947elements}.\relax }}{10}
-\contentsline {figure}{\numberline {5}{\ignorespaces Possible values of a TLINK's relType attribute and their Allen relation counterparts.\relax }}{11}
-\contentsline {figure}{\numberline {6}{\ignorespaces A Gantt chart featuring six events.\relax }}{48}
+\contentsline {figure}{\numberline {5}{\ignorespaces Possible values of a TLINK's relType attribute and their Allen relation counterparts.\relax }}{15}
+\contentsline {figure}{\numberline {6}{\ignorespaces Example TimeML annotation for ``He panicked on Wednesday.''\relax }}{16}
+\contentsline {figure}{\numberline {7}{\ignorespaces Tag counts for TimeBank 1.2.\relax }}{17}
+\contentsline {figure}{\numberline {8}{\ignorespaces Tango's interface \citep [taken from][p. 2, Fig. 1]{verhagen2005TBOX}.\relax }}{20}
+\contentsline {figure}{\numberline {9}{\ignorespaces \Cref {fig:tango}'s data now drawn using T-BOX \citep [taken from][p. 3, Fig. 2]{verhagen2005TBOX}.\relax }}{22}
+\contentsline {figure}{\numberline {10}{\ignorespaces A Gantt chart featuring six events.\relax }}{60}

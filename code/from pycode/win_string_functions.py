@@ -200,7 +200,10 @@ def superpose_all(list_of_strings):
         for sp in superpose(list_of_strings[0], list_of_strings[1]):
             yield from superpose_all([sp] + list_of_strings[2:])
 
-def superpose_langs_sensible(lang1, lang2, limit = 0):
+def superpose_langs_sensible(l1, l2, lim = 0):
+    yield from set([item for s1 in l1 for s2 in l2 for sublist in superpose_sensible(s1,s2,lim) for item in sublist])
+
+def sls(lang1, lang2, limit = 0):
     results = []
     for s1 in lang1:
         for s2 in lang2:
@@ -232,7 +235,7 @@ wsjl = [['|b,e|'], ['|c||d|'], ['|f||d|'], ['|e||d|'], ['|a|a,b|a|']]
 wsjl2 = [['|a|a,b|a|'], ['|c||d|'], ['|e||d|'], ['|f||d|'], ['|b,e|']]
 wsjl3 = [['|a|b|'], ['|c|'], ['|e|'], ['|f|'], ['|b|a|']]
 
-def sals(lol, limit = 0, depth=0):
+def sals2(lol, limit = 0, depth=0):
     yl = False
     for i, l in enumerate(lol):
         for j, ll in enumerate(lol[i+1:]):
@@ -249,6 +252,19 @@ def sals(lol, limit = 0, depth=0):
                 yield from sals([sp]+lol[i+1:i+1+j]+lol[i+1+j+1:], limit, depth+1)
     if not yl:
         yield from lol
+
+def sals(lol, limit = 0, depth=0):
+    for i, l in enumerate(lol):
+        for j, ll in enumerate(lol[i+1:]):
+            sp = list(superpose_langs_sensible(l, ll, limit))
+            # print(' '*depth, i,i+1+j,lol)
+            if sp == []:
+                raise Exception('Contradiction: {} and {}'.format(l, ll))
+            elif set(l + ll) == set(sp):
+                pass # no sp
+            else:
+                return sals([sp]+lol[i+1:i+1+j]+lol[i+1+j+1:], limit, depth+1)
+    return lol
 
 def superpose_langs(lang1, lang2):
     for s1 in lang1:

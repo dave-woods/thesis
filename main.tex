@@ -152,6 +152,8 @@
 
 \mathchardef\mhyphen="2D
 
+
+
 % Allows entry of EventStrings as |a|{}|b,c|d|
 % Use {} for empty box
 \usepackage{etoolbox}
@@ -181,6 +183,7 @@
 \newcommand{\citeneeded}[1][]{{\color{red}[Citation needed!#1]}}
 
 \newcommand{\nb}[1]{{\color{red}[NB\footnote{{\color{red}#1}}]}}
+\newcommand{\ipp}{(\refstepcounter{equation}\theequation)}
 
 %\usepackage[nottoc,numbib]{tocbibind} %This includes the bibliography as a numbered section in the TOC
 \usepackage[nottoc]{tocbibind}
@@ -189,7 +192,10 @@
 % \setcounter{secnumdepth}{4}
 
 \usepackage{cleveref}
-\crefname{section}{\textbf{\S}}{\textbf{\S}}
+\crefname{section}{\textbf{\S\!}}{\textbf{\S\!}}
+\Crefname{section}{\textbf{\S\!}}{\textbf{\S\!}}
+\crefname{equation}{}{}
+\Crefname{equation}{}{}
 
 \doublespacing
 \linespread{2} %Not sure about this, may need to reset to 1(?)
@@ -254,10 +260,13 @@ I, the undersigned, agree to deposit this thesis in the University's open access
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 %My thanks to Tim for his patience and understanding, to Carl for guiding and reassuring comments, and to my friends and family for their continuous encouragement and support. In particular, Brian, who had the misfortune to be staying with me while I was working on this report, and the members of DU Trampoline club, who have had a more bad-tempered coach of late.
+Although I wrote this thesis alone, a number of people supported me along the way, and made it possible for me to reach the end.
 
-I would like to thank my parents, Margaret and Graham, who never doubted I would do my best; my brother, Fergus, often a much-needed reminder of normal life; Conor and Katie, who inspired me to start; Adelais, who encouraged me to finish; and all the members of DU Trampoline Club, who gave me a reason to stick around. I hope it was worth it!
+I would like to thank my parents, Margaret and Graham, who never doubted I would do my best; my brother, Fergus, who has often been a much-needed reminder of normal life; Conor and Katie, who inspired me to start; Adelais, who encouraged me to make it over the finish line and made sure I remembered life outside of writing; and all the members of DU Trampoline Club, who gave me a reason to stick around. I hope it was worth it!
 
-My thanks go also to my supervisors: Tim, for being patient with me even when I was struggling, and Carl, who often managed to reassure me that I wasn't going down completely the wrong path.
+My appreciation goes also to my supervisors: Tim, for being patient with me even when I was struggling, and Carl, who often managed to reassure me that I wasn't going down completely the wrong path. Thank you for not giving up on me.
+
+No thanks go to the COVID-19 global pandemic which disrupted my final year. Here's to survival, and here's to the memory of those that did not.
 
 This research is supported by Science Foundation Ireland (SFI) through the CNGL 
 Programme (Grant 12/CE/I2267) in the ADAPT Centre 
@@ -302,7 +311,7 @@ The concept of time has fascinated researchers for millenia, and as such, a grea
 \subsubsection{Allen's Interval Algebra}\label{ssub:allen}
 % The seminal work of James F. Allen's \textit{Maintaining Knowledge about Temporal Intervals} has pushed the field since its publication in  \citeyear{allen1983maintaining}, and indeed the framework he described drives some of the design decisions in the present work.
 Much of the present work draws its roots in James F. \citeauthor{allen1983maintaining}'s work \textit{Maintaining Knowledge about Temporal Intervals} \citeyearpar{allen1983maintaining}, both directly and indirectly via the many systems which have built upon it in the years since it was first published. In this seminal paper, Allen described a framework for the use of temporal intervals as primitives to represent events and time periods, as opposed to points on the real line. There are four key criteria given as being of primary importance in guiding the design of this framework \citeyearpar[p. 833]{allen1983maintaining}, all of which also feature in the system of representation described in the present work (see \cref{sub:strings}):
-\begin{enumerate}
+\begin{enumerate}\label{other:allen-motivations}
 \onehalfspacing
 \item The representation should allow for the fact that much temporal information is relative rather than precise.
 \item Uncertainty of information should be allowed for, such as when the precise relation between two times is unknown (though constraints on the relation may exist).
@@ -325,7 +334,7 @@ Allen makes further argument for the use of intervals as primitive, disallowing 
 
 However, this argument that temporal intervals are counter-intuitive if they are open on one end and closed at the other has not been universally accepted---for example, the event calculus \citep{Kowalski1986,Miller1999,Mueller2008} describes a predicate \textit{Initiates}$(e, f, t)$ which states that some event $e$ occurs at a timepoint $t$, and the temporal proposition $f$ is true after $t$. In the lightbulb example, this is equivalent to using intervals which are open on the lower end and closed at the higher, which can be interpreted as meaning the light is not on at the initial moment of switching it on, but is afterwards. Similarly, \citet{Fernando2018} describes using an open left border and closed right border as a means for event representation.
 
-Allen goes on to formally present and label the thirteen possible relations which may exist between two temporal intervals, which can be thought of as six invertible relations (before, meets, overlaps, during, starts, finishes) and one symmetric (equals). \Cref{tab:allens-pictorial}, reproduced from \citet[p. 835, Figure 2]{allen1983maintaining} shows these relations along with the symbols typically used to abbreviate them, and examples of some events represented graphically as strings of `X' and `Y' demonstrating the relations. These are often referred to as Allen's interval relations, or simply the \textit{Allen relations}.
+Allen goes on to formally present and label the thirteen possible relations which may exist between two temporal intervals, which can be thought of as six invertible relations (before, meets, overlaps, during, starts, finishes) and one symmetric (equals). \Cref{fig:allens-pictorial}, reproduced from \citet[p. 835, Figure 2]{allen1983maintaining} shows these relations along with the symbols typically used to abbreviate them, and examples of some events represented graphically as strings of `X' and `Y' demonstrating the relations. These are often referred to as Allen's interval relations, or simply the \textit{Allen relations}.
 \begin{center}
 	\begin{tabular}{| c c c c |}
 		\hline
@@ -391,11 +400,11 @@ For $N$ nodes (intervals) there are $\frac{N^2-N}{2}$ edges if all new nodes are
 	\captionof{table}{Fragment of Allen's transitivity table \citeyearpar[p. 836, Figure 4]{allen1983maintaining}.}
 	\label{tab:allen-trans-table}
 \end{center}
-For the propagation of constraints upon the addition of new information to the network, \citet[p. 835]{allen1983maintaining} also details an algorithm using the transitivity table to update all arcs in the network as necessary. While Allen does concede that there are some issues with this algorithm---specifically mentioning the space requirement, which is somewhat high at $O(N^2)$ space for $N$ temporal intervals, and the fact that the algorithm doesn't guarantee consistency in larger than three-node networks\footnote{See \cref{sub:applications} for how this limit may be improved upon by using strings and superposition to automatically reject inconsistencies.\nb{Check this reference}}, and \citet[p. 219]{Verhagen2005} also notes an $O(N^3)$ time complexity---it does give an upper bound of $13 \times \frac{(N - 1)(N - 2)}{2}$ to the number of modifications that can be made to the network, regardless of the number of constraints added. Additionally, ``the average amount of work for each addition is essentially linear (i.e., $N$ additions take $O(N^2)$ time; one addition on average takes $O(N)$ time)'' \citep[p. 837]{allen1983maintaining}. This is still quite high, given that it is not unusual for a given text, annotated documents of the TimeBank \citep{pustejovsky2003timebank,pustejovsky2006timebank} corpus for instance, to feature fifty intervals or more, and some are in the hundreds \citep[p. 213]{Verhagen2005}.
+\label{other:allen-algo}For the propagation of constraints upon the addition of new information to the network, \citet[p. 835]{allen1983maintaining} also details an algorithm using the transitivity table to update all arcs in the network as necessary. While Allen does concede that there are some issues with this algorithm---specifically mentioning the space requirement, which is somewhat high at $O(N^2)$ space for $N$ temporal intervals, and the fact that the algorithm doesn't guarantee consistency in larger than three-node networks\footnote{See \cref{sub:applications} for how this limit may be improved upon by using strings and superposition to automatically reject inconsistencies.\nb{Check this reference}}, and \citet[p. 219]{Verhagen2005} also notes an $O(N^3)$ time complexity---it does give an upper bound of $13 \times \frac{(N - 1)(N - 2)}{2}$ to the number of modifications that can be made to the network, regardless of the number of constraints added. Additionally, ``the average amount of work for each addition is essentially linear (i.e., $N$ additions take $O(N^2)$ time; one addition on average takes $O(N)$ time)'' \citep[p. 837]{allen1983maintaining}. This is still quite high, given that it is not unusual for a given text, annotated documents of the TimeBank \citep{pustejovsky2003timebank,pustejovsky2006timebank} corpus for instance, to feature fifty intervals or more, and some are in the hundreds \citep[p. 213]{Verhagen2005}.
 
 To tackle the space requirements while maintaining as much inferential power as possible, \citet[p. 838]{allen1983maintaining} also describes a method for grouping clusters of intervals which---in regards to the relations between them---are fully computed, termed ``reference intervals''. This is due to the fact that each interval $I_i$ in the cluster $\{I_1, I_2, ..., I_n\}$ will reference one or more new intervals $R_m$ (where $m$ is an index on the number of reference intervals), and these reference intervals will be connected in the graph, which can be used to find relations between nodes which are not directly connected. Since these reference intervals may be treated as normal intervals, they may themselves be grouped into a cluster, and thus hierarchies of intervals may arise.% These are not currently implemented in the present work, but they may be useful as a way to address documents with high numbers of intervals.
 
-Allen's work was and remains highly influential in the field of temporal reasoning and annotation, thanks to an approach which is both intuitive and straight-forward, as well as easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language'' \citep[p. 123]{Pustejovsky2005}. \nb{either add "see \cref{sub:annotation}" or rearrange subsections}
+Allen's work was and remains highly influential in the field of temporal reasoning and annotation, thanks to an approach which is both intuitive and straight-forward, as well as easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language'' \citep[p. 123]{Pustejovsky2005}. \nb{either add "see \cref{ssub:timeml}" or rearrange subsections}
 
 
 \subsubsection{Tense and Aspect}\label{ssub:tenseaspect}
@@ -441,15 +450,71 @@ Reichenbach's (\citeyear{reichenbach1947elements}) theory of verbal tense and as
 
 \subsection{Temporal Annotation}\label{sub:annotation}
 % Mention Bunt in here somewhere!?
-Ideally, a human using an artificially intelligent system won't have to consider annotation, except in the case when that itself is the goal. In any case, for now annotated text is a crucial source of data for working with models such as are presented in this work. When it comes to temporal annotation, the international standard is TimeML, specifically ISO-TimeML. \nb{Also talk about Tango and Verhagen's T-BOX.}
+Ideally, a human using an artificially intelligent system won't have to consider annotation, except in the case when that itself is the goal. In any case, for now annotated text is a crucial source of data for working with models such as are presented in this work. When it comes to temporal annotation, the ISO (International Organization for Standardization) standard is TimeML, specifically ISO-TimeML (ISO 24617-1:2009). \nb{Also talk about Tango and Verhagen's T-BOX.} \nb{page 8 of \url{https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/english-timex2-guidelines-v0.1.pdf}}
 % Derczinski
-\subsubsection{ISO-TimeML}\label{ssub:timeml}
-TimeML \citep{Pustejovsky2005} was initially designed with the goal of improving question-answering systems by marking up texts so as to give events explicit temporal locations.
+TimeML has found considerable success in terms of widespread adoption as a means of marking up text with temporal information, at least in some part thanks to the release of TimeBank \citep{pustejovsky2003timebank}, a corpus of newswire articles\footnote{The original version of TimeBank contained 300 articles, while the latest version, TimeBank 1.2, contains 183.} which were manually annotated using the TimeML schema. In terms of quality of annotation, manual is still seen as the `gold standard', although automatic annotation has seen much effort in recent years \citep{uzzaman2013semeval}.
 
-TimeML vs ISO-TimeML: the ISO version is the standard. However, the TimeBank corpus uses the older version.
 
+
+\subsubsection{TimeML and TimeBank}\label{ssub:timeml}
+The initial goal for creating the TimeML language came from a desire to improve applications\allowbreak{}---such as question-answering systems---by means of event recognition, and giving each recognised event an explicit temporal location. This latter point is motivated due to the fact that a large proportion of temporal information in discourse (the domain primarily focused on by \citet{Pustejovsky2005} is news articles) rely on implicit or vague temporal expressions. This relates back to the first principle which \citet{allen1983maintaining} mentioned\footnote{See \pageref{other:allen-motivations}} as influencing the design of the interval algebra framework: that it is not generally intuitive to always think of or refer to time in terms of explicit or precise time points. Instead we tend to use relative expressions, such as the boldface text in the following utterances:
+\begin{itemize}
+	\item[\ipp] ``I didn't go to work \textbf{last Monday}.''
+	\item[\ipp] ``I was sick \textbf{the week before}.''
+\end{itemize}
+Speakers will rely on their listeners being able to use context to interpret what these temporal expressions refer to.
+
+TimeML aimed, in part, to give implicit and relative temporal expressions an explicit anchoring, in order to assist with intelligent systems' temporal awareness. \citet[p. 125, (1a.)]{Pustejovsky2005} wanted to enable question-answering systems to be able to answer questions such as
+\begin{itemize}
+	\item[\ipp] ``Is Schr\"{o}der currently German chancellor?''
+\end{itemize}
+as capably as a human could after reading an appropriately relevant news article. A number of issues are raised that ought to be addressed within a system that can understand and answer questions similar to this one. Potentially problematic example queries can range from simple questions about the date of a specific event:
+\begin{itemize}
+	\item[\ipp] ``When did the USA first declare independence from the UK?''
+\end{itemize}
+to questions about non-unique events:
+\begin{itemize}
+	\item[\ipp] ``How long does it take to drive from Dublin to Cork?''
+\end{itemize}
+and questions where the system must perform some level of inference in order to derive the answer, possibly returning information that is not temporal in and of itself, but requires such data to find the correct solution:
+\begin{itemize}
+	\item[\ipp] ``Who was the last president of France?''
+\end{itemize}
+\citet[p. 132]{Pustejovsky2005} further discusses the kinds of temporal information that might be needed, and how to go about representing it in a useful way. Two tasks are deemed essential: the ability to place events on some timeline, and the ability to determine the relative order of any pair of events. These tasks are termed event \textit{anchoring} and \textit{ordering}, respectively, and these also form a core motivation for the framework described in \cref{sec:fst}, which uses strings to simultaneously represent the anchoring and ordering of events.  %a core part of the present work. Beyond these two tasks, the ability to identify and extract events and times from texts is an important task.
+
+Events in TimeML are ``referred to by finite clauses, nonfinite clauses, nominalizations, event-referring nouns, adjectives, and even some kinds of adverbial clauses'' \citep[p. 133]{Pustejovsky2005}. Systems must also be aware of the possibility of negated and modal events, such as:
+\begin{itemize}
+	\item[\ipp] ``Ireland did \textbf{not} \textit{make it} to the World Cup this year.''
+	\item[\ipp] ``The exhibition \textbf{might} \textit{create} new opportunities for the museum.''
+\end{itemize}
+The events (italicised) in these sentences should not be treated as if they actually occurred. Additionally, care should be taken to distinguish separate events in the representation which are referred to together in the text \citep[p. 134, (32a.)]{Pustejovsky2005}:
+\begin{itemize}
+	\item[\ipp\label{other:pustejovsky-type-instance}] ``James \textit{taught 3 times} on Tuesday.''
+\end{itemize}
+This leads to a distinction between types of events and instances of events, where an instance may appear in the representation in place of a type, \textit{cf.} \cref{ex:judder}, p. \pageref{ex:judder}.
+
+Times, on the other hand, generally take the form of adverbial or prepositional phrases in English, such as `next week', `yesterday', or `10th of August'. For TimeML, these expressions must be normalised in order to anchor events to times on a timeline---converted to some machine-readable form, possibly an integer or real number, depending on the context. It is also important to know the time of utterance (or document creation time, for a text) in order to correctly normalise expressions such as `today' or `last Monday', as these terms refer to a time which is relative to some other point, often the time of utterance or document creation time. Some expressions, such as `recently' cannot be determinately linked to the timeline, due to their inherently vague nature, yet may still be ordered relative to other time points, and thus should still undergo normalisation. The last two kinds of time expressions mentioned in \citet{Pustejovsky2005} are durations and sets of times. Durations, such as `five hours', may or may not be anchored to times or events (boldface text):
+\begin{itemize}
+	\item[\ipp] ``You'll have it for \textit{a month} from \textbf{Monday}.''
+	\item[\ipp] ``She submitted \textit{two weeks} before \textbf{the deadline}.''
+\end{itemize}
+Sets of times are generally used to place recurring events on the timeline:
+\begin{itemize}
+	\item[\ipp] ``He visited \textit{every week}.''
+	\item[\ipp] ``They took the meds \textit{twice a day}.''
+\end{itemize}
+% 
+% While the current work deals directly with data that is already annotated with markers for events and times, it is worth keeping this instructive material on extraction of temporal data in mind. The TimeBank corpus \citep{pustejovsky2006timebank} is a large collection of documents (in the domain of news articles) manually annotated with TimeML, and as such contains a number of human errors (e.g. inconsistencies in relation-labelling). It is also not as completely labelled as it could be, and has also not been updated in several years. It is conceivable, then, that an alternative source for data may at some point become desirable, either due to the release of a more attractive corpus, or by creating an entirely new corpus, following the same general principles as in TimeBank.
+% 
+In order for TimeML to represent the desired ordering and anchoring, a set of relations for times and events is required, and Allen's interval relations are selected as a strong basis for these, as reasoning over them is ``well-understood'' \citep[p. 138]{Pustejovsky2005}. However, it is noted that not all of Allen's relations are equally well represented in texts of the English language. In particular, the \textit{overlaps} relation is ``difficult to find instantiated in natural language text'', and thus may be considered unnecessary. In fact, this relation and its inverse are omitted from the final set of temporal relations used in TimeML---see \Cref{fig:tlink-allen-translation}. Nevertheless, since these relations may arise through transitivity and it is not immediately problematic to do so, they are reincluded in \cref{sec:implementation}.
+
+The syntax of TimeML\footnote{For the full specification of TimeML (version 1.2.1), see \url{http://www.timeml.org} \citep{timeml2005timeml}, and annotation guidelines in \citet{sauri2006timeml}.} % \url{https://www.cs.brandeis.edu/~cs112/cs112-2004/annPS/TimeML12wp.htm} \citeneeded{}
+uses the following types of tags to capture the various kinds of information: \verb|<TIMEX3>| for marking up time expressions, \verb|<EVENT>| for events and \verb|<MAKEINSTANCE>| for event instances, \verb|<SIGNAL>| for functional words (such as `at', `from', `when', etc.), and three types of linking tags for relations between the other tags: \verb|<SLINK>| captures subordinating relations involving evidentiality, modality, and factuality; \verb|<ALINK>| captures aspectual links; and \verb|<TLINK>| captures temporal relationships between events and times.
+
+\Cref{ssub:tlinks,sec:implementation} focus primarily on this last tag type, as it is here that Allen's interval relations are represented, albeit under slightly different nomenclature, with some duplication, and omitting the overlapping relations as mentioned above---see \Cref{fig:tlink-allen-translation}. Each of TimeML's tags take a number of attributes which help to flesh out the representation of the information, and for a \verb|<TLINK>| these are: either a \texttt{timeID} or \texttt{event\allowbreak{}InstanceID}, which refers to some temporal expression in the text; either a \texttt{relatedTo\allowbreak{}Time} or \texttt{relatedTo\allowbreak{}Event\allowbreak{}Instance}, which will refer to another temporal expression; and a \texttt{relType}, which will specify the relation from the first attribute to the second.
 \begin{center}
-	\begin{tabular}{|c c|}
+	\setstretch{1.15}
+	\begin{tabular}[h!]{|c c|}
 		\hline
 		\textbf{TLINK} & \textbf{Allen}\\
 		\hline
@@ -469,19 +534,141 @@ TimeML vs ISO-TimeML: the ISO version is the standard. However, the TimeBank cor
 		\texttt{ENDED\_BY} & finished by \textbf{(fi)}\\
 		\hline
 	\end{tabular}
-	\captionof{figure}{Possible values of a TLINK's relType attribute and their Allen relation counterparts.}
-	\label{fig:tlink-allen-translation}
+	\captionof{figure}{Possible values of a TLINK's relType attribute and their Allen relation counterparts.}\label{fig:tlink-allen-translation}
 \end{center}
+The rationale behind distinguishing \texttt{INCLUDES}/\texttt{IS\_INCLUDED} and \texttt{DURING\_INV}/\texttt{DURING} is that the former should be used for cases where an event or time is included in another, like in:
+\begin{itemize}
+	\item[\ipp] ``He \textbf{arrived} there \textbf{last week}.''
+\end{itemize}
+while the latter should be used specifically for states or events that persist throughout a duration \citep[p. 158]{Pustejovsky2005}, such as in:
+\begin{itemize}
+	\item[\ipp] ``They \textbf{were Captain} for \textbf{two seasons}.''
+\end{itemize}
+Below in \Cref{fig:example-timeml-annotation} is a simple example of a completed annotation---derived from the annotation guidelines \citep{sauri2006timeml}---of the sentence:
+\begin{itemize}
+	\item[\ipp] ``He panicked on Wednesday.''
+\end{itemize}
+\begin{center}
+	\onehalfspacing
+	\begin{tabular}[h!]{|l|}
+		\hline
+		\begin{minipage}{0.75\textwidth}
+		\begin{verbatim}
 
-\subsubsection{TimeBank}\label{ssub:timebank}
-The TimeBank corpus \citep{pustejovsky2006timebank} collects news articles that were manually annotated with TimeML. While it does contain some inconsistencies as a result of human error, it remains one of the largest sources for documents marked up with TimeML.
+		He
+		<EVENT eid="e1" class="OCCURRENCE">
+		 panicked
+		</EVENT>
+		<SIGNAL sid="s1">
+		 on
+		</SIGNAL>
+		<TIMEX3 tid="t1" type="DATE">
+		 Wednesday
+		</TIMEX3>
+		<MAKEINSTANCE eiid="ei1" eventID="e1" pos="VERB"
+			tense="PAST" aspect="NONE" polarity="POS" />
+		<TLINK eventInstanceID="ei1" relatedToTime="t1"
+			signalID="s1" relType="IS_INCLUDED" />
+
+		\end{verbatim}
+		\end{minipage}\\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Example TimeML annotation for ``He panicked on Wednesday.''}\label{fig:example-timeml-annotation}
+\end{center}
+Since the initial publication of \citet{pustejovsky2003timeml}\footnote{In this work, the authors do refer to the TimeML language as being ``developed in the context of a six-month workshop, TERQAS'' during 2002. However, the URL link cited for \textit{Annotation Guideline to TimeML 1.0} (\url{http://time2002.org}) no longer available points to an available resource as of March 2021. The TERQAS (Time and Event Recognition for Question Answering Systems) workshop was held at MITRE Bedford and Brandeis University \citep[p. 647]{pustejovsky2003timebank}.}, TimeML has received numerous improvements, updates, and tweaks. Although a version of the language has been adopted as an ISO standard (ISO 24617-1:2009) for temporal annotation \citep{pustejovsky2010iso}, the most recent publically available version---see \url{http://www.timeml.org}---is TimeML 1.2.1 \citep{timeml2005timeml,sauri2006timeml}, and this is the version which the present work will focus on. The primary reason for this is due to the most recently available edition\footnote{This refers to the English language corpus. There do exist versions of other TimeBank corpora in languages such as French \citep{bittar2011french} and Hindi \citep{goel2020hindi} which use the ISO-TimeML schema.} of the TimeBank corpus---one of the largest available corpora for documents annotated with TimeML---being TimeBank 1.2 \citep{pustejovsky2006timebank}, wherein the annotation was updated in order to bring the corpus in line with the updated specification, which at the time was TimeML 1.2.1.
+
+The TimeBank 1.2 corpus contains 183 texts, featuring news articles from a variety of sources, including broadcast news from ABC, CNN, PRI, and VOA, as well as articles from the Wall Street Journal. The counts for how frequently each tag appears in the corpus are given below in \Cref{fig:timebank-stats}, reproduced from \citet{pustejovsky2006timebank}:
+\begin{center}
+	\onehalfspacing
+	\begin{tabular}[h!]{|l l|}
+		\hline
+		\textbf{Tag} & \textbf{Count}\\
+		\hline
+		EVENT & 7,935\\
+		MAKEINSTANCE & 7,940\\
+		TIMEX3 & 1,414\\
+		SIGNAL & 688\\
+		ALINK & 265\\
+		SLINK & 2,932\\
+		TLINK & 6,418\\
+		% \hline
+		\textit{Total} & 27,592\\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Tag counts for TimeBank 1.2.}\label{fig:timebank-stats}
+\end{center}
+The TempEval-3 \citep{uzzaman2013semeval} shared task, which aimed to ``advance research on temporal information processing'', also produced a slightly updated version of the TimeBank 1.2 corpus, which is described as having been ``cleaned''. This included adjusting all of the files to be have consistent formatting, to be XML and TimeML schema compatible, as well as adding some missing events, times, and relations \citep[p. 2]{uzzaman2013semeval}.
+
+While this work will focus on TimeML 1.2.1, it is worth outlining some of the most notable alterations which were introduced by ISO-TimeML. One of the largest changes, from a structural point of view, is moving away from in-line annotation, whereby the markup tags are inserted directly into the body of the text. Instead, ISO-TimeML separates the annotation from the main text, using ``stand-off'' annotation, which increases the interoperability of annotation languages by conforming to the general practice of not modifying the text which is being annotated \citep[p. 395]{pustejovsky2010iso}. For example, a sentence like in \cref{ex:inline-tag-sentence} which features an event that appears partway through will be marked up as something similar to \cref{ex:inline-tag-markup} (omitting some attributes) using the older versions of TimeML:
+\begin{itemize}
+	\item[\ipp\label{ex:inline-tag-sentence}] ``He walked to the shop.''
+	\item[\ipp\label{ex:inline-tag-markup}] \verb|He <EVENT eid="e1" ... >walked</EVENT> to the shop.|
+\end{itemize}
+while ISO-TimeML would be something more like in \cref{ex:standoff-event-seg,ex:standoff-event-tml}, which are each in separate files:
+\begin{itemize}
+	\item[\ipp\label{ex:standoff-event-seg}] \verb|<seg type="token" xml:id="token1">He</seg>|\\\verb|<seg type="token" xml:id="token2">walked</seg>|\\\verb|<seg type="token" xml:id="token3">to</seg>|\\\verb|<seg type="token" xml:id="token4">the</seg>|\\\verb|<seg type="token" xml:id="token5">shop</seg>|
+	\item[\ipp\label{ex:standoff-event-tml}] \verb|<EVENT xml:id="e1" target="#token2" ... />|
+\end{itemize}
+Additionally, the \verb|<EVENT>| tag is now explicitly used to denote an event instance, and as a result, the \verb|<MAKEINSTANCE>| tag no longer exists. Some of its attributes are shifted to the \verb|<EVENT>| tag, and \verb|<TLINK>| tags in ISO-TimeML use \texttt{eventID} and \texttt{relatedToEvent} instead of \texttt{eventInstanceID} and \texttt{relatedToEventInstance}, respectively.
+
+\label{other:iso-mlink}Finally, ISO-TimeML also takes a proposal from \citep{bunt2010annotating} and provides a new type of link tag, \verb|<MLINK>|, which has an ``inherent relation type of \verb|MEASURE|'' \citep[p. 396]{pustejovsky2010iso}, and is used to better reflect the relationships between durative events and stretches of time---for instance, where an event may have been interrupted and resumed during some period, but is referred to as having taken the entire span of time. The new tag uses a measuring function \citep{bunt1985mass} to interpret the relation, so that period of time that is measured is equal to the sum of all of the spans of time that make it up, whether contiguous or not. For example, in the sentence:
+\begin{itemize}
+	\item[\ipp] ``It rained for an hour.''
+\end{itemize}
+it may not have been raining consistently for the full hour---there may have been a period of, say, twenty minutes when it abated---but it is valid to interpret it either as a full, non-stop hour of rain, or as a span of an hour during which it rained. This is what the \verb|<MLINK>| is designed to treat, as in the example \cref{ex:mlink} below (where \textit{P1H} refers to a period of 1 hour):
+\begin{itemize}
+	\item[\ipp\label{ex:mlink}] \verb|<EVENT xml:id="e1" pred="RAIN" />|\\\verb|<TIMEX3 xml:id="t2" type="DURATION" value="P1H" />|\\\verb|<MLINK eventID="e1" relatedToTime="t2" />|
+\end{itemize}
+ISO-TimeML introduces a number of other changes over TimeML, generally with the aim of increasing interoperability. However, neither version of the language is intended to stand truly alone, but rather annotations are created for use in other applications. As such, there is no built-in way to visualise the depicted timeline of times and events, which is an intuitive way\footnote{See \cref{ssub:timelines}.} to assist in understanding the anchoring and ordering of the temporal entities. As such---like the string-based framework described in \cref{sec:fst}---other tools have been created which aim to aid in this arena, either simply for visualising a completed annotation, or as means of assisting an annotater in creating the markup.
+
+\subsubsection{Tango and T-BOX}\label{ssub:tango-tbox}
+Manual annotation of temporal data in text is not a simple task, requiring a solid understanding of the annotation schema, a strong ability to identify and keep track of multiple times and events, as well as being skilled in interpreting the often vague temporal data that exists in language \citep[pp. 213--214]{Verhagen2005}. Accordingly, a number of tools have been designed with the aim of assisting an annotator in making more correct decisions, either by helping to visualise the temporal structure of the document, or by automatically computing relations or marking inconsistencies as the annotator works. For example, Tango \citep{pustejovsky2003tango} was developed with the aim of improving the annotation of documents with TimeML by allowing users to, quite literally, draw connections between times and events which were displayed graphically, as in \Cref{fig:tango}.
+\begin{center}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.9\textwidth]{images/tango}
+	\end{figure}
+	\captionof{figure}{Tango's interface \citep[taken from][p. 2, Fig. 1]{verhagen2005TBOX}.}
+	\label{fig:tango}
+\end{center}
+The graph here works on the same principle as those described in \cref{ssub:allen}, in that the nodes represent the events and times which exist in the TimeML document, while the arcs are labelled with the relation between the intervals. According to \citet[p. 2]{verhagen2005TBOX}, using Tango improved the quality and reliability of the annotations being produced, with a higher number of links being found between the nodes, though he also notes that Tango's main flaw is that it does not allow a user to ``quickly capture the temporal structure of the document'' \citep[p. 2]{verhagen2005TBOX}---that is, interpreting the overall chronology of a text by means of a directed graph is not straightforward. Part of the problem, according to \citet{verhagen2005TBOX}, is that the graph labels---representing the \verb|<TLINK>| tags of TimeML---are difficult to read, especially when the document contains a large number of nodes. More troublesome, however, is the fact that there is no inherent semantics to the placement of the nodes; there is no graphical depiction of the temporal ordering, left-to-right or otherwise, that is enforced by the system in a meaningful way.
+
+As a means of resolving some of these issues with the Tango tooling, \citet{verhagen2005TBOX} created the framework called T-BOX, which is based around the idea that ``relative placement of two events or times is completely determined by the temporal relations between them'' (p. 2). The image shown in \Cref{fig:tbox} represents the same data as in \Cref{fig:tango}, placing events and times in boxes, and using arrows, stacking, and box inclusion to represent the various relations between the temporal expressions.
+
+The rules governing placement of boxes are \citep[pp. 3--5]{verhagen2005TBOX}:
+\begin{itemize}
+	\item An event which occurs \textit{before} another is placed to the left of it, with an arrow leading from one to the other, or a line ending in a dot if the relation is \textit{meets}.
+	\item Simultaneous events are stacked, one box atop the other. Identical events are placed in the same box, rather than being treated the same as simultaneous ones.
+	\item An event which \textit{contains} or \textit{includes} another gains an extended box with thinner walls, and the included event's box is placed inside this box.
+	\item If an event \textit{starts} or \textit{finishes} another, it is placed inside that event's extended box, touching the left or right edge, respectively.
+	\item Otherwise, none of these configurations may occur.
+\end{itemize}
+
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{images/tbox}
+		\captionof{figure}{\Cref{fig:tango}'s data now drawn using T-BOX \citep[taken from][p. 3, Fig. 2]{verhagen2005TBOX}.}\label{fig:tbox}
+	\end{figure}
+\end{center}
+\citeauthor{verhagen2005TBOX} stresses that the vertical and horizontal positioning of boxes doesn't mean anything in and of itself, and thus T-BOX abandons the ``timeline metaphor''. This is something which the present work intends to retain as far as possible, being an intuitive way to conceptualise sequences of events and times---see \cref{ssub:timelines}.
+
+Another point of interest with T-BOX is that it requires as input a TimeML document which has complete temporal closure in its \verb|<TLINK>| tags, and then it reduces this to a minimal graph \citep[p. 6]{verhagen2005TBOX}. This is as opposed to the more typical scenario of trying to compute the temporal closure of a document using a constraint propogation algorithm---such as \citet{allen1983maintaining}'s in \cref{other:allen-algo}, p. \pageref{other:allen-algo}---or, as in the present work, using the superposition of strings.
+
+One further aspect of the T-BOX framework worth noting is that it can be used to possibly detect some inconsistencies in input data if there is some part of the data which cannot be drawn using the rules described above. For example, if the \verb|<TLINK>| tags give that some event X is \textit{before} some other event Y, that Y is \textit{before} a third event Z, and also that Z is \textit{before} X---an impossibility due to the circular transitivity---the inconsistency should be discovered when attempting to draw X to the left of Y, which is to the left of Z, which should then somehow be drawn to the left of X. However, while non-drawability implies an inconsistency, drawability does not imply consistency \citep[p. 12]{verhagen2005TBOX}, since similarly to the constraint propogation algorithm in \citet{allen1983maintaining}, inconsistencies may appear in the graph which appear consistent when looking at three intervals, but become problematic in a larger context. Using strings avoids this issue, as strings which represent information inconsistent with the knowledge base are ejected through superposition (see Section \cref{def:vc-superposition}).
+
+
+
 \subsection{Temporal Semantics}\label{sub:semantics}
-The following sections describe some of the existing ways that the semantics of times and events can be represented. \nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST?}
+The following sections describe some of the existing ways that the semantics of times and events can be represented. \nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST? Durand and Schwer?}
+
 \subsubsection{Discourse Representation Theory}\label{ssub:drt}
 \citet{Kamp1993} introduced Discourse Representation Theory (DRT) as a framework for semantically representing information derived from a text. DRT separates discourse referents (the entities under discussion) from Discourse Representation Structure (DRS) conditions, which describe what is known about the referents.
 
 \nb{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
 % Bunt's use for semantic annotation - can we get his slides from the DCLRS?
+
 \subsubsection{Boxer}\label{ssub:boxer}
 Automatic parsing of text into DRSs is a popular task \nb{Find the shared task from 2019---I'm sure it was on the PMB website, but I can't find it at present}, and \citet{Bos2008} released the first version of the Boxer software which claimed to do this with over 95\% coverage for semantic analysis of newswire texts, though it was noted in the release that performance for temporal data was not as strong as its other areas.
 
@@ -531,14 +718,14 @@ It will be said that for any event $a$ occurring in a string $s = \sigma_1\sigma
 \begin{align}\label{impl:contiguous-events}
 	a \in \sigma_i \wedge a \in \sigma_j \wedge i < j \Longrightarrow (\forall k, i < k < j)~ a \in \sigma_k
 \end{align}
-If some string, such as in \cref{ex:judder-invalid}, features judder in this way, it is said to be invalid. Judder can, if necessary, be treated by subindexing an event---for example, a juddering event $a$ becomes separate sub-events $\{a_1, a_2, a_3\}$, as in \cref{ex:judder-valid}.
-\begin{subequations}
+If some string, such as in \cref{ex:judder-invalid}, features judder in this way, it is said to be invalid, similarly to \citet[p. 134]{Pustejovsky2005} distinguishing separate instances of an event which are referred to together---see \cref{other:pustejovsky-type-instance}, p. \pageref{other:pustejovsky-type-instance}---and only allowing instances to appear in a string. Judder can, if necessary, be treated by subindexing an event---for example, a juddering event $a$ becomes separate sub-events $\{a_1, a_2, a_3\}$, as in \cref{ex:judder-valid}. Alternatively, similarly to \citet{bunt2010annotating} and ISO-TimeML's treatment of non-contiguous events over a duration\footnote{See \cref{other:iso-mlink}, p. \pageref{other:iso-mlink}.}, it may be possible to interpret judder as one whole event, which includes the pauses, as in \cref{ex:judder-valid-2}, which would then be \textit{block compressed}---see \cref{def:bc}, p. \pageref{def:bc}.
+\begin{subequations}\label{ex:judder}
 	\begin{align}
-		* \EventString{a|{}|a|{}|a}\label{ex:judder-invalid} ~-~& \text{invalid}\\
-		\EventString{a_1|{}|a_2|{}|a_3}\label{ex:judder-valid} ~-~& \text{valid}
+		\EventString{a|{}|a|{}|a}\label{ex:judder-invalid} ~-~& \text{invalid}\\
+		\EventString{a_1|{}|a_2|{}|a_3}\label{ex:judder-valid} ~-~& \text{valid}\\
+		\EventString{a|a|a|a|a}\label{ex:judder-valid-2} ~-~& \text{valid}
 	\end{align}
 \end{subequations}
-
 Sets of strings are \textit{languages}, which allow for grouping of strings based on some property---such as their source---and which introduces a method for handling such cases of ambiguity and non-determinism as will be shown in more detail in \cref{ssub:superposition} (see also \cref{ex:lang-superposition}, p. \pageref{ex:lang-superposition}). For example,
 \begin{align}
 	L = \{\EventString{a|b|c}, \EventString{a|c|b}\}
@@ -1102,7 +1289,8 @@ Using these clues, it should be possible to answer these questions:
 The puzzle makes three assumptions: first, that the values as presented are \textit{discrete} rather than continuous---`freezing' and `cold', for example, are similar concepts (indeed, if the weather is freezing, then it is also cold), but for the purposes of this puzzle they are treated as being separate and unrelated; second, that each value lasts for only one day---if it rains on one of the days, it will not rain on any other; and third, each day only has one value per attribute---for example, only one task can be performed on any given day.
 
 For each of the given clues, a constraint can be constructed from one or more strings. Additional constraints can be formed to represent the external assumptions, and by superposing these constraints together, a solution to the puzzle can be found. The strings corresponding to each clue are as follows in \Cref{tab:zebra-clue-strings}:
-\begin{tabular}{|p{\textwidth}|}
+
+\begin{tabular}{|p{0.9\textwidth}|}
 	\hline
 	\begin{itemize}
 		\item $\EventString{mon|tue|wed|thu|fri}$
@@ -1347,7 +1535,7 @@ Event hierarchy and using verb/word nets to figure out how events might relate t
 Finding out what additional information would be required on top of some set of premises in order to make some other conclusion(s) true.
 
 \newpage
-\section{Implementation}\label{sec:implementation}
+\section{String Temporal Annotation and Relation Tool (START)}\label{sec:implementation}
 Various approaches were trialled using different programming languages, including Prolog, JavaScript (Node.js), and Python. Ultimately, Python was chosen for its speed, wide cross-platform availability, and availability of compatible tooling.
 
 Ultimately a widely-useable package was created that could be used either on the web or as a standalone application, as this gave the broadest opportunity to demonstrate the use of the developed technology.
@@ -1359,8 +1547,59 @@ This is the main stuff. Lots of python code all interacting with the data and PM
 
 Describe all the moving parts, but mostly go into detail about the different API layers (i.e. multiple languages, tooling exposing only certain parts, NLTK having only some parts up to scratch), and the code that I personally wrote to stitch them all together, since that's basically the only sort-of valuable thing in this entire project.
 
+pseudocode of superpose all langs sensible:
+
+Superposes all langs sensible takes a list of languages of strings and attempts to superpose them all together, while avoiding superpositions of languages with no shared vocabulary and which will produce a result no longer than some user-specified limit (default is 12, since 13 usually is the result from no relation being found). When a superposition is avoided, the constituent languages are returned along with any successful superpositions.
+
+\begin{verbatim}
+superpose_sensible(a, b, lim):
+  if a = b:
+    # same string
+    return {a}
+  if Va = Vb:
+    # inconsistent
+    return {}
+  if (Va intersect Vb) = 0 or len(superpose(a, b)) > lim:
+    # disjoint vocab
+    return {a, b}
+  else:
+    return superpose(a, b)
+
+superpose_languages(A, B, lim):
+  return superpose_sensible(a, b, lim) for a in A, for b in B
+
+superpose_all_languages(list, lim):
+  for i=0, i++, i < len(list):
+    for j=i+1, j++, j < len(list)
+      sp = superpose_lanugages(list[i], list[j], lim)
+      if sp = {}:
+        # inconsistent
+      elif sp = {list[i], list[j]}:
+        # superposition avoided
+      else:
+        newList = sp + (list - {list[i], list[j]})
+        return superposition_all_languages(newList)
+  return list
+\end{verbatim}
+
+Also taking advantage of Python's built-in caching, the most recent 100 (string) superpositions are stored, which can vastly improve the speed of the calculation. For example, using Python's timeit function to test how much time repetitions of a function takes, with the input $\{\EventString{{}|b,e|{}}, \EventString{{}|c|{}|d|{}}, \EventString{{}|f|{}|d|{}}, \EventString{{}|e|{}|d|{}}, \EventString{{}|a|a,b|a|{}}\}$, we find the following times:
+\begin{center}
+	\footnotesize
+	\begin{tabular}[h!]{|r|c  c  c|}
+		\hline
+		Iterations & No caching (s) & Caching (s) & $\frac{caching}{no caching}$ (\%)\\
+		\hline
+		1 & 0.04596 & 0.00018 & 0.39\%\\
+		100 & 1.60466 & 0.02367 & 1.48\%\\% 32 vs 100
+		10000 & 156.47007 & 0.27928 & 0.18\%\\% 98 vs 14
+		\hline
+	\end{tabular}
+	\captionof{table}{Caching superpositions improving efficiency.}
+\end{center}
 \subsection{Front-end Interface}\label{sub:frontend}
-Brython application with some JS to grease the wheels---why not TKinter? because HTML and CSS are convenient and widely used tools and allow for a web-based interface as well as an offline tool (electron for packaging? maybe?) why not just use js frontend and python in the backend? python generators are hard, and don't play nice when you want to use `next()' to use an effectively `pausable' function and get a new value.
+% Brython application with some JS to grease the wheels---why not TKinter? because HTML and CSS are convenient and widely used tools and allow for a web-based interface as well as an offline tool (electron for packaging? maybe?) why not just use js frontend and python in the backend? python generators are hard, and don't play nice when you want to use `next()' to use an effectively `pausable' function and get a new value.
+
+
 
 \newpage
 \section{Evaluation}\label{sec:evaluation}

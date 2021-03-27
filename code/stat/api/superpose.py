@@ -13,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
         try:
             result['strings'] = list(apiscripts.wsf.superpose_all_langs_sensible(ll['strings'], ll['limit']))
         except Exception as e:
-            result['error'] = e
+            result['error'] = str(e)
 
         self.send_response(200)
         self.send_header('Content-type', 'application/json')

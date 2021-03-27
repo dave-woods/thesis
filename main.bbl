@@ -7,14 +7,21 @@ Allen, J.~F. (1983).
 
 \bibitem[\protect\astroncite{Allen and Ferguson}{1994}]{allen1994actions}
 Allen, J.~F. and Ferguson, G. (1994).
-\newblock Actions and events in interval temporal logic.
+\newblock {Actions and events in interval temporal logic}.
 \newblock {\em Journal of logic and computation}, 4(5):531--579.
 
 \bibitem[\protect\astroncite{Aristotle}{}]{aristotlePhysicsIV}
 Aristotle.
 \newblock {The Internet Classics Archive: Physics IV}.
-\newblock \url{http://classics.mit.edu/Aristotle/physics.4.iv.html}.
+\newblock Web Download:
+  \url{http://classics.mit.edu/Aristotle/physics.4.iv.html}.
 \newblock Accessed: 2018-08-12.
+
+\bibitem[\protect\astroncite{Bittar et~al.}{2011}]{bittar2011french}
+Bittar, A., Amsili, P., Denis, P., and Danlos, L. (2011).
+\newblock {French TimeBank: an ISO-TimeML annotated reference corpus}.
+\newblock In {\em Proceedings of the 49th Annual Meeting of the Association for
+  Computational Linguistics: Human Language Technologies}, pages 130--134.
 
 \bibitem[\protect\astroncite{Bos}{2008}]{Bos2008}
 Bos, J. (2008).
@@ -25,15 +32,26 @@ Bos, J. (2008).
 \bibitem[\protect\astroncite{Bottini et~al.}{2015}]{bottini2015space}
 Bottini, R., Crepaldi, D., Casasanto, D., Crollen, V., and Collignon, O.
   (2015).
-\newblock Space and time in the sighted and blind.
+\newblock {Space and time in the sighted and blind}.
 \newblock {\em Cognition}, 141:67--72.
 
 \bibitem[\protect\astroncite{Buchner and Funke}{1993}]{buchner1993finite}
 Buchner, A. and Funke, J. (1993).
-\newblock Finite-state automata: Dynamic task environments in problem-solving
-  research.
+\newblock {Finite-state automata: Dynamic task environments in problem-solving
+  research}.
 \newblock {\em The Quarterly Journal of Experimental Psychology},
   46(1):83--118.
+
+\bibitem[\protect\astroncite{Bunt and Pustejovsky}{2010}]{bunt2010annotating}
+Bunt, H. and Pustejovsky, J. (2010).
+\newblock Annotating temporal and event quantification.
+\newblock In {\em Proceedings of the 5th Joint ISO-ACL Workshop on
+  Interoperable Semantic Annotation (ISA-5)}, Hong Kong.
+
+\bibitem[\protect\astroncite{Bunt}{1985}]{bunt1985mass}
+Bunt, H.~C. (1985).
+\newblock {\em Mass terms and model-theoretic semantics}.
+\newblock Cambridge University Press, Cambridge.
 
 \bibitem[\protect\astroncite{Derczynski and Gaizauskas}{2013}]{Derczynski2013}
 Derczynski, L. and Gaizauskas, R. (2013).
@@ -43,8 +61,8 @@ Derczynski, L. and Gaizauskas, R. (2013).
 
 \bibitem[\protect\astroncite{Elgot and Rabin}{1966}]{elgot1966decidability}
 Elgot, C.~C. and Rabin, M.~O. (1966).
-\newblock Decidability and undecidability of extensions of second (first) order
-  theory of (generalized) successor.
+\newblock {Decidability and undecidability of extensions of second (first)
+  order theory of (generalized) successor}.
 \newblock {\em The Journal of Symbolic Logic}, 31(2):169--181.
 
 \bibitem[\protect\astroncite{Fernando}{2004}]{Fernando2004}
@@ -77,7 +95,7 @@ Fernando, T. (2018).
 \bibitem[\protect\astroncite{Fernando and
   Nairn}{2005}]{fernando2005entailments}
 Fernando, T. and Nairn, R. (2005).
-\newblock Entailments in finite-state temporality.
+\newblock {Entailments in finite-state temporality}.
 \newblock In {\em Proceedings of the Sixth International Workshop on
   Computational Semantics}, pages 128--138, Tilburg University.
 
@@ -92,9 +110,15 @@ Freksa, C. (1992).
 \newblock {Temporal Reasoning Based on Semi-Intervals}.
 \newblock {\em {Artificial Intelligence}}, 54:199--227.
 
+\bibitem[\protect\astroncite{Goel et~al.}{2020}]{goel2020hindi}
+Goel, P., Prabhu, S., Debnath, A., Modi, P., and Shrivastava, M. (2020).
+\newblock {Hindi TimeBank: An ISO-TimeML Annotated Reference Corpus}.
+\newblock In {\em Proceedings of the 16th Joint ACL-ISO Workshop on
+  Interoperable Semantic Annotation}, pages 13--21.
+
 \bibitem[\protect\astroncite{Hamblin}{1972}]{hamblin1972instants}
 Hamblin, C.~L. (1972).
-\newblock Instants and intervals.
+\newblock {Instants and intervals}.
 \newblock In {\em The Study of Time}, pages 324--331. Springer.
 
 \bibitem[\protect\astroncite{Kamp and Reyle}{1993}]{Kamp1993}
@@ -106,7 +130,7 @@ Kamp, H. and Reyle, U. (1993).
 \bibitem[\protect\astroncite{Khourshid}{2015}]{khourshid_2015}
 Khourshid, D. (2015).
 \newblock {XState}.
-\newblock
+\newblock Web Download:
   \url{https://xstate.js.org/docs/about/concepts.html#finite-state-machines}.
 \newblock Accessed: 2021-03-10.
 
@@ -117,12 +141,12 @@ Kowalski, R. and Sergot, M. (1986).
 
 \bibitem[\protect\astroncite{Kumar}{2005}]{kumar2005effective}
 Kumar, P.~P. (2005).
-\newblock Effective use of gantt chart for managing large scale projects.
+\newblock {Effective use of Gantt chart for managing large scale projects}.
 \newblock {\em Cost engineering}, 47(7):14.
 
 \bibitem[\protect\astroncite{Lakoff and Johnson}{2008}]{lakoff2008metaphors}
 Lakoff, G. and Johnson, M. (2008).
-\newblock {\em Metaphors we live by}.
+\newblock {\em {Metaphors we live by}}.
 \newblock University of Chicago press.
 
 \bibitem[\protect\astroncite{Libkin}{2004}]{Libkin2004}
@@ -133,7 +157,7 @@ Libkin, L. (2004).
 
 \bibitem[\protect\astroncite{McCarthy}{1980}]{mccarthy1980circumscription}
 McCarthy, J. (1980).
-\newblock Circumscription—a form of non-monotonic reasoning.
+\newblock {Circumscription---a form of non-monotonic reasoning}.
 \newblock {\em Artificial intelligence}, 13(1-2):27--39.
 
 \bibitem[\protect\astroncite{McCarthy and
@@ -152,7 +176,7 @@ Miller, R. and Shanahan, M. (1999).
 
 \bibitem[\protect\astroncite{Mitchell}{1980}]{mitchell1980spatial}
 Mitchell, W.~J. (1980).
-\newblock Spatial form in literature: Toward a general theory.
+\newblock {Spatial form in literature: Toward a general theory}.
 \newblock {\em Critical Inquiry}, 6(3):539--567.
 
 \bibitem[\protect\astroncite{Mueller}{2008}]{Mueller2008}
@@ -161,10 +185,17 @@ Mueller, E.~T. (2008).
 \newblock In {\em Foundations of Artificial Intelligence}, volume~3, pages
   671--708.
 
+\bibitem[\protect\astroncite{Pustejovsky et~al.}{2003a}]{pustejovsky2003timeml}
+Pustejovsky, J., Castano, J.~M., Ingria, R., Sauri, R., Gaizauskas, R.~J.,
+  Setzer, A., Katz, G., and Radev, D. (2003a).
+\newblock {TimeML: Robust specification of event and temporal expressions in
+  text}.
+\newblock {\em New directions in question answering}, 3:28--34.
+
 \bibitem[\protect\astroncite{Pustejovsky
-  et~al.}{2003}]{pustejovsky2003timebank}
-Pustejovsky, J., Hanks, P., Sauri, R., See, A., Gaizauskas, R., Setzer, A.,
-  Radev, D., Sundheim, B., Day, D., Ferro, L., et~al. (2003).
+  et~al.}{2003b}]{pustejovsky2003timebank}
+Pustejovsky, J., Hanks, P., Saur{\'{i}}, R., See, A., Gaizauskas, R., Setzer,
+  A., Radev, D., Sundheim, B., Day, D., and Ferro, L. (2003b).
 \newblock {The TIMEBANK Corpus}.
 \newblock In {\em Corpus Linguistics}, volume 2003, pages 647--656. Lancaster,
   UK.
@@ -172,7 +203,7 @@ Pustejovsky, J., Hanks, P., Sauri, R., See, A., Gaizauskas, R., Setzer, A.,
 \bibitem[\protect\astroncite{Pustejovsky et~al.}{2005}]{Pustejovsky2005}
 Pustejovsky, J., Knippen, R., Littman, J., and Saur{\'{i}}, R. (2005).
 \newblock {Temporal and Event Information in Natural Language Text}.
-\newblock {\em Language Resources and Evaluation}, 39(2-3):123--164.
+\newblock {\em Language Resources and Evaluation}, 39(2):123--164.
 
 \bibitem[\protect\astroncite{Pustejovsky et~al.}{2010}]{pustejovsky2010iso}
 Pustejovsky, J., Lee, K., Bunt, H., and Romary, L. (2010).
@@ -180,10 +211,17 @@ Pustejovsky, J., Lee, K., Bunt, H., and Romary, L. (2010).
 \newblock In {\em Proceedings of the Seventh International Conference on
   Language Resources and Evaluation (LREC'10)}, pages 394--397.
 
+\bibitem[\protect\astroncite{Pustejovsky et~al.}{2003c}]{pustejovsky2003tango}
+Pustejovsky, J., Mani, I., Belanger, L., van Guilder, L., Knippen, R., See, A.,
+  Schwarz, J., and Verhagen, M. (2003c).
+\newblock {Tango Final Report}.
+\newblock In {\em ARDA Summer Workshop on Graphical Annotation Toolkit for
+  TimeML, MITRE Bedford and Brandeis University}.
+
 \bibitem[\protect\astroncite{Pustejovsky
   et~al.}{2006}]{pustejovsky2006timebank}
-Pustejovsky, J., Verhagen, M., Sauri, R., Littman, J., Gaizauskas, R., Katz,
-  G., Mani, I., Knippen, R., and Setzer, A. (2006).
+Pustejovsky, J., Verhagen, M., Saur{\'{i}}, R., Littman, J., Gaizauskas, R.,
+  Katz, G., Mani, I., Knippen, R., and Setzer, A. (2006).
 \newblock {TimeBank 1.2 LDC2006T08}.
 \newblock Web Download: \url{https://catalog.ldc.upenn.edu/LDC2006T08}.
 \newblock {Philadelphia: Linguistic Data Consortium}.
@@ -197,52 +235,83 @@ Reichenbach, H. (1947).
 \bibitem[\protect\astroncite{Rosenberg and
   Grafton}{2013}]{rosenberg2013cartographies}
 Rosenberg, D. and Grafton, A. (2013).
-\newblock {\em Cartographies of time: A history of the timeline}.
+\newblock {\em {Cartographies of time: A history of the timeline}}.
 \newblock Princeton Architectural Press.
+
+\bibitem[\protect\astroncite{Saur{\'{i}} et~al.}{2006}]{sauri2006timeml}
+Saur{\'{i}}, R., Littman, J., Knippen, B., Gaizauskas, R., Setzer, A., and
+  Pustejovsky, J. (2006).
+\newblock {TimeML Annotation Guidelines Version 1.2.1}.
+\newblock Technical report, Brandeis University Linguistics Department.
 
 \bibitem[\protect\astroncite{Shanahan}{1997}]{shanahan1997solving}
 Shanahan, M. (1997).
-\newblock {\em Solving the Frame Problem: A Mathematical Investigation of the
-  Common Sense Law of Inertia}.
+\newblock {\em {Solving the Frame Problem: A Mathematical Investigation of the
+  Common Sense Law of Inertia}}.
 \newblock MIT press.
 
 \bibitem[\protect\astroncite{Stangroom}{2009}]{stangroom2009einstein}
 Stangroom, J. (2009).
-\newblock {\em Einstein's Riddle: Riddles, Paradoxes, and Conundrums to Stretch
-  Your Mind}.
+\newblock {\em {Einstein's Riddle: Riddles, Paradoxes, and Conundrums to
+  Stretch Your Mind}}.
 \newblock Bloomsbury USA.
 
 \bibitem[\protect\astroncite{Thielscher}{1999}]{thielscher1999situation}
 Thielscher, M. (1999).
-\newblock From situation calculus to fluent calculus: State update axioms as a
-  solution to the inferential frame problem.
+\newblock {From situation calculus to fluent calculus: State update axioms as a
+  solution to the inferential frame problem}.
 \newblock {\em Artificial intelligence}, 111(1-2):277--299.
+
+\bibitem[\protect\astroncite{{TimeML Working Group}}{2005}]{timeml2005timeml}
+{TimeML Working Group} (2005).
+\newblock {TimeML 1.2.1. A Formal Specification Language for Events and
+  Temporal Expressions}.
+\newblock Web Download:
+  \url{http://www.timeml.org/publications/timeMLdocs/timeml_1.2.1.html}.
+\newblock Accessed: 2018-08-10.
 
 \bibitem[\protect\astroncite{Trakhtenbrot}{1953}]{trakhtenbrot1953recursive}
 Trakhtenbrot, B.~A. (1953).
-\newblock On recursive separability.
+\newblock {On recursive separability}.
 \newblock {\em Doklady Akademii Nauk SSSR}, 88(6):953--956.
 \newblock In Russian.
 
+\bibitem[\protect\astroncite{UzZaman et~al.}{2013}]{uzzaman2013semeval}
+UzZaman, N., Llorens, H., Derczynski, L., Allen, J., Verhagen, M., and
+  Pustejovsky, J. (2013).
+\newblock {Semeval-2013 Task 1: TempEval-3: Evaluating Time Expressions,
+  Events, and Temporal Relations}.
+\newblock In {\em Second Joint Conference on Lexical and Computational
+  Semantics (* SEM), Volume 2: Proceedings of the Seventh International
+  Workshop on Semantic Evaluation (SemEval 2013)}, pages 1--9.
+
 \bibitem[\protect\astroncite{Van~Lambalgen and Hamm}{2008}]{van2008proper}
 Van~Lambalgen, M. and Hamm, F. (2008).
-\newblock {\em The Proper Treatment of Events}, volume~6.
+\newblock {\em {The Proper Treatment of Events}}, volume~6.
 \newblock John Wiley \& Sons.
 
 \bibitem[\protect\astroncite{Veanes et~al.}{2012}]{veanes2012symbolic}
 Veanes, M., Hooimeijer, P., Livshits, B., Molnar, D., and Bjorner, N. (2012).
-\newblock Symbolic finite state transducers: Algorithms and applications.
+\newblock {Symbolic finite state transducers: Algorithms and applications}.
 \newblock In {\em Proceedings of the 39th annual ACM SIGPLAN-SIGACT symposium
   on Principles of programming languages}, pages 137--150.
 
-\bibitem[\protect\astroncite{Verhagen}{2005}]{Verhagen2005}
-Verhagen, M. (2005).
+\bibitem[\protect\astroncite{Verhagen}{2005a}]{verhagen2005TBOX}
+Verhagen, M. (2005a).
+\newblock {Drawing TimeML Relations with T-BOX}.
+\newblock In Katz, G., Pustejovsky, J., and Schilder, F., editors, {\em
+  Annotating, Extracting and Reasoning about Time and Events}, number 05151 in
+  Dagstuhl Seminar Proceedings, Dagstuhl, Germany. Internationales Begegnungs
+  und Forschungszentrum f{\"u}r Informatik (IBFI), Schloss Dagstuhl, Germany.
+
+\bibitem[\protect\astroncite{Verhagen}{2005b}]{Verhagen2005}
+Verhagen, M. (2005b).
 \newblock {Temporal closure in an annotation environment}.
 \newblock {\em Language Resources and Evaluation}, 39(2-3):211--241.
 
 \bibitem[\protect\astroncite{Wintner}{2007}]{wintner2007finite}
 Wintner, S. (2007).
-\newblock Finite-state technology as a programming environment.
+\newblock {Finite-state technology as a programming environment}.
 \newblock In {\em International Conference on Intelligent Text Processing and
   Computational Linguistics}, pages 97--106. Springer.
 

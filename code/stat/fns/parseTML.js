@@ -3,7 +3,6 @@ export const parseTML = inputString => {
     const xml = parser.parseFromString(inputString.trim(), 'text/xml')
     
     if (xml.documentElement.nodeName == "parsererror" || xml.documentElement.getElementsByTagName('parsererror').length > 0) {
-      console.log(xml)
       return {
         imported: inputString
       }

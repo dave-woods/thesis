@@ -237,11 +237,14 @@ def superpose_sensible(a, b, limit = 0):
             return [sp]
 
 def superpose_langs_sensible(lang1, lang2, limit = 0):
-    results = []
-    for s1 in lang1:
-        for s2 in lang2:
-            results += [item for sublist in superpose_sensible(s1, s2, limit) for item in sublist]
-    yield from set(results)
+    yield from set([item for s1 in lang1 for s2 in lang2 for sublist in superpose_sensible(s1, s2, limit) for item in sublist])
+    
+# def superpose_langs_sensible(lang1, lang2, limit = 0):
+#     results = []
+#     for s1 in lang1:
+#         for s2 in lang2:
+#             results += [item for sublist in superpose_sensible(s1, s2, limit) for item in sublist]
+#     yield from set(results)
 
 # def superpose_all_langs_sensible(list_of_langs, limit = 0):
 #     if type(list_of_langs) != list:

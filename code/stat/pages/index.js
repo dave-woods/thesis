@@ -187,6 +187,7 @@ export default function Annotate() {
     const data = await res.json()
     if (data.error) {
       console.error(data)
+      window.error(data)
       return []
     }
     return data.tlinks
@@ -283,11 +284,12 @@ ${newTLINKs.join('\n')}
       })
     }).then(response => response.json()).then(data => {
       if (data.error) {
-        console.error(data)
+        console.error(data.error)
+        window.alert(data.error)
         return
       }
       const { status, strings } = data
-      window.alert(`That relation is ${status} according to the knowledge base.${status !== 'contradicted' ? `\nClick 'Add New Relation' to add:\n${strings}` : ''}`)
+      window.alert(`That relation is ${status} according to the knowledge base.${status !== 'contradicted' ? `\nClick 'Add New Relation' to add:\n${strings}` : 'Adding this relation is not recommended.'}`)
     }).catch(e => console.error(e))
   }
 
