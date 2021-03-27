@@ -238,7 +238,7 @@ def superpose_sensible(a, b, limit = 0):
 
 def superpose_langs_sensible(lang1, lang2, limit = 0):
     yield from set([item for s1 in lang1 for s2 in lang2 for sublist in superpose_sensible(s1, s2, limit) for item in sublist])
-    
+
 # def superpose_langs_sensible(lang1, lang2, limit = 0):
 #     results = []
 #     for s1 in lang1:
@@ -273,11 +273,11 @@ def superpose_all_langs_sensible(list_of_langs, limit = 0):
             sp = list(superpose_langs_sensible(l, ll, limit))
             if sp == []:
                 raise Exception('Contradiction: {} and {}'.format(l, ll))
-            elif set(l + ll) == set(sp):
+            elif set(l + ll) == set(sp) or (limit > 0 and len(sp) > limit):
                 pass # no sp
             else:
                 yielded = True
-                yield from superpose_all_langs_sensible([sp]+list_of_langs[i+1:i+1+j]+list_of_langs[i+1+j+1:], limit)
+                yield from superpose_all_langs_sensible([sp]+list_of_langs[:i]+list_of_langs[i+1:i+1+j]+list_of_langs[i+1+j+1:], limit)
     if not yielded:
         yield from list_of_langs
 

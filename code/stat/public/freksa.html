@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: monospace;
+        }
+        ul {
+            line-height: 1.4;
+        }
+        ul li {
+            margin-bottom: 1.4em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Freksa relations as disjunctions of TimeML/Allen relations</h1>
+    <ul>
+        <li>OLDER: BEFORE, IBEFORE, ENDED_BY, INCLUDES, OVERLAPS</li>
+        <li>YOUNGER: AFTER, IAFTER, ENDS, DURING, OVERLAPPED_BY</li>
+        <li>HEAD_TO_HEAD: BEGINS, BEGUN_BY, SIMULTANEOUS</li>
+        <li>TAIL_TO_TAIL: ENDS, ENDED_BY, SIMULTANEOUS</li>
+        <li>SURVIVES: AFTER, IAFTER, BEGUN_BY, INCLUDES, OVERLAPPED_BY</li>
+        <li>SURVIVED_BY: BEFORE, IBEFORE, BEGINS, DURING, OVERLAPS</li>
+        <li>PRECEDES: BEFORE, IBEFORE</li>
+        <li>SUCCEEDS: AFTER, IAFTER</li>
+        <li>CONTEMPORARY: BEGINS, BEGUN_BY, ENDS, ENDED_BY, DURING, INCLUDES, OVERLAPS, OVERLAPPED_BY, SIMULTANEOUS</li>
+        <li>BORN_BEFORE_DEATH: BEFORE, IBEFORE, BEGINS, BEGUN_BY, ENDS, ENDED_BY, DURING, INCLUDES, OVERLAPS, OVERLAPPED_BY, SIMULTANEOUS</li>
+        <li>DIED_AFTER_BIRTH: BEGINS, BEGUN_BY, ENDS, ENDED_BY, DURING, INCLUDES, OVERLAPS, OVERLAPPED_BY, SIMULTANEOUS, AFTER, IAFTER</li>
+        <li>OLDER_SURVIVED_BY: BEFORE, IBEFORE, OVERLAPS</li>
+        <li>YOUNGER_SURVIVES: AFTER, IAFTER, OVERLAPPED_BY</li>
+        <li>OLDER_CONTEMPORARY: ENDED_BY, INCLUDES, OVERLAPS</li>
+        <li>YOUNGER_CONTEMPORARY: ENDS, DURING, OVERLAPPED_BY</li>
+        <li>SURVIVED_BY_CONTEMPORARY: DURING, BEGINS, OVERLAPS</li>
+        <li>SURVIVING_CONTEMPORARY: INCLUDES, BEGUN_BY, OVERLAPPED_BY</li>
+    </ul>
+</body>
+</html>

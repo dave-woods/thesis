@@ -16,6 +16,7 @@ export default function Annotate() {
   const [helpDisplayed, setHelpDisplayed] = useState(false)
   const [details, setDetails] = useState(null)
   const [superposeLimit, setSuperposeLimit] = useState(12)
+  const [extendedRels, setExtendedRels] = useState(false)
 
   const initialState = {
     textHTML: '',
@@ -289,14 +290,14 @@ ${newTLINKs.join('\n')}
         return
       }
       const { status, strings } = data
-      window.alert(`That relation is ${status} according to the knowledge base.${status !== 'contradicted' ? `\nClick 'Add New Relation' to add:\n${strings}` : 'Adding this relation is not recommended.'}`)
+      window.alert(`That relation is ${status} according to the knowledge base.${status !== 'contradicted' ? `\nClick 'Add New Relation' to add:\n${strings}` : '\nAdding this relation is not recommended.'}`)
     }).catch(e => console.error(e))
   }
 
   return (
     <main id="annotate">
       <Head><title>String Temporal Annotation Tool</title></Head>
-      {helpDisplayed && <Help dismiss={dismissOverlay} limit={superposeLimit} setLimit={setSuperposeLimit}/>}
+      {helpDisplayed && <Help extendedRels={extendedRels} setExtendedRels={setExtendedRels} dismiss={dismissOverlay} limit={superposeLimit} setLimit={setSuperposeLimit}/>}
       {details && <Details event={state.parsedEvents.find(e => e.id === details)} dismiss={dismissOverlay} update={(id, newAttribs) => dispatch({type: 'UPDATE_EVENT', payload: {id, newAttribs}})} />}
       {!state.textHTML ? <TextEntry grabParse={val => dispatch({type: 'DO_PARSE', payload: val})}/> : <TextDisplay text={state.textHTML} reset={() => dispatch({type: 'SET_TEXT', payload: ''})} download={downloadTML}/>}
       <div className="panel">
@@ -311,7 +312,7 @@ ${newTLINKs.join('\n')}
         <EventList events={state.parsedEvents} remove={removeMark} edit={setDetails}/>
       </div>
       <StringBank limit={superposeLimit} strings={state.eventStrings} updateStrings={res => dispatch({type: 'SET_STRINGS', payload: [...res]})}/>
-      {state.parsedEvents.length > 0 ? <CreateRelation events={state.parsedEvents} addRelation={res => dispatch({type: 'ADD_STRINGS', payload: res})} testRelation={testRelation}/> : <div className="relations"></div>}
+      {state.parsedEvents.length > 0 ? <CreateRelation extendedRels={extendedRels} events={state.parsedEvents} addRelation={res => dispatch({type: 'ADD_STRINGS', payload: res})} testRelation={testRelation}/> : <div className="relations"></div>}
     </main>
   )
 }

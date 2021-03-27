@@ -249,7 +249,7 @@ def sals2(lol, limit = 0, depth=0):
                 pass # no sp
             else:
                 yl = True
-                yield from sals([sp]+lol[i+1:i+1+j]+lol[i+1+j+1:], limit, depth+1)
+                yield from sals2([sp]+lol[i+1:i+1+j]+lol[i+1+j+1:], limit, depth+1)
     if not yl:
         yield from lol
 
@@ -260,10 +260,10 @@ def sals(lol, limit = 0, depth=0):
             # print(' '*depth, i,i+1+j,lol)
             if sp == []:
                 raise Exception('Contradiction: {} and {}'.format(l, ll))
-            elif set(l + ll) == set(sp):
+            elif set(l + ll) == set(sp) or (limit > 0 and len(sp) > limit):
                 pass # no sp
             else:
-                return sals([sp]+lol[i+1:i+1+j]+lol[i+1+j+1:], limit, depth+1)
+                return sals([sp]+lol[:i]+lol[i+1:i+1+j]+lol[i+1+j+1:], limit, depth+1)
     return lol
 
 def superpose_langs(lang1, lang2):

@@ -25,7 +25,7 @@ export default function Help(props) {
           </div>}
           {page === 2 && <div id="help-p2">
             <p>
-              Test or create relations from the tagged events and times in the lower left panel. Created relations will appear as strings in the String Bank. The string that will appear can be previewed to the right of the relation name when selecting a relation.
+              Test or create relations from the tagged events and times in the lower left panel. Created relations will appear as strings in the String Bank. The string that will appear can be previewed to the right of the relation name when selecting a relation. Check this box to allow Freksa relation input (these will not appear in the exported TimeML, click <a target="_blank" rel="noopener noreferrer" href="/freksa.html">here for more info</a>): <input type="checkbox" checked={props.extendedRels} onChange={e => props.setExtendedRels(e.currentTarget.checked)} />
             </p>
             <p>
               The String Bank contains all of the known temporal relations, as strings. Triggering a superposition will attempt to consolidate this knowledge into a smaller number of strings by combining the data where it is sensible to do so, i.e. |a|b| + |b|c| = |a|b|c|. Since some superpositions may produce multiple strings as a result, the program will attempt to limit the resulting set to no more than <input style={{width: '6ch'}} type="number" min="0" max="99" defaultValue={props.limit} onChange={e => props.setLimit(parseInt(e.currentTarget.value))}/> strings (use 0 for no limit - this may be slow and produce unwieldy results).
