@@ -28,7 +28,7 @@ function downloadTML() {
 
   return (
     <div className="text">
-      <pre dangerouslySetInnerHTML={{ __html: props.text}} ref={elem}></pre>
+      <pre className={props.noHighlight ? 'no-highlight' : ''} dangerouslySetInnerHTML={{ __html: props.text}} ref={elem}></pre>
       <div className="btns">
         <button id="btn-new" onClick={props.reset}>New</button>
         <button id="btn-export" onClick={() => props.download(elem)}>Export</button>

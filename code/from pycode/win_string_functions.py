@@ -168,10 +168,9 @@ def L(head_a, tail_a, vocab_a, head_b, tail_b, vocab_b):
     return nonempty_union(nonempty_union(part_1, part_2), part_3)
 
 from functools import lru_cache
-
-@lru_cache(maxsize=100)
+@lru_cache(maxsize=1000)
 def superpose_sensible(a, b, limit = 0):
-    if a == b:
+    if sort_fluents(a) == sort_fluents(b):
         return [frozenset([a])]
     v_a = vocabulary(a)
     v_b = vocabulary(b)
@@ -189,6 +188,24 @@ def superpose_sensible(a, b, limit = 0):
         else:
             return [sp]
 
+# @lru_cache(maxsize=1000)
+# def superpose_sensible_analog(a, b, limit = 0):
+#     voc = flatten_list(map(lambda c: c.split(','), [c for c in (a+b).split('|') if c != '']))
+#     i = 0
+#     d2 = dict()
+#     for v in voc:
+#         if v not in d2.keys():
+#             d2[v] = 'FLUENT_{}'.format(str(i))
+#             i += 1
+#     d1 = dict(reversed(item) for item in d2.items())
+#     new_a = map_string_to_new_vocabulary(a, d2)
+#     new_b = map_string_to_new_vocabulary(b, d2)
+#     sp = superpose_sensible(new_a, new_b, limit)
+#     return [frozenset([map_string_to_new_vocabulary(s, d1) for s in fs]) for fs in sp]
+
+def map_string_to_new_vocabulary(string, mapping):
+    return '|'.join(map(lambda c: ','.join(map(lambda f: mapping[f] if f != '' else '', c.split(','))), string.split('|')))
+
 def superpose_all(list_of_strings):
     if type(list_of_strings) != list:
         raise TypeError
@@ -203,12 +220,8 @@ def superpose_all(list_of_strings):
 def superpose_langs_sensible(l1, l2, lim = 0):
     yield from set([item for s1 in l1 for s2 in l2 for sublist in superpose_sensible(s1,s2,lim) for item in sublist])
 
-def sls(lang1, lang2, limit = 0):
-    results = []
-    for s1 in lang1:
-        for s2 in lang2:
-            results += [item for sublist in superpose_sensible(s1, s2, limit) for item in sublist]
-    yield from set(results)
+# def superpose_langs_sensible_analog(l1, l2, lim = 0):
+#     yield from set([item for s1 in l1 for s2 in l2 for sublist in superpose_sensible_analog(s1,s2,lim) for item in sublist])
 
 # convert list to tuple before use
 # from functools import lru_cache
@@ -362,3 +375,21 @@ def pw_sp(string_a, string_b, vocab_a = None, vocab_b = None):
     else:
         pass
     return [re.sub(r'\|+', '|', '|'.join([','.join(sorted(nonempty_union(x.split(','), y.split(',')))) for x, y in zipl(pad_a, pad_b, fillvalue='')]))]
+
+def to_latex(string):
+    return '\EventString{' + re.sub(r'\|$', '|{}', re.sub(r'^\|', '{}|', string)).replace('||', '|{}|').replace('/', '\lor').replace('α', '\\alpha').replace('ω', '\omega') + '}'
+
+def most_simultaneous_events_occurring(string):
+    return max(map(lambda c: len(c), get_components(string)))
+
+def least_simultaneous_resources(strings):
+    min_set = set([strings[0]])
+    min_len = most_simultaneous_events_occurring(strings[0])
+    for s in strings[1:]:
+        l = most_simultaneous_events_occurring(s)
+        if l < min_len:
+            min_len = l
+            min_set = set([s])
+        elif l == min_len:
+            min_set.add(s)
+    return sorted(min_set, key=lambda s: string_length(s))

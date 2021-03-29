@@ -48,8 +48,8 @@ export default function CreateRelation(props) {
           <option value="di">DURING_INV (|{ev1}|{ev1},{ev2}|{ev1}|)</option>
           {/* <option value="di">CONTAINING (|{ev1}|{ev1},{ev2}|{ev1}|)</option> */}
           {/* <option value="d">CONTAINED BY (|{ev2}|{ev1},{ev2}|{ev2}|)</option> */}
-          {/* <option value="o">OVERLAPPING (|{ev1}|{ev1},{ev2}|{ev2}|)</option> */}
-          {/* <option value="oi">OVERLAPPED BY (|{ev2}|{ev1},{ev2}|{ev1}|)</option> */}
+          {<option value="o">OVERLAPS (|{ev1}|{ev1},{ev2}|{ev2}|)</option>}
+          {<option value="oi">OVERLAPPED BY (|{ev2}|{ev1},{ev2}|{ev1}|)</option>}
           <option value="e">SIMULTANEOUS (|{ev1},{ev2}|)</option>
           <option value="e">IDENTITY (|{ev1},{ev2}|)</option>
           {props.extendedRels && <option value="ol">OLDER</option>}
@@ -80,6 +80,7 @@ export default function CreateRelation(props) {
       </ul>
       <button id="testRelation" disabled={ev1 === ev2 || ev1 === '' || ev2 === '' || rel === ''} onClick={() => props.testRelation(ev1, ev2, rel)}>Test Relation</button>
       <button id="createRelation" disabled={ev1 === ev2 || ev1 === '' || ev2 === '' || rel === ''} onClick={addNewRelation}>Add New Relation</button>
+      <button id="tryFindRelation" disabled={ev1 === ev2 || ev1 === '' || ev2 === ''} onClick={() => props.tryFindRelation(ev1, ev2)}>Try Find Relation</button>
     </div>
   )
 }

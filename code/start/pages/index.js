@@ -6,6 +6,7 @@ import * as freksa from '../fns/freksa'
 
 import Details from '../components/Details'
 import Help from '../components/Help'
+import ExamineString from '../components/ExamineString'
 import StringBank from '../components/StringBank'
 import CreateRelation from '../components/CreateRelation'
 import TextEntry from '../components/TextEntry'
@@ -17,6 +18,8 @@ export default function Annotate() {
   const [details, setDetails] = useState(null)
   const [superposeLimit, setSuperposeLimit] = useState(12)
   const [extendedRels, setExtendedRels] = useState(false)
+  const [noHighlight, setNoHighlight] = useState(false)
+  const [examineStringDisplay, setExamineStringDisplay] = useState(null)
 
   const initialState = {
     textHTML: '',
@@ -155,10 +158,12 @@ export default function Annotate() {
         document.getElementById('dosp').click()
       } else if (kb === '?') {
         setDetails(null)
+        setExamineStringDisplay(null)
         setHelpDisplayed(!helpDisplayed)
       } else if (kb === 'escape') {
         setHelpDisplayed(false)
         setDetails(null)
+        setExamineStringDisplay(null)
       }
   }, [helpDisplayed, details, state.nextId])
 
@@ -167,11 +172,47 @@ export default function Annotate() {
     if (e.currentTarget === e.target) {
       setDetails(null)
       setHelpDisplayed(false)
+      setExamineStringDisplay(null)
     }
   }
 
+  const hoverLang = vocab => {
+    if (!!vocab) {
+      setNoHighlight(true)
+      vocab.forEach(v => {
+        document.querySelector(`.tml-ev-ano[data-id="${v}"]`).classList.add('highlight')
+      })
+    } else {
+      setNoHighlight(false)
+      document.querySelectorAll('.tml-ev-ano').forEach(e => e.classList.remove('highlight'))
+    }
+  }
+
+  const examineString = async string => {
+    const vocab = [...new Set(string.split(/[,|]+/).filter(v => v !== ''))]
+    const newString = string.split('|').map(c => c.split(',').map(e => state.parsedEvents.find(ev => ev.id === e)?.text.replace(/\s+/, '_')).join(','))
+    const res = await fetch(process.env.NEXT_PUBLIC_NEW_TLINKS_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        data: {
+          vocabulary: vocab,
+          strings: [[string]]
+        }
+      })
+    })
+    const data = await res.json()
+    if (data.error) {
+      console.error(data)
+      return []
+    }
+    setExamineStringDisplay({orig: string, string: newString, tlinks: data.tlinks})
+  }
+
   const getNewTLINKs = async () => {
-    // const res = await fetch('/api/newTLINKs', {
     const res = await fetch(process.env.NEXT_PUBLIC_NEW_TLINKS_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -193,6 +234,34 @@ export default function Annotate() {
     }
     return data.tlinks
   }
+
+  const tryFindRelation = async (e1, e2) => {
+    const res = await fetch(process.env.NEXT_PUBLIC_NEW_TLINKS_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        data: {
+          vocabulary: [e1, e2],
+          strings: state.eventStrings
+        }
+      })
+    })
+    const data = await res.json()
+    if (data.error) {
+      console.error(data)
+      return []
+    }
+    const found = data.tlinks?.[0]?.match(/relType="([A-Z|_]+)"/)?.[1].split('|');
+    if (found) {
+      window.alert(`The following possible relations were found:\n${found.map(f => e1 + ' ' + f + ' ' + e2).join(',\n')}`)
+    } else {
+      window.alert('That relation could not be determined presently. Clicking \'Superpose\' may help.')
+    }
+  }
+
 
   const exportTML = async elem => {
     const newTLINKs = await getNewTLINKs()
@@ -296,23 +365,24 @@ ${newTLINKs.join('\n')}
 
   return (
     <main id="annotate">
-      <Head><title>String Temporal Annotation Tool</title></Head>
+      <Head><title>START (String Temporal Annotation and Relation Tool)</title></Head>
       {helpDisplayed && <Help extendedRels={extendedRels} setExtendedRels={setExtendedRels} dismiss={dismissOverlay} limit={superposeLimit} setLimit={setSuperposeLimit}/>}
       {details && <Details event={state.parsedEvents.find(e => e.id === details)} dismiss={dismissOverlay} update={(id, newAttribs) => dispatch({type: 'UPDATE_EVENT', payload: {id, newAttribs}})} />}
-      {!state.textHTML ? <TextEntry grabParse={val => dispatch({type: 'DO_PARSE', payload: val})}/> : <TextDisplay text={state.textHTML} reset={() => dispatch({type: 'SET_TEXT', payload: ''})} download={downloadTML}/>}
+      {examineStringDisplay && <ExamineString data={examineStringDisplay} dismiss={dismissOverlay}/>}
+      {!state.textHTML ? <TextEntry grabParse={val => dispatch({type: 'DO_PARSE', payload: val})}/> : <TextDisplay noHighlight={noHighlight} text={state.textHTML} reset={() => dispatch({type: 'SET_TEXT', payload: ''})} download={downloadTML}/>}
       <div className="panel">
         <p>Select some text, then tag as Event or Time</p>
         <div className="btns">
+          <button id="btn-help" onClick={() => setHelpDisplayed(true)}>Help</button>
           <button id="btn-undo" onClick={() => dispatch({type: 'UNDO'})}>Undo</button>
           <button id="btn-reset" onClick={() => window.confirm('Are you sure? No undo.') && dispatch({type: 'RESET', payload: initialState})}>Reset</button>
           <button id="btn-tag-event" onClick={() => createMark('EVENT')}>Tag Event</button>
           <button id="btn-tag-time" onClick={() => createMark('TIMEX3')}>Tag Time</button>
-          <button id="btn-help" onClick={() => setHelpDisplayed(true)}>Help</button>
         </div>
-        <EventList events={state.parsedEvents} remove={removeMark} edit={setDetails}/>
+        <EventList events={state.parsedEvents} remove={removeMark} edit={setDetails} hoverLang={hoverLang} />
       </div>
-      <StringBank limit={superposeLimit} strings={state.eventStrings} updateStrings={res => dispatch({type: 'SET_STRINGS', payload: [...res]})}/>
-      {state.parsedEvents.length > 0 ? <CreateRelation extendedRels={extendedRels} events={state.parsedEvents} addRelation={res => dispatch({type: 'ADD_STRINGS', payload: res})} testRelation={testRelation}/> : <div className="relations"></div>}
+      <StringBank hoverLang={hoverLang} limit={superposeLimit} strings={state.eventStrings} updateStrings={res => dispatch({type: 'SET_STRINGS', payload: [...res]})} examineString={examineString}/>
+      {state.parsedEvents.length > 0 ? <CreateRelation extendedRels={extendedRels} events={state.parsedEvents} addRelation={res => dispatch({type: 'ADD_STRINGS', payload: res})} testRelation={testRelation} tryFindRelation={tryFindRelation}/> : <div className="relations"></div>}
     </main>
   )
 }

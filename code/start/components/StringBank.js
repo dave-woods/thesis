@@ -32,8 +32,24 @@ export default function StringBank(props) {
     <div className="string-bank">
       <h4>String bank ({props.strings.length}) <button disabled={loading || props.strings.length < 2} id="dosp" onClick={doSuperposition}>Superpos{loading ? 'ing' : 'e'}</button></h4>
       <ul className="strings">
-      {props.strings.map((s, i) => <li key={`es-${i}`}>[{s.join(',\n')}]</li>)}
+      {props.strings.map((l, i) => <Language key={`sb-${i}`} langid={i} language={l} hoverLang={props.hoverLang} examineString={props.examineString} />)}
       </ul>
     </div>
+  )
+}
+
+function Language(props) {
+  const vocab = [...new Set(props.language.reduce((acc, cur) => {
+    return [...acc, ...cur.split(/[,|]+/).filter(v => v !== '')]
+  }, []))]
+
+  return (
+    <li onMouseEnter={() => props.hoverLang(vocab)} onMouseLeave={() => props.hoverLang()} className="sb-language"><span className="sb-lbracket">[</span><div>{props.language.map((s, i) => <String examineString={props.examineString} key={`s-${props.langid}-${i}`}>{s}</String>)}</div><span className="sb-rbracket">]</span></li>
+  )
+}
+
+function String(props) {
+  return (
+    <span onClick={() => props.examineString(props.children)} className="sb-string">{props.children}</span>
   )
 }

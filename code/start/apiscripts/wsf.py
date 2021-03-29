@@ -1,4 +1,4 @@
-from functools import reduce
+from functools import reduce, lru_cache
 from collections import Counter
 import itertools
 import re
@@ -113,6 +113,7 @@ def projection_full_vocab(string, vocab):
 def projection_lang_full_vocab(lang, new_vocab):
     return list(set(filter(lambda n: n != '', [projection_full_vocab(s, new_vocab) for s in lang])))
 
+@lru_cache(maxsize=1000)
 def analogous_strings(a, b):
     v_a = vocabulary(a)
     v_b = vocabulary(b)
@@ -214,11 +215,9 @@ def superpose_all(list_of_strings):
         for sp in superpose(list_of_strings[0], list_of_strings[1]):
             yield from superpose_all([sp] + list_of_strings[2:])
 
-from functools import lru_cache
-
-@lru_cache(maxsize=100)
+@lru_cache(maxsize=1000)
 def superpose_sensible(a, b, limit = 0):
-    if a == b:
+    if sort_fluents(a) == sort_fluents(b):
         return [frozenset([a])]
     v_a = vocabulary(a)
     v_b = vocabulary(b)
@@ -377,3 +376,18 @@ def pw_sp(string_a, string_b, vocab_a = None, vocab_b = None):
         pass
 
     return [re.sub(r'\|+', '|', '|'.join([','.join(sorted(nonempty_union(x.split(','), y.split(',')))) for x, y in zipl(pad_a, pad_b, fillvalue='')]))]
+
+def most_simultaneous_events_occurring(string):
+    return max(map(lambda c: len(c), get_components(string)))
+
+def least_simultaneous_resources(strings):
+    min_set = set([strings[0]])
+    min_len = most_simultaneous_events_occurring(strings[0])
+    for s in strings[1:]:
+        l = most_simultaneous_events_occurring(s)
+        if l < min_len:
+            min_len = l
+            min_set = set([s])
+        elif l == min_len:
+            min_set.add(s)
+    return sorted(min_set, key=lambda s: string_length(s))

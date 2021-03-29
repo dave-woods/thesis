@@ -8,7 +8,7 @@ export default function Details(props) {
   }, [])
 
   return (
-    <div className="add-details-wrap" onClick={props.dismiss}>
+    <div className="overlay" onClick={props.dismiss}>
       <div className="add-details">
         <h2>{props.event.id}: {props.event.text}</h2>
         <h3>Edit attributes</h3>

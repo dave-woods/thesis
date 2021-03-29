@@ -227,6 +227,7 @@ def modified_L(head_a, tail_a, vocab_a, head_b, tail_b, vocab_b):
 # #      should this be done during superposition?
 
 # durand + schwer train problem 2008
+results = []
 ms = modified_superpose('α(A),α(B),α(E)|', '|ω(A)|ω(A),ω(B)')
 for s in ms:
     mm = modified_superpose(s, 'α(D),α(F)||ω(B)')
@@ -236,8 +237,26 @@ for s in ms:
             mm1 = modified_superpose(m1, 'α(D)|ω(C),α(D)|ω(A),ω(C)')
             for x1 in mm1:
                 if set(vocabulary(reverse_translate(x1))) == set(['A', 'B', 'C', 'D', 'E', 'F']): 
-                    print(reverse_translate(x1))
+                    results.append(reverse_translate(x1))
             mm2 = modified_superpose(m1, 'α(D)|ω(A),ω(C)')
             for x1 in mm2:
                 if set(vocabulary(reverse_translate(x1))) == set(['A', 'B', 'C', 'D', 'E', 'F']): 
-                    print(reverse_translate(x1))
+                    results.append(reverse_translate(x1))
+
+
+# this is incorrect
+def optimal_resources(strings):
+    min_len = string_length(strings[0])
+    min_set = set([strings[0]])
+    for s in strings[1:]:
+        l = string_length(s)
+        if l < min_len:
+            min_len = l
+            min_set = set([s])
+        elif l == min_len:
+            min_set.add(s)
+    min_sorted = sorted(min_set, key=lambda s: reduce(lambda acc, cur: acc + len(cur), s.split('|'), 0))
+    return {'least_resources': min_sorted[0], 'least_time': min_sorted[-1]}
+
+for k, v in optimal_resources(results).items():
+    print(k, v, string_length(v))

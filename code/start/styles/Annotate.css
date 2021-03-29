@@ -21,7 +21,7 @@ main#annotate {
 #annotate a:hover {
     text-decoration: none;
 }
-#annotate .help-wrap, #annotate .add-details-wrap {
+#annotate .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -33,12 +33,46 @@ main#annotate {
     align-items: center;
     z-index: 10;
 }
-#annotate .help, #annotate .add-details {
-    width: 70%;
+#annotate .overlay > div {
+    width: clamp(380px, 70%, 600px);
     line-height: 1.8;
     background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 2em;
+}
+#annotate .examine-string {
+    text-align: center;
+}
+#annotate .examined {
+    background-color: white;
+    color: black;
+    display: inline-flex;
+    height: 3em;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    cursor: default;
+}
+#annotate .examined .component-box {
+    min-width: 1em;
+    padding: 0.4em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: white;
+    border: 2px solid grey;
+}
+#annotate .examined .component-box:not(:last-child) {
+    border-right: none;
+}
+#annotate .examine-string .tlinks {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#annotate .examine-string .tlinks li:not(:last-child) {
+    margin-top: 0.6em;
 }
 #annotate .add-details {
     text-align: center;
@@ -104,6 +138,9 @@ main#annotate {
 #annotate span.tml-ev-ano:not(:hover) {
     opacity: 0.8;
 }
+#annotate .no-highlight span.tml-ev-ano:not(.highlight) {
+    background-color: transparent;
+}
 #annotate span.tml-ev-ano:hover::after {
     content: attr(data-id);
     position: absolute;
@@ -130,12 +167,14 @@ main#annotate {
 }
 #annotate .panel .btns button {
     font-size: 1em;
+    margin: 0.2em 0.6em;
 }
 #annotate .event-list {
     list-style: none;
     margin: 0;
     padding: 0;
     line-height: 2;
+    cursor: default;
 }
 #annotate .event-list li {
     display: flex;
@@ -166,7 +205,23 @@ main#annotate {
     margin: 0;
     padding: 0;
 }
-#annotate .string-bank ul li:not(:last-child)::after {
+#annotate .string-bank ul li .sb-rbracket {
+    flex-grow: 0;
+    flex-shrink: 1;
+    align-self: flex-end;
+}
+#annotate .string-bank ul li .sb-rbracket::after {
+    content: ',';
+}
+#annotate .string-bank ul li {
+    display: flex;
+    cursor: default;
+}
+#annotate .sb-language > div {
+    display: flex;
+    flex-direction: column;
+}
+#annotate .sb-string:not(:last-child)::after {
     content: ',';
 }
 #annotate .relations {
