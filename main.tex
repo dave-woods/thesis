@@ -175,8 +175,6 @@
 	\end{center}
 }
 
-\newcommand{\xmltag}[2][]{\texttt{\textless{}#2#1\textgreater{}}}
-
 \defcitealias{aristotlePhysicsIV}{Physics IV}
 
 \newcommand{\refneeded}[1][]{{\color{red}[Figure reference needed!#1]}}
@@ -231,10 +229,12 @@ I, the undersigned, declare that this thesis has not been submitted as an exerci
 \vspace{2em}
 
 \noindent
-I, the undersigned, agree to deposit this thesis in the University's open access institutional repository or allow the Library to do so on my behalf, subject to Irish Copyright Legislation and Trinity College Library conditions of use and acknowledgement.
+I, the undersigned, agree to deposit this thesis in the University's open access institutional repository or allow the Library to do so on my behalf, subject to Irish Copyright Legislation and Trinity College Library conditions of use and acknowledgement.\par
 
-%\noindent
-%I, the undersigned, consent / do not consent to the examiner retaining a copy of the thesis beyond the examining period, should they so wish (EU GDPR May 2018).
+\vspace{2em}
+
+\noindent
+I, the undersigned, consent to the examiner retaining a copy of the thesis beyond the examining period, should they so wish (EU GDPR May 2018).
 
 \vspace{\fill}
 
@@ -264,7 +264,7 @@ Although I wrote this thesis alone, a number of people supported me along the wa
 
 I would like to thank my parents, Margaret and Graham, who never doubted I would do my best; my brother, Fergus, who has often been a much-needed reminder of normal life; Conor and Katie, who inspired me to start; Adelais, who encouraged me to make it over the finish line and made sure I remembered life outside of writing; and all the members of DU Trampoline Club, who gave me a reason to stick around. I hope it was worth it!
 
-My appreciation goes also to my supervisors: Tim, for being patient with me even when I was struggling, and Carl, who often managed to reassure me that I wasn't going down completely the wrong path. Thank you for not giving up on me.
+My appreciation goes also to my supervisors: Tim, for being patient with me even when I was struggling, and Carl, who often managed to reassure me that I wasn't going down completely the wrong path. Thank you both for not giving up on me.
 
 No thanks go to the COVID-19 global pandemic which disrupted my final year. Here's to survival, and here's to the memory of those that did not.
 
@@ -404,11 +404,12 @@ For $N$ nodes (intervals) there are $\frac{N^2-N}{2}$ edges if all new nodes are
 
 To tackle the space requirements while maintaining as much inferential power as possible, \citet[p. 838]{allen1983maintaining} also describes a method for grouping clusters of intervals which---in regards to the relations between them---are fully computed, termed ``reference intervals''. This is due to the fact that each interval $I_i$ in the cluster $\{I_1, I_2, ..., I_n\}$ will reference one or more new intervals $R_m$ (where $m$ is an index on the number of reference intervals), and these reference intervals will be connected in the graph, which can be used to find relations between nodes which are not directly connected. Since these reference intervals may be treated as normal intervals, they may themselves be grouped into a cluster, and thus hierarchies of intervals may arise.% These are not currently implemented in the present work, but they may be useful as a way to address documents with high numbers of intervals.
 
-Allen's work was and remains highly influential in the field of temporal reasoning and annotation, thanks to an approach which is both intuitive and straight-forward, as well as easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language'' \citep[p. 123]{Pustejovsky2005}. \nb{either add "see \cref{ssub:timeml}" or rearrange subsections}
+Allen's work was and remains highly influential in the field of temporal reasoning and annotation, thanks to an approach which is both intuitive and straight-forward, as well as easy to implement in various applications. One such proponent of interval relations has been TimeML, a markup language designed to ``capture the richness of temporal and event related information in language'' \citep[p. 123]{Pustejovsky2005}---see \cref{ssub:timeml}.
 
 
 \subsubsection{Tense and Aspect}\label{ssub:tenseaspect}
-Reichenbach's (\citeyear{reichenbach1947elements}) theory of verbal tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect in English and other languages. While verbs are not the only expression of events, these categorisations can convey enough information to temporally locate that event
+Reichenbach's (\citeyear{reichenbach1947elements}) theory of verbal tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect in English and other languages. This framework has been widely accepted and adopted, and has found empirical validation via TimeML \citep{timeml2005timeml} and the TimeBank corpus \citep{pustejovsky2003timebank} in \citet{Derczynski2013}, which finds that using \citet{Freksa1992}'s semi-interval relations leads to ``tense appropriately constrain[ing] the types of temporal relations that can hold between pairs of events described by verbs''.
+%While verbs are not the only expression of events, these categorisations can convey enough information to temporally locate that event
 
 \nb{Bring up TEA here somewhere. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block compression. Tim mentioned that this is a difference from Schwer's S-Words.}
 % Reichenbach, Vendler, TEA
@@ -417,7 +418,7 @@ Reichenbach's (\citeyear{reichenbach1947elements}) theory of verbal tense and as
 
 \citet[p. 72]{reichenbach1947elements} initially presents six tense/aspect combinations of English as arrangements of three temporal points, the `point of the event', the `point of reference', and the `point of speech', which may coincide. These six are: the Simple Past, Past Perfect, Present, Present Perfect, Simple Future, and Future Perfect---see \Cref{fig:reichenback-arrangements}. 
 
-%However, in order to treat the Progressive aspect which English may use, the so-called `point of the event' must in fact be an interval rather than an instantaneous point. In fact, all three time points (typically labelled as $E$ for event time, $R$ for reference time, and $S$ for speech time) may be considered as intervals\footnote{Using combinations of the Progressive and Perfective aspects is admittedly more difficult. For instance, the only difference in \citet{reichenbach1947elements} between Past Perfect and Past Perfect Progressive is that $E$ is treated as an interval in the latter. \citet{Derczynski2013} treat this by splitting $E$ into $E_s$ and $E_f$ for the beginning and ending of $E$, respectively.} while maintaining the initial arrangements to represent the tenses and aspects. This is presented using the Allen relations (see \cref{ssub:allen}) in \Cref{fig:reichenback-arrangements} below.
+
 
 % This is reproduced in \Cref{fig:reichenback-arrangements} below, with $E$ for the event time, $R$ for the reference time, and $S$ for the speech time:
 
@@ -444,20 +445,36 @@ Reichenbach's (\citeyear{reichenbach1947elements}) theory of verbal tense and as
 	\captionof{figure}{Arrangements of the points E, R, and S, from \citet{reichenbach1947elements}.}
 	\label{fig:reichenback-arrangements}
 \end{center}
+By using what \citet[p. 74]{reichenbach1947elements} refers to as the ``permanence of the reference point'', events in an utterance may be temporally ordered relative to each other. This states that, though events may be in different clauses, the fact that a speaker adjusts the use of tense and aspect for the events relative to each other shows that they must share a reference time. In the following example \cref{ex:permanent-ref-pt}, the two events are in boldface.
+\begin{itemize}
+	\item[\ipp\label{ex:permanent-ref-pt}] ``I had \textbf{left} her when I \textbf{bought} the book.''
+\end{itemize}
+Since the two events are in the same utterance, they have the same speech time, and by permanence of reference point, their reference times are also identical. Now, given that `left' is in the Past Perfect, while `bought' is in the Simple Past, the constraints from \Cref{fig:reichenback-arrangements} can be used to order the two events as follows:
 
-
+\begin{center}
+	\begin{tabular}{c c c c c}
+		$E_{leave}$ & $<$ & $R_{leave}$ & $<$ & $S_{leave}$\\
+		& & $E_{buy} = R_{buy}$ & $<$ & $S_{buy}$
+	\end{tabular}
+\end{center}
+This gives that the event time of `left' $E_{leave}$ occurs before the event time of `bought' $E_{buy}$.
+	
+However, in order to treat the Progressive aspect which English may use, the so-called `point of the event' must in fact be taken as an interval rather than an instantaneous point, indicating the durative nature of the Progressive. \citet{Derczynski2013} treat this by splitting $E$ into $E_s$ and $E_f$ for the beginning and ending of $E$, respectively.
+%In fact, all three time points (typically labelled as $E$ for event time, $R$ for reference time, and $S$ for speech time) may be considered as intervals\footnote{Using combinations of the Progressive and Perfective aspects is admittedly more difficult. For instance, the only difference in \citet{reichenbach1947elements} between Past Perfect and Past Perfect Progressive is that $E$ is treated as an interval in the latter. } while maintaining the initial arrangements to represent the tenses and aspects. This is presented using the Allen relations (see \cref{ssub:allen}) in \Cref{fig:reichenback-arrangements} below.
 
 
 \subsection{Temporal Annotation}\label{sub:annotation}
-% Mention Bunt in here somewhere!?
-Ideally, a human using an artificially intelligent system won't have to consider annotation, except in the case when that itself is the goal. In any case, for now annotated text is a crucial source of data for working with models such as are presented in this work. When it comes to temporal annotation, the ISO (International Organization for Standardization) standard is TimeML, specifically ISO-TimeML (ISO 24617-1:2009). \nb{Also talk about Tango and Verhagen's T-BOX.} \nb{page 8 of \url{https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/english-timex2-guidelines-v0.1.pdf}}
+Ideally, humans who use artificially intelligent systems for question-answering, scheduling, or other applications which require some level of reasoning about temporal data won't ever have to consider the annotation which drives it---except, of course, in the case when annotation is itself the goal of using the system. Computer systems have no inherent understanding of natural language, and rely on the samples they have been provided with in order to give a facsimile of the communication abilities that humans have. The better the quality of those samples, and the more information embedded within them, the better the system can interpret human language, and in turn generate interpretable output.
+
+The annotation of a document allows for information about the text to be expressed in such a way as to make the implicit explicit---revealing a layer of semantics which a human may be able to infer, but an artificial agent would not. There are many ways to mark up a text, and many concepts which may warrant marking up, but in terms of temporal data, the most prudent schema to follow is that of TimeML \citep{timeml2005timeml} and its successor, which has become the ISO (International Organization for Standardization) standard for temporal annotation: ISO-TimeML \citep{ISO24617-1}, a part of the ISO Semantic Annotation Framework---see \citet{Bunt2020}.
+
 % Derczinski
-TimeML has found considerable success in terms of widespread adoption as a means of marking up text with temporal information, at least in some part thanks to the release of TimeBank \citep{pustejovsky2003timebank}, a corpus of newswire articles\footnote{The original version of TimeBank contained 300 articles, while the latest version, TimeBank 1.2, contains 183.} which were manually annotated using the TimeML schema. In terms of quality of annotation, manual is still seen as the `gold standard', although automatic annotation has seen much effort in recent years \citep{uzzaman2013semeval}.
+TimeML has found considerable success in terms of widespread adoption as a means of marking up text with temporal information, at least in some part thanks to the release of TimeBank \citep{pustejovsky2003timebank}, a corpus of newswire articles\footnote{The original version of TimeBank contained 300 articles, while the latest version, TimeBank 1.2, contains 183.} which were manually annotated using the TimeML schema. TimeBank frequently appears in discussion about TimeML since, in terms of quality, manual annotation is still seen as the `gold standard' and superior to automatically generated markup, although machine-created annotation has seen much effort and improvement in recent years \citep{mani2006machine,uzzaman2013semeval,reimers2016temporal}.
 
-
+The availability of appropriate tooling for the creation of human-driven annotation is crucial in ensuring that accurate and consistent results are produced. The first edition of the TimeBank corpus was annotated using the Alembic Workbench tool \citep{day1997mixed}, which was useful for the non-relational aspects, but impractical for the highly relational nature of the temporal data featured in TimeML annotations \citep{verhagen2005TBOX}. A number of other tools have been developed since then which aim to provide visual feedback and assistance to an annotator, including using directed graphs---as in \citet{allen1983maintaining}---and timeline-like depictions, of which the tooling described in \cref{sec:implementation} falls under the second category.
 
 \subsubsection{TimeML and TimeBank}\label{ssub:timeml}
-The initial goal for creating the TimeML language came from a desire to improve applications\allowbreak{}---such as question-answering systems---by means of event recognition, and giving each recognised event an explicit temporal location. This latter point is motivated due to the fact that a large proportion of temporal information in discourse (the domain primarily focused on by \citet{Pustejovsky2005} is news articles) rely on implicit or vague temporal expressions. This relates back to the first principle which \citet{allen1983maintaining} mentioned\footnote{See \pageref{other:allen-motivations}} as influencing the design of the interval algebra framework: that it is not generally intuitive to always think of or refer to time in terms of explicit or precise time points. Instead we tend to use relative expressions, such as the boldface text in the following utterances:
+The initial goal for creating the TimeML language came from a desire to improve applications\allowbreak{}---such as question-answering systems---by means of event recognition, and giving each recognised event an explicit temporal location. This latter point is motivated due to the fact that a large proportion of temporal information in discourse rely on implicit or vague temporal expressions. This relates back to the first principle which \citet{allen1983maintaining} mentioned\footnote{See p. \pageref{other:allen-motivations}.} as influencing the design of the interval algebra framework: that it is not generally intuitive to always think of or refer to time in terms of explicit or precise time points. Instead we tend to use relative expressions, such as the boldface text in the following utterances:
 \begin{itemize}
 	\item[\ipp] ``I didn't go to work \textbf{last Monday}.''
 	\item[\ipp] ``I was sick \textbf{the week before}.''
@@ -576,7 +593,7 @@ Below in \Cref{fig:example-timeml-annotation} is a simple example of a completed
 	\end{tabular}
 	\captionof{figure}{Example TimeML annotation for ``He panicked on Wednesday.''}\label{fig:example-timeml-annotation}
 \end{center}
-Since the initial publication of \citet{pustejovsky2003timeml}\footnote{In this work, the authors do refer to the TimeML language as being ``developed in the context of a six-month workshop, TERQAS'' during 2002. However, the URL link cited for \textit{Annotation Guideline to TimeML 1.0} (\url{http://time2002.org}) no longer available points to an available resource as of March 2021. The TERQAS (Time and Event Recognition for Question Answering Systems) workshop was held at MITRE Bedford and Brandeis University \citep[p. 647]{pustejovsky2003timebank}.}, TimeML has received numerous improvements, updates, and tweaks. Although a version of the language has been adopted as an ISO standard (ISO 24617-1:2009) for temporal annotation \citep{pustejovsky2010iso}, the most recent publically available version---see \url{http://www.timeml.org}---is TimeML 1.2.1 \citep{timeml2005timeml,sauri2006timeml}, and this is the version which the present work will focus on. The primary reason for this is due to the most recently available edition\footnote{This refers to the English language corpus. There do exist versions of other TimeBank corpora in languages such as French \citep{bittar2011french} and Hindi \citep{goel2020hindi} which use the ISO-TimeML schema.} of the TimeBank corpus---one of the largest available corpora for documents annotated with TimeML---being TimeBank 1.2 \citep{pustejovsky2006timebank}, wherein the annotation was updated in order to bring the corpus in line with the updated specification, which at the time was TimeML 1.2.1.
+Since the initial publication of \citet{pustejovsky2003timeml}\footnote{In this work, the authors do refer to the TimeML language as being ``developed in the context of a six-month workshop, TERQAS'' during 2002. However, the URL link cited for \textit{Annotation Guideline to TimeML 1.0} (\url{http://time2002.org}) no longer available points to an available resource as of March 2021. The TERQAS (Time and Event Recognition for Question Answering Systems) workshop was held at MITRE Bedford and Brandeis University \citep[p. 647]{pustejovsky2003timebank}.}, TimeML has received numerous improvements, updates, and tweaks. Although a version of the language has been adopted as an ISO standard (ISO 24617-1:2012) for temporal annotation \citep{pustejovsky2010iso}, the most recent publically available version---see \url{http://www.timeml.org}---is TimeML 1.2.1 \citep{timeml2005timeml,sauri2006timeml}, and this is the version which the present work will focus on. The primary reason for this is due to the most recently available edition\footnote{This refers to the English language corpus. There do exist versions of other TimeBank corpora in languages such as French \citep{bittar2011french} and Hindi \citep{goel2020hindi} which use the ISO-TimeML schema.} of the TimeBank corpus---one of the largest available corpora for documents annotated with TimeML---being TimeBank 1.2 \citep{pustejovsky2006timebank}, wherein the annotation was updated in order to bring the corpus in line with the updated specification, which at the time was TimeML 1.2.1.
 
 The TimeBank 1.2 corpus contains 183 texts, featuring news articles from a variety of sources, including broadcast news from ABC, CNN, PRI, and VOA, as well as articles from the Wall Street Journal. The counts for how frequently each tag appears in the corpus are given below in \Cref{fig:timebank-stats}, reproduced from \citet{pustejovsky2006timebank}:
 \begin{center}
@@ -620,10 +637,10 @@ it may not have been raining consistently for the full hour---there may have bee
 \begin{itemize}
 	\item[\ipp\label{ex:mlink}] \verb|<EVENT xml:id="e1" pred="RAIN" />|\\\verb|<TIMEX3 xml:id="t2" type="DURATION" value="P1H" />|\\\verb|<MLINK eventID="e1" relatedToTime="t2" />|
 \end{itemize}
-ISO-TimeML introduces a number of other changes over TimeML, generally with the aim of increasing interoperability. However, neither version of the language is intended to stand truly alone, but rather annotations are created for use in other applications. As such, there is no built-in way to visualise the depicted timeline of times and events, which is an intuitive way\footnote{See \cref{ssub:timelines}.} to assist in understanding the anchoring and ordering of the temporal entities. As such---like the string-based framework described in \cref{sec:fst}---other tools have been created which aim to aid in this arena, either simply for visualising a completed annotation, or as means of assisting an annotater in creating the markup.
+ISO-TimeML introduces a number of other changes over TimeML, such as the alteration and addition of several tag attributes, with the general aim of increasing interoperability, making it easier for other systems or software that might make use of the represented information. However, neither version of the language is intended to stand truly alone, but rather annotations are created for use in other applications. As such, there is no built-in way to visualise the depicted timeline of times and events, which is an intuitive way\footnote{See \cref{ssub:timelines}.} to assist in understanding the anchoring and ordering of the temporal entities. As such---like the string-based framework described in \cref{sec:fst}---other tools have been created which aim to aid in this arena, either simply for visualising a completed annotation, or as means of assisting an annotator in creating the markup.
 
 \subsubsection{Tango and T-BOX}\label{ssub:tango-tbox}
-Manual annotation of temporal data in text is not a simple task, requiring a solid understanding of the annotation schema, a strong ability to identify and keep track of multiple times and events, as well as being skilled in interpreting the often vague temporal data that exists in language \citep[pp. 213--214]{Verhagen2005}. Accordingly, a number of tools have been designed with the aim of assisting an annotator in making more correct decisions, either by helping to visualise the temporal structure of the document, or by automatically computing relations or marking inconsistencies as the annotator works. For example, Tango \citep{pustejovsky2003tango} was developed with the aim of improving the annotation of documents with TimeML by allowing users to, quite literally, draw connections between times and events which were displayed graphically, as in \Cref{fig:tango}.
+Manual annotation of temporal data in text is not a simple task, requiring a solid understanding of the annotation schema, a strong ability to identify and keep track of multiple times and events, as well as being skilled in interpreting the often vague temporal data that exists in language \citep[pp. 213--214]{Verhagen2005}. Accordingly, a number of tools have been designed with the aim of assisting an annotator in making more correct decisions, either by helping to visualise the temporal structure of the document, or by automatically computing relations or marking inconsistencies as the annotator works. For example, Tango \citep{pustejovsky2003tango} was developed with the aim of improving the annotation of documents with TimeML by allowing users to---quite literally---draw connections between times and events which were displayed graphically, as in \Cref{fig:tango}.
 \begin{center}
 	\begin{figure}[h]
 		\centering
@@ -632,13 +649,13 @@ Manual annotation of temporal data in text is not a simple task, requiring a sol
 	\captionof{figure}{Tango's interface \citep[taken from][p. 2, Fig. 1]{verhagen2005TBOX}.}
 	\label{fig:tango}
 \end{center}
-The graph here works on the same principle as those described in \cref{ssub:allen}, in that the nodes represent the events and times which exist in the TimeML document, while the arcs are labelled with the relation between the intervals. According to \citet[p. 2]{verhagen2005TBOX}, using Tango improved the quality and reliability of the annotations being produced, with a higher number of links being found between the nodes, though he also notes that Tango's main flaw is that it does not allow a user to ``quickly capture the temporal structure of the document'' \citep[p. 2]{verhagen2005TBOX}---that is, interpreting the overall chronology of a text by means of a directed graph is not straightforward. Part of the problem, according to \citet{verhagen2005TBOX}, is that the graph labels---representing the \verb|<TLINK>| tags of TimeML---are difficult to read, especially when the document contains a large number of nodes. More troublesome, however, is the fact that there is no inherent semantics to the placement of the nodes; there is no graphical depiction of the temporal ordering, left-to-right or otherwise, that is enforced by the system in a meaningful way.
+The graph here works on the same principle as those described in \cref{ssub:allen}, in that the nodes represent the events and times which are marked up in the TimeML document, while the arcs are labelled with the relation between the intervals. According to \citet[p. 2]{verhagen2005TBOX}, using Tango improved the quality and reliability of the annotations being produced, with a higher number of links being found between the nodes, though he also notes that Tango's main flaw is that it does not allow a user to ``quickly capture the temporal structure of the document'' \citep[p. 2]{verhagen2005TBOX}---that is, interpreting the overall chronology of a text by means of a directed graph is not straightforward for a human user of the technology. Part of the problem, according to \citet{verhagen2005TBOX}, is that the graph labels---representing the \verb|<TLINK>| tags of TimeML---quickly become difficult to read, especially when the document contains a large number of nodes. More troublesome, however, is the fact that there is no inherent semantics to the placement of the nodes; there is no graphical depiction of the temporal ordering, left-to-right or otherwise, that is enforced by the system in a meaningful way.
 
-As a means of resolving some of these issues with the Tango tooling, \citet{verhagen2005TBOX} created the framework called T-BOX, which is based around the idea that ``relative placement of two events or times is completely determined by the temporal relations between them'' (p. 2). The image shown in \Cref{fig:tbox} represents the same data as in \Cref{fig:tango}, placing events and times in boxes, and using arrows, stacking, and box inclusion to represent the various relations between the temporal expressions.
+As a means of addressing some of these issues with the Tango tooling and its predecessor, the Alembic Workbench \citep{day1997mixed}, \citet{verhagen2005TBOX} presents the T-BOX framework, intended to be used in a complementary fashion alongside the table-based and graph-based depictions in the existant tools. T-BOX is based around the core idea that ``relative placement of two events or times is completely determined by the temporal relations between them'' (p. 2). The image shown in \Cref{fig:tbox} represents the same data as in \Cref{fig:tango}, placing each event and time into boxes (called T-BOXes), and using arrows, stacking, and box inclusion to represent the various relations between the temporal expressions that may be derived from \verb|<TLINK>| tags, under the assumption that events and times are intervalic, as described in \cref{ssub:allen}.
 
 The rules governing placement of boxes are \citep[pp. 3--5]{verhagen2005TBOX}:
 \begin{itemize}
-	\item An event which occurs \textit{before} another is placed to the left of it, with an arrow leading from one to the other, or a line ending in a dot if the relation is \textit{meets}.
+	\item An event which occurs \textit{before} another is placed to the left of it, with an arrow leading from the one to the other, or a line ending in a dot if the relation is \textit{meets}.
 	\item Simultaneous events are stacked, one box atop the other. Identical events are placed in the same box, rather than being treated the same as simultaneous ones.
 	\item An event which \textit{contains} or \textit{includes} another gains an extended box with thinner walls, and the included event's box is placed inside this box.
 	\item If an event \textit{starts} or \textit{finishes} another, it is placed inside that event's extended box, touching the left or right edge, respectively.
@@ -652,13 +669,11 @@ The rules governing placement of boxes are \citep[pp. 3--5]{verhagen2005TBOX}:
 		\captionof{figure}{\Cref{fig:tango}'s data now drawn using T-BOX \citep[taken from][p. 3, Fig. 2]{verhagen2005TBOX}.}\label{fig:tbox}
 	\end{figure}
 \end{center}
-\citeauthor{verhagen2005TBOX} stresses that the vertical and horizontal positioning of boxes doesn't mean anything in and of itself, and thus T-BOX abandons the ``timeline metaphor''. This is something which the present work intends to retain as far as possible, being an intuitive way to conceptualise sequences of events and times---see \cref{ssub:timelines}.
+It is stressed that the vertical and horizontal positioning of boxes doesn't mean anything in and of itself, and thus despite a focus on semantically arranging and depicting the temporal relations in a TimeML annotation, T-BOX abandons the ``timeline metaphor'' \citep{verhagen2005TBOX}. However, using the string-based framework described in \cref{sub:strings}, many of the principles which guide the T-BOX architecture can be maintained whilst also preserving the ideology of timelines, being an intuitive way to conceptualise sequences of events and times---see \cref{ssub:timelines}.
 
-Another point of interest with T-BOX is that it requires as input a TimeML document which has complete temporal closure in its \verb|<TLINK>| tags, and then it reduces this to a minimal graph \citep[p. 6]{verhagen2005TBOX}. This is as opposed to the more typical scenario of trying to compute the temporal closure of a document using a constraint propogation algorithm---such as \citet{allen1983maintaining}'s in \cref{other:allen-algo}, p. \pageref{other:allen-algo}---or, as in the present work, using the superposition of strings.
+Another point of interest with T-BOX is that it requires as input a TimeML document which is `complete', and has already had temporal closure constraints applied to its \verb|<TLINK>| tags, providing all of the inferrable relations ahead of time. It then reduces this to a minimal graph \citep[p. 6]{verhagen2005TBOX}. This is as opposed to the more typical scenario of trying to compute the temporal closure of a document using a constraint propogation algorithm---such as \citet{allen1983maintaining}'s in \cref{other:allen-algo}, p. \pageref{other:allen-algo}---or, as in the present work, using the superposition of strings to calculate relations at the same time as depicting them.
 
-One further aspect of the T-BOX framework worth noting is that it can be used to possibly detect some inconsistencies in input data if there is some part of the data which cannot be drawn using the rules described above. For example, if the \verb|<TLINK>| tags give that some event X is \textit{before} some other event Y, that Y is \textit{before} a third event Z, and also that Z is \textit{before} X---an impossibility due to the circular transitivity---the inconsistency should be discovered when attempting to draw X to the left of Y, which is to the left of Z, which should then somehow be drawn to the left of X. However, while non-drawability implies an inconsistency, drawability does not imply consistency \citep[p. 12]{verhagen2005TBOX}, since similarly to the constraint propogation algorithm in \citet{allen1983maintaining}, inconsistencies may appear in the graph which appear consistent when looking at three intervals, but become problematic in a larger context. Using strings avoids this issue, as strings which represent information inconsistent with the knowledge base are ejected through superposition (see Section \cref{def:vc-superposition}).
-
-
+One further aspect of the T-BOX framework worth noting is that it can be used to possibly detect some inconsistencies in input data if there is some part of the data which cannot be drawn using the rules described above. For example, if the \verb|<TLINK>| tags give that some event X is \textit{before} some other event Y, that Y is \textit{before} a third event Z, and also that Z is \textit{before} X---an impossibility due to the circular transitivity---the inconsistency should be discovered when attempting to draw X to the left of Y, which is to the left of Z, which should then somehow be drawn to the left of X. However, while `non-drawability' implies an inconsistency, drawability does not imply consistency \citep[p. 12]{verhagen2005TBOX}, since similarly to the constraint propogation algorithm in \citet{allen1983maintaining}, inconsistencies may appear in the graph which appear consistent when looking at three intervals, but become problematic in a larger context. This issue can be circumvented using a string which may represent far more than three intervals and their relations at once, and strings which represent information inconsistent with the knowledge base are ejected through superposition---see \cref{def:vc-superposition}, p. \pageref{def:vc-superposition}---and thus, `non-superposability' can be seen as similar to the `non-drawability' of T-BOX.
 
 \subsection{Temporal Semantics}\label{sub:semantics}
 The following sections describe some of the existing ways that the semantics of times and events can be represented. \nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST? Durand and Schwer?}
@@ -666,8 +681,11 @@ The following sections describe some of the existing ways that the semantics of 
 \subsubsection{Discourse Representation Theory}\label{ssub:drt}
 \citet{Kamp1993} introduced Discourse Representation Theory (DRT) as a framework for semantically representing information derived from a text. DRT separates discourse referents (the entities under discussion) from Discourse Representation Structure (DRS) conditions, which describe what is known about the referents.
 
+\nb{Bunt (2020) mentions that Abziande \& Bos (2019) mention that almost everyone uses Neo-Davidsonian event semantics...}
+
 \nb{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
 % Bunt's use for semantic annotation - can we get his slides from the DCLRS?
+\drs{x y}{e(x)\\t(y)}
 
 \subsubsection{Boxer}\label{ssub:boxer}
 Automatic parsing of text into DRSs is a popular task \nb{Find the shared task from 2019---I'm sure it was on the PMB website, but I can't find it at present}, and \citet{Bos2008} released the first version of the Boxer software which claimed to do this with over 95\% coverage for semantic analysis of newswire texts, though it was noted in the release that performance for temporal data was not as strong as its other areas.
@@ -682,10 +700,10 @@ Following the intuition that sequences of (possibly overlapping) events and time
 
 The mechanics of these temporal strings are shown in detail, along with an explanation on the methods of their creation, and a discussion on the granularity of temporal information that should be included within a string---that is, what level of detail should be considered when representing events in this manner. A number of operations are subsequently described for working with these strings, in particular \textit{superposition} for the composition of multiple strings and combining the data found within them. The availability of these manipulations will prove useful when reasoning about event relations, and also in maximising data density, as will be seen in \cref{sub:extracting} and \cref{sub:reasoning}.
 
-A description follows of how strings may be applied in the creation of timelines, representations which contain the temporal information---events, times, and the relations between them---as extracted from an annotated piece of text, which has uses in the areas of, for instance, automatic summary-generation, fact-checking, and question-answering systems. Additionally, the techniques which are laid out in \cref{ssub:operations} may be augmented with additional constraints so that strings can be used to model scheduling restrictions---for instance, that in a given system some event $a$ must occur before some other event $b$, but may not be occurring while $c$ is occurring---and the superposition of these amounts to constraint satisfaction. A variation of the well-known Zebra Puzzle (also referred to as `Einstein's Riddle', as it is occasionally attributed to Albert Einstein---see \citet[p. 10]{stangroom2009einstein}) which uses temporal properties in place of spatial constraints is provided, exemplifying this particular usage of strings.
+A description follows of how strings may be applied in the creation of timelines, representations which contain the temporal information---events, times, and the relations between them---as extracted from an annotated piece of text, which has uses in the areas of, for instance, automatic summary-generation, fact-checking, and question-answering systems. Additionally, the techniques which are laid out in \cref{ssub:operations} may be augmented with additional constraints so that strings can be used to model scheduling restrictions---for instance, that in a given system some event $a$ must occur before some other event $b$, but may not be occurring while $c$ is occurring---and the superposition of these amounts to constraint satisfaction. A variation of the well-known Zebra Puzzle (also referred to as `Einstein's Riddle', as it is occasionally attributed to Albert Einstein---see \citet[p. 10]{stangroom2009einstein}) which uses temporal properties in place of spatial constraints is provided, exemplifying this particular usage of strings, as well as a string-based treatment of the train scheduling problem from \citet{durand2008tool}.
 
 \subsection{Strings for Times and Events}\label{sub:strings}
-A string is a basic computational entity, defined as a finite sequence of symbols selected from some finite alphabet. They are amenable to manipulation using finite-state methods, something lacking in the infinite models of predicate logic. \nb{Should probably have a citation here?}
+A string is a basic computational entity, defined as a finite sequence of symbols selected from some finite alphabet. They are amenable to manipulation using finite-state methods, something lacking in the infinite models of predicate logic, thanks to fixing finite sets of symbols to serve as the alphabets which make up the strings.
 
 Strings as described and used throughout this work are used to represent sequences of events and time periods such that the linear order and inter-relations of these events and times are clearly apparent, while unnecessary repetition of information is avoided. For example, where $js =$ ``John sleeps'', $fa =$ ``The fire alarm sounds'', and $lt =$ ``Last Tuesday'', the sentence ``John slept through the fire alarm last Tuesday'' might be represented by the string \EventString{{}|lt|js,lt|fa,js,lt|js,lt|lt|{}}\footnote{It is worth noting that, although tense and aspect are often abstracted away from the string models, this is not a necessity, and speech and reference times may be represented in the same way as event times \citep{fernando2016regular,Derczynski2013,reichenbach1947elements}.} (a detailed explanation follows in \cref{ssub:creating}).
 
@@ -701,8 +719,7 @@ Building this inertial world view into strings allows for certain flexibilities,
 A fluent is a condition which may change over time---thus a predicate such as $\allowbreak{}Sleeps(john)$ (``John sleeps'') becomes the fluent $Sleeps(john, t)$, where $t$ is the time at which John is sleeping. Following the convention set out and used by \citet{Mccarthy69somephilosophical}, \citet{van2008proper}, \citet{fernando2016prior} (among others), a fluent may be understood here as naming a temporal proposition---some event, time period, or state which may change (which hereafter will also be referred to as an event, as in \citet{Pustejovsky2005}). Sets of fluents will be encoded as symbols so that any number of them may hold at once, and these symbols will make up the alphabet from which strings are created.
 
 % How should events be labelled? Some say an event is defined in part by its participants \citeneeded{}. Many of the procedures defined in this work which use these strings operate primarily on a syntactic level rather than depending on the lexical semantics of individual words, in order to produce an approach that works broadly. As such, i
-In most cases, simple identifiers suffice for the purposes of labelling fluents as they appear in a string---so, for example, $Sleeps(john, t)$ may be labelled as \texttt{"js"}, where the time $t$ being represented by the fluent's position in the string (explained fully in the next section)%, which creates a more compact representation
-. This follows TimeML's standard \citep{pustejovsky2010iso} of using identification labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, in some instances, particularly when drawing inferences (see %\cref{ssub:inferring} and 
+In most cases, simple identifiers suffice for the purposes of labelling fluents as they appear in a string---so, for example, $Sleeps(john, t)$ may be labelled as \texttt{"js"}, where the time $t$ being represented by the fluent's position in the string, explained in depth in the following section. This follows TimeML's standard \citep{timeml2005timeml,pustejovsky2010iso} of using identification labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, in some instances, particularly when drawing inferences (see %\cref{ssub:inferring} and 
 \cref{ssub:ontology}) using semantic roles or lexical semantics, it will be useful to use a fuller labelling system, and so a string \EventString{{}|js|{}} would be rendered instead as \EventString{{}|sleeps(john)|{}}.
 
 \subsubsection{Creating Strings}\label{ssub:creating}
@@ -710,9 +727,9 @@ In order to create a string, first it is necessary to fix a finite set $\V$ of s
 
 The set $\V$ will be known as a \textit{vocabulary}, and the powerset of $\V$ will serve as a finite alphabet $\Sigma = 2^{\V}$ of a string $s \in \Sigma^*$. Accordingly, at each position $i$ in the string $s$, the \textit{component} $\sigma_i$ will be a (possibly empty) set of the fluents which hold at that position.
 
-The chronology of a string is read from left to right, and thus, each component of the string depicts one of the $n$ moments similar to a snapshot, or a frame of a film reel, and specifies the set of exactly those fluents which hold simultaneously at the $i^{th}$ moment\footnote{Conversely, the set $\V-\sigma_i$ specifies exactly those fluents which \textit{do not} hold at the $i^{th}$ moment. This relates to the notion of logical circumscription \citep{mccarthy1980circumscription}, wherein if a formula is not known to be true, then it must be false.}. A string does not (necessarily) give any indication of real-time duration, due to the fact that it models an inertial world, and thus if a symbol occurs in several string components, this is not implicative of the fluent associated with that symbol occurring multiple times, nor of the fluent's real-time duration being necessarily different to another fluent whose associated symbol only occurs in a single string component (see also \cref{para:block-compression}, p. \pageref{para:block-compression}). A fluent $a \in \sigma_i$ is understood to be occurring before another fluent $b \in \sigma_j$ if $i < j$ and $b \notin \sigma_i$; if $a \in \sigma_i$ and $b \in \sigma_i$, then $a$ and $b$ are understood as occurring at the same time.%\nb{this is more or less the same as in ISA-13 -- should cite?}.
+The chronology of a string is read from left to right, and thus, each component of the string depicts one of the $n$ moments similar to a snapshot, or a frame of a film reel, and specifies the set of exactly those fluents which hold simultaneously at the $i^{th}$ moment\footnote{Conversely, the set $\V-\sigma_i$ specifies exactly those fluents which \textit{do not} hold at the $i^{th}$ moment. This relates to the notion of logical circumscription \citep{mccarthy1980circumscription}, wherein if a formula is not known to be true, then it must be false.}. A string does not (necessarily) give any indication of real-time duration\footnote{Although the durations may still be used in certain applications---see \cref{ssub:zebra}, p. \pageref{tab:rel-durations}.}, due to the fact that it models an inertial world, and thus if a symbol occurs in several string components, this is not implicative of the fluent associated with that symbol occurring multiple times, nor of the fluent's real-time duration being necessarily different to another fluent whose associated symbol only occurs in a single string component (see also \cref{para:block-compression}, p. \pageref{para:block-compression}). A fluent $a \in \sigma_i$ is understood to be occurring before another fluent $b \in \sigma_j$ if $i < j$ and $b \notin \sigma_i$; if $a \in \sigma_i$ and $b \in \sigma_i$, then $a$ and $b$ are understood as occurring at the same time.%\nb{this is more or less the same as in ISA-13 -- should cite?}.
 
-For convenience of notation, boxes \ebox{\cdot} are used instead of curly braces $\{\cdot\}$ to denotate the sets which make up each component $\sigma_i$ of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ (as in \citet{Fernando2004,fernando2015semantics,fernando2016prior})---for example, the string $\{\}\{a\}\{a,b\}\{b\}\{\}$ is written as \EventString{{}|a|a,b|b|{}}. This lends to the intuition that the strings may be read as strips of film, or as panels of a comic, with the same narrative-style layout as a timeline\footnote{It is worth pointing out here that, as each box is a set, the order of fluents appearing in it is immaterial---for instance, \EventString{a,b} is exactly equivalent to \EventString{b,a}, where in both cases, $a$ is co-occurring with $b$. This contrasts with \EventString{a|b} vs \EventString{b|a}, where in the first case $a$ is occurring before $b$, and in the second, the converse is true.}. An empty box \ebox{} is drawn for the empty set $\emptyset$: this is a string of length 1, a moment of time during which no fluent $v \in \V$ holds. This should not be confused with the empty string $\epsilon$, which has length 0, and contains no temporal information.
+For convenience of notation, boxes \ebox{\cdot} are used instead of curly braces $\{\cdot\}$ to denotate the sets which make up each component $\sigma_i$ of a string $s = \sigma_1\sigma_2\cdots\sigma_n$ (as in \citet{Fernando2004,fernando2015semantics,fernando2016prior,woods2017towards})---for example, the string $\{\}\{a\}\{a,b\}\{b\}\{\}$ is written as \EventString{{}|a|a,b|b|{}}. This lends to the intuition that the strings may be read as strips of film, or as panels of a comic, with the same narrative-style layout as a timeline\footnote{It is worth pointing out here that, as each box is a set, the order of fluents appearing in it is immaterial---for instance, \EventString{a,b} is exactly equivalent to \EventString{b,a}, where in both cases, $a$ is co-occurring with $b$. This contrasts with \EventString{a|b} vs \EventString{b|a}, where in the first case $a$ is occurring before $b$, and in the second, the converse is true.}. An empty box \ebox{} is drawn for the empty set $\emptyset$: this is a string of length 1, a moment of time during which no fluent $v \in \V$ holds. This should not be confused with the empty string $\epsilon$, which has length 0, and contains no temporal information.
 
 It will be said that for any event $a$ occurring in a string $s = \sigma_1\sigma_2\cdots\sigma_n$, $a$ may not \textit{judder}---that is, if $a$ appears in multiple positions of the string, then those positions are contiguous; there are no gaps between appearances of $a$ in $s$:
 \begin{align}\label{impl:contiguous-events}
@@ -828,17 +845,17 @@ In order for a string such as in \cref{ex:subintervals} to be valid, where some 
 \begin{align}\label{ex:subintervals}
 	\EventString{{}|a|a,b|{}}
 \end{align}
-This allows for $a$ to be represented via subdivisions\footnote{An interval may be subdivided theoretically \textit{ad infinitum}, though the constraint of a finite vocabulary prevents this from occurring within a string.} across the components within the string, such that the event $a$ is understood as beginning at its first (leftmost) occurrence, and ending after its last (rightmost)---as long as it appears in a component, the event is occurring at that moment. While a point is instantaneous and therefore indivisible, an interval may be split into an arbitrary number of contiguous subintervals in this way, which allows for the representation of other events co-occurring with a specific subdivision of an interval, as in \cref{ex:subintervals}, where $a$ is occurring during two string positions $\llbracket P_a \rrbracket = \{2, 3\}$, while $b$ is only occurring during a single string position, $\llbracket P_b \rrbracket = \{3\}$. In this example, the real-time interval duration $\iota$ of position 3 is equal to that of the event $b$, which is also the span of time during which $a$ and $b$ are co-occurring. The summed duration $\iota'$ of positions 2 and 3 is equal to that of the event $a$, and so the duration of position 2 (the span of time in which $a$ is occurring, but $b$ has not begun) is equal to $\iota' - \iota$.
+This allows for $a$ to be represented via subdivisions\footnote{An interval may be subdivided theoretically \textit{ad infinitum}, though the constraint of a finite vocabulary prevents this from occurring within a string.} across the components within the string, such that the event $a$ is understood as beginning at its first (leftmost) occurrence, and ending after its last (rightmost)---as long as it appears in a component, the event is occurring at that moment. While a point is instantaneous and therefore indivisible, an interval may be split into an arbitrary number of contiguous subintervals in this way, which allows for the representation of other events co-occurring with a specific subdivision of an interval, as in \cref{ex:subintervals}, where $a$ is occurring during two string positions $\llbracket P_a \rrbracket = \{2, 3\}$, while $b$ is only occurring during a single string position, $\llbracket P_b \rrbracket = \{3\}$. In this example, the real-time interval duration $\tau$ of position 3 is equal to that of the event $b$, which is also the span of time during which $a$ and $b$ are co-occurring. The summed duration $\tau'$ of positions 2 and 3 is equal to that of the event $a$, and so the duration of position 2 (the span of time in which $a$ is occurring, but $b$ has not begun) is equal to $\tau' - \tau$.
 
 If $a$ and $b$ represent points of time, then the string in \cref{ex:subintervals} is invalid---since a point is instantaneous, it may not occur at multiple string positions, which are discrete moments of time. Additionally, it is not possible for one point to have a shorter duration than another, and thus the fact that $b$ occurs at the end of $a$ is lost. \citet{allen1983maintaining} also discusses the logical and physical issues with allowing events to be representable as instantaneous points, but there is also a cognitive issue, discussed in \citet{Freksa1992}, where events must have some non-zero duration in order to be perceivable \citep{hamblin1972instants}.
 
-That is not to say that this information cannot be represented in a string using points, but instead, a translation from events to \textit{event borders} must occur, where event borders are points representing the beginnings and endings of events. \citet{Fernando2018} uses $l(a)$ as the (open) left border and $r(a)$ as the (closed) right border of some event $a$---the \textit{granularity} is altered to focus on the event borders (as points) rather than on the events (as intervals). In keeping with the analogy of strings being similar to strips of film, the change of granularity is akin to altering the level of `camera zoom' to focus on details which were previously considered simply as parts of the whole.
+That is not to say that this information cannot be represented in a string using points, but instead, a translation from events to \textit{event borders} must occur, where event borders are points representing the beginnings and endings of events. \citet{Fernando2018,fernando2018prior} uses\footnote{In a fashion similar to the S-words of \citet{durand2008reasoning,durand2008tool}, which also use the beginnings and endings of events as basic.} $l(a)$ as the (open) left border and $r(a)$ as the (closed) right border of some event $a$---the \textit{granularity} is altered to focus on the event borders (as points) rather than on the events (as intervals). In keeping with the analogy of strings being similar to strips of film, the change of granularity is akin to altering the level of `camera zoom' to focus on details which were previously considered simply as parts of the whole.
 
 This change does introduce additional complexity to the vocabulary, with the new set $\breve{\V}$ constructed from the old $\V$ \cite[p. 37]{Fernando2018}:
 \begin{align}
-	L &= \{ ~l(v) ~|~ v \in \V~ \}&\notag\\
-	R &= \{ ~r(v) ~|~ v \in \V~ \}&\notag\\
-	\breve{\V} &:= L \cup R &\text{if } L, R, \text{ and } \V \text{ are pairwise disjoint.}
+	L &= \{ ~l(v) ~|~ v \in \V~ \}\notag\\
+	R &= \{ ~r(v) ~|~ v \in \V~ \}\notag\\
+	\breve{\V} &:= L \cup R ~~~~~~~~\text{if } L, R, \text{ and } \V \text{ are pairwise disjoint.}
 \end{align}
 The cardinality of $\breve{\V}$ is thus twice that of $\V$, with two symbols required to represent the same information of a single interval. The translation from a string $s = \sigma_1\sigma_2\cdots\sigma_n$ whose symbols are events (intervals) to a string $\breve{s} = \breve{\sigma_1}\breve{\sigma_2}\cdots\breve{\sigma_n}$ whose symbols are event borders (points) is given as \cite[p. 38]{Fernando2018}:
 \begin{align}
@@ -1176,7 +1193,7 @@ Additionally, strings can be used as a tool for other, related applications whic
 % Permitting external constraints to be placed on strings can allow for further uses, including in areas such as scheduling problems.\nb{flesh this out(?)}
 
 \subsubsection{Timelines from Texts}\label{ssub:timelines}
-Strings, as entities which are comprised of sequential components, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---although not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality
+Strings, as entities which are comprised of sequential components representing temporal data, have an intuitive comparison to a traditionally linear view of time. That is, that events which have not yet occurred are ahead of us, and events which occurred in the past are behind us---although not all languages or cultures perceive time in this way, it is common cross-linguistically to use some spatial reference points when discussing temporality
 % \nb{wiki: timeline;\\\url{https://onlinelibrary.wiley.com/doi/full/10.1111/cogs.12804}\\\url{https://sites.williams.edu/thea228/files/2011/09/Cartographies-of-Time.pdf}\\\url{https://books.google.ie/books?hl=en&lr=&id=DqWqKVzipToC&oi=fnd&pg=PA8&dq=Rosenberg,+Daniel+(2010),+Cartographies+of+Time:+A+History+of+the+Timeline,+Princeton+Architectural+Press&ots=m2BG84e69h&sig=uykTBRs2rIPfmTf6rW0jtWlSBNo&redir_esc=y#v=snippet&q=spatial&f=false}\\\url{https://www.jstor.org/stable/pdf/1343108.pdf?casa_token=JdY5vEGKYgMAAAAA:ykEfao2S22Jekocs5fWyNixqQwM-YD6Os4r5wT-1cNFsLsk7NkAMcI9Y-7Z6GQQNGDgXJpGPpWXRAHrRrV_EQGW-rAR7RlTh9gkBUEdqsem31aBvyKvk}}
 (even absent vision, see \citet{bottini2015space})---\citet[pp. 42--43]{lakoff2008metaphors}, for example, discusses the metaphor of ``Time is a moving object'', where the future is perceived as moving towards us, and \citet[p. 542]{mitchell1980spatial} argues that ``we literally cannot `tell time' without the mediation of space''. Often, time is visualised as a line which travels along a three-dimensional axis, with events appearing as points or spans along the line, although according to \citet[p. 14]{rosenberg2013cartographies}, the particular modern definition of a \textit{timeline} as a ``single axis and a regular, measured distribution of dates ... is not even 250 years old''.
 
@@ -1192,42 +1209,52 @@ The vertical axis shows the events mentioned in the chart, and the horizontal ax
 		\captionof{figure}{A Gantt chart featuring six events.}\label{ex:gantt-chart}
 	\end{figure}
 \end{center}
-
-A chart like this is a useful visual display tool, though it can become a little unwieldy with large numbers of events. Compare the same temporal data in \Cref{ex:gantt-chart} shown in a single string in \cref{ex:gantt-string}:
+A chart like this is a useful visual display tool, though it can become a little unwieldy with large numbers of events, and there have been claims that they should be left behind in the field of project management \citep{maylor2001beyond}. Compare the same temporal data in \Cref{ex:gantt-chart} shown in a single string in \cref{ex:gantt-string}:
 \begin{align}\label{ex:gantt-string}
 	\EventString{{}|a|a,b|a,b,c|b,c|b|b,d|b,d,e|e|f|{}}
 \end{align}
-No matter how many events may be of interest, if all beginnings, endings, and durations are known (such as they could be displayed in a Gantt chart), then they can be represented in a single string, with reducts and projections available in order to focus an analysis on a subset of events if desired, demonstrating a compact method of representing the timeline. However, in general, a text does not provide
+No matter how many events may be of interest, if all beginnings, endings, and durations are known---that is, the \textit{temporal closure} has been calculated---such as they could be displayed in a Gantt chart, then they can be represented in a single string, with reducts and projections available in order to focus an analysis on a subset of events if desired, demonstrating a compact method of representing the timeline. However, in general, natural language texts do not provide enough precise temporal detail to determine all of this data. Discourse is typically somewhat vague and relies heavily upon the use of context to determine and precisely temporally locate events. As a result, it's often not possible to immediately derive the temporal closure just from a text, even an annotated text such as one of the documents of the TimeBank \citep{pustejovsky2006timebank} corpus, which is marked up to show the events, times, and temporal relations found within---see also \cref{ssub:timeml}. With that said, even if a single, unified timeline cannot be constructed due to ambiguity, the information in one of these annotated texts may still be extracted and used to build strings, which can provide a visual picture of the content of the document, which may reveal insights not obvious when looking at the text alone.
 
+A string, like a timeline, can be thought of as a simplistic narrative, depicting a world by the events which take place in it. A language of strings, then, is a set of alternate timelines, of parallel worlds. Each string in a language represents a different possible world, describing alternate sequences of the events which took place, and each of which might be considered equally probably to be \textit{veridical}---the actually true world, the correct sequence of events which occurred in reality---without further data and constraints. This allows strings as a framework to capture the ambiguity that very often arises from interpreting the temporal information that is derived from a natural language text. For example, given the information that some event $a$ meets some other event $b$, and $b$ is during some third event $c$, Allen's transitivities---see \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}---dictate that the relation between $a$ and $c$ can be one of overlaps, during, or starts. These first two relations $a$ meets $b$ and $b$ during $c$ may be represented by the strings \Meets{a}{b} and \During{b}{c}, respectively---see \Cref{tab:allen-rels-strings}, and in fact, the three possible relations between $a$ and $c$ are found by projection relative to $\{a,c\}$ over the result found from superposing thsee two strings, as in \cref{ex:parallel-worlds} below:
+\begin{subequations}\label{ex:parallel-worlds}
+	\begin{align}
+		\Meets{a}{b} \spvc \During{b}{c} = &\{\EventString{{}|c|a,c|b,c|c|{}}, \EventString{{}|a|a,c|b,c|c|{}}, \EventString{{}|a,c|b,c|c|{}}\}\label{ex:parallel-worlds-a}\\
+		\text{Under projection to }\{a,c\} = &\{\EventString{{}|c|a,c|c|{}}, \EventString{{}|a|a,c|c|{}}, \EventString{{}|a,c|c|{}}\}\label{ex:parallel-worlds-b}
+	\end{align}
+\end{subequations}
+In \cref{ex:parallel-worlds-a}, the language result of the superposition contains three strings, or three parallel worlds depicting the relational and ordering information that is known about the events $a$, $b$, and $c$, with \cref{ex:parallel-worlds-b} showing the language under projection, which gives three strings depicting the three possible relations between $a$ and $c$---see \Cref{tab:allen-rels-strings}. Unless some further data becomes available constraining these possibilities, there is no way to tell which of the three results of \cref{ex:parallel-worlds-a} is the correct timeline, and so the language as a whole is considered valid. It is important to be wary, though, as too many of these parallel worlds can become unwieldy, just as Gantt charts can become difficult to keep track of if too large a number of events are depicted. One way to avoid an explosion in the number of timelines to keep track of is to avoid superpositions where the inputs do not share some vocabulary, or where the number of strings in the result would exceed some predetermined limit. Another possibility is to alter the granularity of the string, using semi-intervals \citep{Freksa1992} rather than plain intervals, although this does have its own tradeoffs---see \cref{ssub:incomplete}.
 
-
-A lot of information can be derived from a text document, depending on what one is looking for. Here, the focus is on isolating the events and times that are mentioned or implied in the text. By extracting this information, a timeline is built which gives a picture of the content of the document, which may reveal insights not obvious when looking at the text as a whole.
-
-% \nb{something about using spvc to check for inconsistencies in a doc}
-
-A point of interest is that the thirteen interval relations given by the interval algebra of \citet{allen1983maintaining} fall out of the vocabulary-constrained superposition of a pair of strings which each feature a single and different finitely-bounded event:
+Conversely to considering a whole language as valid, occasionally an annotated text may feature inconsistencies, in that relations may be indicated which are impossible for one reason or another, whether that comes from human error on the part of a manual annotator, a poor machine annotation, or simply a text whose narrative is inconsistent. Whatever the source, it is important to be congnisant of these potential issues, as they are likely to lead to at least partially incorrect conclusions being drawn about the timeline of the narrative. Using vocabulary-constrained superposition, these inconsistencies can be discovered as the result of superposing a pair of strings which represent incompatible temporal data will be an empty set. For example:
 \begin{align}
-	\mathcal{AR} :=& \{<,>,m,mi,o,oi,d,di,s,si,f,fi,=\}\label{def:allen-rel-set}\\
-	\EventString{{}|a|{}} \spvc \EventString{{}|b|{}} =& \{\mathcal{S}_{\bigcdot}(a,b) ~|~ \bigcdot \in \mathcal{AR}\}
+	\Before{a}{b} \spvc \During{a}{b} = \emptyset\label{ex:str-inconsistency}
 \end{align}
-Each string $\mathcal{S}_{\bigcdot}(a,b)$ of the result set features one relation $a \bigcdot b$, as shown in \Cref{tab:allen-rels-strings}, reproduced from \citet[p. 79, Table 1]{woods2018improving}.
+This will always be the case, no matter how many events may appear in either string, and thus the relations between intervals appearing in a string effectively become constraints, which the string models: each string in \cref{ex:str-inconsistency} represents a different constraint, which are incompatible with each other---see also \cref{ssub:zebra}. When doing superposition of languages, if all of the strings from the first language are incompatible with all of the strings from the second, the result will also be an empty language---although, if some of the strings are compatible, then those superpositions are returned, as in \cref{ex:lang-inconsistencies} below, where the only strings which are mutually consistent are the second string of the first language and the first string of the second:
+\begin{align}
+	\{\EventString{{}|a|{}|b|{}|c|{}}, \EventString{{}|a|b|{}|c|{}}\} \spvc \{\EventString{{}|d|a|b|{}}, \EventString{{}|b,d|a|{}}\} = \{\EventString{{}|d|a|b|{}|c|{}}\}\label{ex:lang-inconsistencies}
+\end{align}
+A point of interest is that the thirteen interval relations given by the interval algebra of \citet{allen1983maintaining} fall out of the vocabulary-constrained superposition of a pair of strings which each feature a single and different finitely-bounded event\footnote{The superposition of more than two unconstrained intervals in this manner creates a rapidly expanding number of strings. Three intervals gives 409 strings, and by six intervals it has already exceeded three hundred million strings---see \citet[p. 129]{woods2017towards} and the full sequence in \url{https://oeis.org/A055203} \citep{oeisA055203}. This is obviously an excessive amount of information to process, and so generally superposition is to be avoided where there are no constraints between the intervals in one string and the other---that is, where there is no shared vocabulary between the strings to be superposed.}:
+\begin{align}
+	\mathcal{AR} := \{<,>,m,mi,o,oi,d,di,s,si,f,fi,=\}\label{def:allen-rel-set}\\
+	\EventString{{}|v|{}} \spvc \EventString{{}|v'|{}} = \{\mathcal{S}_{\bigcdot}(v,v') ~|~ \bigcdot \in \mathcal{AR}\}
+\end{align}
+Each string $\mathcal{S}_{\bigcdot}(v,v')$ of the result set features one relation $v \bigcdot v'$, as shown in \Cref{tab:allen-rels-strings}, reproduced from \citet[p. 79, Table 1]{woods2018improving}.
 \begin{center}
 	\begin{tabular}[h!]{|c|c|c||c|c|c|}
 		\hline
-		${\bigcdot}$ & $a~{\bigcdot}~b$ & $\mbox{$\cal{S}$}_{\bigcdot}(a,b)$ & ${\bigcdot}^{-1}$ & $a~{\bigcdot}^{-1}~b$ & $\mbox{$\cal{S}$}_{{\bigcdot}^{-1}}(a,b)$ \\
+		${\bigcdot}$ & $v~{\bigcdot}~v'$ & $\mbox{$\cal{S}$}_{\bigcdot}(v,v')$ & ${\bigcdot}^{-1}$ & $v~{\bigcdot}^{-1}~v'$ & $\mbox{$\cal{S}$}_{{\bigcdot}^{-1}}(v,v')$ \\
 		\hline
-		$<$ & $a$ before $b$ & \Before{a}{b} & $>$ & $a$ after $b$ & \After{a}{b} \\
-		m & $a$ meets $b$ & \Meets{a}{b} & mi & $a$ met by $b$ & \iMeets{a}{b} \\
-		o & $a$ overlaps $b$ & \Overlaps{a}{b} & oi & $a$ overlapped by $b$ & \iOverlaps{a}{b} \\
-		d & $a$ during $b$ & \During{a}{b} & di & $a$ contains $b$ & \iDuring{a}{b} \\
-		s & $a$ starts $b$ & \Starts{a}{b} & si & $a$ started by $b$ & \iStarts{a}{b} \\
-		f & $a$ finishes $b$ & \Finishes{a}{b} & fi & $a$ finished by $b$ & \iFinishes{a}{b} \\
-		= & $a$ equals $b$ & \Equals{a}{b} & & &\\
+		$<$ & $v$ before $v'$ & \Before{v}{v'} & $>$ & $v$ after $v'$ & \After{v}{v'} \\
+		m & $v$ meets $v'$ & \Meets{v}{v'} & mi & $v$ met by $v'$ & \iMeets{v}{v'} \\
+		o & $v$ overlaps $v'$ & \Overlaps{v}{v'} & oi & $v$ overlapped by $v'$ & \iOverlaps{v}{v'} \\
+		d & $v$ during $v'$ & \During{v}{v'} & di & $v$ contains $v'$ & \iDuring{v}{v'} \\
+		s & $v$ starts $v'$ & \Starts{v}{v'} & si & $v$ started by $v'$ & \iStarts{v}{v'} \\
+		f & $v$ finishes $v'$ & \Finishes{v}{v'} & fi & $v$ finished by $v'$ & \iFinishes{v}{v'} \\
+		= & $v$ equals $v'$ & \Equals{v}{v'} & & &\\
 		\hline
 	\end{tabular}
 	\captionof{table}{Allen interval relations in strings.}\label{tab:allen-rels-strings}
 \end{center}
-Using the notion of analogous strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}), any block compressed string which has a vocabulary of cardinality 2 can be compared to the strings in \Cref{tab:allen-rels-strings}. If such a string $s \sim \mathcal{S}_{\bigcdot}(a,b)$ for some $\bigcdot \in \mathcal{AR}$, then the events appearing in $s$ can also be said to be related by $\bigcdot$. For example, $\iFinishes{c}{d} \sim \mathcal{S}_{\text{fi}}(a,b)$, and thus the relation between the events $c$ and $d$ is `$c$ finished by $d$'.
+Using the notion of analogous strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}), any block compressed string which has a vocabulary of cardinality 2 can be compared to the strings in \Cref{tab:allen-rels-strings}. If such a string $s \sim \mathcal{S}_{\bigcdot}(v,v')$ for some $\bigcdot \in \mathcal{AR}$, then the events appearing in $s$ can also be said to be related by $\bigcdot$. For example, $\iFinishes{c}{d} \sim \mathcal{S}_{\text{fi}}(v,v')$, and thus the relation between the events $c$ and $d$ is `$c$ finished by $d$'.
 
 This is easily extended beyond strings featuring just two fluents. The relations between the events appearing in the string $s = \EventString{{}|a|{}|b|{}|c|{}}$ can be determined by taking its block compressed reduct relative to the subsets of the vocabulary which have cardinality 2---in this case, $a$ is before $b$, $b$ is before $c$, and $a$ is before $c$. Once these relations have been calculated, the relations between the events in another string $s' = \EventString{{}|d|{}|e|{}|f|{}}$ are immediately available on analogy $s \sim s'$.
 
@@ -1236,7 +1263,7 @@ While this is a relatively simple example, it can be extended for strings featur
 	s \spvc s' = \{&\EventString{{}|c|a,c|a,b,c|b,c|c|{}}, \EventString{{}|a|a,c|a,b,c|b,c|c|{}},\\
 	&\EventString{{}|a,c|a,b,c|b,c|c|{}}\}\notag
 \end{align}
-Now, given two more strings $t = \Overlaps{x}{y}$ and $t' = \During{y}{z}$ such that $s \sim t$ and $s' \sim t'$, the generated results of superposing $t$ and $t'$ will also be analogous to the results in \cref{ex:sp-analogy}, and so there is no need to calculate $t \spvc t'$. Since the strings are analogous, there is a bijective mapping \nb{ref a definition for analogous strings, also define analogous languages} between the vocabularies $f: (\V_{s} \cup \V_{s'}) \leftrightarrow (\V_{t} \cup \V_{t'})$, and applying this function $f$ to the results in \cref{ex:sp-analogy} gives the same result as calculating the superposition $t \spvc t'$:
+Now, given two more strings $t = \Overlaps{x}{y}$ and $t' = \During{y}{z}$ such that $s \sim t$ and $s' \sim t'$, the generated results of superposing $t$ and $t'$ will also be analogous to the results in \cref{ex:sp-analogy}, and so there is no need to calculate $t \spvc t'$. Since the strings are analogous, there is a bijective mapping between the vocabularies $f: (\V_{s} \cup \V_{s'}) \leftrightarrow (\V_{t} \cup \V_{t'})$, and applying this function $f$ to the results in \cref{ex:sp-analogy} gives the same result as calculating the superposition $t \spvc t'$:
 \begin{align}\label{ex:sp-analogy-equal}
 	f(s \spvc s') = \{&\EventString{{}|z|x,z|x,y,z|y,z|z|{}}, \EventString{{}|x|x,z|x,y,z|y,z|z|{}},\\
 	&\EventString{{}|x,z|x,y,z|y,z|z|{}}\}\notag\\
@@ -1244,6 +1271,7 @@ Now, given two more strings $t = \Overlaps{x}{y}$ and $t' = \During{y}{z}$ such 
 \end{align}
 Again, this is a small example, but with larger numbers of events and more complex strings, leveraging the power of analogous strings has the potential to massively reduce the computational cost to calculate superpositions.
 
+By extracting the relations from annotated text as strings and combining them using superposition, a timeline can be built up, which can assist an annotator or other reader in visualising the overall temporal structure of the text. It allows them to check for consistency and also provides a basis for interpreting the narrative in terms of the events that it describes.
 % \subsubsection{Inferring New Information}\label{ssub:inferring}
 % A text which has been manually annotated for temporal information will typically mark up the most important relations between events, at least as the annotator saw them. By extracting and making plain the timeline, any inconsistencies are immediately revealed, whether these are the fault of a problematic document or human error. Further, relations between times and events which were not previously obvious can be spelled out clearly.
 
@@ -1252,12 +1280,11 @@ Again, this is a small example, but with larger numbers of events and more compl
 % Additionally, conclusions can be drawn about whether certain inferences can be made based on existing data by determining the gap between premise strings and strings representing the question statement. That is, deriving the information that could be added to the premises to make the conclusion consistent with the known information (see \cref{ssub:residuals}).
 
 \subsubsection{Constraints and Scheduling (Zebra Puzzle)}\label{ssub:zebra}
-Scheduling is a problem. The Zebra/Einstein Puzzle is another problem. They may seem dissimilar, but in fact, there are a number of parallels. Both problems can be viewed as constraint satisfaction problems. Although the Zebra Puzzle concerns physical constraints, these can be modelled as sequences for which one can use strings to represent. If a `house' is conceptualised as a box in a string i.e. a set, the elements contained within are the properties of that house according to the puzzle. For example, $\{red, english, zebra, oj, kools\}$. The left/right spatial relations are thought of in the same way as the previous/next boxes in a string.
+Scheduling as a general concept---whereby tasks or events are allocated an ordering according to some set of rules or constraints---is a multi-faceted problem that has been a subject of research for many years \citep{manne1960job,applegate1991computational,pinedo1992scheduling,gong2018memetic}. Available resources must be taken into account, and often it is desirable to find the most efficient way to order the events which are to appear in the schedule so as to minimise the amount of time required for all relevant events to finish. Here it will be shown how the strings described in \cref{sub:strings} can be applied to some scheduling and scheduling-like tasks.
 
-Below is presented a variant of the puzzle using clues pertaining to temporal relations instead of spatial ones.
+The Zebra Puzzle, also sometimes known as Einstein's Riddle is a logic problem, involving solving a set of clues in order to assign a number of properties to a set of individuals. In the original puzzle, there are five houses in a street, each of a different colour, and in each lives a person of different nationality, who drinks a different beverage, smokes a different brand of cigarettes, and owns a different pet. The puzzle provides clues as to which house contains which set of all of the properties, except that the person who owns a zebra as a pet is not specified, and must be deduced by arranging all of the other elements into their correct houses so that the zebra's home can be determined by process of elimination. This may seem to be a very distinct problem from scheduling, but in fact, there are a number of parallels. Both problems can be viewed as constraint satisfaction problems, and although the Zebra Puzzle concerns spatial constraints, it is not a large stretch to model the street as a sequence of houses, and thus be able to use strings to represent the clues which can be superposed to solve the riddle. If a `house' is conceptualised as a set which contains as elements all of the properties associated with that house---for example, $\{red, english, zebra, coffee, kools\}$---and the street is a sequence of these sets, then the street can be depicted as a string. The left and right spatial relations are thought of in the same way as the previous and subsequent boxes in a string.
 
-\noindent
-The clues to the puzzle are as follows:
+To make this connection clearer, below is presented a variant of the puzzle using clues pertaining to temporal relations instead of spatial ones. The clues to the puzzle are as follows in \Cref{tab:temporal-zebra-clues}:
 \begin{center}
 	\begin{tabular}[h!]{|l|}
 		\hline
@@ -1278,47 +1305,46 @@ The clues to the puzzle are as follows:
 		It's freezing the day before or the day after the weather is clear.\\
 		\hline
 	\end{tabular}
-	\captionof{table}{Temporal Zebra puzzle clues in English.}
+	\captionof{table}{Temporal Zebra puzzle clues in English.}\label{tab:temporal-zebra-clues}
 \end{center}
-
 Using these clues, it should be possible to answer these questions:
 \begin{itemize}
 	\item What day is there no traffic?
 	\item What day am I curious? 
 \end{itemize}
-The puzzle makes three assumptions: first, that the values as presented are \textit{discrete} rather than continuous---`freezing' and `cold', for example, are similar concepts (indeed, if the weather is freezing, then it is also cold), but for the purposes of this puzzle they are treated as being separate and unrelated; second, that each value lasts for only one day---if it rains on one of the days, it will not rain on any other; and third, each day only has one value per attribute---for example, only one task can be performed on any given day.
+The puzzle makes three assumptions: first, that the values as presented are \textit{discrete} rather than continuous---`freezing' and `cold', for example, are similar concepts (indeed, if the weather is freezing, then it is also cold), but for the purposes of this puzzle they are treated as being separate and unrelated; second, that each value lasts for only one day---if it rains on one of the days, it will not rain on any other; and third, each day only has one value per attribute---for example, only one task can be performed on any given day. Effectively, recalling that since the strings model inertial worlds, each day contains event-like statives which are treated as having a duration of the entire day. The particular values that appear may make it seem a little absurd---it is rather unlikely that a person would be doing something like printing for a full day, and then immediately begin stapling for another full day, and so on---however, they should suffice for the sake of the example.
 
-For each of the given clues, a constraint can be constructed from one or more strings. Additional constraints can be formed to represent the external assumptions, and by superposing these constraints together, a solution to the puzzle can be found. The strings corresponding to each clue are as follows in \Cref{tab:zebra-clue-strings}:
+For each of the given clues, a constraint can be constructed from one or more strings. Additional constraints can be formed to represent the external assumptions, and by superposing these constraints together, a solution to the puzzle can be found. The strings corresponding to each clue are given in \Cref{tab:zebra-clue-strings}.
 
-\begin{tabular}{|p{0.9\textwidth}|}
-	\hline
-	\begin{itemize}
-		\item $\EventString{mon|tue|wed|thu|fri}$
-		\item $\{ \EventString{{}|fog,mild},\EventString{{}|fog,mild|{}},\EventString{fog,mild|{}} \}$
-		\item $\{ \EventString{{}|tired,warm},\EventString{{}|tired,warm|{}},\EventString{tired,warm|{}} \}$
-		\item $\{ \EventString{{}|jammed,overcast},\EventString{{}|jammed,overcast|{}},\EventString{jammed,overcast|{}} \}$
-		\item $\{ \EventString{{}|cold,little},\EventString{{}|cold,little|{}},\EventString{cold,little|{}} \}$
-		\item $\{ \EventString{{}|snow|overcast},\EventString{{}|snow|overcast|{}},\EventString{snow|overcast|{}} \}$
-		\item $\{ \EventString{{}|sad,reading},\EventString{{}|sad,reading|{}},\EventString{sad,reading|{}} \}$
-		\item $\{ \EventString{{}|rain,printing},\EventString{{}|rain,printing|{}},\EventString{rain,printing|{}} \}$
-		\item $\EventString{{}|{}|average|{}|{}}$
-		\item $\EventString{freezing|{}|{}|{}|{}}$
-		\item $\{ \EventString{{}|stapling|happy},\EventString{{}|stapling|happy|{}},\EventString{stapling|happy|{}},$
-		\item[] $~~\EventString{{}|happy|stapling},\EventString{{}|happy|stapling|{}},\EventString{happy|stapling|{}} \}$
-		\item $\{ \EventString{{}|printing|angry},\EventString{{}|printing|angry|{}},\EventString{printing|angry|{}},$
-		\item[] $~~\EventString{{}|angry|printing},\EventString{{}|angry|printing|{}},\EventString{angry|printing|{}} \}$
-		\item $\{ \EventString{{}|lots,filing},\EventString{{}|lots,filing|{}},\EventString{lots,filing|{}} \}$
-		\item $\{ \EventString{{}|shredding,hot},\EventString{{}|shredding,hot|{}},\EventString{shredding,hot|{}} \}$
-		\item $\{ \EventString{{}|freezing|clear},\EventString{{}|freezing|clear|{}},\EventString{freezing|clear|{}},$
-		\item[] $~~\EventString{{}|clear|freezing},\EventString{{}|clear|freezing|{}},\EventString{clear|freezing|{}} \}$	
-	\end{itemize}\\
-	\hline
-	
-\end{tabular}\captionof{table}{Temporal Zebra puzzle clues as strings.}\label{tab:zebra-clue-strings}
-
-For most of the clues, the constraint is formed from a language: when event $a$ and $b$ occur on the same day, they will appear in the same box, but it's unknown whether they occur at the beginning of the week (\EventString{a,b|{}}), the end of the week (\EventString{{}|a,b}), or somewhere in the middle (\EventString{{}|a,b|{}}), and so all of the possibilities appear together.
-
-Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values\footnote{The five day names as seen in the first clue of \Cref{tab:zebra-clue-strings} are not required for the puzzle: a string of five empty boxes suffices. However, the names are included here purely for convenience of reading.}. The vocabulary $\V$ of the puzzle is the union of the Attributes:
+For most of the clues, the constraint is formed as a set of a few strings: when event $a$ and $b$ occur on the same day, they will appear in the same box, but it's unknown whether they occur at the beginning of the week (\EventString{a,b|{}}), the end of the week (\EventString{{}|a,b}), or somewhere in the middle (\EventString{{}|a,b|{}}), and so all of the possibilities appear together. It's also worth noting that strings use the Allen relation `meets' where the clue states ``the day before'', rather than the `before' relation. This is due to the fact that one day meets the next, and there is no time between them. The clues which give an event specific position might also have been equivalently written by specifying that the particular value appeared in the same box as one of the day names---for instance \EventString{mon,freezing}. However, the five day names which appear in the first clue of \Cref{tab:zebra-clue-strings} are not actually required for the puzzle: a string of five empty boxes suffices. The names are included here purely for convenience of reading.
+\begin{center}
+	\onehalfspacing
+	\begin{tabular}[h!]{|p{0.9\textwidth}|}
+		\hline
+		\begin{itemize}
+			\item $\{\EventString{mon|tue|wed|thu|fri}\}$
+			\item $\{ \EventString{{}|fog,mild},\EventString{{}|fog,mild|{}},\EventString{fog,mild|{}} \}$
+			\item $\{ \EventString{{}|tired,warm},\EventString{{}|tired,warm|{}},\EventString{tired,warm|{}} \}$
+			\item $\{ \EventString{{}|jammed,overcast},\EventString{{}|jammed,overcast|{}},\EventString{jammed,overcast|{}} \}$
+			\item $\{ \EventString{{}|cold,little},\EventString{{}|cold,little|{}},\EventString{cold,little|{}} \}$
+			\item $\{ \EventString{{}|snow|overcast},\EventString{{}|snow|overcast|{}},\EventString{snow|overcast|{}} \}$
+			\item $\{ \EventString{{}|sad,reading},\EventString{{}|sad,reading|{}},\EventString{sad,reading|{}} \}$
+			\item $\{ \EventString{{}|rain,printing},\EventString{{}|rain,printing|{}},\EventString{rain,printing|{}} \}$
+			\item $\{\EventString{{}|{}|average|{}|{}}\}$
+			\item $\{\EventString{freezing|{}|{}|{}|{}}\}$
+			\item $\{ \EventString{{}|stapling|happy},\EventString{{}|stapling|happy|{}},\EventString{stapling|happy|{}},$
+			\item[] $~~\EventString{{}|happy|stapling},\EventString{{}|happy|stapling|{}},\EventString{happy|stapling|{}} \}$
+			\item $\{ \EventString{{}|printing|angry},\EventString{{}|printing|angry|{}},\EventString{printing|angry|{}},$
+			\item[] $~~\EventString{{}|angry|printing},\EventString{{}|angry|printing|{}},\EventString{angry|printing|{}} \}$
+			\item $\{ \EventString{{}|lots,filing},\EventString{{}|lots,filing|{}},\EventString{lots,filing|{}} \}$
+			\item $\{ \EventString{{}|shredding,hot},\EventString{{}|shredding,hot|{}},\EventString{shredding,hot|{}} \}$
+			\item $\{ \EventString{{}|freezing|clear},\EventString{{}|freezing|clear|{}},\EventString{freezing|clear|{}},$
+			\item[] $~~\EventString{{}|clear|freezing},\EventString{{}|clear|freezing|{}},\EventString{clear|freezing|{}} \}$	
+		\end{itemize}\\
+		\hline
+	\end{tabular}\captionof{table}{Temporal Zebra puzzle clues as strings.}\label{tab:zebra-clue-strings}
+\end{center}
+Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood), each of which is a set of Values. The vocabulary $\V$ of the puzzle is the union of the Attributes:
 \begin{itemize}
 	\item Weather = $\{rain,clear,fog,snow,overcast\}$
 	\item Temperature = $\{freezing,cold,mild,warm,hot\}$
@@ -1327,17 +1353,17 @@ Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood)
 	\item Mood = $\{happy,angry,sad,tired,curious\}$
 \end{itemize}
 The external constraints are formalised as follows:
-\begin{align}
-	&\text{``Each Value only lasts for one day.''}\notag\\
-	&(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow (\forall v' \in \V)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket\label{impl:zebra-constraintsA}\\
-	&\text{``Each day only contains one Value for each Attribute.''}\notag\\
-	&(\forall A \in Attributes)~ x \in \llbracket P_v \rrbracket \wedge v \in A \Longrightarrow (\forall v' \in A)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket\label{impl:zebra-constraintsB}
-\end{align}
+\begin{itemize}
+	\item[] ``Each Value only lasts for one day.''
+	\item[\ipp\label{impl:zebra-constraintsA}] $(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow (\forall v' \in \V)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket$
+	\item[] ``Each day only contains one Value for each Attribute.''
+	\item[\ipp\label{impl:zebra-constraintsB}] $(\forall A \in Attributes)~ x \in \llbracket P_v \rrbracket \wedge v \in A \Longrightarrow (\forall v' \in A)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket$
+\end{itemize}
 One further constraint is needed due to the nature of superposition allowing for the result of superposing two strings to be longer than either of the input strings:
-\begin{align}
-	&\text{``There are only 5 days.''}&\notag\\
-	&(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5\label{impl:zebra-constraintsC}
-\end{align}
+\begin{itemize}
+	\item[]``There are only 5 days.''
+	\item[\ipp\label{impl:zebra-constraintsC}] $(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5$
+\end{itemize}
 Now, superposing all of the languages in \Cref{tab:zebra-clue-strings} and taking into account the constraints in \cref{impl:zebra-constraintsA,impl:zebra-constraintsB,impl:zebra-constraintsC}, the (singular) result string is generated (each Value is displayed here abbreviated to its first two letters):
 \begin{align}
 	\EventString{ra,fr,pr,ha|cl,co,li,st,an|fo,mi,av,re,sa|sn,wa,lo,fi,ti|ov,ho,ja,sh}
@@ -1368,21 +1394,86 @@ Thus the answer is that ``there is no traffic on the first day of the week", and
 	Mood & $happy$ & $angry$ & $sad$ & $tired$ & $\underline{curious}$\\
 	\hline
 \end{ctable}
-\nb{how does this connect with scheduling?}
+While the Attributes and Values for this variation of the puzzle are relatively meaningless, the use of strings to represent the constraints given in the clues maps well to using strings to model constraints for scheduling problems such as the job-shop problem \citep{manne1960job,applegate1991computational}, wherein a finite number of resources (agents) are available to complete a set of tasks, and agent can only complete a single task at a time, and the goal is to create a schedule that minimises the maximum of their completion times given that each task also has a specified order that it must be completed in---for instance, task $A$ may only begin after task $B$ is completed, and must be completed before task $C$. This is very similar to the constraints described in the variant of the Zebra Puzzle above, with the additional factor of seeking a string which encapsulates all of the constraints and also has the shortest duration. Another similar problem is the trains example in \citet{durand2008tool}, reproduced below in \Cref{tab:train-problem-clues}, which features six trains arriving and leaving a busy station. The task is to determine the minimum number of platforms needed, given that a train is not allowed to arrive at the same platform while another train is still there.
+\begin{center}
+	\begin{tabular}[h!]{|l|}
+		\hline
+		There are 6 trains: $\{A,B,C,D,E,F\}$.\\
+		A train may not arrive on a platform if another train has not left that platform.\\
+		$\bullet$ $A$, $B$, and $E$ reach the station at the same time.\\
+		$\bullet$ $A$ leaves before $B$.\\
+		$\bullet$ $A$ leaves after or at the same time as $C$, but before the arrival of $D$.\\
+		$\bullet$ $D$ and $F$ arrive at the same time as $B$ is leaving.\\
+		$\bullet$ $E$ and $D$ leave at the same time.\\
+		\hline
+	\end{tabular}
+	\captionof{table}{Constraints of the Trains example from \citet[p. 3283]{durand2008tool}.}\label{tab:train-problem-clues}
+\end{center}
+\citet[p. 3298]{durand2008tool} use a formalism they call S-languages developed based on the concept of S-arrangements \citep{schwer2002s}, which uses arrangements of subsets of elements with repetitions in a manner which is similar in some ways to the string framework described in \cref{sub:strings}, using sequences of elements to represent event-like entities, generally described as either instantaneous points, or in terms of their beginning and end points.
+
+The constraints in \Cref{tab:train-problem-clues} can be represented through the languages in \Cref{tab:train-problem-strings} below, where each `fluent' symbol appearing in a string component represents that train being currently at the station. Therefore, if multiple symbols appear in a box, then each of those trains requires a separate platform at the same time.
+\begin{center}
+	\singlespacing
+	\begin{tabular}[h!]{|p{0.95\textwidth}|}
+		\hline
+		\begin{itemize}
+			\item $\{\EventString{{}|A,B,E|A,B|{}}, \EventString{{}|A,B,E|E|{}}, \EventString{{}|A,B,E|A,B|B|{}},$
+			\item[] $~~\EventString{{}|A,B,E|A,E|A|{}}, \EventString{{}|A,B,E|A,E|E|{}}, \EventString{{}|A,B,E|A,B|A|{}},$
+			\item[] $~~\EventString{{}|A,B,E|B|{}}, \EventString{{}|A,B,E|A,E|{}}, \EventString{{}|A,B,E|A|{}},$
+			\item[] $~~\EventString{{}|A,B,E|B,E|B|{}}, \EventString{{}|A,B,E|{}}, \EventString{{}|A,B,E|B,E|{}}, \EventString{{}|A,B,E|B,E|E|{}}\}$
+			\item $\{\EventString{{}|A|{}|B|{}}, \EventString{{}|A|B|{}}, \EventString{{}|A|A,B|B|{}}, \EventString{{}|A,B|B|{}}, \EventString{{}|B|A,B|B|{}}\}$
+			\item $\{\EventString{{}|A,C|A|D|{}}, \EventString{{}|C|{}|A|D|{}}, \EventString{{}|C|A|{}|D|{}}, \EventString{{}|C|A,C|{}|D|{}}, \EventString{{}|C|A|D|{}},$
+			\item[] $~~\EventString{{}|C|A,C|A|{}|D|{}}, \EventString{{}|A,C|{}|D|{}}, \EventString{{}|A,C|A|{}|D|{}}, \EventString{{}|A|A,C|A|{}|D|{}},$
+			\item[] $~~\EventString{{}|C|{}|A|{}|D|{}}, \EventString{{}|A|A,C|{}|D|{}}, \EventString{{}|A,C|D|{}}, \EventString{{}|A|A,C|A|D|{}},$
+			\item[] $~~\EventString{{}|C|A,C|A|D|{}}, \EventString{{}|A|A,C|D|{}}, \EventString{{}|C|A,C|D|{}}\}$
+			\item $\{\EventString{{}|B|B,D,F|D,F|D|{}}, \EventString{{}|B|B,D,F|D,F|F|{}}, \EventString{{}|B|B,D,F|D,F|{}}\}$
+			\item $\{\EventString{{}|E|D,E|{}}, \EventString{{}|D|E,D|{}}, \EventString{{}|D,E|{}}\}$
+		\end{itemize}\\
+		\hline
+	\end{tabular}\captionof{table}{Train scheduling problem constraints as languages of strings.}\label{tab:train-problem-strings}
+\end{center}
+Superposing these constraints together produces a language of 48 strings, each of which represents a different possible way of satisfying all the scheduling constraints together. In order to determine the minimum number of resources required---in this problem, the number of platforms in the train station---it is simply a matter of finding the string(s) whose largest component is smaller than the largest component of all other strings. In this case, since $B$ and $E$ arrive together, and $D$ and $F$ arrive before either of them have finished leaving, all 48 strings feature a component \EventString{B,D,E,F}---for instance, \allowbreak{}\EventString{{}|C|A,B,E|B,D,E,F|D,E,F|{}}---and thus the minimum number of platforms is the cardinality of that component: four.
+
+Additionally, despite strings not explicitly denoting the durations of events, it is possible to find the timeline which is the least durative by finding the shortest string(s) which uses the maximum possible number of resources. In the case of the trains example, this is \EventString{{}|A,B,C,E|B,D,E,F|D,E,F|{}}. To justify this, consider two events $a$ and $b$ which have durations $\tau_a$ and $\tau_b$, respectively, such that the $a$ lasts longer than $b$, $\tau_a > \tau_b$. In this scenario, four relations are impossible, namely $a$ equals $b$, $a$ during $b$, $a$ starts $b$, and $a$ finishes $b$---all of these imply that $b$ has the same or shorter duration than $a$. Of the remaining nine, the duration of the string representing the relations are as follows in \Cref{tab:rel-durations}\footnote{Disregarding the durations of the empty bounding boxes, which have effectively infinite duration.}:
+\begin{center}
+	\begin{tabular}[h!]{|c c c|}
+		\hline
+		\textbf{$\bigcdot$} & \textbf{$\mathcal{S}_{\bigcdot}$} & \textbf{$\tau_{\mathcal{S}_{\bigcdot}}$}\\
+		\hline
+		$a$ before $b$ & \Before{a}{b} & $\tau_{\mathcal{S}_{\bigcdot}} > \tau_a + \tau_b$\\
+		$a$ after $b$ & \After{a}{b} & $\tau_{\mathcal{S}_{\bigcdot}} > \tau_a + \tau_b$\\
+		$a$ meets $b$ & \Meets{a}{b} & $\tau_{\mathcal{S}_{\bigcdot}} = \tau_a + \tau_b$\\
+		$a$ met by $b$ & \iMeets{a}{b} & $\tau_{\mathcal{S}_{\bigcdot}} = \tau_a + \tau_b$\\
+		$a$ overlaps $b$ & \Overlaps{a}{b} & $\tau_a + \tau_b > \tau_{\mathcal{S}_{\bigcdot}} > \tau_a$\\
+		$a$ overlapped by $b$ & \iOverlaps{a}{b} & $\tau_a + \tau_b > \tau_{\mathcal{S}_{\bigcdot}} > \tau_a$\\
+		$a$ started by $b$ & \iStarts{a}{b} & $\tau_{\mathcal{S}_{\bigcdot}} = \tau_a$\\
+		$a$ finished by $b$ & \iFinishes{a}{b} & $\tau_{\mathcal{S}_{\bigcdot}} = \tau_a$\\
+		$a$ contains $b$ & \iDuring{a}{b} & $\tau_{\mathcal{S}_{\bigcdot}} = \tau_a$\\
+		\hline
+	\end{tabular}
+	\captionof{table}{Durations of relations between $a$ and $b$.}\label{tab:rel-durations}
+\end{center}
+As can be seen, a string cannot have a duration shorter than it's longest lasting event, but it may have a duration longer than the sum of all its events. The strings which maximise for component size (overlaps, overlapped by, started by, finished by, contains) all have a duration shorter than those which do not, of which the two shorter strings (meets, met by) have durations shorter than the two longer (before, after). The shortest strings of the maximising five (started by, finished by) have durations equal to the duration of the longest event, $a$. The relations overlaps, overlapped by, and contains all contain a component of the same maximum size, and are the same length, so in the scenario where multiple strings are found to be equally the shortest maximising for component size, a further step would be required to determine the types of relations found in the string---a string with more contains relations should be chosen as being less durative than one with more overlaps or overlapped by relations. Finally, if instead $a$ and $b$ have equal durations, then only one relation is possible between them---$a$ equals $b$, \EventString{{}|a,b|{}}---which also maximises for component size, and has the shortest string length of all the Allen relations.
+
+This chapter has described a framework which uses strings as sequences of sets of temporal entities---times and events---as part of an approach to temporal semantics known as finite-state temporality. Strings of this type are interpretable as finite models of Monadic Second-Order logic, and so due to an equivalence with regular languages, this allows for strings to be recognised by finite-state automata and systems which use them. Several operations are described which can be used to put these strings to work---in particular, the superposition operation allows for strings and sets of strings to be combined, such that all of the temporal data contained therein is incorporated into new strings, and the projection operation allows for determining the linear ordering and relation between a specified subset of times and events in a string.
+
+These operations feed into applications such as deriving timelines from annotated narratives, such as are found in the documents of the TimeBank corpus, a dataset of newswire texts marked up with TimeML, which can be used to provide insight into the overall temporal structure of the text, as well as check for inconsistencies. Additionally, strings can be used as a tool for some kinds of temporal constraint satisfaction, such as in scheduling problems, as the superposition operation can be used to combine strings which model temporal constraints, producing sets of one or more strings in which all the constraints hold successfully, or an empty set if the constraints cannot hold simultaneously.
+
+The next chapter will describe the procedures by which these strings can integrated with systems which produce semantic annotation for temporal data---primarily focusing on TimeML---and additionally how other resources can be used to augment the work that strings can do, such as being able to make inferences about what relations must be added to a knowledge base in order to be able to draw new conclusions.
 
 \newpage
 \section{Methods}\label{sec:methods}
 This chapter details the approaches that were taken to produce the results.
 
 \subsection{Extracting Strings from Annotated Text}\label{sub:extracting}
-The primary source of data is the TimeBank corpus which is one of the largest available collections of documents which are annotated with TimeML. Events are marked up with an \xmltag{EVENT} tag, and times with the \xmltag{TIMEX3} tag. Within TimeML, they are treated as intervals (see \cref{ssub:granularity}) which becomes relevant to the present work in the way they are related.
+The primary source of data is the TimeBank corpus which is one of the largest available collections of documents which are annotated with TimeML. Events are marked up with an \verb|<EVENT>| tag, and times with the \verb|<TIMEX3>| tag. Within TimeML, they are treated as intervals (see \cref{ssub:granularity}) which becomes relevant to the present work in the way they are related.
 
-\subsubsection{TLINKs}\label{ssub:tlinks}
-TimeML primarily uses \xmltag{TLINK} tags to annotate relations between marked up events and times. These serve as the basis for initial string creation, as they provide the two intervals that are being related, as well as the relation between them. The relation set used is specific to TimeML, but has its roots in the set of Allen Relations---see table \refneeded{} below.
+\subsubsection{Linking the TLINKs}\label{ssub:tlinks}
+TimeML primarily uses \verb|<TLINK>| tags to annotate relations between marked up events and times. These serve as the basis for initial string creation, as they provide the two intervals that are being related, as well as the relation between them. The relation set used is specific to TimeML, but has its roots in the set of Allen Relations---see table \refneeded{} below.
 
-A translation is built from \xmltag{TLINK} to string, using the tag's attributes to provide the data, and the Allen Relations as an intermediary step, as per table \refneeded{}. For example: \nb{example here please}. Any events and times that feature in the document but are not mentioned in a \xmltag{TLINK} are kept aside for now, as there is not a given connection from these events to the rest of the timeline.
+A translation is built from \verb|<TLINK>| to string, using the tag's attributes to provide the data, and the Allen Relations as an intermediary step, as per table \refneeded{}. For example: \nb{example here please}. Any events and times that feature in the document but are not mentioned in a \verb|<TLINK>| are kept aside for now, as there is not a given connection from these events to the rest of the timeline.
 
-After creating strings from the \xmltag{TLINK}s, the next step is to start building the timeline, using the superposition technique described in \cref{ssub:operations}. This allows for connections to be built between events and times that were not explicitly related by the annotation. If every time and event in the text is related to every other time and event, there is \textit{temporal closure} in the text (see \cref{ssub:allen} \nb{See transfer p6---maybe include the graph of $n(n-1)/2, n \ge 2$?}). For there to be temporal closure in a TimeML document would be a large amount of work for an annotator, as for $N$ events/times there would be $N(N - 1) / 2$ relations between them, which increases quickly: at $N = 10$ there are 45 relations, at $N = 50$ there are 1225 relations. This becomes unwieldy for a human to annotate, especially given that it is generally understood by the human reader that if $A$ precedes $B$, and $B$ precedes $C$, then $A$ also precedes $C$, so it feels unnecessary to include this latter relation. However, an automated system does not have this inherent knowledge, and needs a way to calculate the implied relations.
+After creating strings from the \verb|<TLINK>|s, the next step is to start building the timeline, using the superposition technique described in \cref{ssub:operations}. This allows for connections to be built between events and times that were not explicitly related by the annotation. If every time and event in the text is related to every other time and event, there is \textit{temporal closure} in the text (see \cref{ssub:allen} \nb{See transfer p6---maybe include the graph of $n(n-1)/2, n \ge 2$?}). For there to be temporal closure in a TimeML document would be a large amount of work for an annotator, as for $N$ events/times there would be $N(N - 1) / 2$ relations between them, which increases quickly: at $N = 10$ there are 45 relations, at $N = 50$ there are 1225 relations. This becomes unwieldy for a human to annotate, especially given that it is generally understood by the human reader that if $A$ precedes $B$, and $B$ precedes $C$, then $A$ also precedes $C$, so it feels unnecessary to include this latter relation. However, an automated system does not have this inherent knowledge, and needs a way to calculate the implied relations.
 
 The various relations can be combined according to the table in \cite{allen1983maintaining} \citeneeded[ -- get the page and figure number], reproduced in \cref{ssub:allen} \refneeded{}, and again below using strings in table \refneeded{}. The advantage to using strings is that the extension beyond three events is simple \nb{Defend this---I think there is something in ISA13 paper---or remove}. It should be noted that several combinations of relations produce a disjunction of relations, which follows from the fact that these combinations of $a \bigcdot b$ and $b \bigcdot c$ don't provide enough information to determine the exact relation $a \bigcdot c$. It may be possible to narrow this down, though, with the addition of further relations connecting other intervals ($d,e,f,...$) with some or all of $a,b,c$.
 
@@ -1535,7 +1626,7 @@ Event hierarchy and using verb/word nets to figure out how events might relate t
 Finding out what additional information would be required on top of some set of premises in order to make some other conclusion(s) true.
 
 \newpage
-\section{String Temporal Annotation and Relation Tool (START)}\label{sec:implementation}
+\section[String Temporal Annotation and Relation Tool (START)]{String Temporal Annotation and Relation Tool\\(START)}\label{sec:implementation}
 Various approaches were trialled using different programming languages, including Prolog, JavaScript (Node.js), and Python. Ultimately, Python was chosen for its speed, wide cross-platform availability, and availability of compatible tooling.
 
 Ultimately a widely-useable package was created that could be used either on the web or as a standalone application, as this gave the broadest opportunity to demonstrate the use of the developed technology.

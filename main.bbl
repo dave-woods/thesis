@@ -10,6 +10,12 @@ Allen, J.~F. and Ferguson, G. (1994).
 \newblock {Actions and events in interval temporal logic}.
 \newblock {\em Journal of logic and computation}, 4(5):531--579.
 
+\bibitem[\protect\astroncite{Applegate and
+  Cook}{1991}]{applegate1991computational}
+Applegate, D. and Cook, W. (1991).
+\newblock A computational study of the job-shop scheduling problem.
+\newblock {\em ORSA Journal on computing}, 3(2):149--156.
+
 \bibitem[\protect\astroncite{Aristotle}{}]{aristotlePhysicsIV}
 Aristotle.
 \newblock {The Internet Classics Archive: Physics IV}.
@@ -42,6 +48,13 @@ Buchner, A. and Funke, J. (1993).
 \newblock {\em The Quarterly Journal of Experimental Psychology},
   46(1):83--118.
 
+\bibitem[\protect\astroncite{Bunt}{2020}]{Bunt2020}
+Bunt, H. (2020).
+\newblock {Annotation of Quantification: The Current State of {\{}ISO{\}}
+  24617-12}.
+\newblock {\em Proceedings of the 16th Joint ISO-ACL Workshop on Interoperable
+  Semantic Annotation (ISA-16)}, (May):1--12.
+
 \bibitem[\protect\astroncite{Bunt and Pustejovsky}{2010}]{bunt2010annotating}
 Bunt, H. and Pustejovsky, J. (2010).
 \newblock Annotating temporal and event quantification.
@@ -53,11 +66,30 @@ Bunt, H.~C. (1985).
 \newblock {\em Mass terms and model-theoretic semantics}.
 \newblock Cambridge University Press, Cambridge.
 
+\bibitem[\protect\astroncite{Day et~al.}{1997}]{day1997mixed}
+Day, D., Aberdeen, J., Hirschman, L., Kozierok, R., Robinson, P., and Vilain,
+  M. (1997).
+\newblock {Mixed-Initiative Development of Language Processing Systems}.
+\newblock In {\em Fifth Conference on Applied Natural Language Processing},
+  pages 348--355.
+
 \bibitem[\protect\astroncite{Derczynski and Gaizauskas}{2013}]{Derczynski2013}
 Derczynski, L. and Gaizauskas, R. (2013).
 \newblock {Empirical Validation of Reichenbach's Tense Framework}.
 \newblock In {\em Proceedings of the 10th International Conference on
   Computational Semantics (IWCS 2013)}, pages 71--82.
+
+\bibitem[\protect\astroncite{Durand and Schwer}{2008a}]{durand2008reasoning}
+Durand, I. and Schwer, S. (2008a).
+\newblock Reasoning about qualitative temporal information with s-words and
+  s-languages.
+\newblock In {\em European Lisp Symposium}, pages 1--15.
+
+\bibitem[\protect\astroncite{Durand and Schwer}{2008b}]{durand2008tool}
+Durand, I. and Schwer, S.~R. (2008b).
+\newblock {A Tool for Reasoning about Qualitative Temporal Information: the
+  Theory of S-languages with a Lisp Implementation}.
+\newblock {\em Journal of Universal Computer Science}, 14(20):3282--3306.
 
 \bibitem[\protect\astroncite{Elgot and Rabin}{1966}]{elgot1966decidability}
 Elgot, C.~C. and Rabin, M.~O. (1966).
@@ -99,6 +131,12 @@ Fernando, T. and Nairn, R. (2005).
 \newblock In {\em Proceedings of the Sixth International Workshop on
   Computational Semantics}, pages 128--138, Tilburg University.
 
+\bibitem[\protect\astroncite{Fernando and Vogel}{2019}]{fernando2018prior}
+Fernando, T. and Vogel, C. (2019).
+\newblock {Prior Probabilities of Allen Interval Relations over Finite Orders}.
+\newblock In {\em Proceedings of the 11th International Conference on Agents
+  and Artificial Intelligence}, volume 2: NLPinAI, pages 952--961.
+
 \bibitem[\protect\astroncite{Fernando et~al.}{2019}]{fernando2019mso}
 Fernando, T., Woods, D., and Vogel, C. (2019).
 \newblock {MSO with tests and reducts}.
@@ -116,10 +154,24 @@ Goel, P., Prabhu, S., Debnath, A., Modi, P., and Shrivastava, M. (2020).
 \newblock In {\em Proceedings of the 16th Joint ACL-ISO Workshop on
   Interoperable Semantic Annotation}, pages 13--21.
 
+\bibitem[\protect\astroncite{Gong et~al.}{2018}]{gong2018memetic}
+Gong, X., Deng, Q., Gong, G., Liu, W., and Ren, Q. (2018).
+\newblock A memetic algorithm for multi-objective flexible job-shop problem
+  with worker flexibility.
+\newblock {\em International Journal of Production Research}, 56(7):2506--2522.
+
 \bibitem[\protect\astroncite{Hamblin}{1972}]{hamblin1972instants}
 Hamblin, C.~L. (1972).
 \newblock {Instants and intervals}.
 \newblock In {\em The Study of Time}, pages 324--331. Springer.
+
+\bibitem[\protect\astroncite{ISO 24617-1:2012}{2012}]{ISO24617-1}
+ISO 24617-1:2012 (2012).
+\newblock {Language resource management — Semantic annotation framework
+  (SemAF) — Part 1: Time and events (SemAF-Time, ISO-TimeML)}.
+\newblock Standard, International Organization for Standardization, Geneva, CH.
+\newblock \url{https://www.iso.org/standard/37331.html} This standard was last
+  reviewed and confirmed in 2017. Therefore this version remains current.
 
 \bibitem[\protect\astroncite{Kamp and Reyle}{1993}]{Kamp1993}
 Kamp, H. and Reyle, U. (1993).
@@ -155,6 +207,23 @@ Libkin, L. (2004).
 \newblock In {\em Elements of Finite Model Theory}, pages 113--140.
   Springer-Verlag, Berlin, Heidelberg.
 
+\bibitem[\protect\astroncite{Mani et~al.}{2006}]{mani2006machine}
+Mani, I., Verhagen, M., Wellner, B., Lee, C., and Pustejovsky, J. (2006).
+\newblock Machine learning of temporal relations.
+\newblock In {\em Proceedings of the 21st International Conference on
+  Computational Linguistics and 44th Annual Meeting of the Association for
+  Computational Linguistics}, pages 753--760.
+
+\bibitem[\protect\astroncite{Manne}{1960}]{manne1960job}
+Manne, A.~S. (1960).
+\newblock {On the job-shop scheduling problem}.
+\newblock {\em Operations Research}, 8(2):219--223.
+
+\bibitem[\protect\astroncite{Maylor}{2001}]{maylor2001beyond}
+Maylor, H. (2001).
+\newblock {Beyond the Gantt chart:: Project management moving on}.
+\newblock {\em European management journal}, 19(1):92--100.
+
 \bibitem[\protect\astroncite{McCarthy}{1980}]{mccarthy1980circumscription}
 McCarthy, J. (1980).
 \newblock {Circumscription---a form of non-monotonic reasoning}.
@@ -184,6 +253,12 @@ Mueller, E.~T. (2008).
 \newblock {Event Calculus}.
 \newblock In {\em Foundations of Artificial Intelligence}, volume~3, pages
   671--708.
+
+\bibitem[\protect\astroncite{Pinedo and Hadavi}{1992}]{pinedo1992scheduling}
+Pinedo, M. and Hadavi, K. (1992).
+\newblock Scheduling: theory, algorithms and systems development.
+\newblock In {\em Operations Research Proceedings 1991}, pages 35--42.
+  Springer.
 
 \bibitem[\protect\astroncite{Pustejovsky et~al.}{2003a}]{pustejovsky2003timeml}
 Pustejovsky, J., Castano, J.~M., Ingria, R., Sauri, R., Gaizauskas, R.~J.,
@@ -232,6 +307,12 @@ Reichenbach, H. (1947).
 \newblock In {\em Elements of Symbolic Logic}, chapter~51, pages 287--298. The
   Macmillan Company, New York.
 
+\bibitem[\protect\astroncite{Reimers et~al.}{2016}]{reimers2016temporal}
+Reimers, N., Dehghani, N., and Gurevych, I. (2016).
+\newblock {Temporal anchoring of events for the timebank corpus}.
+\newblock In {\em Proceedings of the 54th Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)}, pages 2195--2204.
+
 \bibitem[\protect\astroncite{Rosenberg and
   Grafton}{2013}]{rosenberg2013cartographies}
 Rosenberg, D. and Grafton, A. (2013).
@@ -243,6 +324,19 @@ Saur{\'{i}}, R., Littman, J., Knippen, B., Gaizauskas, R., Setzer, A., and
   Pustejovsky, J. (2006).
 \newblock {TimeML Annotation Guidelines Version 1.2.1}.
 \newblock Technical report, Brandeis University Linguistics Department.
+
+\bibitem[\protect\astroncite{Schwer}{2000}]{oeisA055203}
+Schwer, S.~R. (2000).
+\newblock Number of different relations between n intervals on a line.
+\newblock Sequence A055203 in \textit{The On-Line Encyclopedia of Integer
+  Sequences}.
+\newblock \url{https://oeis.org/A055203}.
+
+\bibitem[\protect\astroncite{Schwer}{2002}]{schwer2002s}
+Schwer, S.~R. (2002).
+\newblock S-arrangements avec r{\'e}p{\'e}titions.
+\newblock {\em Comptes Rendus Mathematique}, 334(4):261--266.
+\newblock In French, abbreviated version in English.
 
 \bibitem[\protect\astroncite{Shanahan}{1997}]{shanahan1997solving}
 Shanahan, M. (1997).

@@ -10,49 +10,49 @@
 \contentsline {subsection}{\numberline {2.1}Times and Events}{2}
 \contentsline {subsubsection}{\numberline {2.1.1}Allen's Interval Algebra}{2}
 \contentsline {subsubsection}{\numberline {2.1.2}Tense and Aspect}{9}
-\contentsline {subsection}{\numberline {2.2}Temporal Annotation}{10}
-\contentsline {subsubsection}{\numberline {2.2.1}TimeML and TimeBank}{11}
-\contentsline {subsubsection}{\numberline {2.2.2}Tango and T-BOX}{19}
-\contentsline {subsection}{\numberline {2.3}Temporal Semantics}{23}
-\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{23}
-\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{24}
-\contentsline {section}{\numberline {3}Finite-State Temporality}{25}
-\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{26}
-\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{28}
-\contentsline {subsubsection}{\numberline {3.1.2}Strings as MSO Models}{31}
-\contentsline {paragraph}{Analogous Strings}{35}
-\contentsline {subsubsection}{\numberline {3.1.3}Granularity: Points and Intervals}{36}
-\contentsline {subsubsection}{\numberline {3.1.4}String Operations}{41}
-\contentsline {paragraph}{Vocabulary:}{42}
-\contentsline {paragraph}{Block Compression:}{42}
-\contentsline {paragraph}{Superposition:}{44}
-\contentsline {paragraph}{Asynchronous Superposition:}{45}
-\contentsline {paragraph}{Reduct:}{48}
-\contentsline {paragraph}{Projection:}{50}
-\contentsline {paragraph}{Generate and Test:}{51}
-\contentsline {paragraph}{Vocabulary-Constrained Superposition:}{55}
-\contentsline {subsection}{\numberline {3.2}Applications}{58}
-\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{59}
-\contentsline {subsubsection}{\numberline {3.2.2}Constraints and Scheduling (Zebra Puzzle)}{62}
-\contentsline {section}{\numberline {4}Methods}{68}
-\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{68}
-\contentsline {subsubsection}{\numberline {4.1.1}TLINKs}{68}
-\contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{69}
-\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{74}
-\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{74}
-\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{74}
-\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{75}
-\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{75}
-\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{76}
-\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{76}
-\contentsline {section}{\numberline {5}String Temporal Annotation and Relation Tool (START)}{77}
-\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{77}
-\contentsline {subsection}{\numberline {5.2}Front-end Interface}{79}
-\contentsline {section}{\numberline {6}Evaluation}{80}
-\contentsline {subsection}{\numberline {6.1}Timeline Validity}{80}
-\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{80}
-\contentsline {subsection}{\numberline {6.3}Correctness of Code}{80}
-\contentsline {section}{\numberline {7}Conclusion}{81}
-\contentsline {section}{Bibliography}{82}
-\contentsline {section}{Appendices}{87}
-\contentsline {subsection}{Python Code}{87}
+\contentsline {subsection}{\numberline {2.2}Temporal Annotation}{11}
+\contentsline {subsubsection}{\numberline {2.2.1}TimeML and TimeBank}{12}
+\contentsline {subsubsection}{\numberline {2.2.2}Tango and T-BOX}{22}
+\contentsline {subsection}{\numberline {2.3}Temporal Semantics}{26}
+\contentsline {subsubsection}{\numberline {2.3.1}Discourse Representation Theory}{26}
+\contentsline {subsubsection}{\numberline {2.3.2}Boxer}{26}
+\contentsline {section}{\numberline {3}Finite-State Temporality}{28}
+\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{29}
+\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{31}
+\contentsline {subsubsection}{\numberline {3.1.2}Strings as MSO Models}{34}
+\contentsline {paragraph}{Analogous Strings}{38}
+\contentsline {subsubsection}{\numberline {3.1.3}Granularity: Points and Intervals}{39}
+\contentsline {subsubsection}{\numberline {3.1.4}String Operations}{44}
+\contentsline {paragraph}{Vocabulary:}{45}
+\contentsline {paragraph}{Block Compression:}{45}
+\contentsline {paragraph}{Superposition:}{47}
+\contentsline {paragraph}{Asynchronous Superposition:}{48}
+\contentsline {paragraph}{Reduct:}{51}
+\contentsline {paragraph}{Projection:}{53}
+\contentsline {paragraph}{Generate and Test:}{54}
+\contentsline {paragraph}{Vocabulary-Constrained Superposition:}{58}
+\contentsline {subsection}{\numberline {3.2}Applications}{61}
+\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{62}
+\contentsline {subsubsection}{\numberline {3.2.2}Constraints and Scheduling (Zebra Puzzle)}{68}
+\contentsline {section}{\numberline {4}Methods}{78}
+\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{78}
+\contentsline {subsubsection}{\numberline {4.1.1}Linking the TLINKs}{78}
+\contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{79}
+\contentsline {subsection}{\numberline {4.2}Enhancing Strings using DRT}{84}
+\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{84}
+\contentsline {subsubsection}{\numberline {4.2.2}VerbNet and WordNet}{84}
+\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{85}
+\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{85}
+\contentsline {subsubsection}{\numberline {4.3.2}Event Ontology}{86}
+\contentsline {subsubsection}{\numberline {4.3.3}Residuals and Gaps}{86}
+\contentsline {section}{\numberline {5}String Temporal Annotation and Relation Tool (START)}{87}
+\contentsline {subsection}{\numberline {5.1}Back-end Pipeline}{87}
+\contentsline {subsection}{\numberline {5.2}Front-end Interface}{89}
+\contentsline {section}{\numberline {6}Evaluation}{90}
+\contentsline {subsection}{\numberline {6.1}Timeline Validity}{90}
+\contentsline {subsection}{\numberline {6.2}FRACAS Semantic Test Suite}{90}
+\contentsline {subsection}{\numberline {6.3}Correctness of Code}{90}
+\contentsline {section}{\numberline {7}Conclusion}{91}
+\contentsline {section}{Bibliography}{92}
+\contentsline {section}{Appendices}{98}
+\contentsline {subsection}{Python Code}{98}

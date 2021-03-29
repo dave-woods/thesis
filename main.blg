@@ -4,47 +4,49 @@ The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: refs.bib
 Warning--empty year in aristotlePhysicsIV
+Warning--there's a number but no volume in Bunt2020
 Warning--there's a number but no series in fernando2015semantics
+Warning--empty author in ISO24617-1
 Warning--empty publisher in Mueller2008
-You've used 55 entries,
+You've used 70 entries,
             1940 wiz_defined-function locations,
-            825 strings with 13867 characters,
-and the built_in function-call counts, 23827 in all, are:
-= -- 2396
-> -- 840
-< -- 68
-+ -- 281
-- -- 277
-* -- 1944
-:= -- 3913
-add.period$ -- 179
-call.type$ -- 55
-change.case$ -- 404
-chr.to.int$ -- 51
-cite$ -- 58
-duplicate$ -- 1019
-empty$ -- 1750
-format.name$ -- 360
-if$ -- 4856
-int.to.chr$ -- 5
+            918 strings with 16956 characters,
+and the built_in function-call counts, 30457 in all, are:
+= -- 3081
+> -- 1047
+< -- 85
++ -- 354
+- -- 345
+* -- 2499
+:= -- 4974
+add.period$ -- 228
+call.type$ -- 70
+change.case$ -- 515
+chr.to.int$ -- 65
+cite$ -- 75
+duplicate$ -- 1296
+empty$ -- 2245
+format.name$ -- 452
+if$ -- 6213
+int.to.chr$ -- 6
 int.to.str$ -- 0
-missing$ -- 57
-newline$ -- 283
-num.names$ -- 171
-pop$ -- 416
+missing$ -- 70
+newline$ -- 361
+num.names$ -- 213
+pop$ -- 516
 preamble$ -- 1
-purify$ -- 410
+purify$ -- 520
 quote$ -- 0
-skip$ -- 773
+skip$ -- 987
 stack$ -- 0
-substring$ -- 1686
-swap$ -- 282
-text.length$ -- 27
+substring$ -- 2224
+swap$ -- 361
+text.length$ -- 34
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 316
-warning$ -- 3
-while$ -- 213
+type$ -- 406
+warning$ -- 5
+while$ -- 273
 width$ -- 0
-write$ -- 733
-(There were 3 warnings)
+write$ -- 936
+(There were 5 warnings)
