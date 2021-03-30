@@ -1,5 +1,21 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\astroncite{Abzianidze et~al.}{2017}]{abzianidze2017parallel}
+Abzianidze, L., Bjerva, J., Evang, K., Haagsma, H., Van~Noord, R., Ludmann, P.,
+  Nguyen, D.-D., and Bos, J. (2017).
+\newblock {The Parallel Meaning Bank: Towards a Multilingual Corpus of
+  Translations Annotated With Compositional Meaning Representations}.
+\newblock In {\em Proceedings of the 15th Conference of the European Chapter of
+  the Association for Computational Linguistics (EACL)}, pages 242--247,
+  Valencia, Spain.
+
+\bibitem[\protect\astroncite{Abzianidze et~al.}{2019}]{abzianidze2019first}
+Abzianidze, L., van Noord, R., Haagsma, H., and Bos, J. (2019).
+\newblock {The First Shared Task on Discourse Representation Structure
+  Parsing}.
+\newblock In {\em Proceedings of the {IWCS} Shared Task on Semantic Parsing},
+  pages 1--15, Gothenburg, Sweden. Association for Computational Linguistics.
+
 \bibitem[\protect\astroncite{Allen}{1983}]{allen1983maintaining}
 Allen, J.~F. (1983).
 \newblock {Maintaining Knowledge About Temporal Intervals}.
@@ -23,6 +39,11 @@ Aristotle.
   \url{http://classics.mit.edu/Aristotle/physics.4.iv.html}.
 \newblock Accessed: 2018-08-12.
 
+\bibitem[\protect\astroncite{Bird et~al.}{2009}]{Bird2009}
+Bird, S., Klein, E., and Loper, E. (2009).
+\newblock {\em {Natural Language Processing with Python}}.
+\newblock O'Reilly Media, Inc.
+
 \bibitem[\protect\astroncite{Bittar et~al.}{2011}]{bittar2011french}
 Bittar, A., Amsili, P., Denis, P., and Danlos, L. (2011).
 \newblock {French TimeBank: an ISO-TimeML annotated reference corpus}.
@@ -34,6 +55,12 @@ Bos, J. (2008).
 \newblock {Wide-Coverage Semantic Analysis with Boxer}.
 \newblock In {\em Proceedings of the 2008 Conference on Semantics in Text
   Processing - STEP '08}, pages 277--286.
+
+\bibitem[\protect\astroncite{Bos and Abzianidze}{2019}]{abzianidze2019thirty}
+Bos, J. and Abzianidze, L. (2019).
+\newblock Thirty musts for meaning banking.
+\newblock In {\em Proceedings of ACL 2019 First International Workshop on
+  Designing Meaning Representations}, pages 15--27.
 
 \bibitem[\protect\astroncite{Bottini et~al.}{2015}]{bottini2015space}
 Bottini, R., Crepaldi, D., Casasanto, D., Crollen, V., and Collignon, O.
@@ -66,6 +93,19 @@ Bunt, H.~C. (1985).
 \newblock {\em Mass terms and model-theoretic semantics}.
 \newblock Cambridge University Press, Cambridge.
 
+\bibitem[\protect\astroncite{Curran et~al.}{2007}]{curran2007linguistically}
+Curran, J.~R., Clark, S., and Bos, J. (2007).
+\newblock Linguistically motivated large-scale nlp with c\&c and boxer.
+\newblock In {\em Proceedings of the 45th annual meeting of the Association for
+  Computational Linguistics Companion volume proceedings of the demo and poster
+  sessions}, pages 33--36.
+
+\bibitem[\protect\astroncite{Davidson}{1967}]{davidson1967logical}
+Davidson, D. (1967).
+\newblock The logical form of action sentences.
+\newblock In Rescher, N., editor, {\em The Logic of Decision and Action}, pages
+  81--95. University of Pittsburgh Press.
+
 \bibitem[\protect\astroncite{Day et~al.}{1997}]{day1997mixed}
 Day, D., Aberdeen, J., Hirschman, L., Kozierok, R., Robinson, P., and Vilain,
   M. (1997).
@@ -78,6 +118,11 @@ Derczynski, L. and Gaizauskas, R. (2013).
 \newblock {Empirical Validation of Reichenbach's Tense Framework}.
 \newblock In {\em Proceedings of the 10th International Conference on
   Computational Semantics (IWCS 2013)}, pages 71--82.
+
+\bibitem[\protect\astroncite{Dowty}{1989}]{dowty1989semantic}
+Dowty, D.~R. (1989).
+\newblock On the semantic content of the notion of ‘thematic role’.
+\newblock In {\em Properties, types and meaning}, pages 69--129. Springer.
 
 \bibitem[\protect\astroncite{Durand and Schwer}{2008a}]{durand2008reasoning}
 Durand, I. and Schwer, S. (2008a).
@@ -148,6 +193,13 @@ Freksa, C. (1992).
 \newblock {Temporal Reasoning Based on Semi-Intervals}.
 \newblock {\em {Artificial Intelligence}}, 54:199--227.
 
+\bibitem[\protect\astroncite{Geurts et~al.}{2020}]{geurts2007discourse}
+Geurts, B., Beaver, D.~I., and Maier, E. (2020).
+\newblock {Discourse Representation Theory}.
+\newblock In Zalta, E.~N., editor, {\em The {Stanford} Encyclopedia of
+  Philosophy}. Metaphysics Research Lab, Stanford University, spring 2020
+  edition.
+
 \bibitem[\protect\astroncite{Goel et~al.}{2020}]{goel2020hindi}
 Goel, P., Prabhu, S., Debnath, A., Modi, P., and Shrivastava, M. (2020).
 \newblock {Hindi TimeBank: An ISO-TimeML Annotated Reference Corpus}.
@@ -165,6 +217,11 @@ Hamblin, C.~L. (1972).
 \newblock {Instants and intervals}.
 \newblock In {\em The Study of Time}, pages 324--331. Springer.
 
+\bibitem[\protect\astroncite{Hornstein}{1990}]{hornstein1990time}
+Hornstein, N. (1990).
+\newblock {\em {As time goes by: Tense and universal grammar}}.
+\newblock Mit Press.
+
 \bibitem[\protect\astroncite{ISO 24617-1:2012}{2012}]{ISO24617-1}
 ISO 24617-1:2012 (2012).
 \newblock {Language resource management — Semantic annotation framework
@@ -172,6 +229,17 @@ ISO 24617-1:2012 (2012).
 \newblock Standard, International Organization for Standardization, Geneva, CH.
 \newblock \url{https://www.iso.org/standard/37331.html} This standard was last
   reviewed and confirmed in 2017. Therefore this version remains current.
+
+\bibitem[\protect\astroncite{Kamp}{1981}]{kamp1981theory}
+Kamp, H. (1981).
+\newblock A theory of truth and discourse representation.
+\newblock {\em Formal methods in the study of language}, (135).
+
+\bibitem[\protect\astroncite{Kamp}{1988}]{kamp1988discourse}
+Kamp, H. (1988).
+\newblock {Discourse Representation Theory: What it is and where it ought to
+  go}.
+\newblock {\em Natural Language at the computer}, 320(1):84--111.
 
 \bibitem[\protect\astroncite{Kamp and Reyle}{1993}]{Kamp1993}
 Kamp, H. and Reyle, U. (1993).
@@ -206,6 +274,13 @@ Libkin, L. (2004).
 \newblock {Monadic Second-Order Logic and Automata}.
 \newblock In {\em Elements of Finite Model Theory}, pages 113--140.
   Springer-Verlag, Berlin, Heidelberg.
+
+\bibitem[\protect\astroncite{Liu et~al.}{2019}]{liu2019discourse}
+Liu, J., Cohen, S.~B., and Lapata, M. (2019).
+\newblock Discourse representation structure parsing with recurrent neural
+  networks and the transformer model.
+\newblock In {\em Proceedings of the {IWCS} Shared Task on Semantic Parsing},
+  pages 24--29, Gothenburg, Sweden. Association for Computational Linguistics.
 
 \bibitem[\protect\astroncite{Mani et~al.}{2006}]{mani2006machine}
 Mani, I., Verhagen, M., Wellner, B., Lee, C., and Pustejovsky, J. (2006).
@@ -325,6 +400,11 @@ Saur{\'{i}}, R., Littman, J., Knippen, B., Gaizauskas, R., Setzer, A., and
 \newblock {TimeML Annotation Guidelines Version 1.2.1}.
 \newblock Technical report, Brandeis University Linguistics Department.
 
+\bibitem[\protect\astroncite{Schuler}{2005}]{schuler2005verbnet}
+Schuler, K.~K. (2005).
+\newblock {\em VerbNet: A broad-coverage, comprehensive verb lexicon}.
+\newblock PhD thesis, University of Pennsylvania.
+
 \bibitem[\protect\astroncite{Schwer}{2000}]{oeisA055203}
 Schwer, S.~R. (2000).
 \newblock Number of different relations between n intervals on a line.
@@ -349,6 +429,17 @@ Stangroom, J. (2009).
 \newblock {\em {Einstein's Riddle: Riddles, Paradoxes, and Conundrums to
   Stretch Your Mind}}.
 \newblock Bloomsbury USA.
+
+\bibitem[\protect\astroncite{Steedman}{2000}]{steedman2000syntactic}
+Steedman, M. (2000).
+\newblock {\em The syntactic process}, volume~24.
+\newblock MIT press Cambridge, MA.
+
+\bibitem[\protect\astroncite{Steedman and
+  Baldridge}{2011}]{steedman2011combinatory}
+Steedman, M. and Baldridge, J. (2011).
+\newblock {\em Combinatory Categorial Grammar}, chapter~5, pages 181--224.
+\newblock John Wiley \& Sons, Ltd.
 
 \bibitem[\protect\astroncite{Thielscher}{1999}]{thielscher1999situation}
 Thielscher, M. (1999).
@@ -383,6 +474,14 @@ UzZaman, N., Llorens, H., Derczynski, L., Allen, J., Verhagen, M., and
 Van~Lambalgen, M. and Hamm, F. (2008).
 \newblock {\em {The Proper Treatment of Events}}, volume~6.
 \newblock John Wiley \& Sons.
+
+\bibitem[\protect\astroncite{van Noord
+  et~al.}{2018}]{van-noord-etal-2018-exploring}
+van Noord, R., Abzianidze, L., Toral, A., and Bos, J. (2018).
+\newblock Exploring neural methods for parsing discourse representation
+  structures.
+\newblock {\em Transactions of the Association for Computational Linguistics},
+  6:619--633.
 
 \bibitem[\protect\astroncite{Veanes et~al.}{2012}]{veanes2012symbolic}
 Veanes, M., Hooimeijer, P., Livshits, B., Molnar, D., and Bjorner, N. (2012).

@@ -50,15 +50,18 @@
 \usepackage{setspace}
 \usepackage{diagbox}
 \usepackage[nodayofweek]{datetime}
+\usepackage{listings}
 
-\captionsetup[figure]{font=small,labelfont=small}
+\captionsetup[figure]{font=small,labelfont=small,justification=centering}
 
 \def\drs#1#2{
-\begin{tabular}[c]{| c |}
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}[c]{|>{\hspace{1pc}}c<{\hspace{1pc}}|}
 	\hline #1 \\
 	\hline #2 \\
 	\hline
 \end{tabular}
+\renewcommand{\arraystretch}{1}
 }
 
 % Tim's custom commands
@@ -262,7 +265,7 @@ I, the undersigned, consent to the examiner retaining a copy of the thesis beyon
 %My thanks to Tim for his patience and understanding, to Carl for guiding and reassuring comments, and to my friends and family for their continuous encouragement and support. In particular, Brian, who had the misfortune to be staying with me while I was working on this report, and the members of DU Trampoline club, who have had a more bad-tempered coach of late.
 Although I wrote this thesis alone, a number of people supported me along the way, and made it possible for me to reach the end.
 
-I would like to thank my parents, Margaret and Graham, who never doubted I would do my best; my brother, Fergus, who has often been a much-needed reminder of normal life; Conor and Katie, who inspired me to start; Adelais, who encouraged me to make it over the finish line and made sure I remembered life outside of writing; and all the members of DU Trampoline Club, who gave me a reason to stick around. I hope it was worth it!
+I would like to thank my parents, Margaret and Graham, who never doubted I would do my best; my brother, Fergus, who has often been a much-needed reminder of normal life; Conor and Katie, who inspired me to start; Caitr\'{i}ona and Se\'{a}n, who regularly found me comforting distractions; Adelais, who encouraged me to make it over the finish line and made sure I remembered life outside of writing; and all the members of DU Trampoline Club, who gave me a reason to stick around. I hope it was worth it!
 
 My appreciation goes also to my supervisors: Tim, for being patient with me even when I was struggling, and Carl, who often managed to reassure me that I wasn't going down completely the wrong path. Thank you both for not giving up on me.
 
@@ -310,7 +313,7 @@ In this chapter, the existing literature related to the major topics of the thes
 The concept of time has fascinated researchers for millenia, and as such, a great deal of work exists on the topic. What follows here focuses on the formal study of temporality in language.
 \subsubsection{Allen's Interval Algebra}\label{ssub:allen}
 % The seminal work of James F. Allen's \textit{Maintaining Knowledge about Temporal Intervals} has pushed the field since its publication in  \citeyear{allen1983maintaining}, and indeed the framework he described drives some of the design decisions in the present work.
-Much of the present work draws its roots in James F. \citeauthor{allen1983maintaining}'s work \textit{Maintaining Knowledge about Temporal Intervals} \citeyearpar{allen1983maintaining}, both directly and indirectly via the many systems which have built upon it in the years since it was first published. In this seminal paper, Allen described a framework for the use of temporal intervals as primitives to represent events and time periods, as opposed to points on the real line. There are four key criteria given as being of primary importance in guiding the design of this framework \citeyearpar[p. 833]{allen1983maintaining}, all of which also feature in the system of representation described in the present work (see \cref{sub:strings}):
+Much of the present work draws its roots in James F. \citeauthor{allen1983maintaining}'s work \textit{Maintaining Knowledge about Temporal Intervals} \citeyearpar{allen1983maintaining}, both directly and indirectly via the many systems which have built upon it in the years since it was first published. In this seminal paper, Allen described a framework for the use of temporal intervals as primitives to represent events and time periods, as opposed to points on the real line. There are four key criteria given as being of primary importance in guiding the design of this framework \citeyearpar[p. 833]{allen1983maintaining}, all of which also feature in the system of string-based event representation described in the present work (see \cref{sub:strings}):
 \begin{enumerate}\label{other:allen-motivations}
 \onehalfspacing
 \item The representation should allow for the fact that much temporal information is relative rather than precise.
@@ -376,7 +379,7 @@ For $N$ nodes (intervals) there are $\frac{N^2-N}{2}$ edges if all new nodes are
 		\label{fig:complex-transitivity}
 	\end{figure}
 \end{center}
-\citet[p. 836]{allen1983maintaining} gives a $12 \times 12$\footnote{The equals relation is ommitted, since it is reflexive, symmetric, and transitive, meaning for any relation $\bigcdot$, $((A = B \land B \bigcdot C) \lor (A \bigcdot B \land B = C)) \Longrightarrow A \bigcdot C$.} transitivity table---a $6 \times 6$ fragment of which is reproduced below in \Cref{tab:allen-trans-table}---which provides the relation or relations which may exist between two intervals $A$ and $C$, given the relations $\bigcdot$ between $A$ and $B$, and $\bigcdot'$ between $B$ and $C$. Not shown in \Cref{tab:allen-trans-table} are relation pairs such as $A$ before $B$ and $B$ after $C$---the disjunction of relations between $A$ and $C$ in this case contains all 13 possibilities (in Allen's table, labelled as `no info'), indicating that there are no constraints on the relation between $A$ and $C$. A smaller fragment of this table which shows these transitivities interpreted as superpositions\footnote{See \cref{ssub:operations} for details of superposition.} of strings which represent the various Allen relations is given in \citet[p. 130]{woods2017towards}. One advantage of the string-based approach comes from the fact that a single string may be used to represent an arbitrary (finite) number of events, and all of the relations between them, at once---thus transitivities between, for example, four intervals can be represented as easily as three. \nb{Table of this somewhere?}
+\citet[p. 836]{allen1983maintaining} gives a $12 \times 12$\footnote{The equals relation is ommitted, since it is reflexive, symmetric, and transitive, meaning for any relation $\bigcdot$, $((A = B \land B \bigcdot C) \lor (A \bigcdot B \land B = C)) \Longrightarrow A \bigcdot C$.} transitivity table---a $6 \times 6$ fragment of which is reproduced below in \Cref{tab:allen-trans-table}---which provides the relation or relations which may exist between two intervals $A$ and $C$, given the relations $\bigcdot$ between $A$ and $B$, and $\bigcdot'$ between $B$ and $C$. Not shown in \Cref{tab:allen-trans-table} are relation pairs such as $A$ before $B$ and $B$ after $C$---the disjunction of relations between $A$ and $C$ in this case contains all 13 possibilities (in Allen's table, labelled as `no info'), indicating that there are no constraints on the relation between $A$ and $C$. A smaller fragment of this table which shows these transitivities interpreted as superpositions\footnote{See \cref{ssub:operations} for details of superposition.} of strings which represent the various Allen relations is given in \citet[p. 130]{woods2017towards}. One advantage of the string-based approach comes from the fact that a single string may be used to represent an arbitrary (finite) number of events, and all of the relations between them, at once---thus transitivities between, for example, four intervals can be represented as easily as three.% \nb{Table of this somewhere?}
 
 \begin{center}
 	\onehalfspacing
@@ -400,7 +403,7 @@ For $N$ nodes (intervals) there are $\frac{N^2-N}{2}$ edges if all new nodes are
 	\captionof{table}{Fragment of Allen's transitivity table \citeyearpar[p. 836, Figure 4]{allen1983maintaining}.}
 	\label{tab:allen-trans-table}
 \end{center}
-\label{other:allen-algo}For the propagation of constraints upon the addition of new information to the network, \citet[p. 835]{allen1983maintaining} also details an algorithm using the transitivity table to update all arcs in the network as necessary. While Allen does concede that there are some issues with this algorithm---specifically mentioning the space requirement, which is somewhat high at $O(N^2)$ space for $N$ temporal intervals, and the fact that the algorithm doesn't guarantee consistency in larger than three-node networks\footnote{See \cref{sub:applications} for how this limit may be improved upon by using strings and superposition to automatically reject inconsistencies.\nb{Check this reference}}, and \citet[p. 219]{Verhagen2005} also notes an $O(N^3)$ time complexity---it does give an upper bound of $13 \times \frac{(N - 1)(N - 2)}{2}$ to the number of modifications that can be made to the network, regardless of the number of constraints added. Additionally, ``the average amount of work for each addition is essentially linear (i.e., $N$ additions take $O(N^2)$ time; one addition on average takes $O(N)$ time)'' \citep[p. 837]{allen1983maintaining}. This is still quite high, given that it is not unusual for a given text, annotated documents of the TimeBank \citep{pustejovsky2003timebank,pustejovsky2006timebank} corpus for instance, to feature fifty intervals or more, and some are in the hundreds \citep[p. 213]{Verhagen2005}.
+\label{other:allen-algo}For the propagation of constraints upon the addition of new information to the network, \citet[p. 835]{allen1983maintaining} also details an algorithm using the transitivity table to update all arcs in the network as necessary. While Allen does concede that there are some issues with this algorithm---specifically mentioning the space requirement, which is somewhat high at $O(N^2)$ space for $N$ temporal intervals, and the fact that the algorithm doesn't guarantee consistency in larger than three-node networks\footnote{See \cref{sub:applications}, p. \pageref{ex:str-inconsistency} for how this limit may be improved upon by using strings and superposition to automatically reject inconsistencies.}, and \citet[p. 219]{Verhagen2005} also notes an $O(N^3)$ time complexity---it does give an upper bound of $13 \times \frac{(N - 1)(N - 2)}{2}$ to the number of modifications that can be made to the network, regardless of the number of constraints added. Additionally, ``the average amount of work for each addition is essentially linear (i.e., $N$ additions take $O(N^2)$ time; one addition on average takes $O(N)$ time)'' \citep[p. 837]{allen1983maintaining}. This is still quite high, given that it is not unusual for a given text, annotated documents of the TimeBank \citep{pustejovsky2003timebank,pustejovsky2006timebank} corpus for instance, to feature fifty intervals or more, and some are in the hundreds \citep[p. 213]{Verhagen2005}.
 
 To tackle the space requirements while maintaining as much inferential power as possible, \citet[p. 838]{allen1983maintaining} also describes a method for grouping clusters of intervals which---in regards to the relations between them---are fully computed, termed ``reference intervals''. This is due to the fact that each interval $I_i$ in the cluster $\{I_1, I_2, ..., I_n\}$ will reference one or more new intervals $R_m$ (where $m$ is an index on the number of reference intervals), and these reference intervals will be connected in the graph, which can be used to find relations between nodes which are not directly connected. Since these reference intervals may be treated as normal intervals, they may themselves be grouped into a cluster, and thus hierarchies of intervals may arise.% These are not currently implemented in the present work, but they may be useful as a way to address documents with high numbers of intervals.
 
@@ -411,57 +414,82 @@ Allen's work was and remains highly influential in the field of temporal reasoni
 Reichenbach's (\citeyear{reichenbach1947elements}) theory of verbal tense and aspect allows for the temporal placement of an event time in relation to a speech time and a reference time. The relative orderings of these three times gives rise to the categorisations of tense and aspect in English and other languages. This framework has been widely accepted and adopted, and has found empirical validation via TimeML \citep{timeml2005timeml} and the TimeBank corpus \citep{pustejovsky2003timebank} in \citet{Derczynski2013}, which finds that using \citet{Freksa1992}'s semi-interval relations leads to ``tense appropriately constrain[ing] the types of temporal relations that can hold between pairs of events described by verbs''.
 %While verbs are not the only expression of events, these categorisations can convey enough information to temporally locate that event
 
-\nb{Bring up TEA here somewhere. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block compression. Tim mentioned that this is a difference from Schwer's S-Words.}
+% \nb{Bring up TEA here somewhere. Also worth mentioning Vendler and Dowty in relation to lexically telic/atelic verbs, which inform the stative-based approach of the strings and thus block compression. Tim mentioned that this is a difference from Schwer's S-Words.}
 % Reichenbach, Vendler, TEA
 % Aspect hypothesis of dowty - build from statives - this is behind block compression/destuttering
 % as difference for Schwer s-words
 
-\citet[p. 72]{reichenbach1947elements} initially presents six tense/aspect combinations of English as arrangements of three temporal points, the `point of the event', the `point of reference', and the `point of speech', which may coincide. These six are: the Simple Past, Past Perfect, Present, Present Perfect, Simple Future, and Future Perfect---see \Cref{fig:reichenback-arrangements}. 
+\citet[p. 72]{reichenbach1947elements} initially presents six tense/aspect combinations of English as arrangements of three temporal points, the `point of the event', the `point of reference', and the `point of speech', which may coincide. These six are: the Simple Past, Past Perfect, Present, Present Perfect, Simple Future, and Future Perfect. However, it is noted that the `Simple Future' may have two possible interpretations in English, and the arrangement originally presented under that name---where the points of speech and reference are equal and precede the point of the event---is later (p. 77) renamed as the `Posterior Present', while the second interpretation becomes the arrangement associated with the term `Simple Future'---see \Cref{fig:reichenbach-arrangements}.
 
 
 
-% This is reproduced in \Cref{fig:reichenback-arrangements} below, with $E$ for the event time, $R$ for the reference time, and $S$ for the speech time:
+% This is reproduced in \Cref{fig:reichenbach-arrangements} below, with $E$ for the event time, $R$ for the reference time, and $S$ for the speech time:
 
 % \citet[p. 77]{Derczynski2013}: ``PERFECTIVE PROGRESSIVE aspect was converted to PERFECTIVE; this feature value accounts for 20 of 5974 verb events, or 0.34%''
 \begin{center}
-	\begin{tabular}{|c c c|}
+	\begin{tabular}{|l l c|}
 		\hline
 		\textbf{Tense} & \textbf{Example} & \textbf{E, R, S}\\
 		\hline
 		Simple Past & ``I bought the book'' & $(E = R) < S$\\
 		Past Perfect & ``I had bought the book'' & $E < R < S$\\
-		Present & ``I buy the book'' & $E = R = S$\\
+		Simple Present & ``I buy the book'' & $E = R = S$\\
 		Present Perfect & ``I have bought the book'' & $E < (R = S)$\\
-		Simple Future & ``I will buy the book'' & $(S = R) < E$\\
+		Simple Future & ``I will buy the book'' & $S < (R = E)$\\
 		Future Perfect & ``I will have bought the book'' & $S < E < R$\\
-		% Simple Past Progressive & ``I was buying the book'' & $(E = R) < S$\\
-		% Past Perfect Progressive & ``I had been buying the book'' & $E < R < S$\\
-		% Present Progressive & ``I am buying the book'' & $E = R = S$\\
-		% Present Perfect Progressive & ``I have been buying the book'' & $E < (R = S)$\\
-		% Simple Future Progressive & ``I will be buying the book'' & $(S = R) < E$\\
-		% Future Perfect Progressive & ``I will have been buying the book'' & $S < E < R$\\
 		\hline
 	\end{tabular}
-	\captionof{figure}{Arrangements of the points E, R, and S, from \citet{reichenbach1947elements}.}
-	\label{fig:reichenback-arrangements}
+	\captionof{figure}{Arrangements of the points $E$, $R$, and $S$, from \citet{reichenbach1947elements}.}
+	\label{fig:reichenbach-arrangements}
 \end{center}
+As can be seen from these arrangements, the tense of a sentence being in the Past, Present, or Future tense correlates to the ordering of the reference time $R$ and speech time $S$: whether the reference time $R$ appears before, equal to, or after the speech time $S$, respectively. The perfective aspect---called the `Anterior' tenses in \citet[p. 77]{reichenbach1947elements}---is then created by placing the event time $E$ before $R$, where it is equal to $R$ in the non-perfective aspect.
+
+While \citet{reichenbach1947elements} (mostly) treats the time of event, speech and reference as temporal points, there is so far no issue with assuming that they may instead be treated as temporal intervals, \`{a} la \citet{allen1983maintaining} and TimeML \citep{timeml2005timeml,sauri2006timeml}. However, in order to treat the Progressive aspect which English may use, the so-called `point of the event' must in fact be taken as an interval rather than an instantaneous point, indicating the durative nature of the Progressive. If the event time was already considered to be an interval, then instead the set of relations must change so as to include the `during' relation from Allen's set---see \Cref{fig:allens-pictorial}, p. \pageref{fig:allens-pictorial}. Thus the Progressive aspect can be conceptualised by the reference time $R$ occurring during the event time $E$, as in \Cref{fig:reichenbach-progressive}.
+\begin{center}
+	\begin{tabular}{|l l c|}
+		\hline
+		\textbf{Tense} & \textbf{Example} & \textbf{E, R, S}\\
+		\hline
+		Past Progressive & ``I was buying the book'' & $R ~d~ E,~ R < S$\\
+		Present Progressive & ``I am buying the book'' & $R ~d~ E,~ R = S$\\
+		Future Progressive & ``I will be buying the book'' & $R ~d~ E,~ S < R$\\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Relations of $E$, $R$, and $S$ for the Progressive aspect.}
+	\label{fig:reichenbach-progressive}
+\end{center}
+However, if all of $E$, $R$, and $S$ are intervals, then Allen's interval relations apply to all pairings. Where before there was an equality relation between two of the points, Allen's equality will apply, but if one point preceded another, then in fact either of the `before' or `meets' relations may hold. Additionally, taking the Past Progressive as an example gives $R ~d~ E$ and $R < S$---assuming for the moment that $R$ is before $S$ rather than meeting it, then by the rules of transitivity for Allen relations, the relation between $E$ and $S$ may be any of `before', `meets', `contains', `finished by', or `overlaps'. The fact that these disjunctions arise leads \citet{Derczynski2013} to use \citet{Freksa1992}'s set of 31 semi-interval relations---a superset of Allen's interval relations---in validating the Reichenbachian framework within the TimeBank \citep{pustejovsky2006timebank} corpus. Semi-intervals arise by considering an interval in terms of its beginning and ending, but treating those as intervals in and of themselves, and in this way a set of relations are defined between the beginnings and endings of events. For instance, if the Freksa relation `older' holds between some pair of events $a$ and $b$, then the beginning of $a$, $\alpha(a)$, occurs before the beginning of $b$, $\alpha(b)$, while the order of the endings of the events are left unspecified. Each Freksa relation may also be described in terms of a disjunction of Allen relations---in fact, the `older' relation corresponds to the same disjunction of `before', `meets', `contains', `finished by', or `overlaps' which appear between a verb's event time $E$ and its speech time $S$ in the Past Progressive. The Freksa relations are discussed in more detail in \cref{ssub:incomplete}, but they are relevant here due to the disjunctions which come out of treating event, reference, and speech times as events, and leveraging shared reference times may lead to more of these disjunctions arriving when attempting to derive temporal relations between verbal events---see \Cref{fig:tense-aspect-freksa}.
+
 By using what \citet[p. 74]{reichenbach1947elements} refers to as the ``permanence of the reference point'', events in an utterance may be temporally ordered relative to each other. This states that, though events may be in different clauses, the fact that a speaker adjusts the use of tense and aspect for the events relative to each other shows that they must share a reference time. In the following example \cref{ex:permanent-ref-pt}, the two events are in boldface.
 \begin{itemize}
 	\item[\ipp\label{ex:permanent-ref-pt}] ``I had \textbf{left} her when I \textbf{bought} the book.''
 \end{itemize}
-Since the two events are in the same utterance, they have the same speech time, and by permanence of reference point, their reference times are also identical. Now, given that `left' is in the Past Perfect, while `bought' is in the Simple Past, the constraints from \Cref{fig:reichenback-arrangements} can be used to order the two events as follows:
+Since the two events are in the same utterance, they have the same speech time, and by permanence of reference point, their reference times are also identical. Now, given that `left' is in the Past Perfect, while `bought' is in the Simple Past, the constraints from \Cref{fig:reichenbach-arrangements} can be used to order the two events---using points rather than intervals for the sake of keeping the example simple---as follows in \cref{ex:permanent-ref}:
 
+\begin{subequations}\label{ex:permanent-ref}
+	\onehalfspacing
+	\begin{align}
+		S_{leave} = S_{buy},~ R_{leave} = R_{buy}\\
+		E_{leave} ~<~ R_{leave} ~<~ S_{leave}\\
+		E_{buy} = R_{buy} ~<~ S_{buy}\\
+		\therefore~~~ E_{leave} ~<~ E_{buy}
+	\end{align}
+\end{subequations}
+This gives that the event time of `left' $E_{leave}$ occurs before the event time of `bought' $E_{buy}$, and thus for any pair of verbal events $a$ and $b$ which share a speech and reference time and the verb denoting $a$ is in the Past Perfect while the verb denoting $b$ is in the Simple Past, we can deduce that $a$ precedes $b$, as temporal points. While this principle still holds when $E$, $R$, and $S$ are treated as intervals instead of points, it does become a little more complex as the size of the possible relation set between a pair of intervals is over four times larger than the possible relation set for points, and as mentioned above, it is possible for disjunctions of relations to arise. \citet{Derczynski2013} give a table with all of the combinations of tense \{\texttt{PAST}, \texttt{PRESENT}, \texttt{FUTURE}\} and aspect\footnote{The \texttt{PERFECTIVE\_PROGRESSIVE} aspect is also possible---for example in ``I had been walking''---however, it is omitted for simplicity's sake due to featuring in less than 1\% of verb events in the TimeBank corpus \citep[p. 77]{Derczynski2013}.} \{\texttt{NONE}, \texttt{PROGRESSIVE}, \texttt{PERFECTIVE}\}---the aspect value of \texttt{NONE} denotes the Simple form of that tense---where each disjunction has been labelled with its associated Freksa relation, displayed in \Cref{fig:tense-aspect-freksa}.
 \begin{center}
-	\begin{tabular}{c c c c c}
-		$E_{leave}$ & $<$ & $R_{leave}$ & $<$ & $S_{leave}$\\
-		& & $E_{buy} = R_{buy}$ & $<$ & $S_{buy}$
-	\end{tabular}
+	\begin{figure}[h!]
+		\includegraphics[width=\textwidth]{images/tense-aspect-freksa}
+		\captionof{figure}{Tense-aspect pairs and the \citet{Freksa1992} relations they may suggest\\\citep[taken from][p. 80, Table 5]{Derczynski2013}.}\label{fig:tense-aspect-freksa}
+	\end{figure}
 \end{center}
-This gives that the event time of `left' $E_{leave}$ occurs before the event time of `bought' $E_{buy}$.
-	
-However, in order to treat the Progressive aspect which English may use, the so-called `point of the event' must in fact be taken as an interval rather than an instantaneous point, indicating the durative nature of the Progressive. \citet{Derczynski2013} treat this by splitting $E$ into $E_s$ and $E_f$ for the beginning and ending of $E$, respectively.
-%In fact, all three time points (typically labelled as $E$ for event time, $R$ for reference time, and $S$ for speech time) may be considered as intervals\footnote{Using combinations of the Progressive and Perfective aspects is admittedly more difficult. For instance, the only difference in \citet{reichenbach1947elements} between Past Perfect and Past Perfect Progressive is that $E$ is treated as an interval in the latter. } while maintaining the initial arrangements to represent the tenses and aspects. This is presented using the Allen relations (see \cref{ssub:allen}) in \Cref{fig:reichenback-arrangements} below.
+Care must be given, though, to note that the rule of a permanent reference time only applies to verbs within the same \textit{temporal context} \citep{hornstein1990time,Derczynski2013}---verbs appearing in reported speech, for instance, are in a separate context to the verbs which introduce it. For example, in \cref{ex:reported-speech}, the events pointed to by `put' and `said' share their speech and reference times, and thus their temporal context is the same. However, `going' is part of a separate statement, enclosed by the quotation marks, and having a speech time that is equal to the event time of `said'.
 
+\begin{itemize}
+	\item[\ipp\label{ex:reported-speech}] He \textbf{put} his head in and \textbf{said} ``I'm \textbf{going} to the shop''.
+\end{itemize}
+In general, if a pair of events that are to be temporally related are in separate temporal contexts ``Reichenbach's framework may not directly apply, and the pair should not be further analysed'' \citep[p. 75]{Derczynski2013}. However, the temporal context can be difficult to determine automatically from a text, and the TimeML schema doesn't provide an explicit way to annotate it. One way to model a shared context between some pair of events is to look at the proximity of their appearance in the text, assuming events which are more textually distant than an adjacent sentence are unlikely to share the same context, and additionally checking if the events share the same tense---that is, the same speech and reference time. Using this model on the TimeBank 1.2 \citep{pustejovsky2006timebank} corpus, \citet[p. 80]{Derczynski2013} validated the Reichenbachian framework of tense and aspect by extracting pairs of verbal events from the \verb|<TLINK>| tags and using the tense and aspect of the verb pairs to derive one of the disjunctions of relations given in \Cref{fig:tense-aspect-freksa}. This derived disjunction contained as an element the relation that was actually marked up in the \verb|<TLINK>| tag in 67.8\% of cases\footnote{This excludes the prediction of the `all' or `unknown' relation, which is a disjunction of all possible relations. Including this relation is not useful, but when doing so the accuracy was found to be 91.9\%.}. It is noted that, taking into consideration that the temporal context model is somewhat crude, the amount of inaccuracy using this model (32.2\%) is comparable to the inter-annotator disagreement for \verb|<TLINK>| relation type labels (0.23) in the corpus: ``The fact that temporal context is derived from models and not explicit gold-standard annotation is also likely a significant source of noise in agreement.'' \citep[p. 80]{Derczynski2013}.
+
+The next section takes a deeper look at the TimeBank corpus and the annotation schema with which it is marked up, TimeML.
 
 \subsection{Temporal Annotation}\label{sub:annotation}
 Ideally, humans who use artificially intelligent systems for question-answering, scheduling, or other applications which require some level of reasoning about temporal data won't ever have to consider the annotation which drives it---except, of course, in the case when annotation is itself the goal of using the system. Computer systems have no inherent understanding of natural language, and rely on the samples they have been provided with in order to give a facsimile of the communication abilities that humans have. The better the quality of those samples, and the more information embedded within them, the better the system can interpret human language, and in turn generate interpretable output.
@@ -646,7 +674,7 @@ Manual annotation of temporal data in text is not a simple task, requiring a sol
 		\centering
 		\includegraphics[width=0.9\textwidth]{images/tango}
 	\end{figure}
-	\captionof{figure}{Tango's interface \citep[taken from][p. 2, Fig. 1]{verhagen2005TBOX}.}
+	\captionof{figure}{Tango's interface \citep[taken from][p. 2, Figure 1]{verhagen2005TBOX}.}
 	\label{fig:tango}
 \end{center}
 The graph here works on the same principle as those described in \cref{ssub:allen}, in that the nodes represent the events and times which are marked up in the TimeML document, while the arcs are labelled with the relation between the intervals. According to \citet[p. 2]{verhagen2005TBOX}, using Tango improved the quality and reliability of the annotations being produced, with a higher number of links being found between the nodes, though he also notes that Tango's main flaw is that it does not allow a user to ``quickly capture the temporal structure of the document'' \citep[p. 2]{verhagen2005TBOX}---that is, interpreting the overall chronology of a text by means of a directed graph is not straightforward for a human user of the technology. Part of the problem, according to \citet{verhagen2005TBOX}, is that the graph labels---representing the \verb|<TLINK>| tags of TimeML---quickly become difficult to read, especially when the document contains a large number of nodes. More troublesome, however, is the fact that there is no inherent semantics to the placement of the nodes; there is no graphical depiction of the temporal ordering, left-to-right or otherwise, that is enforced by the system in a meaningful way.
@@ -666,7 +694,7 @@ The rules governing placement of boxes are \citep[pp. 3--5]{verhagen2005TBOX}:
 	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=0.8\textwidth]{images/tbox}
-		\captionof{figure}{\Cref{fig:tango}'s data now drawn using T-BOX \citep[taken from][p. 3, Fig. 2]{verhagen2005TBOX}.}\label{fig:tbox}
+		\captionof{figure}{\Cref{fig:tango}'s data now drawn using T-BOX \citep[taken from][p. 3, Figure 2]{verhagen2005TBOX}.}\label{fig:tbox}
 	\end{figure}
 \end{center}
 It is stressed that the vertical and horizontal positioning of boxes doesn't mean anything in and of itself, and thus despite a focus on semantically arranging and depicting the temporal relations in a TimeML annotation, T-BOX abandons the ``timeline metaphor'' \citep{verhagen2005TBOX}. However, using the string-based framework described in \cref{sub:strings}, many of the principles which guide the T-BOX architecture can be maintained whilst also preserving the ideology of timelines, being an intuitive way to conceptualise sequences of events and times---see \cref{ssub:timelines}.
@@ -675,22 +703,65 @@ Another point of interest with T-BOX is that it requires as input a TimeML docum
 
 One further aspect of the T-BOX framework worth noting is that it can be used to possibly detect some inconsistencies in input data if there is some part of the data which cannot be drawn using the rules described above. For example, if the \verb|<TLINK>| tags give that some event X is \textit{before} some other event Y, that Y is \textit{before} a third event Z, and also that Z is \textit{before} X---an impossibility due to the circular transitivity---the inconsistency should be discovered when attempting to draw X to the left of Y, which is to the left of Z, which should then somehow be drawn to the left of X. However, while `non-drawability' implies an inconsistency, drawability does not imply consistency \citep[p. 12]{verhagen2005TBOX}, since similarly to the constraint propogation algorithm in \citet{allen1983maintaining}, inconsistencies may appear in the graph which appear consistent when looking at three intervals, but become problematic in a larger context. This issue can be circumvented using a string which may represent far more than three intervals and their relations at once, and strings which represent information inconsistent with the knowledge base are ejected through superposition---see \cref{def:vc-superposition}, p. \pageref{def:vc-superposition}---and thus, `non-superposability' can be seen as similar to the `non-drawability' of T-BOX.
 
+The next section discusses some of the existing approaches to semantic representation of times and events aside from the semantics associated with the annotation schemas of TimeML and ISO-TimeMLs, in particular the structures of Discourse Representation Theory.
+
 \subsection{Temporal Semantics}\label{sub:semantics}
-The following sections describe some of the existing ways that the semantics of times and events can be represented. \nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST? Durand and Schwer?}
+The following sections describe some of the existing ways that the semantics of times and events can be represented.
+\nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST? Durand and Schwer?}
+% \nb{Bunt (2020) mentions that Abziande \& Bos (2019) mention that almost everyone uses Neo-Davidsonian event semantics...}
+% \nb{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
 
 \subsubsection{Discourse Representation Theory}\label{ssub:drt}
-\citet{Kamp1993} introduced Discourse Representation Theory (DRT) as a framework for semantically representing information derived from a text. DRT separates discourse referents (the entities under discussion) from Discourse Representation Structure (DRS) conditions, which describe what is known about the referents.
+In what have become robust and well-known works since their publication, \citet{kamp1981theory,kamp1988discourse,Kamp1993} presented Discourse Representation Theory (DRT) as a formal framework for semantically representing information derived from discourse---that is, coherent series of sentences or propositions, which may appear in speech or text. The development of DRT aimed to allow model-theoretic semantic representations that go beyond single sentences, which was the standard approach in First-Order Logic (FOL), and to treat phenomena such as anaphora, where an entity named earlier in a discourse may be referred to again later without naming it again. The classic example sentences \citep{kamp1988discourse} involve an indefinite, `a donkey', appearing as an antecedent, and acting as a quantifier which binds the pronoun `it' in the second sentence, as in \cref{ex:donkey-1}.
+\begin{subequations}
+	\begin{align}
+		&\text{``John owns a donkey. He feeds it.''}\label{ex:donkey-1}\\
+		&\exists x ~(donkey(x) \land own(John, x) \land feed(John, x))\label{ex:donkey-1-fol}
+	\end{align}
+\end{subequations}
+The sentence in \cref{ex:donkey-2} is problematic in Montague-style approaches, which assume that any indefinite in a sentence should introduce an existential quantifier, but this comes into conflict with the scope of the universal quantifier introduced by `Every' \citep[p, 91]{kamp1988discourse}. In \cref{ex:donkey-2-fol}, the expected existential has acquired a universal force to capture the natural interpretation of \cref{ex:donkey-2} as claiming that every farmer feeds every donkey they own.
+\begin{subequations}
+	\begin{align}
+		&\text{``Every farmer who owns a donkey feeds it.''}\label{ex:donkey-2}\\
+		&\forall x \forall y ~((farmer(x) \land donkey(y) \land own(x,y)) \Longrightarrow feed(x,y))\label{ex:donkey-2-fol}
+	\end{align}
+\end{subequations}
+DRT solves these issues with the notion of discourse referents, which are the set of entities under discussion in a given discourse, corresponding to the individual variables of FOL \citep[p. 397]{Bird2009}. Under DRT, indefinites do not introduce existential quantifiers, instead introducing new discourse referents, which are added to a mental representation known as a Discourse Representation Structure (DRS) \citep{geurts2007discourse}. DRSs contain separately both the discourse referents and the DRS conditions, which describe what is known about the referents.
 
-\nb{Bunt (2020) mentions that Abziande \& Bos (2019) mention that almost everyone uses Neo-Davidsonian event semantics...}
+For the example in \cref{ex:donkey-1}, the first sentence is processed and the two entities create two discourse referents, $x$ and $y$, which appear at the top of the DRS in \cref{ex:donkey-1-drs-a}, with the DRS conditions over these referents appearing in the lower box of the DRS.
+\begin{align}
+	\drs{$x~~~y$}{John($x$)\\donkey($y$)\\owns($x, y$)}\label{ex:donkey-1-drs-a}
+\end{align}
+As the second sentence of \cref{ex:donkey-1} is processed, the DRS is augmented with two further discourse referents, $u$ and $v$, corresponding with the two pronouns `He' and `it'. Resolving the anaphora\footnote{The component which performs the anaphora resolution is assumed separate to DRT, which merely sets constraints on which discourse referents are available as candidates for selection \citep[p. 399]{Bird2009}.} adds two new conditions, identifying the two pronoun referents with the two existing noun referents in \cref{ex:donkey-1-drs-a}. Finally the condition that $u$ feeds $v$ is added, giving \cref{ex:donkey-1-drs-b}.
+\begin{align}
+	\drs{$x~~y~~u~~v$}{John($x$)\\donkey($y$)\\owns($x, y$)\\$u = x$\\$v = y$\\feeds($u, v$)}\label{ex:donkey-1-drs-b}
+\end{align}
+There is a direct translation from a DRS to a formula of FOL, where the discourse referents which appear at the outermost level are interpreted as existential quantifiers, and the DRS conditions are interpreted as being conjoined. The translated formula for \cref{ex:donkey-1-drs-b} is in \cref{ex:donkey-1-drs-b-fol}, which has the same interpretation as \cref{ex:donkey-1-fol} despite its differences.
+\begin{align}
+	\exists x \exists y \exists u \exists v ~(john(x) \land donkey(y) \land owns(x,y) \land u = x \land v = y \land feeds(u, v))\label{ex:donkey-1-drs-b-fol}
+\end{align}
+Universal quantification is usually handled by embedding two DRSs connected by an implication within another DRS \citep[p. 98]{kamp1988discourse}, or alternatively by embedding a negated DRS within another embedded negated DRS\footnote{Due to the equivalence $\forall x~(P(x)) \Longleftrightarrow \lnot \exists x ~(\lnot P(x))$, stating that if some property $P(x)$ holds for all values of $x$, then there is no value for $x$ where $P(x)$ does not hold.}. Below, \cref{ex:donkey-2-drs} represents \cref{ex:donkey-2}.
+\begin{align}
+	\drs{$x$}{farmer($x$)\\\drs{$y$}{donkey($y$)\\owns($x,y$)} $\Longrightarrow$ \drs{$u$}{$u = y$\\feeds($x,y$)}}\label{ex:donkey-2-drs}
+\end{align}
+DRT is capable of representing events and times as temporal entities which introduce discourse referents and may appear in DRS conditions. For example, including a special `indexical' discourse refererent $now$ for the time of the utterance, as in \citet[p. 104]{kamp1988discourse} and \citet{abzianidze2017parallel}, \cref{ex:drs-temporal-b} represents the sentence in \cref{ex:drs-temporal-a}.
+\begin{subequations}
+	\begin{align}
+		\text{``The doctor cured the patient.''}\label{ex:drs-temporal-a}\\
+		\drs{$x~~y~~e~~now$}{doctor($x$)\\patient($y$)\\cure($e,x,y$)\\$e \prec now$}\label{ex:drs-temporal-b}
+	\end{align}
+\end{subequations}
+The condition $e \prec now$ denotes that the event $e$ precedes the time of the utterance, indicating the past tense of the verbal event `cure'. Other available temporal relations available in DRS conditions usually include $=$ equality, $\subset$ during, and $\bigcirc$ overlaps, though other relations occasionally are used, and in principle any binary relation could be used, including those in \citet{allen1983maintaining}'s set. 
 
-\nb{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
-% Bunt's use for semantic annotation - can we get his slides from the DCLRS?
-\drs{x y}{e(x)\\t(y)}
+The DRS in \cref{ex:drs-temporal-b} represents a Davidsonian approach to event semantics, where an event variable $e$ was added as an argument to the predicate corresponding to the verb \citep{davidson1967logical,Kamp1993}, and DRSs can also feature discourse referents representing statives as well as eventives \citep[p. 103]{kamp1988discourse}. However, by introducing an event's semantic roles as conditions to the DRS, a neo-Davidsonian style \citep{dowty1989semantic} can be implemented instead, reducing the verbal predicate's arguments to just the event variable $e$. This is an approach which \citet{abzianidze2019thirty,Bunt2020} point out is the \textit{de facto} standard approach taken by most (if not all) semantically annotated corpora. Indeed, the Parallel Meaning Bank\footnote{Available at \url{https://pmb.let.rug.nl/}.} (PMB) corpus \citep{abzianidze2017parallel}---which aims to ``provide fine-grained meaning representations for words, sentences and texts'' and contains over 8000 DRSs from English sentences---uses this approach in their DRS representations. The DRS in \cref{ex:drs-temporal-c} below represents the sentence in \cref{ex:drs-temporal-a} again, this time including such semantic roles as might appear in the PMB, which uses an inventory of roles from the VerbNet resource \citep{schuler2005verbnet}.
+\begin{align}
+	\drs{$x~~y~~e~~now$}{doctor($x$)\\patient($y$)\\cure($e$)\\Agent($x$)\\Patient($y$)\\$e \prec now$}\label{ex:drs-temporal-c}
+\end{align}
+Automatic parsing of discourse text to DRSs is a non-trivial, multi-faceted task, involving tokenisation, part-of-speech recognition, and syntactic parsing before DRSs can even be constructed. A wide-coverage parser called Boxer was released by \citet{Bos2008}, which claimed 95\% converage for semantic analysis of newswire texts, although significantly for the present work, it was noted in that release that performance for temporal information was not as strong as its other areas \citep[pp. 283--285]{Bos2008}. Boxer takes as input a Combinatory Categorial Grammar (CCG) \citep{steedman2000syntactic,steedman2011combinatory} which has itself been parsed following named-entity recognition, and part-of-speech tagging prior to that, using the C\&C tools \citep{curran2007linguistically}, and outputs one or more DRSs as formally interpretable semantic representations \citep[p. 285]{Bos2008}. An updated version of Boxer \citep{van-noord-etal-2018-exploring} is implemented as part of the Parallel Meaning Bank toolchain \citep{abzianidze2017parallel}---although, this version had unfortunately not been made available for general use at the time of writing. However, the recent shared task created by \citep{abzianidze2019first} shows that there is an interest in developing systems which can perform automatic DRS parsing. The state-of-the-art was improved considerably in this task, with the winning system of \citet{liu2019discourse} achieving an F1 score of 84.8\%, an improvement from the baseline score of 54.3\%.
 
-\subsubsection{Boxer}\label{ssub:boxer}
-Automatic parsing of text into DRSs is a popular task \nb{Find the shared task from 2019---I'm sure it was on the PMB website, but I can't find it at present}, and \citet{Bos2008} released the first version of the Boxer software which claimed to do this with over 95\% coverage for semantic analysis of newswire texts, though it was noted in the release that performance for temporal data was not as strong as its other areas.
+% One issue with DRSs in terms of representation for times and events
 
-There is a newer version of Boxer implemented as part of the Parallel Meaning Bank \citeneeded{} toolchain---however, this version had unfortunately not been made available for general use at the time of writing.
+This chapter has attempted to give a general overview of some of the literature which informs the current work. In particular, the interval algebra put forward in \citet{allen1983maintaining}, which finds application in the temporal relations of the TimeML \citep{timeml2005timeml} and its successor ISO-TimeML \citep{pustejovsky2010iso}, which has become the international standard for semantic annotation of temporal information, and also the empirical validation of \citet{reichenbach1947elements}'s framework of tense and aspect in \citet{Derczynski2013}, which also brings out \citet{Freksa1992}'s semi-interval relations, and finally the semantic structures of the formalism of Discourse Representation Theory \citep{kamp1981theory} which aims to reflect the context of an utterance in its model-theoretic interpretation. The next chapter goes into some depth for the approach to temporal semantics known as finite-state temporality, and details the string-based framework it licences which forms the backbone of the work.
 
 \newpage
 \section{Finite-State Temporality}\label{sec:fst}
@@ -733,7 +804,7 @@ For convenience of notation, boxes \ebox{\cdot} are used instead of curly braces
 
 It will be said that for any event $a$ occurring in a string $s = \sigma_1\sigma_2\cdots\sigma_n$, $a$ may not \textit{judder}---that is, if $a$ appears in multiple positions of the string, then those positions are contiguous; there are no gaps between appearances of $a$ in $s$:
 \begin{align}\label{impl:contiguous-events}
-	a \in \sigma_i \wedge a \in \sigma_j \wedge i < j \Longrightarrow (\forall k, i < k < j)~ a \in \sigma_k
+	a \in \sigma_i \wedge a \in \sigma_j \wedge i < j \Longrightarrow \forall k \in [i~..~j]~(a \in \sigma_k)
 \end{align}
 If some string, such as in \cref{ex:judder-invalid}, features judder in this way, it is said to be invalid, similarly to \citet[p. 134]{Pustejovsky2005} distinguishing separate instances of an event which are referred to together---see \cref{other:pustejovsky-type-instance}, p. \pageref{other:pustejovsky-type-instance}---and only allowing instances to appear in a string. Judder can, if necessary, be treated by subindexing an event---for example, a juddering event $a$ becomes separate sub-events $\{a_1, a_2, a_3\}$, as in \cref{ex:judder-valid}. Alternatively, similarly to \citet{bunt2010annotating} and ISO-TimeML's treatment of non-contiguous events over a duration\footnote{See \cref{other:iso-mlink}, p. \pageref{other:iso-mlink}.}, it may be possible to interpret judder as one whole event, which includes the pauses, as in \cref{ex:judder-valid-2}, which would then be \textit{block compressed}---see \cref{def:bc}, p. \pageref{def:bc}.
 \begin{subequations}\label{ex:judder}
@@ -820,7 +891,7 @@ A string $s$ will be said to be \textit{analogous} to some other string $s'$ if 
 % \nb{wiki: bijection, isomorphism;\\\url{https://www.britannica.com/science/isomorphism-mathematics}\\\url{https://mathworld.wolfram.com/Isomorphism.html}\\\url{https://plato.stanford.edu/entries/modeltheory-fo/}}
 ---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping between the vocabulary of $s$ and the vocabulary of $s'$, and for every fluent $v \in \V_s$, its image $f(v) \in \V_{s'}$ appears in only those same strings positions in $s'$ as $v$ appears in $s$:
 \begin{align}
-	mod(s) &\cong mod(s') \Longleftrightarrow \\\notag &\text{length}(s) = \text{length}(s') \land (\exists f: \V_s \leftrightarrow \V_{s'})((\forall v \in \V_s) \llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket)\\
+	mod(s) &\cong mod(s') \Longleftrightarrow \\\notag &\text{length}(s) = \text{length}(s') \land \exists f ~(f: \V_s \leftrightarrow \V_{s'} \land \forall v \in \V_s ~(\llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket)\\
 	mod(s) &\cong mod(s') \Longleftrightarrow s \sim s'
 \end{align}
 For example, in \cref{ex:analog}, \Before{a}{b} is analogous to \Before{c}{d}, while in \cref{ex:not-analog} \Before{a}{b} is not analogous to \Overlaps{c}{d}
@@ -830,7 +901,7 @@ For example, in \cref{ex:analog}, \Before{a}{b} is analogous to \Before{c}{d}, w
 \end{align}
 This definition of analogy can be lifted to languages $L$ and $L'$ simply by testing if all strings in $L$ are analogous with all strings in $L'$:
 \begin{align}
-	L \sim L' := (\forall s \in L, s' \in L')~ s \sim s'
+	L \sim L' := \forall (s \in L) \forall (s' \in L')~ (s \sim s')
 \end{align}
 Determining whether strings are analogous is useful when ascertaining the relations between events appearing in a string. If the relations between events in a string $s$ are known, and another string $s'$ can be shown to be analogous to $s$, then the relations between the events that appear in $s'$ are also known\footnote{For example, the string on the left hand side of \cref{ex:analog} says that event $a$ is \textit{before} event $b$, and since the string on the right hand side is analogous, THEN event $c$ must be \textit{before} event $d$.}. By employing this concept in conjunction with that of projection (see p. \pageref{para:str-op-projection}) and a set of reference strings---such as those modelling Allen's relations (see \cref{tab:allen-rels-strings})---it becomes simple to determine which relations appear in a string.
 
@@ -880,7 +951,7 @@ Chiefly, however, among reasons to generally consider intervals as primitive is 
 
 % It's worth noting that there are translations available between the different granularities.
 
-It is worth noting here that, in general, in this work it is also assumed that any text which will be used as a source for the creation of strings will feature only \textit{finite events}. The fluents which represent these events will therefore hold for a finite amount of time, and thus intervals appearing in strings will be \textit{bounded} \citep{allen1994actions}. That is, for some event $a$, there is some time \textit{immediately before} $a$ holds during which $a$ does not hold, and similarly, there is some time \textit{immediately after} $a$ holds during which $a$ does not hold. This fact is represented through the use of bounding empty sets, and so any given string will both begin and end with an empty set, drawn as an empty box \ebox{}\footnote{Equivalently, as a formula of MSO: $(\forall v \in \V)~ \lnot P_v(1) \land \lnot P_v(n)$.}. The framework does not, in fact, require this assumption to be true---compare the bounded (finite) interval $a$, drawn as \EventString{{}|a|{}}, and the non-bounded (infinite) interval $b$, drawn as \EventString{b}---and indeed, it is convenient to go beyond it when discussing the handling of incomplete data, although this moves away from plain intervals to semi-intervals (see \cref{ssub:incomplete}).
+It is worth noting here that, in general, in this work it is also assumed that any text which will be used as a source for the creation of strings will feature only \textit{finite events}. The fluents which represent these events will therefore hold for a finite amount of time, and thus intervals appearing in strings will be \textit{bounded} \citep{allen1994actions}. That is, for some event $a$, there is some time \textit{immediately before} $a$ holds during which $a$ does not hold, and similarly, there is some time \textit{immediately after} $a$ holds during which $a$ does not hold. This fact is represented through the use of bounding empty sets, and so any given string will both begin and end with an empty set, drawn as an empty box \ebox{}\footnote{Equivalently, as a formula of MSO: $\forall v \in \V~ (\lnot P_v(1) \land \lnot P_v(n))$.}. The framework does not, in fact, require this assumption to be true---compare the bounded (finite) interval $a$, drawn as \EventString{{}|a|{}}, and the non-bounded (infinite) interval $b$, drawn as \EventString{b}---and indeed, it is convenient to go beyond it when discussing the handling of incomplete data, although this moves away from plain intervals to semi-intervals (see \cref{ssub:incomplete}).
 
 The following section describes a number of operations which may be used with interval-based strings, though it should be pointed out that for each operation there is an equivalent which may be used for a string which treats event borders as basic instead of events.
 
@@ -994,7 +1065,7 @@ As such, for any set $A$, the $A$-\textit{reduct} $\rho_A$ of a string $s=\sigma
 The resulting new string has a vocabulary of $A$, but the remaining fluents are still in the same relative positions to each other as in the original:
 \begin{align}
 	\V_{\rho_A(s)} &= A\\
-	(\forall a \in A)~\llbracket P_a \rrbracket_{mod(s)} &= \llbracket P_a \rrbracket_{mod(\rho_A(s))}
+	\forall a \in A~ (\llbracket P_a \rrbracket_{mod(s)} &= \llbracket P_a \rrbracket_{mod(\rho_A(s))})
 \end{align}
 For example, with the string $s = \EventString{{}|a,b|a,b,c|a,c,d|a,e|e|{}}$ and $A=\{a,d\}$, the $A$-reduct of $s$ is:
 \begin{align}\label{ex:reduct}
@@ -1036,7 +1107,7 @@ It is worth noting that, if strings $s$ and $s'$ share the same vocabulary, but 
 \end{align}
 A language $L$ can be said to project to another language $L'$ if every string $s \in L$ projects to every string $s' \in L'$:
 \begin{align}
-	L \sqsupseteq L' \Longleftrightarrow  (\forall s \in L)(\forall s' \in L')~s \sqsupseteq s'
+	L \sqsupseteq L' \Longleftrightarrow  \forall (s \in L)\forall (s' \in L')~ (s \sqsupseteq s')
 \end{align}
 This notion of projection is particularly useful, allowing for temporal reasoning when used in conjunction with the concept of \textit{analogous} strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}). Particular events can be simply extracted from larger, more complex strings, and compared against reference to determine the relations between and ordering of the events of interest.
 
@@ -1059,13 +1130,13 @@ In fact, every string in \cref{ex:async-superposition} shares the same vocabular
 
 In the case where the vocabularies of the two strings are identical, then none of the results will project to the original strings\footnote{This assumes that $s \neq s'$. In the case where $s = s'$, there is exactly one string $s'' \in s \spasync s'$ such that $s = s' = s''$.}. This implication follows from \cref{impl:cannot-project}, since the vocabulary of every string $s'' \in s \spasync s'$ is $\V_{s \cup s'} = \V_s = \V_{s'}$:
 \begin{align}
-	\V_s \cap \V_{s'} = \V_s = \V_{s'} &~\Longrightarrow~ (\forall s'' \in s \spasync s')~\lnot (s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionA}
+	\V_s \cap \V_{s'} = \V_s = \V_{s'} &~\Longrightarrow~ \forall (s'' \in s \spasync s')~\lnot (s'' \sqsupseteq s \lor s'' \sqsupseteq s')\label{impl:voc-intersectionA}
 \end{align}
 The implication of \cref{impl:voc-intersectionA} can be used to avoid unuseful superpositions: since the operation $\spasync$ has the potential to generate a large number of new strings, which can become costly from a computational perspective, it is prudent to test ahead of time whether every generated string will be spurious and unable to project back---as seen in \Cref{tab:failed-projections}.
 
 Conversely, if the vocabularies of the input strings are disjoint, then every resulting string will project back, due to \cref{impl:disjoint-vocab-reduct}:
 \begin{align}
-	\V_s \cap \V_{s'} = \emptyset &~\Longrightarrow~ (\forall s'' \in s \spasync s')~s'' \sqsupseteq s \land s'' \sqsupseteq s'\label{impl:voc-intersectionB}
+	\V_s \cap \V_{s'} = \emptyset &~\Longrightarrow~ \forall (s'' \in s \spasync s')~(s'' \sqsupseteq s \land s'' \sqsupseteq s')\label{impl:voc-intersectionB}
 \end{align}
 %\\\text{else} &~\Longrightarrow~ (\exists s'' \in s \spasync s')~s'' \sqsupseteq s \lor s'' \sqsupseteq s'\label{impl:voc-intersectionC}
 % counter-example: |a|b|c| &* |d|c|b|
@@ -1355,14 +1426,14 @@ Formally, there are five Attributes (Weather, Temperature, Traffic, Tasks, Mood)
 The external constraints are formalised as follows:
 \begin{itemize}
 	\item[] ``Each Value only lasts for one day.''
-	\item[\ipp\label{impl:zebra-constraintsA}] $(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow (\forall v' \in \V)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket$
+	\item[\ipp\label{impl:zebra-constraintsA}] $\forall v \in \V~ (x \in \llbracket P_v \rrbracket \Longrightarrow \forall v' \in \V~ (v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket))$
 	\item[] ``Each day only contains one Value for each Attribute.''
-	\item[\ipp\label{impl:zebra-constraintsB}] $(\forall A \in Attributes)~ x \in \llbracket P_v \rrbracket \wedge v \in A \Longrightarrow (\forall v' \in A)~ v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket$
+	\item[\ipp\label{impl:zebra-constraintsB}] $\forall A \in Attributes~ (x \in \llbracket P_v \rrbracket \wedge v \in A \Longrightarrow \forall v' \in A~ (v' \neq v \wedge x \notin \llbracket P_{v'} \rrbracket))$
 \end{itemize}
 One further constraint is needed due to the nature of superposition allowing for the result of superposing two strings to be longer than either of the input strings:
 \begin{itemize}
 	\item[]``There are only 5 days.''
-	\item[\ipp\label{impl:zebra-constraintsC}] $(\forall v \in \V)~ x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5$
+	\item[\ipp\label{impl:zebra-constraintsC}] $\forall v \in \V~ (x \in \llbracket P_v \rrbracket \Longrightarrow 1 \leq x \leq 5)$
 \end{itemize}
 Now, superposing all of the languages in \Cref{tab:zebra-clue-strings} and taking into account the constraints in \cref{impl:zebra-constraintsA,impl:zebra-constraintsB,impl:zebra-constraintsC}, the (singular) result string is generated (each Value is displayed here abbreviated to its first two letters):
 \begin{align}
@@ -1477,6 +1548,34 @@ After creating strings from the \verb|<TLINK>|s, the next step is to start build
 
 The various relations can be combined according to the table in \cite{allen1983maintaining} \citeneeded[ -- get the page and figure number], reproduced in \cref{ssub:allen} \refneeded{}, and again below using strings in table \refneeded{}. The advantage to using strings is that the extension beyond three events is simple \nb{Defend this---I think there is something in ISA13 paper---or remove}. It should be noted that several combinations of relations produce a disjunction of relations, which follows from the fact that these combinations of $a \bigcdot b$ and $b \bigcdot c$ don't provide enough information to determine the exact relation $a \bigcdot c$. It may be possible to narrow this down, though, with the addition of further relations connecting other intervals ($d,e,f,...$) with some or all of $a,b,c$.
 
+
+
+\begin{center}
+	\begin{tabular}[]{| l c c |}
+		\hline
+		\textbf{Relation} & \textbf{Count} & \textbf{Proportion}\\
+		\hline
+		BEFORE & 1408 & 21.94\%\\
+		AFTER & 897 & 13.98\%\\
+		IBEFORE & 34 & 0.53\%\\
+		IAFTER & 39 & 0.61\%\\
+		DURING & 302 & 4.71\%\\
+		DURING\_INV & 1 & 0.02\%\\
+		IS\_INCLUDED & 1357 & 21.14\%\\
+		INCLUDES & 582 & 9.07\%\\
+		BEGINS & 61 & 0.95\%\\
+		BEGUN\_BY & 70 & 1.09\%\\
+		ENDS & 76 & 1.18\%\\
+		ENDED\_BY & 177 & 2.76\%\\
+		SIMULTANEOUS & 671 & 10.45\%\\
+		IDENTITY & 743 & 11.58\%\\
+		\hline
+		Total & 6418 & 100\%\\
+		\hline
+	\end{tabular}
+\end{center}
+
+
 \subsubsection{Handling Incomplete Data}\label{ssub:incomplete}
 When dealing with any temporal information, there is often a lack of specificity that means temporal closure cannot be calculated. For example, knowing that event $a$ occurred before event $c$, as in \Before{a}{c}, and that event $b$ also occurred before $c$, as in \Before{b}{c}, does not impart any information on the relation between $a$ and $b$. If this is all of the available data, then it is only possible to choose this relation $a \bigcdot b, ~\bigcdot \in \mathcal{AR}$ with a precision of 1 in 13 chance. However, further information which includes other relations for each of $a$ and $b$ individually may eventually reveal their connection.
 
@@ -1487,8 +1586,8 @@ Freksa relations using semi-intervals: the appearance of $\alpha(a)$ within a bo
 \begin{align}
 %\alpha_a(x) := x \notin P_a \land \exists y(x < y \land y \in P_a \land \forall z(z < y \rightarrow z \notin P_a))\\
 %\omega_a(x) := x \notin P_a \land \exists y(y < x \land y \in P_a \land \forall z(y < z \rightarrow z \notin P_a))
-\alpha_a(x) ~:=~ \exists y(x < y ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z(z < y \Longrightarrow z \notin \llbracket P_a \rrbracket))\\
-\omega_a(x) ~:=~ \exists y(y < x ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z(y < z \Longrightarrow z \notin \llbracket P_a \rrbracket))
+\alpha_a(x) ~:=~ \exists y ~(x < y ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z ~(z < y \Longrightarrow z \notin \llbracket P_a \rrbracket))\\
+\omega_a(x) ~:=~ \exists y ~(y < x ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z ~(y < z \Longrightarrow z \notin \llbracket P_a \rrbracket))
 \end{align}
 Note that it is convenient to write $\alpha(a)$ for $\alpha_a(x)$ when using the box-notation.
 
@@ -1721,4 +1820,5 @@ What have I spent the last four and a half years of my life doing?
 \addcontentsline{toc}{section}{Appendices}
 \subsection*{Python Code}
 \addcontentsline{toc}{subsection}{Python Code}
+% \lstinputlisting[language=Python,breaklines=true]{filename.py}
 \end{document}

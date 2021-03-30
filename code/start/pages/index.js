@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 import { parseTML } from '../fns/parseTML'
 import * as freksa from '../fns/freksa'
+import { suggestTenseAspectRelation } from '../fns/suggestTenseAspectRelation'
 
 import Details from '../components/Details'
 import Help from '../components/Help'
@@ -258,7 +259,16 @@ export default function Annotate() {
     if (found) {
       window.alert(`The following possible relations were found:\n${found.map(f => e1 + ' ' + f + ' ' + e2).join(',\n')}`)
     } else {
-      window.alert('That relation could not be determined presently. Clicking \'Superpose\' may help.')
+      const ev1 = state.parsedEvents.find(e => e.id === e1)
+      const ev2 = state.parsedEvents.find(e => e.id === e2)
+      const suggestion = suggestTenseAspectRelation({tense1: ev1.attr.tense, aspect1: ev1.attr.aspect}, {tense2: ev2.attr.tense, aspect2: ev2.attr.aspect})
+      if (!suggestion || suggestion === 'un') {
+        window.alert('That relation could not be determined from current knowledge.')
+      } else {
+        const suggestionStrings = freksa[suggestion](e1, e2)
+        window.alert(`No relations were found, but the ${suggestion.toUpperCase()} relation (see Help for extended relation types) is suggested based on the tenses and aspects of the events. Please exercise judgement whether this suggestion seems accurate${ev1.attr.class === 'REPORTING' || ev2.attr.class === 'REPORTING' ? ', as it appears that these events may have different temporal contexts' : ''}. Strings:\n${suggestionStrings.join(',\n')}`)
+        
+      }
     }
   }
 

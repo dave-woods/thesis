@@ -44,7 +44,11 @@ def string_to_rel(string, x):
 ll = json.loads(sys.argv[1])
 try:
     vocab = ll['vocabulary']
-    strings = frozenset(wsf.flatten_list(ll['strings']))
+    strings = None
+    try:
+        strings = frozenset(wsf.flatten_list(wsf.superpose_all_langs_sensible(ll['strings'], 12)))
+    except:
+        strings = frozenset(wsf.flatten_list(ll['strings']))
     idx = 0
     lid = 0
     result = []

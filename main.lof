@@ -1,10 +1,12 @@
 \contentsline {figure}{\numberline {1}{\ignorespaces Allen interval relations \citep [p. 835, Figure 2]{allen1983maintaining}.\relax }}{5}
 \contentsline {figure}{\numberline {2}{\ignorespaces Simple graph network showing the computation of a transitivity.\relax }}{6}
 \contentsline {figure}{\numberline {3}{\ignorespaces Computation of a transitivity with a multiple-label result.\relax }}{7}
-\contentsline {figure}{\numberline {4}{\ignorespaces Arrangements of the points E, R, and S, from \citet {reichenbach1947elements}.\relax }}{10}
-\contentsline {figure}{\numberline {5}{\ignorespaces Possible values of a TLINK's relType attribute and their Allen relation counterparts.\relax }}{17}
-\contentsline {figure}{\numberline {6}{\ignorespaces Example TimeML annotation for ``He panicked on Wednesday.''\relax }}{18}
-\contentsline {figure}{\numberline {7}{\ignorespaces Tag counts for TimeBank 1.2.\relax }}{19}
-\contentsline {figure}{\numberline {8}{\ignorespaces Tango's interface \citep [taken from][p. 2, Fig. 1]{verhagen2005TBOX}.\relax }}{22}
-\contentsline {figure}{\numberline {9}{\ignorespaces \Cref {fig:tango}'s data now drawn using T-BOX \citep [taken from][p. 3, Fig. 2]{verhagen2005TBOX}.\relax }}{24}
-\contentsline {figure}{\numberline {10}{\ignorespaces A Gantt chart featuring six events.\relax }}{63}
+\contentsline {figure}{\numberline {4}{\ignorespaces Arrangements of the points $E$, $R$, and $S$, from \citet {reichenbach1947elements}.\relax }}{10}
+\contentsline {figure}{\numberline {5}{\ignorespaces Relations of $E$, $R$, and $S$ for the Progressive aspect.\relax }}{11}
+\contentsline {figure}{\numberline {6}{\ignorespaces Tense-aspect pairs and the \citet {Freksa1992} relations they may suggest \citep [taken from][p. 80, Table 5]{Derczynski2013}.\relax }}{13}
+\contentsline {figure}{\numberline {7}{\ignorespaces Possible values of a TLINK's relType attribute and their Allen relation counterparts.\relax }}{21}
+\contentsline {figure}{\numberline {8}{\ignorespaces Example TimeML annotation for ``He panicked on Wednesday.''\relax }}{22}
+\contentsline {figure}{\numberline {9}{\ignorespaces Tag counts for TimeBank 1.2.\relax }}{23}
+\contentsline {figure}{\numberline {10}{\ignorespaces Tango's interface \citep [taken from][p. 2, Figure 1]{verhagen2005TBOX}.\relax }}{26}
+\contentsline {figure}{\numberline {11}{\ignorespaces \Cref {fig:tango}'s data now drawn using T-BOX \citep [taken from][p. 3, Figure 2]{verhagen2005TBOX}.\relax }}{28}
+\contentsline {figure}{\numberline {12}{\ignorespaces A Gantt chart featuring six events.\relax }}{72}
