@@ -329,6 +329,12 @@ Mueller, E.~T. (2008).
 \newblock In {\em Foundations of Artificial Intelligence}, volume~3, pages
   671--708.
 
+\bibitem[\protect\astroncite{Ohtsuka and Brewer}{1992}]{ohtsuka1992discourse}
+Ohtsuka, K. and Brewer, W. (1992).
+\newblock {Discourse Organization in the Comprehension of Temporal Order in
+  Narrative Texts}.
+\newblock {\em Discourse Processes}, 15.
+
 \bibitem[\protect\astroncite{Pinedo and Hadavi}{1992}]{pinedo1992scheduling}
 Pinedo, M. and Hadavi, K. (1992).
 \newblock Scheduling: theory, algorithms and systems development.
@@ -407,7 +413,7 @@ Schuler, K.~K. (2005).
 
 \bibitem[\protect\astroncite{Schwer}{2000}]{oeisA055203}
 Schwer, S.~R. (2000).
-\newblock Number of different relations between n intervals on a line.
+\newblock {Number of different relations between n intervals on a line}.
 \newblock Sequence A055203 in \textit{The On-Line Encyclopedia of Integer
   Sequences}.
 \newblock \url{https://oeis.org/A055203}.

@@ -53,6 +53,7 @@
 \usepackage{listings}
 
 \captionsetup[figure]{font=small,labelfont=small,justification=centering}
+\captionsetup[table]{font=small,labelfont=small,justification=centering}
 
 \def\drs#1#2{
 \renewcommand{\arraystretch}{0.8}
@@ -379,7 +380,7 @@ For $N$ nodes (intervals) there are $\frac{N^2-N}{2}$ edges if all new nodes are
 		\label{fig:complex-transitivity}
 	\end{figure}
 \end{center}
-\citet[p. 836]{allen1983maintaining} gives a $12 \times 12$\footnote{The equals relation is ommitted, since it is reflexive, symmetric, and transitive, meaning for any relation $\bigcdot$, $((A = B \land B \bigcdot C) \lor (A \bigcdot B \land B = C)) \Longrightarrow A \bigcdot C$.} transitivity table---a $6 \times 6$ fragment of which is reproduced below in \Cref{tab:allen-trans-table}---which provides the relation or relations which may exist between two intervals $A$ and $C$, given the relations $\bigcdot$ between $A$ and $B$, and $\bigcdot'$ between $B$ and $C$. Not shown in \Cref{tab:allen-trans-table} are relation pairs such as $A$ before $B$ and $B$ after $C$---the disjunction of relations between $A$ and $C$ in this case contains all 13 possibilities (in Allen's table, labelled as `no info'), indicating that there are no constraints on the relation between $A$ and $C$. A smaller fragment of this table which shows these transitivities interpreted as superpositions\footnote{See \cref{ssub:operations} for details of superposition.} of strings which represent the various Allen relations is given in \citet[p. 130]{woods2017towards}. One advantage of the string-based approach comes from the fact that a single string may be used to represent an arbitrary (finite) number of events, and all of the relations between them, at once---thus transitivities between, for example, four intervals can be represented as easily as three.% \nb{Table of this somewhere?}
+\citet[p. 836]{allen1983maintaining} gives a $12 \times 12$\footnote{The equals relation is omitted, since it is reflexive, symmetric, and transitive, meaning for any relation $\bigcdot$, $((A = B \land B \bigcdot C) \lor (A \bigcdot B \land B = C)) \Longrightarrow A \bigcdot C$.} transitivity table---a $6 \times 6$ fragment of which is reproduced below in \Cref{tab:allen-trans-table}---which provides the relation or relations which may exist between two intervals $A$ and $C$, given the relations $\bigcdot$ between $A$ and $B$, and $\bigcdot'$ between $B$ and $C$. Not shown in \Cref{tab:allen-trans-table} are relation pairs such as $A$ before $B$ and $B$ after $C$---the disjunction of relations between $A$ and $C$ in this case contains all 13 possibilities (in Allen's table, labelled as `no info'), indicating that there are no constraints on the relation between $A$ and $C$. A smaller fragment of this table which shows these transitivities interpreted as superpositions\footnote{See \cref{ssub:operations} for details of superposition.} of strings which represent the various Allen relations is given in \citet[p. 130]{woods2017towards}. One advantage of the string-based approach comes from the fact that a single string may be used to represent an arbitrary (finite) number of events, and all of the relations between them, at once---thus transitivities between, for example, four intervals can be represented as easily as three.% \nb{Table of this somewhere?}
 
 \begin{center}
 	\onehalfspacing
@@ -707,7 +708,7 @@ The next section discusses some of the existing approaches to semantic represent
 
 \subsection{Temporal Semantics}\label{sub:semantics}
 The following sections describe some of the existing ways that the semantics of times and events can be represented.
-\nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, FST? Durand and Schwer?}
+\nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, Otherwise just make 2.3 about DRT... :/}
 % \nb{Bunt (2020) mentions that Abziande \& Bos (2019) mention that almost everyone uses Neo-Davidsonian event semantics...}
 % \nb{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
 
@@ -726,7 +727,7 @@ The sentence in \cref{ex:donkey-2} is problematic in Montague-style approaches, 
 		&\forall x \forall y ~((farmer(x) \land donkey(y) \land own(x,y)) \Longrightarrow feed(x,y))\label{ex:donkey-2-fol}
 	\end{align}
 \end{subequations}
-DRT solves these issues with the notion of discourse referents, which are the set of entities under discussion in a given discourse, corresponding to the individual variables of FOL \citep[p. 397]{Bird2009}. Under DRT, indefinites do not introduce existential quantifiers, instead introducing new discourse referents, which are added to a mental representation known as a Discourse Representation Structure (DRS) \citep{geurts2007discourse}. DRSs contain separately both the discourse referents and the DRS conditions, which describe what is known about the referents.
+DRT solves these issues with the notion of discourse referents, which are the set of entities under discussion in a given discourse, corresponding to the individual variables of FOL \citep[p. 397]{Bird2009}. Under DRT, indefinites do not introduce existential quantifiers, instead introducing new discourse referents, which are added to a mental representation known as a Discourse Representation Structure (DRS) \citep{geurts2007discourse}. DRSs contain separately both the discourse referents and the DRS conditions, which describe what is known about the referents. Multiple DRSs can be concatenated where it is appropriate to do so, with the result being a merged DRS containing the union of the discourse referents and DRS conditions from each of in the inputs to the concatenation \citep[p. 399]{Bird2009}.
 
 For the example in \cref{ex:donkey-1}, the first sentence is processed and the two entities create two discourse referents, $x$ and $y$, which appear at the top of the DRS in \cref{ex:donkey-1-drs-a}, with the DRS conditions over these referents appearing in the lower box of the DRS.
 \begin{align}
@@ -751,7 +752,7 @@ DRT is capable of representing events and times as temporal entities which intro
 		\drs{$x~~y~~e~~now$}{doctor($x$)\\patient($y$)\\cure($e,x,y$)\\$e \prec now$}\label{ex:drs-temporal-b}
 	\end{align}
 \end{subequations}
-The condition $e \prec now$ denotes that the event $e$ precedes the time of the utterance, indicating the past tense of the verbal event `cure'. Other available temporal relations available in DRS conditions usually include $=$ equality, $\subset$ during, and $\bigcirc$ overlaps, though other relations occasionally are used, and in principle any binary relation could be used, including those in \citet{allen1983maintaining}'s set. 
+The condition $e \prec now$ denotes that the event $e$ precedes the time of the utterance, indicating the past tense of the verbal event `cure'. Other available temporal relations available in DRS conditions usually include $=$ equality, $\subset$ during, and $\bigcirc$ overlaps, though other relations occasionally are used, and in principle any binary relation could be used, including those in \citet{allen1983maintaining}'s set. It is possible in general to extract these relations and the events they refer to in order to build 
 
 The DRS in \cref{ex:drs-temporal-b} represents a Davidsonian approach to event semantics, where an event variable $e$ was added as an argument to the predicate corresponding to the verb \citep{davidson1967logical,Kamp1993}, and DRSs can also feature discourse referents representing statives as well as eventives \citep[p. 103]{kamp1988discourse}. However, by introducing an event's semantic roles as conditions to the DRS, a neo-Davidsonian style \citep{dowty1989semantic} can be implemented instead, reducing the verbal predicate's arguments to just the event variable $e$. This is an approach which \citet{abzianidze2019thirty,Bunt2020} point out is the \textit{de facto} standard approach taken by most (if not all) semantically annotated corpora. Indeed, the Parallel Meaning Bank\footnote{Available at \url{https://pmb.let.rug.nl/}.} (PMB) corpus \citep{abzianidze2017parallel}---which aims to ``provide fine-grained meaning representations for words, sentences and texts'' and contains over 8000 DRSs from English sentences---uses this approach in their DRS representations. The DRS in \cref{ex:drs-temporal-c} below represents the sentence in \cref{ex:drs-temporal-a} again, this time including such semantic roles as might appear in the PMB, which uses an inventory of roles from the VerbNet resource \citep{schuler2005verbnet}.
 \begin{align}
@@ -1534,24 +1535,59 @@ The next chapter will describe the procedures by which these strings can integra
 
 \newpage
 \section{Methods}\label{sec:methods}
-This chapter details the approaches that were taken to produce the results.
+This chapter details the approaches that were taken to produce the results. 
+
+\nb{more here}
 
 \subsection{Extracting Strings from Annotated Text}\label{sub:extracting}
-The primary source of data is the TimeBank corpus which is one of the largest available collections of documents which are annotated with TimeML. Events are marked up with an \verb|<EVENT>| tag, and times with the \verb|<TIMEX3>| tag. Within TimeML, they are treated as intervals (see \cref{ssub:granularity}) which becomes relevant to the present work in the way they are related.
+In order to extract temporal strings like those described in \cref{sub:strings} from a text, the text must first be marked up using the TimeML \citep{timeml2005timeml} annotation schema, as this will provide the starting point which indicates which temporal entities are relevant in the text\footnote{Although, if used in an interactive environment such as the tool presented in \cref{sec:implementation}, it is possible to start instead from plain text.}. These annotated times and events, along with the given relations between them, will directly lead to the creation of the initial set of strings, which will serve as a `seed' for the generation of all other possible strings.
+
+Despite TimeML's successor schema, ISO-TimeML \citep{pustejovsky2010iso}, being adopted by the International Organization for Standardization as the standard \citep{ISO24617-1} for semantically annotating temporal data in a text, this work will only focus on the older TimeML version 1.2.1 schema \citep{timeml2005timeml,sauri2006timeml}. The primary source of data is the TimeBank corpus \citep{pustejovsky2006timebank} which is one of the largest available collections of documents which are annotated with any version of TimeML. At the time of writing, the latest release of the corpus is version 1.2, which uses the TimeML version 1.2.1 schema. This corpus is generally seen as a gold standard for any experiments relating to TimeML due to both its size and quality, as it contains 183 documents which were each manually annotated in multiple phases: initially, a pre-processing step wherein five annotators worked on the corpus, regularly meeting to discuss their decisions and improve inter-annotator agreement; the last phase described involved four annotators who ``intimately familiar with the latest specification'' \citep{timeml2005timeml}, which at the time was version 1.2.1, as already mentioned. The documents are amalgamated from a variety of newswire sources, and contain just over 61,000 non-punctuation tokens. The inter-annotator agreement scores (as the average of precision and recall) for the various tag types are given---for a subset of the corpus---below in \Cref{fig:inter-annotator-timebank}, reproduced from \citet{timeml2005timeml}, and it is noted that the low score for the \verb|<TLINK>| tag is due to the large number of event and/or time pairs that may be related to each other, which averages approximately $\frac{(7940+1414)}{183}^2 \approx 2613$ pairs per document.
+\begin{center}
+	\begin{tabular}[]{|l c c|}
+		\hline
+		\textbf{Tag} & \textbf{Exact agreement} & \textbf{Partial agreement}\\
+		\hline
+		TIMEX3 & 0.83 & 0.96\\
+		SIGNAL & 0.77 & 0.77\\
+		EVENT & 0.78 & 0.81\\
+		ALINK & 0.81 & -\\
+		SLINK & 0.85 & -\\
+		TLINK & 0.55 & -\\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Inter-annotator agreement for tags in TimeBank 1.2\\\citep[from][]{timeml2005timeml}.}\label{fig:inter-annotator-timebank}
+\end{center}
+The agreement scores are also given for some of the tag attributes, using again the average of precision and recall, and also the kappa scores, reproduced in \Cref{fig:inter-annotator-timebank-attrs}. \citet{timeml2005timeml} does note, though, that due to the size of the subset of documents for which inter-annotator agreement was tested, some of these values are not hugely significant, in particular ``the inter-annotator
+agreement numbers for ALINKs as well as the polarity feature for events are not reliable.''
+\begin{center}
+	\begin{tabular}[]{|l c c|}
+		\hline
+		\textbf{Tag and attribute} & \textbf{$\frac{precision+recall}{2}$} & \textbf{Kappa}\\
+		\hline
+		TIMEX3.type & 1.00 & 1.00\\
+		TIMEX3.value & 0.90 & 0.89\\
+		TIMEX3.temporalFunction & 0.95 & 0.87\\
+		TIMEX3.mod & 0.95 & 0.73\\
+		EVENT.class & 0.77 & 0.67\\
+		MAKEINSTANCE.pos & 0.99 & 0.96\\
+		MAKEINSTANCE.tense & 0.96 & 0.93\\
+		MAKEINSTANCE.aspect & 1.00 & 1.00\\
+		MAKEINSTANCE.polarity & 1.00 & 1.00\\
+		MAKEINSTANCE.modality & 1.00 & 1.00\\
+		ALINK.relType & 0.80 & 0.63\\
+		SLINK.relType & 0.98 & 0.96\\
+		TLINK.relType & 0.77 & 0.71\\
+		\hline
+	\end{tabular}
+	\captionof{figure}{Inter-annotator agreement for attributes in TimeBank 1.2\\\citep[from][]{timeml2005timeml}.}\label{fig:inter-annotator-timebank-attrs}
+\end{center}
+Of most significance to the present work is the favourable score for the \verb|<TLINK>| tags, from which strings can be derived.
 
 \subsubsection{Linking the TLINKs}\label{ssub:tlinks}
-TimeML primarily uses \verb|<TLINK>| tags to annotate relations between marked up events and times. These serve as the basis for initial string creation, as they provide the two intervals that are being related, as well as the relation between them. The relation set used is specific to TimeML, but has its roots in the set of Allen Relations---see table \refneeded{} below.
-
-A translation is built from \verb|<TLINK>| to string, using the tag's attributes to provide the data, and the Allen Relations as an intermediary step, as per table \refneeded{}. For example: \nb{example here please}. Any events and times that feature in the document but are not mentioned in a \verb|<TLINK>| are kept aside for now, as there is not a given connection from these events to the rest of the timeline.
-
-After creating strings from the \verb|<TLINK>|s, the next step is to start building the timeline, using the superposition technique described in \cref{ssub:operations}. This allows for connections to be built between events and times that were not explicitly related by the annotation. If every time and event in the text is related to every other time and event, there is \textit{temporal closure} in the text (see \cref{ssub:allen} \nb{See transfer p6---maybe include the graph of $n(n-1)/2, n \ge 2$?}). For there to be temporal closure in a TimeML document would be a large amount of work for an annotator, as for $N$ events/times there would be $N(N - 1) / 2$ relations between them, which increases quickly: at $N = 10$ there are 45 relations, at $N = 50$ there are 1225 relations. This becomes unwieldy for a human to annotate, especially given that it is generally understood by the human reader that if $A$ precedes $B$, and $B$ precedes $C$, then $A$ also precedes $C$, so it feels unnecessary to include this latter relation. However, an automated system does not have this inherent knowledge, and needs a way to calculate the implied relations.
-
-The various relations can be combined according to the table in \cite{allen1983maintaining} \citeneeded[ -- get the page and figure number], reproduced in \cref{ssub:allen} \refneeded{}, and again below using strings in table \refneeded{}. The advantage to using strings is that the extension beyond three events is simple \nb{Defend this---I think there is something in ISA13 paper---or remove}. It should be noted that several combinations of relations produce a disjunction of relations, which follows from the fact that these combinations of $a \bigcdot b$ and $b \bigcdot c$ don't provide enough information to determine the exact relation $a \bigcdot c$. It may be possible to narrow this down, though, with the addition of further relations connecting other intervals ($d,e,f,...$) with some or all of $a,b,c$.
-
-
-
+TimeML primarily uses \verb|<TLINK>| tags to annotate relations between marked up events and times. These serve as the basis for initial string creation, as they provide information about not only the two intervals that are being related, but also the relation between them. The set of available relations is specific to TimeML---given along with each relation's count and proportion of the TimeBank 1.2 corups in \Cref{tab:timeml-relation-counts}---but has its roots in the set of Allen Relations---see the translation between the sets in \Cref{fig:tlink-allen-translation}, p. \pageref{fig:tlink-allen-translation}. Since Allen's set of relations are what will be used to create strings, the \verb|<ALINK>| and \verb|<SLINK>| tags are ignored for the time being, as are the \verb|<SIGNAL>| tags. The intervals which are being related will be some pairing of event instance IDs and/or time IDs, which point to \verb|<MAKEINSTANCE>| and \verb|<TIMEX3>| tags, respectively, found elsewhere in the document.
 \begin{center}
-	\begin{tabular}[]{| l c c |}
+	\begin{tabular}[h!]{| l c c |}
 		\hline
 		\textbf{Relation} & \textbf{Count} & \textbf{Proportion}\\
 		\hline
@@ -1573,30 +1609,153 @@ The various relations can be combined according to the table in \cite{allen1983m
 		Total & 6418 & 100\%\\
 		\hline
 	\end{tabular}
+	\captionof{table}{The counts and proportions of each TimeML relation in the TimeBank 1.2 corpus.}\label{tab:timeml-relation-counts}
 \end{center}
+The decision is made to fold the \verb|<MAKEINSTANCE>| tags into the \verb|<EVENT>| tags which they reference for three reasons: first, this is one of the changes made in ISO-TimeML \citep{pustejovsky2010iso}, which considers the \verb|<EVENT>| tags as explicitly event instances; second, there are 7,940 \verb|<MAKEINSTANCE>| tags in the corpus, and 7,935 \verb|<EVENT>| tags, meaning there are just 5 instances which point at an event already pointed at by another instance---this is just 0.06\% of the instances, so merging them should not have a significant adverse impact; finally, for simplicity's sake, as it makes it easier to track the text in the \verb|<EVENT>| tag along with all of the attributes from the \verb|<MAKEINSTANCE>| tag, like the part of speech, tense, and aspect. While mapping the instances onto the events, it is also necessary to update the \verb|<TLINK>| tags, so that any \verb|eventInstanceID| and \verb|relatedToEventInstance| attributes are converted to \verb|eventID| and \verb|relatedToEvent| attributes, and also updating their values as appropriate.
 
+After folding the tags for events together, a translation is built, mapping from a \verb|<TLINK>| tag to string. The \verb|relType| attribute is extracted from the tag, and converted to an Allen relation by looking up its corresponding relation in \Cref{fig:tlink-allen-translation}, p. \pageref{fig:tlink-allen-translation}. Then, extracting the IDs for the pair of intervals to be related from the \verb|<TLINK>| tag's \verb|eventID| or \verb|timeID| (as $E1$) and \verb|relatedToEvent| or \verb|relatedToTime| (as $E2$) attributes, a string can be constructed using \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings}, replacing $a$ and $b$ in that table with $E1$ and $E2$.
+
+For a minimal example, assume the sentence in \cref{ex:tlink2str-a} is marked up as in \cref{ex:tlink2str-b}, omitting any attributes not directly relevant to this example.
+\begin{subequations}
+	\begin{itemize}
+	\item[\ipp\label{ex:tlink2str-a}] ``John ate dinner, and then washed the dishes.''
+	\item[\ipp\label{ex:tlink2str-b}] \verb|John <EVENT eid="e1">ate</EVENT> dinner,|
+	\item[] \verb|  and then <EVENT eid="e2">washed</EVENT> the dishes.|
+	\item[] \verb|<TLINK eventID="e1" relatedToEvent="e2" relType="BEFORE" />|
+	\item[\ipp\label{ex:tlink2str-c}] \verb|BEFORE| $~\equiv~$ $before \in \mathcal{AR}$, $~E1 = $ \verb|e1|, $~E2 = $ \verb|e2|
+	\item[\ipp\label{ex:tlink2str-d}] \EventString{{}|e1|{}|e2|{}}
+\end{itemize}
+\end{subequations}
+The relation and two event IDs are extracted from the \verb|<TLINK>| tag in \cref{ex:tlink2str-c} (where $\mathcal{AR}$ is the set of Allen's interval relations, as in \cref{def:allen-rel-set}, p. \pageref{def:allen-rel-set}), which are then arranged according to \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings} to produce the string in \cref{ex:tlink2str-d}.
+
+After mapping from the \verb|<TLINK>| tags to strings, the next step is to start building towards a timeline for the document, by using the vocabulary-constrained superposition technique described in \cref{ssub:operations}, p. \pageref{def:vc-superposition}. This operation will combine the temporal data in pairs of strings, producing a set of output strings which are constrained by the inputs. If the result of a superposition is the empty set, then the input strings were inconsistent with one another---that is, the relations between the fluents in one of the input strings contradicted a relation between those same fluents in the other input. For example, if through some oversight during the annotation process, three events are related by \verb|<TLINK>| tags as follows:
+\begin{subequations}
+	\begin{itemize}
+		\item[\ipp] \verb|<TLINK eventID="e1" relatedToEvent="e2" relType="BEFORE" />|
+		\item[\ipp] \verb|<TLINK eventID="e2" relatedToEvent="e3" relType="BEFORE" />|
+		\item[\ipp] \verb|<TLINK eventID="e1" relatedToEvent="e3" relType="IBEFORE" />|
+	\end{itemize}
+\end{subequations}
+which produces the following three strings, respectively:
+\begin{subequations}
+	\begin{align}
+		\Before{e1}{e2}\label{ex:tlink-inconsistency-a}\\
+		\Before{e2}{e3}\label{ex:tlink-inconsistency-b}\\
+		\Meets{e1}{e3}\label{ex:tlink-inconsistency-c}
+	\end{align}
+\end{subequations}
+Attempting to superpose \cref{ex:tlink-inconsistency-a} and \cref{ex:tlink-inconsistency-b} produces a language containing one string---\EventString{{}|e1|{}|e2|{}|e3|{}}---however, when adding the third input string \cref{ex:tlink-inconsistency-c} to the superposition will result in the empty set. The reason why should be clear from the transitivities of Allen's relations---see \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}---as $e1 < e2$ and $e2 < e3$ gives that $e1 < e3$ should be found, which is the result of superposing the first two strings, but this is contradicted by the $e1 m e3$ relation in \cref{ex:tlink-inconsistency-c}. By ejecting inconsistencies like this, it is ensured that whatever representation is portrayed to a user is at the very least consistent.
+
+In general, combining the \verb|<TLINK>| tags by superposing their string-translations allows for connections to be built between events and times that were not already explicitly related by the annotation. If every time and event in the document is or becomes related to every other time and event, then the \textit{temporal closure} has been calculated for the document---see \cref{ssub:allen}. For an annotator manually marking up a text with the TimeML schema to give enough detail for the temporal closure to be calculated unassisted would be incredibly difficult, as for $N$ events and/or times in a document there would need to be $\frac{N^2 - N}{2}$ unique \verb|<TLINK>| tags in order to label the relation between each pair, which increases rapidly: at $N = 10$ there are 45 relations, at $N = 50$ there are 1225 relations---while some documents of the TimeBank corups have many less and several have more, the average document has $\frac{7940+1414}{183} \approx 51$ events and/or times. This quickly becomes unwieldy for a human to annotate, especially given that discourse is often vague in the sense that there may not be a clear or even possible way to determine some relations with any kind of precision. For instance, given the following sentence \cref{ex:vague-discourse}, it is clear that both of the leaving events occur after the crash event, but it is not obvious how to label the relation between the two leaving events\footnote{Although, there have been studies which link the order that events appear in the text of a narrative with their temporal ordering, showing that in this example there would be a tendency to assume the police left ahead of the paramedics since they were mentioned first \citep{ohtsuka1992discourse}.}.
+\begin{itemize}
+	\item[\ipp\label{ex:vague-discourse}] ``After the crash, the police left and the paramedics left.''
+\end{itemize}
+As such, it should not generally be expected that the temporal closure will already have been computed for any given document---however, if it computed or is computable, then superposing the strings derived from the document's \verb|<TLINK>| tags will ultimately produce a language containing a single string which models the timeline or temporal structure of the document: its vocabulary will be the set of all the events and times in the document\footnote{At least, all of those which were included in at least one TLINK relation. If a time or event was tagged in the text but was not marked up as being related to any other time or event, then there is no way to constrain its relation, and it is effectively an isolated temporal entity, disconnected from the narrative.}, and it will specify the linear ordering and inter-relations of all of these times and events within the context of the document's narrative.
+
+As exemplified in \cref{ex:vague-discourse}, it should be noted that even with the most diligent of annotators, it is still possible that the temporal closure is not immediately computable, as several combinations of the \verb|<TLINK>| relations produce a disjunction of relations which are subsets of the set of Allen Relations according to the transitivities in \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}. In these cases, the superposition of the strings derived from the \verb|<TLINK>| tags will produce a language with a number of strings, each representing one possibility from the disjunction of relations. Recall that superposing a pair of languages with each other produces a new language which contains the results of superposing every string from the first language with every string in the second language---this can quickly lead to an explosion in the number of strings that are generated if the relations between the events do not tightly constrain the disjunctions which arise. Take, for example, a document which has tagged within it its document creation time $t0$ and three events $e1, e2, e3$, but the only relations given by the \verb|<TLINK>| tags is that all three of the events occur before the document creation time, and there are no other constraints given on the relations between the three. In this case, vocabulary-constrained superposition will produce a language with 409 strings in it, and if there were four events instead of three, this would already be producing 23,917 strings\footnote{This number increases dramatically quickly with additional intervals, according to the sequence in \citet{oeisA055203}.}, each of which is possibly the true interpretation of the sequence according to all that is known about the document. Obviously this is unwieldy, and in fact for this example superposing the strings like this is no better than guessing the correct linear ordering of the events at random, since superposition is just giving every single possibility. Assuming for the moment a non-interactive environment where there is no new information forthcoming that can constrain the relations between the events further, there needs to be a way to treat situations like this where the data that can be derived from an annotated text contains some amount of incompleteness, and the temporal closure cannot be computed from just the given knowledge.
 
 \subsubsection{Handling Incomplete Data}\label{ssub:incomplete}
-When dealing with any temporal information, there is often a lack of specificity that means temporal closure cannot be calculated. For example, knowing that event $a$ occurred before event $c$, as in \Before{a}{c}, and that event $b$ also occurred before $c$, as in \Before{b}{c}, does not impart any information on the relation between $a$ and $b$. If this is all of the available data, then it is only possible to choose this relation $a \bigcdot b, ~\bigcdot \in \mathcal{AR}$ with a precision of 1 in 13 chance. However, further information which includes other relations for each of $a$ and $b$ individually may eventually reveal their connection.
-
-See also, using semi-intervals to simplify disjunctions of Allen Relations. Minimal sets of maximal strings.
-
-Freksa relations using semi-intervals: the appearance of $\alpha(a)$ within a box represents a negation of the fluent $a$ conjoined with a formula stating that $a$ will be true in a subsequent box; similarly, $\omega(a)$ represents a negation of the fluent $a$ conjoined with a formula stating that $a$ was true in a previous box.
-
+When dealing with any temporal information, there is often a lack of specificity that means the temporal closure---where all intervals in the knowledge base are (consistently) related by exactly one of the set of Allen Relations---for the given document's set of intervals cannot be calculated. For example, take the sentences in \cref{ex:vague-older}:
+\begin{itemize}
+	\item[\ipp\label{ex:vague-older}] ``Aideen was singing until dinner was served. Brian called Aideen after she had sung.''
+\end{itemize}
+Assume that for \cref{ex:vague-older}, we have an annotation available which provides two relations between the three events\footnote{In fact, this would be annotated as having a fourth event, `sung', which has the \texttt{IDENTITY} relation with `singing'. The example has been simplified to omit this, but it does not ultimately impact the superposition calculation given in \cref{ex:vague-older-sp}.}, with $e1 = $ `singing', $e2 = $ `served', and $e3 = $ `called'. The relations are that $e1$ meets $e2$, and $e3$ is after $e1$, which are translated to strings as described in the previous section and superposed in \cref{ex:vague-older-sp}, producing a language with five strings in it:
 \begin{align}
-%\alpha_a(x) := x \notin P_a \land \exists y(x < y \land y \in P_a \land \forall z(z < y \rightarrow z \notin P_a))\\
-%\omega_a(x) := x \notin P_a \land \exists y(y < x \land y \in P_a \land \forall z(y < z \rightarrow z \notin P_a))
-\alpha_a(x) ~:=~ \exists y ~(x < y ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z ~(z < y \Longrightarrow z \notin \llbracket P_a \rrbracket))\\
-\omega_a(x) ~:=~ \exists y ~(y < x ~\land~ y \in \llbracket P_a \rrbracket ~\land~ \forall z ~(y < z \Longrightarrow z \notin \llbracket P_a \rrbracket))
+	\Meets{e1}{e2} \spvc \After{e3}{e1} = \{\EventString{{}|e1|e2|e2,e3|e2|{}}, \EventString{{}|e1|e2|e2,e3|{}},\label{ex:vague-older-sp}\\
+	\EventString{{}|e1|e2|{}|e3|{}}, \EventString{{}|e1|e2|e2,e3|e3|{}}, \EventString{{}|e1|e2|e3|{}}\}\notag
 \end{align}
-Note that it is convenient to write $\alpha(a)$ for $\alpha_a(x)$ when using the box-notation.
+The result of the superposition in \cref{ex:vague-older-sp} contains five strings which are each equally valid interpretations of the sequence of the three events, assuming there is no further data with which to constrain the disjunction of strings. While in all five, due to the nature of vocabulary-constrained superposition preserving projections---see \cref{def:vc-superposition}, p. \pageref{def:vc-superposition}---the relation between $e1$ and $e2$ is always `meets', and the relation between $e3$ and $e1$ is always `after', the relation between $e2$ and $e3$ is a disjunction of options. This is seen more clearly by taking the block compressed reduct of each string $s$ in the result of \cref{ex:vague-older-sp} relative to the set $\{e2, e3\}$, as in \Cref{tab:older-strings} below:
+\begin{center}
+	\begin{tabular}[h!]{| c c |}
+		\hline
+		$\bc(\rho_{\{e2,e3\}}(s))$ & \textbf{Relation}\\
+		\hline
+		\EventString{{}|e2|e3,e2|{}} & $e2$ finished by $e3$\\
+		\EventString{{}|e2|e3,e2|e2|{}} &  $e2$ contains $e3$\\
+		\EventString{{}|e2|e3|{}} &  $e2$ meets $e3$\\
+		\EventString{{}|e2|{}|e3|{}} &  $e2$ before $e3$\\
+		\EventString{{}|e2|e2,e3|e3|{}} &  $e2$ overlaps $e3$\\
+		\hline
+	\end{tabular}
+	\captionof{table}{Relations arising from the superposition in \cref{ex:vague-older-sp}.}\label{tab:older-strings}
+\end{center}
+One thing that can be seen in \Cref{tab:older-strings} is that in each string, the leftmost non-empty component always contains just $e2$, implying that $e2$ has begun before $e3$ has begun, although it is not clear which of the two events ends first. In fact, this is exactly the case, and \citet{Freksa1992} uses these kind of disjunctions that can arise as partial justification for their set of 31 semi-interval relations, which are a superset of the Allen Relations. To use semi-intervals, their must be a change in granularity so as to consider the beginnings and endings of intervals as primitive, rather than intervals themselves. In contrast to, for example, \citet{durand2008reasoning} or \citet{Fernando2018}, the beginnings and endings of intervals are themselves intervals, rather than instantaneous points. Since they are intervals, they can also be decomposed into beginnings and endings, depending on how much `zoom' is desired. The major advantage of using beginnings and endings as primitive is that it allows for underspecification of an interval, so that either the beginning or the ending may be omitted from consideration if necessary. This perfectly captures the scenario in \Cref{tab:older-strings}, where the beginning of $e2$ precedes the beginning of $e3$, but the order of their endings is unclear.
+
+According to \citet[p. 202]{Freksa1992} there is a ``cognitive awkwardness'' in that, in the case of incomplete information with Allen intervals, the representation becomes more complex the less one knows (as is the case with the example in \Cref{tab:older-strings}), since that knowledge is represented as a disjunction of what \textit{might be} true. He states that, from a cognitive standpoint, the knowledge would be preferably represented ``more directly and in such a way that less knowledge corresponds to a simpler representation than more knowledge does" \citep[p. 202]{Freksa1992}. To address this, Freksa describes the 13 Allen relations in terms of constraints between semi-intervals, as well as 18 more semi-interval relations for situations when it is not (necessarily) known how an event's beginning and ending relate to those of another event \citep[p. 219]{Freksa1992}.
+
+The set of \citet{Freksa1992}'s relations is given in \Cref{tab:freksa-constraints}, showing the constraints which each is associated with, where $l(a)$ and $r(a)$ are the beginning and ending of some interval $a$, and similarly $l(b)$ and $r(b)$ are the beginning and ending of some interval $b$. Allen's relations, which are a subset of Freksa's are omitted from the table, as is the `unknown' relation, which does not impose any constraints on the relation of the intervals nor their beginnings and endings.
+
+The relations are given again in \Cref{tab:freksa-disjunctions}, this time in terms of disjunctions of \citet{allen1983maintaining}'s relations, again excluding Allen's relations and the `unknown' relation, which is a disjunction of all 13 Allen Relations.
+\begin{center}
+	\begin{tabular}[h!]{|l c|}
+		\hline
+		\textbf{Freksa label} & \textbf{Constraints}\\
+		\hline
+		older & $l(a) < l(b)$\\
+		younger & $l(a) > l(b)$\\
+		head to head & $l(a) = l(b)$\\
+		tail to tail & $r(a) = r(b)$\\
+		survives & $r(a) > r(b)$\\
+		survived by & $r(a) < r(b)$\\
+		precedes & $r(a) \le l(b)$\\
+		succeeds & $l(a) \ge r(b)$\\
+		born before death & $l(a) < r(b)$\\
+		died after birth & $r(a) > l(b)$\\
+		contemporary & $l(a) < r(b),~ r(a) > l(b)$\\
+		older survived by & $l(a) < l(b),~ r(a) < r(b)$\\
+		younger survives & $l(a) > l(b),~ r(a) > r(b)$\\
+		older contemporary & $l(a) < l(b),~ r(a) > l(b)$\\
+		younger contemporary & $l(a) > l(b),~ l(a) < r(b)$\\
+		survived by contemporary & $r(a) > l(b),~ r(a) < r(b)$\\
+		surviving contemporary & $l(a) < r(b),~ r(a) > r(b)$\\
+		\hline
+	\end{tabular}
+	\captionof{table}{\citet{Freksa1992}'s relations described in terms of the constraints they impose on the beginnings and endings of a pair of intervals.}\label{tab:freksa-constraints}
+\end{center}
+\begin{center}
+	\begin{tabular}[]{|l l|}
+		\hline
+		\textbf{Freksa label} & \textbf{Disjunction of Allen's relations}\\
+		\hline
+		older & before, meets, finished by, contains, overlaps\\
+		younger & after, met by, finishes, during, overlapped by\\
+		head to head & starts, started by, equals\\
+		tail to tail & finishes, finished by, equals\\
+		survives & after, met by, started by, contains, overlapped by\\
+		survived by & before, meets, starts, during, overlaps\\
+		precedes & before, meets\\
+		succeeds & after, met by\\
+		contemporary & starts, started by, finishes, finished by, during,\\ & contains, overlaps, overlapped by, equals\\
+		born before death & before, meets, starts, started by, finishes, finished by,\\ & during, contains, overlaps, overlapped by, equals\\
+		died after birth & starts, started by, finishes, finished by, during,\\ & contains, overlaps, overlapped by, equals, after, met by\\
+		older survived by & before, meets, overlaps\\
+		younger survives & after, met by, overlapped by\\
+		older contemporary & finished by, contains, overlaps\\
+		younger contemporary & finishes, during, overlapped by\\
+		survived by contemporary & during, starts, overlaps\\
+		surviving contemporary & contains, started by, overlapped by\\
+		\hline
+	\end{tabular}
+	\captionof{table}{\citet{Freksa1992}'s relations described in terms of disjunctions of \citet{allen1983maintaining}'s relations.}\label{tab:freksa-disjunctions}
+\end{center}
+In order to take advantage of these relations in strings, first there must be a translation from intervals to semi-intervals, which is described here. First, two predicates are defined:
+\begin{align}
+	\alpha_v(x) ~:=~ \exists y ~(x < y ~\land~ y \in \llbracket P_v \rrbracket ~\land~ \forall z ~(z < y \Longrightarrow z \notin \llbracket P_v \rrbracket))\label{def:alpha}\\
+	\omega_v(x) ~:=~ \exists y ~(y < x ~\land~ y \in \llbracket P_v \rrbracket ~\land~ \forall z ~(y < z \Longrightarrow z \notin \llbracket P_v \rrbracket))\label{def:omega}
+\end{align}
+\Cref{def:alpha,def:omega} define (for some fluent $v \in \V$) the appearance of $\alpha(v)$ within a box\footnote{Note that it is convenient to write $\alpha(v)$ for $\alpha_v$ when using the box-notation.} as representing a negation of the fluent $v$ conjoined with a formula stating that $v$ will be true in some subsequent box; similarly, $\omega(v)$ represents a negation of the fluent $v$ conjoined with a formula stating that $v$ was true in some previous box.
+
+
+
 
 A string may be translated to one using semi-intervals by placing $\alpha(f)$ in every box preceding one in which a fluent $f$ appears, and $\omega(f)$ in every box succeeding it, repeating this for each $f \in A$.\par
-Thus a string $s = \EventString{{}|a|b|{}}$ becomes \nb{decide on semin-interval translation fn symbol}
+Thus a string $s = \EventString{{}|a|b|{}}$ becomes 
 \begin{align}
-	\left\lceil s\right\rceil = \EventString{\alpha(a),\alpha(b)|\alpha(b)|\omega(a)|\omega(a),\omega(b)}
+	semi(s) = \EventString{\alpha(a),\alpha(b)|\alpha(b)|\omega(a)|\omega(a),\omega(b)}\label{ex:semi-translated}
 \end{align}
-in which each of the fluents originally appearing in the string $s$ have also been removed in . It should be noticed that strings which use semi-intervals do not (necessarily) feature empty boxes at each end. This is due to the fact that a semi-interval need not be finitely bounded. In fact
+in which each of the fluents originally appearing in the string $s$ have also been removed in \cref{ex:semi-translated}. It should be noticed that strings which use semi-intervals do not (necessarily) feature empty boxes at each end. This is due to the fact that a semi-interval need not be finitely bounded. In fact
+
+
 
 This mechanism allows for partially known information to be represented using strings. For example, the string \EventString{\alpha(a), \alpha(b)|{}} represents the knowledge that the events labelled $a$ and $b$ both begin at the same moment, without stating anything about when they each finish---they may end simultaneously, $a$ may finish before $b$, or $b$ may finish before $a$. Which of these states is true is unknown without further data.
 
@@ -1726,6 +1885,11 @@ Finding out what additional information would be required on top of some set of 
 
 \newpage
 \section[String Temporal Annotation and Relation Tool (START)]{String Temporal Annotation and Relation Tool\\(START)}\label{sec:implementation}
+
+% Proof of concept tool rather than comparison with other annotation tools,
+% illustrates what has been enabled by strings
+% Functional programming paradigm
+
 Various approaches were trialled using different programming languages, including Prolog, JavaScript (Node.js), and Python. Ultimately, Python was chosen for its speed, wide cross-platform availability, and availability of compatible tooling.
 
 Ultimately a widely-useable package was created that could be used either on the web or as a standalone application, as this gave the broadest opportunity to demonstrate the use of the developed technology.

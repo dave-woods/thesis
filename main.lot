@@ -11,8 +11,12 @@
 \contentsline {table}{\numberline {11}{\ignorespaces Constraints of the Trains example from \citet [p. 3283]{durand2008tool}.\relax }}{83}
 \contentsline {table}{\numberline {12}{\ignorespaces Train scheduling problem constraints as languages of strings.\relax }}{84}
 \contentsline {table}{\numberline {13}{\ignorespaces Durations of relations between $a$ and $b$.\relax }}{85}
-\contentsline {table}{\numberline {14}{\ignorespaces The Freksa relation \textit {older}.\relax }}{91}
-\contentsline {table}{\numberline {15}{\ignorespaces The Freksa relation \textit {older} using semi-intervals, before block compressed reduct.\relax }}{91}
-\contentsline {table}{\numberline {16}{\ignorespaces The Freksa relations and the strings they project to.\relax }}{93}
-\contentsline {table}{\numberline {17}{\ignorespaces The remaining Freksa relations and the strings they project to.\relax }}{93}
-\contentsline {table}{\numberline {18}{\ignorespaces Caching superpositions improving efficiency.\relax }}{99}
+\contentsline {table}{\numberline {14}{\ignorespaces The counts and proportions of each TimeML relation in the TimeBank 1.2 corpus.\relax }}{90}
+\contentsline {table}{\numberline {15}{\ignorespaces Relations arising from the superposition in \cref {ex:vague-older-sp}.\relax }}{95}
+\contentsline {table}{\numberline {16}{\ignorespaces \citet {Freksa1992}'s relations described in terms of the constraints they impose on the beginnings and endings of a pair of intervals.\relax }}{97}
+\contentsline {table}{\numberline {17}{\ignorespaces \citet {Freksa1992}'s relations described in terms of disjunctions of \citet {allen1983maintaining}'s relations.\relax }}{98}
+\contentsline {table}{\numberline {18}{\ignorespaces The Freksa relation \textit {older}.\relax }}{100}
+\contentsline {table}{\numberline {19}{\ignorespaces The Freksa relation \textit {older} using semi-intervals, before block compressed reduct.\relax }}{100}
+\contentsline {table}{\numberline {20}{\ignorespaces The Freksa relations and the strings they project to.\relax }}{101}
+\contentsline {table}{\numberline {21}{\ignorespaces The remaining Freksa relations and the strings they project to.\relax }}{102}
+\contentsline {table}{\numberline {22}{\ignorespaces Caching superpositions improving efficiency.\relax }}{108}
