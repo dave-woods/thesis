@@ -113,6 +113,13 @@ Day, D., Aberdeen, J., Hirschman, L., Kozierok, R., Robinson, P., and Vilain,
 \newblock In {\em Fifth Conference on Applied Natural Language Processing},
   pages 348--355.
 
+\bibitem[\protect\astroncite{Derczynski}{2016}]{derczynski2016representation}
+Derczynski, L. (2016).
+\newblock {Representation and Learning of Temporal Relations}.
+\newblock In {\em {Proceedings of COLING 2016, the 26th International
+  Conference on Computational Linguistics: Technical Papers}}, pages
+  1937--1948.
+
 \bibitem[\protect\astroncite{Derczynski and Gaizauskas}{2013}]{Derczynski2013}
 Derczynski, L. and Gaizauskas, R. (2013).
 \newblock {Empirical Validation of Reichenbach's Tense Framework}.

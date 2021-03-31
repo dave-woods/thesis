@@ -142,6 +142,7 @@
 
 \renewcommand{\sp}{~\&~}
 \newcommand{\spasync}{~\&_*~}
+\newcommand{\sensp}{~\hat{\&}~}
 \newcommand{\spsigma}[1][\Sigma, \Sigma']{~\&_{#1}~}
 \newcommand{\spvc}{~\&_{v\!c}~}
 \newcommand{\V}{\mathcal{V}}
@@ -1225,7 +1226,7 @@ Now, this new form of superposition can be used for the same example as \cref{ex
 \begin{align}
 	\Before{a}{b} \spvc \Before{b}{c} = \{\EventString{{}|a|{}|b|{}|c|{}}\}
 \end{align}
-Note that this result is still a language (a set of strings), and that there may be more than one string in this language, depending on the input strings. Where each input's vocabulary has a cardinality of 2, and the intersection of their vocabularies has cardinality of 1, then the number of result strings from the vocabulary-constrained superposition of the inputs corresponds with the transitivity table in \citet[Fig. 4]{allen1983maintaining}. For example, \cref{ex:spvc-allen-transitivity} shows the string \cOverlaps{a}{b} superposed with \cDuring{b}{c}, and according to Allen's transitivity table there should be three results, corresponding to \cDuring{a}{c}, \cOverlaps{a}{c}, and \cStarts{a}{c}, and in fact this is the result shown by \Cref{tab:spvc-allen-transitivity-projections}.
+Note that this result is still a language (a set of strings), and that there may be more than one string in this language, depending on the input strings. Where each input's vocabulary has a cardinality of 2, and the intersection of their vocabularies has cardinality of 1, then the number of result strings from the vocabulary-constrained superposition of the inputs corresponds with the transitivity table in \citet[Fig. 4]{allen1983maintaining}. For example, \cref{ex:spvc-allen-transitivity} shows the string \cOverlaps{a}{b} superposed with \cDuring{b}{c}, and according to Allen's transitivity table there should be three results, corresponding to \cDuring{a}{c}, \cOverlaps{a}{c}, and \cStarts{a}{c}, and in fact this is the result shown by \Cref{tab:spvc-allen-transitivity-projections}\footnote{The set of Allen Relations can be seen represented as strings in \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings}.}.
 \begin{align}\label{ex:spvc-allen-transitivity}
 	\Overlaps{a}{b} \spvc \During{b}{c} = \{&\EventString{{}|c|a,c|a,b,c|b,c|c|{}}, \EventString{{}|a|a,c|a,b,c|b,c|c|{}},\\
 	&\EventString{{}|a,c|a,b,c|b,c|c|{}}\}\notag
@@ -1238,7 +1239,7 @@ Note that this result is still a language (a set of strings), and that there may
 	\end{tabular}
 	\captionof{table}{Projections of \cref{ex:spvc-allen-transitivity} matching Allen's transitivities.}\label{tab:spvc-allen-transitivity-projections}
 \end{center}
-In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an Intel i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary-constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary-constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings} (p. \pageref{tab:allen-rels-strings}) is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
+In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an Intel i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary-constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary-constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings} is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
 \begin{center}
 	\begin{tabular}{c|c|c|c}
 	& $\triangle = *$ & $\triangle = v\!c$ & Decrease in time\\
@@ -1287,7 +1288,7 @@ A chart like this is a useful visual display tool, though it can become a little
 \end{align}
 No matter how many events may be of interest, if all beginnings, endings, and durations are known---that is, the \textit{temporal closure} has been calculated---such as they could be displayed in a Gantt chart, then they can be represented in a single string, with reducts and projections available in order to focus an analysis on a subset of events if desired, demonstrating a compact method of representing the timeline. However, in general, natural language texts do not provide enough precise temporal detail to determine all of this data. Discourse is typically somewhat vague and relies heavily upon the use of context to determine and precisely temporally locate events. As a result, it's often not possible to immediately derive the temporal closure just from a text, even an annotated text such as one of the documents of the TimeBank \citep{pustejovsky2006timebank} corpus, which is marked up to show the events, times, and temporal relations found within---see also \cref{ssub:timeml}. With that said, even if a single, unified timeline cannot be constructed due to ambiguity, the information in one of these annotated texts may still be extracted and used to build strings, which can provide a visual picture of the content of the document, which may reveal insights not obvious when looking at the text alone.
 
-A string, like a timeline, can be thought of as a simplistic narrative, depicting a world by the events which take place in it. A language of strings, then, is a set of alternate timelines, of parallel worlds. Each string in a language represents a different possible world, describing alternate sequences of the events which took place, and each of which might be considered equally probably to be \textit{veridical}---the actually true world, the correct sequence of events which occurred in reality---without further data and constraints. This allows strings as a framework to capture the ambiguity that very often arises from interpreting the temporal information that is derived from a natural language text. For example, given the information that some event $a$ meets some other event $b$, and $b$ is during some third event $c$, Allen's transitivities---see \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}---dictate that the relation between $a$ and $c$ can be one of overlaps, during, or starts. These first two relations $a$ meets $b$ and $b$ during $c$ may be represented by the strings \Meets{a}{b} and \During{b}{c}, respectively---see \Cref{tab:allen-rels-strings}, and in fact, the three possible relations between $a$ and $c$ are found by projection relative to $\{a,c\}$ over the result found from superposing thsee two strings, as in \cref{ex:parallel-worlds} below:
+A string, like a timeline, can be thought of as a simplistic narrative, depicting a world by the events which take place in it. A language of strings, then, is a set of alternate timelines, of parallel worlds. Each string in a language represents a different possible world, describing alternate sequences of the events which took place, and each of which might be considered equally probably to be \textit{veridical}---the actually true world, the correct sequence of events which occurred in reality---without further data and constraints. This allows strings as a framework to capture the ambiguity that very often arises from interpreting the temporal information that is derived from a natural language text. For example, given the information that some event $a$ meets some other event $b$, and $b$ is during some third event $c$, Allen's transitivities---see \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}---dictate that the relation between $a$ and $c$ can be one of overlaps, during, or starts. These first two relations $a$ meets $b$ and $b$ during $c$ may be represented by the strings \Meets{a}{b} and \During{b}{c}, respectively---see \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings}---and in fact, the three possible relations between $a$ and $c$ are found by projection relative to $\{a,c\}$ over the result found from superposing thsee two strings, as in \cref{ex:parallel-worlds} below:
 \begin{subequations}\label{ex:parallel-worlds}
 	\begin{align}
 		\Meets{a}{b} \spvc \During{b}{c} = &\{\EventString{{}|c|a,c|b,c|c|{}}, \EventString{{}|a|a,c|b,c|c|{}}, \EventString{{}|a,c|b,c|c|{}}\}\label{ex:parallel-worlds-a}\\
@@ -1326,7 +1327,11 @@ Each string $\mathcal{S}_{\bigcdot}(v,v')$ of the result set features one relati
 	\end{tabular}
 	\captionof{table}{Allen interval relations in strings.}\label{tab:allen-rels-strings}
 \end{center}
-Using the notion of analogous strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}), any block compressed string which has a vocabulary of cardinality 2 can be compared to the strings in \Cref{tab:allen-rels-strings}. If such a string $s \sim \mathcal{S}_{\bigcdot}(v,v')$ for some $\bigcdot \in \mathcal{AR}$, then the events appearing in $s$ can also be said to be related by $\bigcdot$. For example, $\iFinishes{c}{d} \sim \mathcal{S}_{\text{fi}}(v,v')$, and thus the relation between the events $c$ and $d$ is `$c$ finished by $d$'.
+It can be said that for some string $s$, that $s$ \textit{entails} one of the Allen relations if and only if $s$ projects to the string in \Cref{tab:allen-rels-strings} corresponding to that relation:
+\begin{align}
+	s \models a \bigcdot b \Longleftrightarrow s \sqsupseteq \mathcal{S}_{\bigcdot}(a, b)\label{def:entails-allen}
+\end{align}
+Additionally, using the notion of analogous strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}), any block compressed string which has a vocabulary of cardinality 2 can be compared to the strings in \Cref{tab:allen-rels-strings}. If such a string $s \sim \mathcal{S}_{\bigcdot}(v,v')$ for some $\bigcdot \in \mathcal{AR}$, then the events appearing in $s$ can also be said to be related by $\bigcdot$. For example, $\iFinishes{c}{d} \sim \mathcal{S}_{\text{fi}}(v,v')$, and thus the relation between the events $c$ and $d$ is `$c$ finished by $d$'.
 
 This is easily extended beyond strings featuring just two fluents. The relations between the events appearing in the string $s = \EventString{{}|a|{}|b|{}|c|{}}$ can be determined by taking its block compressed reduct relative to the subsets of the vocabulary which have cardinality 2---in this case, $a$ is before $b$, $b$ is before $c$, and $a$ is before $c$. Once these relations have been calculated, the relations between the events in another string $s' = \EventString{{}|d|{}|e|{}|f|{}}$ are immediately available on analogy $s \sim s'$.
 
@@ -1652,7 +1657,7 @@ In general, combining the \verb|<TLINK>| tags by superposing their string-transl
 \end{itemize}
 As such, it should not generally be expected that the temporal closure will already have been computed for any given document---however, if it computed or is computable, then superposing the strings derived from the document's \verb|<TLINK>| tags will ultimately produce a language containing a single string which models the timeline or temporal structure of the document: its vocabulary will be the set of all the events and times in the document\footnote{At least, all of those which were included in at least one TLINK relation. If a time or event was tagged in the text but was not marked up as being related to any other time or event, then there is no way to constrain its relation, and it is effectively an isolated temporal entity, disconnected from the narrative.}, and it will specify the linear ordering and inter-relations of all of these times and events within the context of the document's narrative.
 
-As exemplified in \cref{ex:vague-discourse}, it should be noted that even with the most diligent of annotators, it is still possible that the temporal closure is not immediately computable, as several combinations of the \verb|<TLINK>| relations produce a disjunction of relations which are subsets of the set of Allen Relations according to the transitivities in \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}. In these cases, the superposition of the strings derived from the \verb|<TLINK>| tags will produce a language with a number of strings, each representing one possibility from the disjunction of relations. Recall that superposing a pair of languages with each other produces a new language which contains the results of superposing every string from the first language with every string in the second language---this can quickly lead to an explosion in the number of strings that are generated if the relations between the events do not tightly constrain the disjunctions which arise. Take, for example, a document which has tagged within it its document creation time $t0$ and three events $e1, e2, e3$, but the only relations given by the \verb|<TLINK>| tags is that all three of the events occur before the document creation time, and there are no other constraints given on the relations between the three. In this case, vocabulary-constrained superposition will produce a language with 409 strings in it, and if there were four events instead of three, this would already be producing 23,917 strings\footnote{This number increases dramatically quickly with additional intervals, according to the sequence in \citet{oeisA055203}.}, each of which is possibly the true interpretation of the sequence according to all that is known about the document. Obviously this is unwieldy, and in fact for this example superposing the strings like this is no better than guessing the correct linear ordering of the events at random, since superposition is just giving every single possibility. Assuming for the moment a non-interactive environment where there is no new information forthcoming that can constrain the relations between the events further, there needs to be a way to treat situations like this where the data that can be derived from an annotated text contains some amount of incompleteness, and the temporal closure cannot be computed from just the given knowledge.
+As exemplified in \cref{ex:vague-discourse}, it should be noted that even with the most diligent of annotators, it is still possible that the temporal closure is not immediately computable, as several combinations of the \verb|<TLINK>| relations produce a disjunction of relations which are subsets of the set of Allen Relations according to the transitivities in \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}. In these cases, the superposition of the strings derived from the \verb|<TLINK>| tags will produce a language with a number of strings, each representing one possibility from the disjunction of relations. Recall that superposing a pair of languages with each other produces a new language which contains the results of superposing every string from the first language with every string in the second language---this can quickly lead to an explosion in the number of strings that are generated if the relations between the events do not tightly constrain the disjunctions which arise. Take, for example, a document which has tagged within it its document creation time $t0$ and three events $e1, e2, e3$, but the only relations given by the \verb|<TLINK>| tags is that all three of the events occur before the document creation time, and there are no other constraints given on the relations between the three. In this case, vocabulary-constrained superposition will produce a language with 409 strings in it, and if there were four events instead of three, this would already be producing 23,917 strings\footnote{This number increases dramatically quickly with additional intervals, according to the sequence in \citet{oeisA055203}.}, each of which is possibly the true interpretation of the sequence according to all that is known about the document. Obviously this is unwieldy, and in fact for this example superposing the strings like this is no better than guessing the correct linear ordering of the events at random, since superposition is just giving every single possibility. \citet{derczynski2016representation} notes that there needs to be a careful balance between being exact in terms of presenting possible relations, and not letting this set of possible relations grow too large. Assuming for the moment a non-interactive environment where there is no new information forthcoming that can constrain the relations between the events further, there needs to be a way to treat situations like this where the data that can be derived from an annotated text contains some amount of incompleteness, and the temporal closure cannot be computed from just the given knowledge.
 
 \subsubsection{Handling Incomplete Data}\label{ssub:incomplete}
 When dealing with any temporal information, there is often a lack of specificity that means the temporal closure---where all intervals in the knowledge base are (consistently) related by exactly one of the set of Allen Relations---for the given document's set of intervals cannot be calculated. For example, take the sentences in \cref{ex:vague-older}:
@@ -1666,7 +1671,7 @@ Assume that for \cref{ex:vague-older}, we have an annotation available which pro
 \end{align}
 The result of the superposition in \cref{ex:vague-older-sp} contains five strings which are each equally valid interpretations of the sequence of the three events, assuming there is no further data with which to constrain the disjunction of strings. While in all five, due to the nature of vocabulary-constrained superposition preserving projections---see \cref{def:vc-superposition}, p. \pageref{def:vc-superposition}---the relation between $e1$ and $e2$ is always `meets', and the relation between $e3$ and $e1$ is always `after', the relation between $e2$ and $e3$ is a disjunction of options. This is seen more clearly by taking the block compressed reduct of each string $s$ in the result of \cref{ex:vague-older-sp} relative to the set $\{e2, e3\}$, as in \Cref{tab:older-strings} below:
 \begin{center}
-	\begin{tabular}[h!]{| c c |}
+	\begin{tabular}[h!]{| l l |}
 		\hline
 		$\bc(\rho_{\{e2,e3\}}(s))$ & \textbf{Relation}\\
 		\hline
@@ -1679,13 +1684,15 @@ The result of the superposition in \cref{ex:vague-older-sp} contains five string
 	\end{tabular}
 	\captionof{table}{Relations arising from the superposition in \cref{ex:vague-older-sp}.}\label{tab:older-strings}
 \end{center}
-One thing that can be seen in \Cref{tab:older-strings} is that in each string, the leftmost non-empty component always contains just $e2$, implying that $e2$ has begun before $e3$ has begun, although it is not clear which of the two events ends first. In fact, this is exactly the case, and \citet{Freksa1992} uses these kind of disjunctions that can arise as partial justification for their set of 31 semi-interval relations, which are a superset of the Allen Relations. To use semi-intervals, their must be a change in granularity so as to consider the beginnings and endings of intervals as primitive, rather than intervals themselves. In contrast to, for example, \citet{durand2008reasoning} or \citet{Fernando2018}, the beginnings and endings of intervals are themselves intervals, rather than instantaneous points. Since they are intervals, they can also be decomposed into beginnings and endings, depending on how much `zoom' is desired. The major advantage of using beginnings and endings as primitive is that it allows for underspecification of an interval, so that either the beginning or the ending may be omitted from consideration if necessary. This perfectly captures the scenario in \Cref{tab:older-strings}, where the beginning of $e2$ precedes the beginning of $e3$, but the order of their endings is unclear.
+One thing that can be seen in \Cref{tab:older-strings} is that in each string, the leftmost non-empty component always contains just $e2$, implying that $e2$ has begun before $e3$ has begun, although it is not clear which of the two events ends first. In fact, this is exactly the case, and \citet{Freksa1992} uses these kind of disjunctions that can arise as partial justification for their set of 31 semi-interval relations, which are a superset of the Allen Relations. To use semi-intervals, their must be a change in granularity so as to consider the beginnings and endings of intervals as primitive, rather than intervals themselves. In contrast to, for example, \citet{durand2008reasoning} or \citet{Fernando2018}, the beginnings and endings of intervals are themselves intervals, rather than instantaneous points. Since they are intervals, they can also be decomposed into beginnings and endings, depending on how much `zoom' is desired. The major advantage of using beginnings and endings as primitive is that it allows for underspecification of an interval, so that either the beginning or the ending may be omitted from consideration if necessary. This perfectly captures the scenario in \Cref{tab:older-strings}, where the beginning of $e2$ precedes the beginning of $e3$, but the order of their endings is unclear---this corresponds to the Freksa relation labelled `older', and thus $e2$ is older than $e3$.
 
 According to \citet[p. 202]{Freksa1992} there is a ``cognitive awkwardness'' in that, in the case of incomplete information with Allen intervals, the representation becomes more complex the less one knows (as is the case with the example in \Cref{tab:older-strings}), since that knowledge is represented as a disjunction of what \textit{might be} true. He states that, from a cognitive standpoint, the knowledge would be preferably represented ``more directly and in such a way that less knowledge corresponds to a simpler representation than more knowledge does" \citep[p. 202]{Freksa1992}. To address this, Freksa describes the 13 Allen relations in terms of constraints between semi-intervals, as well as 18 more semi-interval relations for situations when it is not (necessarily) known how an event's beginning and ending relate to those of another event \citep[p. 219]{Freksa1992}.
 
 The set of \citet{Freksa1992}'s relations is given in \Cref{tab:freksa-constraints}, showing the constraints which each is associated with, where $l(a)$ and $r(a)$ are the beginning and ending of some interval $a$, and similarly $l(b)$ and $r(b)$ are the beginning and ending of some interval $b$. Allen's relations, which are a subset of Freksa's are omitted from the table, as is the `unknown' relation, which does not impose any constraints on the relation of the intervals nor their beginnings and endings.
 
 The relations are given again in \Cref{tab:freksa-disjunctions}, this time in terms of disjunctions of \citet{allen1983maintaining}'s relations, again excluding Allen's relations and the `unknown' relation, which is a disjunction of all 13 Allen Relations.
+
+It's worth noting here that \citet{Freksa1992}'s primary motivation in the deisgn of these relations was to appeal to the concept of what they called ``conceptual neighbourhoods'', whereby a pair of interval relations are concpetual neighbours if ``they can be directly transformed into one another by continuously deforming (i.e. shortening, lengthening, moving) the events (in a topological sense)'' \citep[p. 206]{Freksa1992}. Thus all of the disjunctions of Allen's relations contain only relations which are conceptual neighbours in this way---for example, it's a shorter cognitive leap to adjust from one event being `before' another to the events having the `meets' relation, than it is to go from `before' to `after'. A subset of these concpetual neighbourhoods can be found as the disjunctions which appear in the transitivity table of \citet[p. 836]{allen1983maintaining}---see \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}.
 \begin{center}
 	\begin{tabular}[h!]{|l c|}
 		\hline
@@ -1743,66 +1750,54 @@ In order to take advantage of these relations in strings, first there must be a 
 	\alpha_v(x) ~:=~ \exists y ~(x < y ~\land~ y \in \llbracket P_v \rrbracket ~\land~ \forall z ~(z < y \Longrightarrow z \notin \llbracket P_v \rrbracket))\label{def:alpha}\\
 	\omega_v(x) ~:=~ \exists y ~(y < x ~\land~ y \in \llbracket P_v \rrbracket ~\land~ \forall z ~(y < z \Longrightarrow z \notin \llbracket P_v \rrbracket))\label{def:omega}
 \end{align}
-\Cref{def:alpha,def:omega} define (for some fluent $v \in \V$) the appearance of $\alpha(v)$ within a box\footnote{Note that it is convenient to write $\alpha(v)$ for $\alpha_v$ when using the box-notation.} as representing a negation of the fluent $v$ conjoined with a formula stating that $v$ will be true in some subsequent box; similarly, $\omega(v)$ represents a negation of the fluent $v$ conjoined with a formula stating that $v$ was true in some previous box.
+\Cref{def:alpha,def:omega} define (for some fluent $v \in \V$) the appearance of $\alpha(v)$ within a box\footnote{Note that it is convenient to write $\alpha(v)$ for $\alpha_v$ when using the box-notation.} as representing a negation of the fluent $v$ conjoined with a formula stating that $v$ will be true in some subsequent box; similarly, $\omega(v)$ represents a negation of the fluent $v$ conjoined with a formula stating that $v$ was true in some previous box. 
 
+A string $s$ may be translated to one using semi-intervals by placing $\alpha(v)$ in every box preceding one in which a fluent $v$ appears, and $\omega(v)$ in every box succeeding it, for each $v \in \V_s$ \citep{woods2018improving}.
 
-
-
-A string may be translated to one using semi-intervals by placing $\alpha(f)$ in every box preceding one in which a fluent $f$ appears, and $\omega(f)$ in every box succeeding it, repeating this for each $f \in A$.\par
-Thus a string $s = \EventString{{}|a|b|{}}$ becomes 
+For example, a string $s = \EventString{{}|a|b|{}}$ becomes $semi(s)$ in \cref{ex:semi-translated}, in which each of the fluents originally appearing in the string $s$ have also been removed. It's worth highlighting that this representation is possible since, under the semi-interval interpretation, beginnings and endings of intervals are themselves treated as intervals, which is why $\alpha(b)$ and $\omega(a)$ are able to appear in multiple components of the string:
 \begin{align}
 	semi(s) = \EventString{\alpha(a),\alpha(b)|\alpha(b)|\omega(a)|\omega(a),\omega(b)}\label{ex:semi-translated}
 \end{align}
-in which each of the fluents originally appearing in the string $s$ have also been removed in \cref{ex:semi-translated}. It should be noticed that strings which use semi-intervals do not (necessarily) feature empty boxes at each end. This is due to the fact that a semi-interval need not be finitely bounded. In fact
+Allowing non-atomic formulas such as these inside the string components does pose a risk of trivialising the work done by superposition, so care must be taken here \citep{woods2018improving}. It should be noticed that strings which use semi-intervals do not (necessarily) feature empty boxes at each end. This is due to the fact that a beginning or ending is only bounded on one side each---if $\alpha(a)$ is true at some moment, stating that the interval $a$ has not yet begun, then it must also be true at every moment before that, since otherwise would imply $a$ having occurred already; similarly for $\omega(a)$ holding at some moment and every moment after it. $\alpha(a)$ may be thought of as `pre-$a$', and $\omega(a)$ as `post-$a$' \citep{woods2018improving}.
 
-
-
-This mechanism allows for partially known information to be represented using strings. For example, the string \EventString{\alpha(a), \alpha(b)|{}} represents the knowledge that the events labelled $a$ and $b$ both begin at the same moment, without stating anything about when they each finish---they may end simultaneously, $a$ may finish before $b$, or $b$ may finish before $a$. Which of these states is true is unknown without further data.
-
-Semi-intervals allow for representing a greater range of event relations than the Allen relations do alone. Freksa \citeneeded{} describes 18 new relations which are made up of disjunctions of Allen's relations, based on the concept of cognitive neighbourhoods. That is, groupings of relations that make intuitive sense and can be derived from compositions of Allen relations \nb{expand, clarify `intuitive', decide between Allen/Allen's, try to use less `relations'?} \nb{include table or graphic of Freksa's relations, eg p18 or p21}.
-
-Many of the Freksa relations can be captured using the semi-intervals \nb{duh, he designed them that way} in the box-notation.
-
-For example, the relation \textit{older} corresponds with a disjunction of five Allen relations: \textit{before}, \textit{meets}, \textit{overlaps}, \textit{contains}, and \textit{finished by}.
+This mechanism allows for partially known information to be represented using strings. For example, the string \EventString{\alpha(a), \alpha(b)|{}} represents the knowledge that the events labelled $a$ and $b$ both begin at the same moment, without stating anything about when they each finish---they may end simultaneously, $a$ may finish before $b$, or $b$ may finish before $a$. Which of these states is true is unknown without further data. Going back to the example in \Cref{tab:older-strings}, translating these five strings to use semi-intervals in \Cref{tab:older-strings-semi} makes the relationship amongst them clearer.
 \begin{center}
-	\begin{tabular}[h!]{|r | l|}
-	\hline
-	\textbf{Relation} & \textbf{String}\\
-	\hline
-	before &\Before{a}{b}\\
-	meets &\Meets{a}{b}\\
-	overlaps &\Overlaps{a}{b}\\
-	contains &\iDuring{a}{b}\\
-	finished by&\iFinishes{a}{b}\\
-	\hline
+	\begin{tabular}[h!]{| l l |}
+		\hline
+		\textbf{String} & \textbf{Relation}\\
+		\hline
+		\siiFinishes{e2}{e3} & $e2$ finished by $e3$\\
+		\siiDuring{e2}{e3} &  $e2$ contains $e3$\\
+		\siMeets{e2}{e3} &  $e2$ meets $e3$\\
+		\siBefore{e2}{e3} &  $e2$ before $e3$\\
+		\siOverlaps{e2}{e3} &  $e2$ overlaps $e3$\\
+		\hline
 	\end{tabular}
-	\captionof{table}{The Freksa relation \textit{older}.}
+	\captionof{table}{Translating strings corresponding to the Freksa `older' relation from \Cref{tab:older-strings} to use semi-intervals.}\label{tab:older-strings-semi}
 \end{center}
-The similarities between these five relations becomes more apparent when they are translated to use semi-intervals instead:
+Leaning on this example a final time, the strings in \Cref{tab:older-strings-semi} are subjected to block compressed reduct relative to the set $\{\alpha(e2), \alpha(e3)\}$ in \Cref{tab:older-strings-semi-bcr}.
 \begin{center}
-	\begin{tabular}[h!]{|r | l|}
-	\hline
-	\textbf{Relation} & \textbf{String}\\
-	\hline
-	before &\siBefore{a}{b}\\
-	meets &\siMeets{a}{b}\\
-	overlaps &\siOverlaps{a}{b}\\
-	contains &\siiDuring{a}{b}\\
-	finished by&\siiFinishes{a}{b}\\
-	\hline
+	\begin{tabular}[h!]{| l l |}
+		\hline
+		$\bc(\rho_{\{\alpha(e2), \alpha(e3)\}}(s))$ & \textbf{Relation}\\
+		\hline
+		\EventString{\alpha(e2),\alpha(e3)|\alpha(e3)|{}} & $e2$ finished by $e3$\\
+		\EventString{\alpha(e2),\alpha(e3)|\alpha(e3)|{}} &  $e2$ contains $e3$\\
+		\EventString{\alpha(e2),\alpha(e3)|\alpha(e3)|{}} &  $e2$ meets $e3$\\
+		\EventString{\alpha(e2),\alpha(e3)|\alpha(e3)|{}} &  $e2$ before $e3$\\
+		\EventString{\alpha(e2),\alpha(e3)|\alpha(e3)|{}} &  $e2$ overlaps $e3$\\
+		\hline
 	\end{tabular}
-	\captionof{table}{The Freksa relation \textit{older} using semi-intervals, before block compressed reduct.}
+	\captionof{table}{Block compressed reduct on \Cref{tab:older-strings-semi}.}\label{tab:older-strings-semi-bcr}
 \end{center}
+Each of the five strings in \Cref{tab:older-strings-semi} projects (using a block compressed reduct) to the string \EventString{\alpha(e2),\alpha(e3)|\alpha(e3)|{}}, meaning the relation $e2$ is older than $e3$ can be represented using just this one string, instead of a disjunction of five. This does raise the question, however, of whether the tradeoffs are worth it: a great reduction in the cardinality of the timeline set can be achieved, but at the cost of using a more complex vocabulary and reducing the precision of the known information by underspecification.
 
-Each of these five strings projects (using a block compressed reduct) to the string \EventString{\alpha(a),\alpha(b)|\alpha(b)|{}}, meaning the relation $a$ \textit{older} $b$ can be represented using just this one string, instead of five. This does raise the question, however, of whether the tradeoffs are worth it: a great reduction in the cardinality of the timeline set can be achieved, but at the cost of using a more complex vocabulary and reducing the precision of the known information.
+Out of the 18 non-Allen\footnote{The 13 Allen relations can be represented as single strings using beginnings and endings without underspecification.} Freksa relations, only 11 can be described using a single string without further complicating the vocabulary which may appear within a component (box) of a string. Since all of these new relations are equivalent to disjunctions of Allen relations, it follows that it may be acceptable to include disjunctions of semi-intervals inside a string component, such as \ebox{\alpha(a) \lor \alpha(b)}, which is interpreted as one might expect: either $\alpha(a)$ appears in the component, or $\alpha(b)$ does, or they both do. This allowance admits a further five Freksa relations to be described as single strings. Some relations may be represented in several ways, including the `unknown' relation, which may trivially be described using a single string since it encompasses a disjunction of all 13 Allen relations, and is formed by a simple disjunction of all possible semi-inteval symbols: \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}, or even more simply, with a string consisting of just a single empty box: \ebox{}.
 
-Unfortunately, only 10 of the 18 Freksa relations can be described using a single string without further complicating the vocabulary which may appear within a box in a string. Since all of these new relations are disjunctions of Allen relations, it follows that it may be acceptable to include disjunctions of semi-intervals inside a box, such as \ebox{\alpha(a) \lor \alpha(b)}, which is interpreted as one might expect: either $\alpha(a)$ appears in the box, or $\alpha(b)$ does, or they both do. This allowance admits a further 5 Freksa relations to be described in single strings. Of the remaining 3 relations, the \textit{unknown} relation may also be described using a single string, but it is trivial, since it encompasses a disjunction of all 13 Allen relations, and is formed by a simple disjunction of all possible semi-inteval symbols: \ebox{\alpha(a) \lor \alpha(b) \lor \omega(a) \lor \omega(b) \lor \epsilon}, or even more simply, with a string consisting of just a single empty box: \ebox{}.
-
-Below is a table of the 18 Freksa relations, the Allen relations they comprise, and the string which they will project to. \nb{tidy up ordering of allens}
-
+\Cref{tab:freksa-projections} below shows the 18 Freksa relations and the string which they will project to for some interval events $a$ and $b$. The disjunctions of Allen Relations each Freksa relations corresponds to are given again for convenience, using mnemonic labels\footnote{Using b, bi, and e for $<$, $>$, and $=$, respectively.}.
 \begin{center}
 	\footnotesize
-	\begin{tabular}[h!]{|c | c | c|}
+	\begin{tabular}[h!]{|l | l | c|}
 		\hline
 		Freksa & Allen & string\\
 		\hline
@@ -1826,12 +1821,12 @@ Below is a table of the 18 Freksa relations, the Allen relations they comprise, 
 		younger and survives & bi, mi, oi & ...\\
 		\hline
 	\end{tabular}
-	\captionof{table}{The Freksa relations and the strings they project to.}
+	\captionof{table}{The Freksa relations and the strings they project to.}\label{tab:freksa-projections}
 \end{center}
-The last two relations on this list cannot be represented using a single string, and are instead must use conjunctions of pairs of strings: 
+The last two relations in \Cref{tab:freksa-projections}, shown again in \Cref{tab:freksa-projections-b}, cannot be represented using a single string, and are instead must use conjunctions of pairs of strings. What this means is that for the other relations, it can be determined whether some string of semi-intervals $s$ entails that relation if and only if $s$ projects to the string given in \Cref{tab:freksa-projections} for that relation---see also \cref{def:entails-allen}, p. \pageref{def:entails-allen}---for these last two, $s$ will only entail these relations iff it projects to both of the strings given in the conjunction. This may be a small complication, but it is important to address.
 \begin{center}
 	\footnotesize
-	\begin{tabular}[h!]{|c | c | c|}
+	\begin{tabular}[h!]{|l | l | c|}
 		\hline
 		Freksa & Allen & strings\\
 		\hline
@@ -1839,10 +1834,89 @@ The last two relations on this list cannot be represented using a single string,
 		younger and survives & bi, mi, oi & \EventString{\alpha(a),\alpha(b)|\alpha(a)|{}} $\land$ \EventString{{}|\omega(b)|\omega(a),\omega(b)}\\
 		\hline
 	\end{tabular}
-	\captionof{table}{The remaining Freksa relations and the strings they project to.}
+	\captionof{table}{The remaining Freksa relations and the strings they project to.}\label{tab:freksa-projections-b}
 \end{center}
+Now there is a way of representing (almost) all of the disjunctions that may arise from superpositions of strings representing relations between times and events derived from \verb|<TLINK>| tags as single strings. This presents a useful way to tackle the often large sizes of the languages produced when trying to string together the \verb|<TLINK>|s to form a picture of an annotated document's temporal structure in a timeline-like manner. However, there is a notable tradeoff for using semi-intervals instead of intervals, which is that in the process of reducing the cardinality of the output languages, the vocabulary for the strings have become much more complex, and including non-atomic formulas such as the disjunctions within string components also adds furter complexity to superposition computation. Additionally, the strings which represent some of the Freksa relations are not in all cases necessarily intuitive---for instance, while \EventString{\alpha(a),\alpha(b)|{}} shows neatly that both intervals $a$ and $b$ begin at the same moment for the `head to head' relation, it's not immediately obvious why \EventString{\alpha(b) \lor \omega(a)} should correspond with `precedes'. The additional complexity that arises for the benefit of reducing the amount of data to process threatens the tenet of \citet[p. 202]{Freksa1992} that the representation should not become more complex the less is known.
 
-While having to use a conjunction of strings may seem like a confounding issue which prevents all the relations from being representable by a single string, it is in fact less problematic than allowing disjunction inside a box, in some ways.
+As such, it would be useful to consider an alternate approach to treating situations where extracting and combining strings from the \verb|<TLINK>| tags of a TimeML document leads to unwieldy numbers of generated strings due to loose constraints from the relation types on the times and events in the narrative. This new approach may be comortably used alongside the semi-interval way of handling if so desired, as shall be shown.
+
+In this treatment, rather than blindly performing vocabulary-constrained superposition between all of the strings which are extracted from the \verb|<TLINK>| tags, which can lead to an explosion of generated strings due to a lack of constraints, only certain pairs of strings will be superposed. Where vocabulary-constrained superposition will produce a language that may contain vastly many strings, a new operation is defined which may only produce at most some fixed number of strings as output. This new operation will avoid superposition if it doesn't make sense to superpose the given strings: when the input strings are the same, the result can only be the same string again; if the strings are not the same, but they have an identical vocabulary, then the strings must contradict each other in terms of the relations they specify among their vocabulary; if the strings don't share any vocabulary, then they cannot constrain each other further through superposition, so no information would be gained; if the size of the language produced by vocabulary-constrained superposition between the languages would be larger than desired. In these last two cases, the input strings are returned so that their data is not lost, and they can potentially be superposed with other strings instead. If none of these situations holds, then the result is just the vocabulary-constrained superposition of the two strings. 
+
+First, set some limit $k \in \mathbb{N}$ which will be the maximum size of the language allowed to be produced. A good default choice for this limit is 12, on the basis that in the case where two intervals are unconstrained relative to each other, they will lead to at least 13 strings being produced by their superposition, which do not add any useful information to the knowledge base. Then, for two strings $s$ and $s'$ the `sensible' superposition $s \sensp s'$ is defined as follows:
+\begin{align}
+	s \sensp s' := \begin{cases}
+		\{s\} &\text{if}~ s = s'\\
+		\emptyset &\text{if}~ s \neq s' \land \V_s = \V_{s'}\\
+		\{s, s'\} &\text{if}~ \V_s \cap \V_{s'} = \emptyset ~\text{or}~\#(s \spvc s') > k\\
+		s \spvc s' &\text{otherwise}
+	\end{cases}\label{def:sensible-superposition}
+\end{align}
+The examples in \cref{ex:sens-sp} demonstrate each of the cases in \cref{def:sensible-superposition}, assuming the limit is set as 12.
+\begin{subequations}\label{ex:sens-sp}
+	\begin{align}
+		\Before{a}{b} \sensp \Before{a}{b} &= \{ \Before{a}{b} \}\\
+		\Before{a}{b} \sensp \iMeets{a}{b} &= \emptyset\\
+		\Before{a}{b} \sensp \During{c}{d} &= \{\Before{a}{b}, \During{c}{d}\}\\
+		\Before{a}{b} \sensp \Before{a}{c} &= \{\Before{a}{b}, \Before{a}{c}\}\\
+		\Meets{a}{b} \sensp \During{b}{c} &= \{\EventString{{}|a,c|b,c|c|{}}, \EventString{{}|a|a,c|b,c|c|{}}, \EventString{{}|c|a,c|b,c|c|{}}\}
+	\end{align}
+\end{subequations}
+In order to utilise this choosier form of superposition, one alteration will be made to the process of extracting strings from the \verb|<TLINK>| tags of the TimeBank documents: now, the result of extraction will be a singleton language containing the string, rather than just the string itself. Since the result of superposition of either strings or languages is a language, this change just makes the process a little smoother.
+
+Next, attempt to superpose all of the languages together by iterating through the list, and attempting to perform the sensible superposition for each pair of languages. If the superposition was successful, remove that pair of languages from the list, and add the result of the superposition and start attempting to superpose the languages in the updated list. If there were no successful superpositions after iterating through all the languages, then return the whole list. Since the operation is recursive, this will result in all of the languages being superposed together correctly. The operation is given in pseudo-code below.
+
+\begin{center}
+\begin{figure}[h!]
+\begin{verbatim}	
+superpose_languages(A, B, limit):
+  return superpose_sensible(a, b, limit) for a in A, for b in B
+
+superpose_all_languages(list, limit):
+  for i=0, i++, i < len(list):
+    for j=i+1, j++, j < len(list)
+      sp = superpose_lanugages(list[i], list[j], limit)
+      if sp = {}:
+        # inconsistent
+      elif sp = {list[i], list[j]}:
+        # superposition avoided
+      else:
+        # add the result of superposition and
+        # remove the languages that were used
+        newList = sp + (list - {list[i], list[j]})
+        return superposition_all_languages(newList)
+  return list
+\end{verbatim}
+\end{figure}
+\captionof{figure}{Pseudo-code for superposing a list of languages of strings.}\label{other:pseudo-code-spsens}
+\end{center}
+The result of this procedure will be a list of languages which were not superposed together---or if all of the languages were superposed, then the list will contain just one language. Each language will contain at most $k$ strings, where $k$ was the pre-determined limit in \cref{def:sensible-superposition}.
+
+To demonstrate the utility of being choosy with when to combine temporal information, an example document is taken from the TimeBank corpus, with a doc ID of \verb|wsj_1073|. The \verb|<TLINK>|s of this document are given below---noting that they have been altered so that the \verb|<EVENT>| and \verb|<MAKEINSTANCE>| were merged.
+\begin{center}
+	\begin{figure}[h!]
+		\begin{itemize}
+			\item[] \verb|<TLINK relType="SIMULTANEOUS" eventID="e9" relatedToEvent="e30" />|
+			\item[] \verb|<TLINK relType="BEFORE" eventID="e4" relatedToTime="t0"/>|
+			\item[] \verb|<TLINK relType="BEFORE" eventID="e2" relatedToTime="t0"/>|
+			\item[] \verb|<TLINK relType="BEFORE" eventID="e9" relatedToTime="t0"/>|
+			\item[] \verb|<TLINK relType="DURING" eventID="e30" relatedToTime="t31"/>|
+		\end{itemize}
+	\end{figure}
+	\captionof{figure}{TLINKs from the wsj\_1073 document of TimeBank 1.2.}
+\end{center}
+The strings derived from these tags are in \cref{ex:case-study-strings}:
+\begin{align}
+	\{\Equals{e9}{e30}, \Before{e4}{t0}, \Before{e2}{t0}, \Before{e9}{t0}, \During{e30}{t31}\}\label{ex:case-study-strings}
+\end{align}
+Using the normal procedure, these strings are superposed together, and the result is a language containing 7,449 strings, each of which has a vocabulary of $\{e9,e30,e4,t0,e2,t31\}$. Using the sensible superposition along with the procedure in \Cref{other:pseudo-code-spsens}, the result is a list of three languages: two of which contain a single string, and the third of which contains five strings:
+\begin{align}
+	\{\EventString{{}|t31|e30,e9,t31|t31|{}|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t31|{}},\\
+	\EventString{{}|t31|e30,e9,t31|t31|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t0|{}},\notag\\
+	\EventString{{}|t31|e30,e9,t31|t31|t0,t31|{}}\}, \{\EventString{{}|e4|{}|t0|{}}\}, \{\EventString{{}|e2|{}|t0|{}}\}\notag
+\end{align}
+These seven strings are a lot easier as a human to interpret than the over 7000 from the normal procedure. When one of the languages contains more than one string, as in this case, it is possible to translate these to use semi-intervals, and try to further reduce the cardinality that way, although this may be a case of user preference. The sensible superposition operation is built into the tool presented in \cref{sec:implementation}.
+
+
 \subsection{Enhancing Strings using DRT}\label{sub:enhancing}
 Automatic DRS-parsing of plain text is a task which has recently seen new approaches \citeneeded[ -- shared task, see fsmnlp paper sec 1]. It is possible to leverage the temporal information that features in a DRS to create strings. While the relations generally found using this approach are less specific than those found in TimeML \nb{compare the relations}, the advantage of using DRSs is that elements such as event participants are described.
 

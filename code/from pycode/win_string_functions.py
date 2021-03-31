@@ -245,6 +245,7 @@ def superpose_all_langs_sensible(list_of_langs, limit = 0):
         yield from superpose_all_langs_sensible(list_of_langs[2:]+[sp], limit)
 
 wsjl = [['|b,e|'], ['|c||d|'], ['|f||d|'], ['|e||d|'], ['|a|a,b|a|']]
+wsjlX = [['|e9,e30|'], ['|e4||t0|'], ['|e2||t0|'], ['|e9||t0|'], ['|t31|e30,t31|t31|']]
 wsjl2 = [['|a|a,b|a|'], ['|c||d|'], ['|e||d|'], ['|f||d|'], ['|b,e|']]
 wsjl3 = [['|a|b|'], ['|c|'], ['|e|'], ['|f|'], ['|b|a|']]
 

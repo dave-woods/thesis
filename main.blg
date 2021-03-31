@@ -9,45 +9,45 @@ Warning--there's a number but no series in fernando2015semantics
 Warning--empty author in ISO24617-1
 Warning--there's a number but no volume in kamp1981theory
 Warning--empty publisher in Mueller2008
-You've used 87 entries,
+You've used 88 entries,
             1940 wiz_defined-function locations,
-            1014 strings with 20138 characters,
-and the built_in function-call counts, 37708 in all, are:
-= -- 3799
-> -- 1304
-< -- 105
-+ -- 444
-- -- 429
-* -- 3075
-:= -- 6169
-add.period$ -- 284
-call.type$ -- 87
-change.case$ -- 637
-chr.to.int$ -- 82
-cite$ -- 93
-duplicate$ -- 1622
-empty$ -- 2783
-format.name$ -- 559
-if$ -- 7703
+            1019 strings with 20353 characters,
+and the built_in function-call counts, 38230 in all, are:
+= -- 3856
+> -- 1311
+< -- 107
++ -- 446
+- -- 431
+* -- 3108
+:= -- 6241
+add.period$ -- 287
+call.type$ -- 88
+change.case$ -- 643
+chr.to.int$ -- 83
+cite$ -- 94
+duplicate$ -- 1651
+empty$ -- 2828
+format.name$ -- 562
+if$ -- 7822
 int.to.chr$ -- 6
 int.to.str$ -- 0
-missing$ -- 90
-newline$ -- 446
-num.names$ -- 268
-pop$ -- 661
+missing$ -- 91
+newline$ -- 451
+num.names$ -- 271
+pop$ -- 670
 preamble$ -- 1
-purify$ -- 646
+purify$ -- 652
 quote$ -- 0
-skip$ -- 1228
+skip$ -- 1253
 stack$ -- 0
-substring$ -- 2683
-swap$ -- 455
-text.length$ -- 44
+substring$ -- 2735
+swap$ -- 468
+text.length$ -- 45
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 500
+type$ -- 506
 warning$ -- 6
-while$ -- 336
+while$ -- 341
 width$ -- 0
-write$ -- 1163
+write$ -- 1176
 (There were 6 warnings)

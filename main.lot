@@ -15,8 +15,8 @@
 \contentsline {table}{\numberline {15}{\ignorespaces Relations arising from the superposition in \cref {ex:vague-older-sp}.\relax }}{95}
 \contentsline {table}{\numberline {16}{\ignorespaces \citet {Freksa1992}'s relations described in terms of the constraints they impose on the beginnings and endings of a pair of intervals.\relax }}{97}
 \contentsline {table}{\numberline {17}{\ignorespaces \citet {Freksa1992}'s relations described in terms of disjunctions of \citet {allen1983maintaining}'s relations.\relax }}{98}
-\contentsline {table}{\numberline {18}{\ignorespaces The Freksa relation \textit {older}.\relax }}{100}
-\contentsline {table}{\numberline {19}{\ignorespaces The Freksa relation \textit {older} using semi-intervals, before block compressed reduct.\relax }}{100}
+\contentsline {table}{\numberline {18}{\ignorespaces Translating strings corresponding to the Freksa `older' relation from \Cref {tab:older-strings} to use semi-intervals.\relax }}{100}
+\contentsline {table}{\numberline {19}{\ignorespaces Block compressed reduct on \Cref {tab:older-strings-semi}.\relax }}{100}
 \contentsline {table}{\numberline {20}{\ignorespaces The Freksa relations and the strings they project to.\relax }}{101}
 \contentsline {table}{\numberline {21}{\ignorespaces The remaining Freksa relations and the strings they project to.\relax }}{102}
-\contentsline {table}{\numberline {22}{\ignorespaces Caching superpositions improving efficiency.\relax }}{108}
+\contentsline {table}{\numberline {22}{\ignorespaces Caching superpositions improving efficiency.\relax }}{112}
