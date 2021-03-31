@@ -132,10 +132,10 @@ def ys(x, y):
 
 import json 
 import sys
-if __name__ == "__main__":
-    ll = json.loads(sys.argv[1])
+if __name__ == "__main__" and len(sys.argv) - 1 == 1:
+    passed_data = json.loads(sys.argv[1])
     try:
-        res = globals()[ll['rel']](ll['e1'], ll['e2'])
+        res = globals()[passed_data['rel']](passed_data['e1'], passed_data['e2'])
         print(json.dumps(res), end='')
     except Exception as e:
         print(e, end='', file=sys.stderr)

@@ -767,7 +767,7 @@ This chapter has attempted to give a general overview of some of the literature 
 
 \newpage
 \section{Finite-State Temporality}\label{sec:fst}
-Following the intuition that sequences of (possibly overlapping) events and time periods may be conceptualised in a manner akin to a strip of film, or a timeline, finite-state techniques may be applied to temporal semantics in an approach known as \textit{finite-state temporality} \citep{fernando2005entailments}. In this chapter, strings are demonstrated as a tool of choice in modelling sequences of times and events for use within this approach, justified by their interpretation as finite models of Monadic Second-Order Logic, which leads to an equivalence with regular languages (see \cref{ssub:mso}). The advantage of this is that strings can be accepted and parsed by finite-state automata (FSA), which are a well-known formalism and have found significant usage across many fields, including disciplines of Mathematics, Linguistics, and Computer Science (see, for example, \citet{buchner1993finite,veanes2012symbolic}), as well as in modern software development (for instance, \citet{khourshid_2015} provides a tool for using FSA in the creation of online web applications). Such widespread application of FSA is due to their flexibility and efficiency as a technology, with benefits such as deterministic recognition being linear according to the length of the input, the associated closure properties of regular lanugages, and the ability to compose several automata \citep{wintner2007finite}.
+Following the intuition that sequences of (possibly overlapping) events and time periods may be conceptualised in a manner akin to a strip of film, or a timeline, finite-state techniques may be applied to temporal semantics in an approach known as \textit{finite-state temporality} \citep{fernando2005entailments}. In this chapter, strings are demonstrated as a tool of choice in modelling sequences of times and events for use within this approach, justified by their interpretation as finite models of Monadic Second-Order Logic, which leads to an equivalence with regular languages (see \cref{ssub:mso}). The advantage of this is that strings can be accepted and parsed by finite-state automata (FSA), which are a well-known formalism and have found significant usage across many fields, including disciplines of Mathematics, Linguistics, and Computer Science (see, for example, \citet{buchner1993finite,veanes2012symbolic}), as well as in modern software development (for instance, \citet{khourshid_2015} provides a tool for using FSA in the creation of online web applications). Such widespread application of FSA is due to their flexibility and efficiency as a technology, with benefits such as deterministic recognition being linear according to the length of the input, the associated closure properties of regular languages found in \cref{ex:sens-sp}, and the ability to compose several automata \citep{wintner2007finite}.
 % \url{https://www.elprocus.com/finite-state-machine-mealy-state-machine-and-moore-state-machine/}
 % \utl{https://www.quora.com/What-are-the-advantages-of-using-finite-state-machines}
 
@@ -793,7 +793,7 @@ A fluent is a condition which may change over time---thus a predicate such as $\
 
 % How should events be labelled? Some say an event is defined in part by its participants \citeneeded{}. Many of the procedures defined in this work which use these strings operate primarily on a syntactic level rather than depending on the lexical semantics of individual words, in order to produce an approach that works broadly. As such, i
 In most cases, simple identifiers suffice for the purposes of labelling fluents as they appear in a string---so, for example, $Sleeps(john, t)$ may be labelled as \texttt{"js"}, where the time $t$ being represented by the fluent's position in the string, explained in depth in the following section. This follows TimeML's standard \citep{timeml2005timeml,pustejovsky2010iso} of using identification labels such as \texttt{"e1"} or \texttt{"t2"} for events and times. However, in some instances, particularly when drawing inferences (see %\cref{ssub:inferring} and 
-\cref{ssub:ontology}) using semantic roles or lexical semantics, it will be useful to use a fuller labelling system, and so a string \EventString{{}|js|{}} would be rendered instead as \EventString{{}|sleeps(john)|{}}.
+\cref{sub:reasoning}) using semantic roles or lexical semantics, it will be useful to use a fuller labelling system, and so a string \EventString{{}|js|{}} would be rendered instead as \EventString{{}|sleeps(john)|{}}.
 
 \subsubsection{Creating Strings}\label{ssub:creating}
 In order to create a string, first it is necessary to fix a finite set $\V$ of symbols which represent the times and events under discussion, such that each $v \in \V$ will be understood as naming a \textit{fluent} as a unary predicate which holds at a particular time. A string $s = \sigma_1\sigma_2\cdots\sigma_n$ of subsets $\sigma_i$ of $\V$ is interpreted as a finite model of $n$ discrete, contiguous moments of time, with $i \in \{1, 2, \ldots, n\}$.
@@ -1095,7 +1095,7 @@ This process is streamlined through the use of \textit{projection}, where the $A
 \end{align}
 It will be said that a string $s$ \textit{projects to} another string $s'$, $s \sqsupseteq s'$, if the $\V_{s'}$-projection of $s$ is equal to $s'$:
 \begin{align}
-	s \sqsupseteq s' \Longleftrightarrow  \pi_{\V_{s'}}(s) = s'
+	s \sqsupseteq s' \Longleftrightarrow  \pi_{\V_{s'}}(s) = s'\label{def:projection}
 \end{align}
 If $s$ projects to $s'$, then all of the information represented within $s'$ is also represented in $s$---$s$ effectively `contains' $s'$. Trivially, any block compressed string $s = \bc(s)$ will project to itself, since the reduct of $s$ with respect to its own vocabulary is $s$.
 
@@ -1109,7 +1109,7 @@ It is worth noting that, if strings $s$ and $s'$ share the same vocabulary, but 
 \end{align}
 A language $L$ can be said to project to another language $L'$ if every string $s \in L$ projects to every string $s' \in L'$:
 \begin{align}
-	L \sqsupseteq L' \Longleftrightarrow  \forall (s \in L)\forall (s' \in L')~ (s \sqsupseteq s')
+	L \sqsupseteq L' \Longleftrightarrow  \forall (s \in L)\forall (s' \in L')~ (s \sqsupseteq s')\label{def:lang-projection}
 \end{align}
 This notion of projection is particularly useful, allowing for temporal reasoning when used in conjunction with the concept of \textit{analogous} strings (see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}). Particular events can be simply extracted from larger, more complex strings, and compared against reference to determine the relations between and ordering of the events of interest.
 
@@ -1874,7 +1874,7 @@ superpose_languages(A, B, limit):
 superpose_all_languages(list, limit):
   for i=0, i++, i < len(list):
     for j=i+1, j++, j < len(list)
-      sp = superpose_lanugages(list[i], list[j], limit)
+      sp = superpose_languages found in \cref{ex:sens-sp}(list[i], list[j], limit)
       if sp = {}:
         # inconsistent
       elif sp = {list[i], list[j]}:
@@ -1902,7 +1902,7 @@ To demonstrate the utility of being choosy with when to combine temporal informa
 			\item[] \verb|<TLINK relType="DURING" eventID="e30" relatedToTime="t31"/>|
 		\end{itemize}
 	\end{figure}
-	\captionof{figure}{TLINKs from the wsj\_1073 document of TimeBank 1.2.}
+	\captionof{figure}{TLINKs from the wsj\_1073 document of TimeBank 1.2.}\label{fig:case-study-tlinks}
 \end{center}
 The strings derived from these tags are in \cref{ex:case-study-strings}:
 \begin{align}
@@ -1910,17 +1910,17 @@ The strings derived from these tags are in \cref{ex:case-study-strings}:
 \end{align}
 Using the normal procedure, these strings are superposed together, and the result is a language containing 7,449 strings, each of which has a vocabulary of $\{e9,e30,e4,t0,e2,t31\}$. Using the sensible superposition along with the procedure in \Cref{other:pseudo-code-spsens}, the result is a list of three languages: two of which contain a single string, and the third of which contains five strings:
 \begin{align}
-	\{\EventString{{}|t31|e30,e9,t31|t31|{}|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t31|{}},\\
+	\{\EventString{{}|t31|e30,e9,t31|t31|{}|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t31|{}},\label{ex:sp-sens-result}\\
 	\EventString{{}|t31|e30,e9,t31|t31|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t0|{}},\notag\\
 	\EventString{{}|t31|e30,e9,t31|t31|t0,t31|{}}\}, \{\EventString{{}|e4|{}|t0|{}}\}, \{\EventString{{}|e2|{}|t0|{}}\}\notag
 \end{align}
-These seven strings are a lot easier as a human to interpret than the over 7000 from the normal procedure. When one of the languages contains more than one string, as in this case, it is possible to translate these to use semi-intervals, and try to further reduce the cardinality that way, although this may be a case of user preference. The sensible superposition operation is built into the tool presented in \cref{sec:implementation}.
+These seven strings are a lot easier as a human to interpret than the over 7000 from the normal procedure. When one of the languages contains more than one string, as in this case, it is possible to translate these to use semi-intervals, and try to further reduce the cardinality that way, although this may be a case of user preference. The sensible superposition operation is the default option built into the tool presented in \cref{sec:implementation}, although it is possible to remove the limit if desired.
 
 
 \subsection{Enhancing Strings using DRT}\label{sub:enhancing}
-Automatic DRS-parsing of plain text is a task which has recently seen new approaches \citeneeded[ -- shared task, see fsmnlp paper sec 1]. It is possible to leverage the temporal information that features in a DRS to create strings. While the relations generally found using this approach are less specific than those found in TimeML \nb{compare the relations}, the advantage of using DRSs is that elements such as event participants are described.
+The automatic parsing of Discourse Representation Structures (DRSs) from plain text is a field which has recently seen some new approaches \citep{ababzianidze2017parallel,van-noord-etal-2018-exploring}, particularly during a new shared task due to \citet{abzianidze2019first} which aimed to take sentences of English as input and produce DRSs---in an evaluation-friendly clausal form, rather than the typical human-friendly boxed format---as output. It is possible to leverage the temporal information that features in a DRS to create strings of times and events such as are described in \cref{sub:strings}. While, in general, the temporal relations found using this approach are less specific than those found in TimeML as most parsing tools for DRSs do not appear to utilise Allen's interval algebra, the advantage of using DRSs is that elements such as event participants can be picked out automatically.
 
-Boxer \citep{Bos2008} is one available tool for parsing a text into one or more DRSs, though the temporal information in this version struggles a bit. A newer version of the tool is used as part of the Parallel Meaning Bank \citeneeded toolchain, although it has not been made publicly available at present.
+Boxer \citep{Bos2008} is one readily available piece of tooling which claims coverage as wide as 95\% for semantic analysis of newswire texts, the same domain as the TimeBank corpus \citep{pustejovsky2006timebank}. The Boxer software is part of the C\&C toolchain \citep{curran2007linguistically} for parsing a text into one or more DRSs, using a neo-Davidsonian representation for events and leveraging the set of thematic roles provided in VerbNet \citep{schuler2005verbnet}, though it is noted in \citet[p. 277]{Bos2008} that the temporal aspects of the tool are not quite as strong as some of the others, and that ``some measure and time expressions are correctly analysed, others aren't.'' A newer version of the tool is used as part of the Parallel Meaning Bank \citep{abzianidze2017parallel} toolchain, although it has not been made widely available for use in research at the time of writing. Another widely available tool for automatic DRS parsing exists as part of the popular Python-based natural language processing toolkit, NLTK \citep{Bird2009}, although it is to be noted that the DRSs produced by this tool do not give much focus to their treatment of events.
 
 \subsubsection{Parallel Meaning Bank}\label{ssub:pmb}
 Under the assumption that the version of Boxer that is used in PMB would become available at some point, here is a description of PMB, and how the present work utilises the data within it as a demonstration of using text that has been parsed into DRSs can be transformed into strings for temporal reasoning.
@@ -1933,42 +1933,135 @@ Two resources which are used in PMB and that can be leveraged are VerbNet, which
 This data can be useful when trying to make links between events which have not been given a specific relation. For example, finding the closest hypernym between two verbs, or checking verbs which share participants may help to inform the building of relations (see \cref{ssub:ontology}).
 
 \subsection{Reasoning with Strings}\label{sub:reasoning}
-Strings of events are used to reason about the temporal information they contain: to infer a linear ordering and new relations between the events that were not previously stated. There are several methods which can be employed depending on the specific results that are desired.
+Strings of events may be used to reason about the temporal information they contain: to infer a linear ordering and new relations that were not explicitly stated in the source as existing between the times and events modelled within the strings. There are several methods which can be employed depending on the specific results that are desired.
 
 Superposition of strings creates new strings which feature all of the constraints of their `parent' strings, and new relations can be derived by taking the projections of these strings in relation to an intersection of the parent vocabularies. Using resources such as VerbNet and WordNet (see \cref{ssub:verbwordnet}), the lexical semantics can be leveraged in order to suggest links between events which were not previously explicitly related. Additionally, residuals are employed to determine what relations may need to hold in order for other inferences to be made.
 
 \subsubsection{Superposition and Projection}\label{ssub:superposition}
-Having extracted strings from an annotated document, such as one of those in the TimeBank \citeneeded{} corpus, superposition can be used to work out the relations which are not yet made explicit. Strings model sets of constraints between the events they mention, and when two strings are superposed, all of these constraints also hold in the resulting language's strings. This can be shown through an example:
-\begin{align}
-\Before{a}{b} \spvc \Before{b}{c} = \EventString{{}|a|{}|b|{}|c|{}}
-\end{align}
-The constraint that event $a$ occurs before event $b$ holds in $s = \Before{a}{b}$, and also in the resulting string\footnote{Note that the result of a superposition is a language, but if its cardinality is 1, it can be conflated with its sole member string.} $s'' = \EventString{{}|a|{}|b|{}|c|{}}$. In order to prove this, take the \textit{projection} \refneeded[-- ref section 3.1]{} of $s''$ with respect to the vocabulary of $s$, and see that it is equal to $s$:
-\begin{align}
-\pi_{voc(s)}(s'') &= \bc(\rho_{voc(s)}(\EventString{{}|a|{}|b|{}|c|{}}))\\ \notag
-				  &= \bc(\EventString{{}|a|{}|b|{}|{}|{}})\\ \notag
-				  &= \Before{a}{b} = s
-\end{align}
-The string $s''$ thus \textit{projects} to the string $s$, which says that the information in $s$ is contained within $s''$. Similarly, the constraint that event $b$ occurs before event $c$ holds in both $s' = \Before{b}{c}$ and in $s''$; $s''$ projects to $s'$.
+Given some set of strings, whether extracted from an annotated document, such as one of those in the TimeBank \citep{pustejovsky2006timebank} corpus, or derived from some other source like the temporal properties of DRSs, the most straightforward kind of reasoning that can be done is to use superposition to determine the relations which are not yet made explicit, moving towards the computation of the temporal closure of a document if it is not already calculated. If a document's times and events have temporal closure, then each time and event has been related to each other time and event with exactly one relational label. Once strings have been superposesd together, projection can be used to find the relation(s) that they specify between any pair of times and/or events.
 
-Since $s''$ projects to both to both $s$ and $s'$, $s''$ also models the constraints that are represented by both $s$ and $s'$, using a single string rather than two strings. However, $s''$ also projects to the string \Before{a}{c}, which represents the constraint that event $a$ occurs before event $c$. This constraint was not represented in either $s$ or $s'$, but is represented in $s''$. Thus, a new relation between events has been discovered and made explicit. 
+Strings model sets of constraints between the times and events that they mention, and when two strings are superposed, all of these constraints also hold in the resulting language's strings. This can be shown through an example:
+\begin{align}
+	\Before{a}{b} \spvc \Before{b}{c} = \{\EventString{{}|a|{}|b|{}|c|{}}\}\label{ex:vc-sp-preserve}
+\end{align}
+The vocabulary-constrained superposition---see \cref{def:vc-superposition}, p. \pageref{def:vc-superposition}---produces a language of all of the strings which have a vocabulary equal to the union of the vocabularies of its inputs and also contain the same constraints as its inputs. For instance, in \cref{ex:vc-sp-preserve} the first input string \Before{a}{b} entails the relation $a$ occurs before $b$, which is also entailed by the sole member of the result language \EventString{{}|a|{}|b|{}|c|{}}. This is due to the fact that vocabulary-constrained superposition preserves \textit{projections}---see \cref{def:projection}, p. \pageref{def:projection}---which can be proven by taking the projection of \EventString{{}|a|{}|b|{}|c|{}} with respect to the vocabulary of \EventString{{}|a|{}|b|{}} and seeing that it is equal to \EventString{{}|a|{}|b|{}}.
+\begin{align}
+\bc(\rho_{\{a,b\}}(\EventString{{}|a|{}|b|{}|c|{}}))\\ \notag
+\bc(\EventString{{}|a|{}|b|{}|{}|{}})\\ \notag
+\Before{a}{b}
+\end{align}
+The string \EventString{{}|a|{}|b|{}|c|{}} thus \textit{projects} to the string \EventString{{}|a|{}|b|{}}, which says that all of the temporal information represented in \EventString{{}|a|{}|b|{}} is also contained within \EventString{{}|a|{}|b|{}|c|{}}. Similarly, the constraint that event $b$ occurs before event $c$ holds in both $\Before{b}{c}$ and in \EventString{{}|a|{}|b|{}|c|{}}; \EventString{{}|a|{}|b|{}|c|{}} projects to \EventString{{}|b|{}|c|{}}.
+
+Since the resulting strings of a vocabulary-constrained superposition always\footnote{Except, of course, if the parent strings are contradictory and the result of superposition is an empty language.} project back to their `parent' strings. they also model the constraints which are represented by each of these parents, although using a single string rather than two strings. However, \EventString{{}|a|{}|b|{}|c|{}} also projects to the string \Before{a}{c}, which represents the constraint that event $a$ occurs before event $c$ according to \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings}. This constraint was not represented in either of the parent strings that were superposed to create \EventString{{}|a|{}|b|{}|c|{}}, but it is represented in this result string. Thus, a new relation between events has been discovered and made explicit. While this example in \cref{ex:vc-sp-preserve} is relatively simple and could be easily derived from simply using the transitivity table for Allen relations---see \Cref{tab:allen-trans-table}, p. \pageref{tab:allen-trans-table}---this procedure works identically for strings featuring an arbitrary number of events, without having to calculate long chains of transitivities. For instance, taking another slightly trivial example for the sake of illustrating the point, imagine a set of events labelled by $a$ through $z$ such that, for each pair of events which are alphabetically adjacent, the `contains' relation holds, so $a$ contains $b$, $b$ contains $c$, ..., $y$ contains $z$. Through superposition of the strings which represent these relations a rather large string is obtained:
+\begin{align}
+	\EventString{{}|a|a,b|a,b,c|}\cdots\EventString{|a,b,\ldots,y|a,b,\ldots,y,z|a,b,\ldots,y|}\cdots\EventString{|a,b,c|a,b|a|{}}\label{ex:a-z-string}
+\end{align}
+While it is not hugely difficult to follow along the transitivity chain of this particular set of 25 relations to determine that the relation between $a$ and $z$ is also `contains', it only takes one step to determine this relation while using strings: namely take the projection of the string in \cref{ex:a-z-string} relative to the vocabulary of interest, which in this case is $\{a,z\}$, which produces the string \EventString{{}|a|a,z|a|{}} which entails the `contains' relation between $a$ and $z$, by \cref{def:entails-allen}, p. \pageref{def:entails-allen}. One could further imagine a scenario with the same set of events where the relational transitivities are more difficult to compute, where the relation is not the same for every single event-pair. In this case, superposition will (possibly) produce more than one string as a result, but for every string produced there is exactly one relation between every time or event which appears in that string---effectively, taking each string into consideration in isolation from all of the others, the temporal closure has been computed. In order to find the relation or relations that hold---assuming it is still the relation between $a$ and $z$ that is of interest in this scenario---the projection is taken of each string relative to the set $\{a,z\}$, as before, and the union of all found relations is taken. This set will either be the relation or disjunction of possible relations that may hold between $a$ and $z$.
+
+For a more concrete example, using the sensible superposition operation on the \allowbreak{}\verb|<TLINK>| tags from a document---see \Cref{fig:case-study-tlinks} and \cref{ex:case-study-strings}, p. \pageref{ex:case-study-strings}---from the TimeBank corpus in \cref{ssub:incomplete} produced the set of languages found in \cref{ex:sp-sens-result}. To find, for example, the relation in that document's narrative between the two marked up times, $t0$ and $t31$, the projection of every string across all of the languages is taken relative to $\{t0, t31\}$, producing a set of five strings which correspond to the relations `during', `after', `met by', `finishes', and `overlapped by'. The disjunction of these five are the possibilities for the relation between $t0$ and $t31$, corresponding to the \citet{Freksa1992} relation `younger'.
+
 
 \subsubsection{Event Ontology}\label{ssub:ontology}
 Event hierarchy and using verb/word nets to figure out how events might relate to each other, e.g. using verb roles/participants to forge connections
-\subsubsection{Residuals and Gaps}\label{ssub:residuals}
-Finding out what additional information would be required on top of some set of premises in order to make some other conclusion(s) true.
+\nb{remove?}
 
+\subsubsection{Residuals and Gaps}\label{ssub:residuals}
+Given some set of strings which represent times and events and their temporal relations to serve as a knowledge base, an operation can be used to determine what strings must be added to the knowledge base in order to make some other string entailed. The operation is known as \textit{gap} as it effectively finds the language that would bridge the gap between the premises (the knowledge base of strings) and the conclusion (the other string).
+
+For example, with the language $L = \{\EventString{{}|a|c|{}}\}$ as the premises and $L' = \{\EventString{{}|b|c|{}}\}$ as the conclusion, the language $gap(L, L') = \{\EventString{{}|a,b|{}}, \EventString{{}|b|c|{}}, \EventString{{}|b|a,b|{}}, \EventString{{}|a|a,b|{}}\}$. Note that the conclusion itself appears in the result, since adding the conclusion to the knowledge base would indeed make it entailed by the knowledge base. Superposing any string from this resulting language $gap$ with the premises should lead to the resulting updated knowledge base entailing the conclusion.
+
+For some pair of arbitrary languages $L, L'$, the $gap(L,L')$ is formed as follows: first, calculate the superposition between the premises and the conclusion.
+\begin{align}
+	L \spvc L' := \{ s'' ~|~ s \in L,~ s' \in L',~ s'' \in s \spvc s'\}
+\end{align}
+Next, find the projections $p(L, L')$ in the superposition that, when superposed with the premises, project to the conclusion.
+\begin{align}
+	p(L, L') := \{\pi_V(s'') ~|&~ s'' \in L \spvc L',~ V \subseteq \V_{s''},\\
+	&(\forall s \in L,~\forall s' \in L')(\forall r \in (\pi_V(s'') \spvc s)~ \pi_{\V_{s'}}(r) = s') \}\notag
+\end{align}
+Define an operation $min(\hat{L})$ that minimises a language $\hat{L}$, such that for any string in $min(\hat{L})$, no other string in $min(\hat{L})$ will project to it.
+\begin{align}
+	min(\hat{L}) := \{s ~|~ s \in \hat{L}, ~V \subset \V_r, ~\pi_V(r) \notin \hat{L} \}
+\end{align}
+Then, $gap(L, L')$ is defined as the minimised set $p(L,L')$
+\begin{align}
+	gap(L, L') := min(p(L, L'))\label{def:gap}
+\end{align}
+To substantiate the claim that superposing any string from $gap(L,L')$ with the premises produces the conclusion, and the further claim that any string in the superposition of $L$ with $L'$ projects to some string in $gap(L, L')$, $gap(L, L')$ will be related to the residual $L'/L$ of $L'$ by $L$, relative to superposition as a binary operation on languages of block compressed strings.
+
+First fix some large set of symbols $\Theta$, with $Fin(\Theta)$ as the set of finite set of subsets of $\Theta$. For any $A \in Fin(\Theta)$, define the set of all block compressed strings whose vocabulary is in $A$
+\begin{align}
+	\mathcal{L}_A := \{ \bc(s) ~|~ s \in (2^A)^* \}
+\end{align}
+and for any $s \in Fin(\Theta)^*$, let
+\begin{align}
+	\llbracket s \rrbracket_A := \{s' \in \mathcal{L}_A ~|~ s' \sqsupseteq s\}
+\end{align}
+which is lifted to languages disjunctively, with the implication that $\llbracket s \rrbracket_A = \llbracket \{s\} \rrbracket_A$
+\begin{align}
+	\llbracket L \rrbracket_A := \bigcup ~ \{\llbracket s \rrbracket_A ~|~ s \in L \}
+\end{align}
+Note then that
+\begin{align}
+	L \sqsupseteq L' \Longleftrightarrow \llbracket L \rrbracket_A \subseteq \llbracket L' \rrbracket_A
+\end{align}
+where $L \sqsupseteq L'$ says that the language $L$ projects to $L'$---see \cref{def:lang-projection}, p. \pageref{def:lang-projection}---and also
+\begin{align}
+	\llbracket L \spvc L' \rrbracket_A = \llbracket L \rrbracket_A \cap \llbracket L' \rrbracket_A
+\end{align}
+The first claim, that superposing any string from $gap(L,L')$ with the premises produces the conclusion, comes to
+\begin{align}
+	\llbracket L \rrbracket_A \cap \llbracket gap(L, L') \rrbracket_A \subseteq \llbracket L' \rrbracket_A
+\end{align}
+and the second claim, that any string in the superposition of $L$ with $L'$ projects to some string in $gap(L, L')$
+\begin{align}
+	\llbracket L \rrbracket_A \cap \llbracket L' \rrbracket_A \subseteq \llbracket gap(L, L') \rrbracket_A
+\end{align}
+For residuals, let
+\begin{align}
+	res_A(L, L') := \{s \in \mathcal{L}_A ~|~ \llbracket s \rrbracket_A \cap \llbracket L \rrbracket_A \subseteq \llbracket L' \rrbracket_A \}
+\end{align}
+noting that, for all $L, L', L'' \subseteq \mathcal{L}_A$
+\begin{align}
+	\llbracket L \rrbracket_A \cap \llbracket L'' \rrbracket_A \subseteq \llbracket L' \rrbracket_A \Longleftrightarrow \llbracket L'' \rrbracket_A \subseteq res_A(L, L')
+\end{align}
+To find the connection between $res$ and $gap$, first define the \textit{downset} $L_\downarrow$ of $L$ as the set of all strings which the strings in $L$ project to
+\begin{align}
+	L_\downarrow := \{ \pi_V(s) ~|~ s \in L,~ V \subseteq \V_s \}
+\end{align}
+And so
+\begin{align}
+	p(L, L') = \{s \in (L \spvc L')_\downarrow ~|~ (\{s\} \spvc L) \sqsupseteq L'\}
+\end{align}
+Observe that, for any $\hat{L}$
+\begin{align}
+	\llbracket min(\hat{L}) \rrbracket_A = \llbracket \hat{L} \rrbracket_A
+\end{align}
+and since $gap(L, L')$ is just equal to $min(p(L, L'))$
+\begin{align}
+	\llbracket gap(L, L') \rrbracket_A = \llbracket res_A(L, L') \cap (L \spvc L')_\downarrow \rrbracket_A
+\end{align}
+The gap operation is useful for using strings in the context of question-answering systems, for example in the FRACAS semantic test suite \citep{cooper1996using}, and allows for inferences to be made about whether certains relations could possibly exist given some knowledge base of strings.
+
+The next chapter describes the details of how the string framework which was described in \cref{sec:fst} and used throughout the current chapter is currently implemented. In particular, an illustrative tool is discussed which may be used to annotate text with a slightly modified subset of the TimeML 1.2 \citep{timeml2005timeml} schema, or to edit and examine a document that has already been marked up.
 \newpage
 \section[String Temporal Annotation and Relation Tool (START)]{String Temporal Annotation and Relation Tool\\(START)}\label{sec:implementation}
 
+% The focus is on using strings for discovery and consistency-checking of relations between a document's times and events
 % Proof of concept tool rather than comparison with other annotation tools,
 % illustrates what has been enabled by strings
 % Functional programming paradigm
 
-Various approaches were trialled using different programming languages, including Prolog, JavaScript (Node.js), and Python. Ultimately, Python was chosen for its speed, wide cross-platform availability, and availability of compatible tooling.
+In order to implement the string framework for representing times and events as described in \Cref{sec:fst} and utilised in \cref{sec:methods}, various approaches were trialled using different programming languages, including Prolog, JavaScript (Node.js), and Python \citep[see][respectively for more on each]{clocksin2012programming,tilkov2010node,kuhlman2009python}. Ultimately, Python (version 3) was chosen for its speed, wide cross-platform availability, and ease of use through familiarity.
 
-Ultimately a widely-useable package was created that could be used either on the web or as a standalone application, as this gave the broadest opportunity to demonstrate the use of the developed technology.
+Python is a high-level, dynamically-typed, interpreted programming language implemented in C, with a large standard library that has found widespread use among scientific communities, in part thanks to the availability of tooling such as the Natural Language Toolkit (NLTK) \citep{Bird2009} for natural language processing and PyTorch \citep{ketkar2017introduction} for machine learning, as well as many other packages which are easily accessible through an official package installer.
 
-It combined data and technologies from a number of sources to create a package that could be used to reason about temporal information, and augment annotation-based data in a way that is both efficient and simple-to-use \nb{hard claim to make without a study backing it up...}
+Although Python has support for object-oriented programming styles, a functional programming paradigm was used in the design of the framework, wherein the use of mutable, global state is avoided. Functions are designed so as to take some input and give some output, without causing side effects, so that running a function with a particular input will always give the same result. This style of programming was chosen so as to better reflect the logical forms of the string operations which are described in \cref{ssub:operations}---a mathematical function has no state, it simply takes some input and transforms it into an output.
+
+In order to illustrate what is enabled by the use of the string framework, a proof-of-concept tool for annotation was built as a web-based application (though, with a little effort, it may also be downloaded and set up to be used locally without an internet connection), which is available at \url{http://scss.tcd.ie/~dwoods/thesis/code/start}\footnote{Also available at \url{https://start-dwoodscs.vercel.app}.}, and the code is available to view at \url{https://github.com/dave-woods/thesis/tree/master/code/start}. The front-end of the application, known as START for String Temporal Annotation and Relation Tool, was developed and built using the Next.js (\url{https://nextjs.org}) framework upon top of the React (\url{https://reactjs.org}) JavaScript library. React is designed for building fast user interfaces through a component-based library that only updates the parts of the web page's document object model (DOM) which need to be updated, rather than re-rendering the entire page on every request or interaction sent from the page. Next.js enables web pages to be rendered on the server rather than on the client's machine, and provides some extra abstractions over common tasks in React. Next.js is also tightly integrated with the cloud-based hosting platform Vercel (\url{https://vercel.com/docs}) which allows for Python code to be hosted as part of the application in the form of so-called serverless functions \citep{anderson1995serverless} where ``application logic is split into functions and executed in response to events'' \citep[p. 405]{mcgrath2017serverless}. The result of this is that for most operations of the string framework made from the application, the client will send a request to an API endpoint hosted by Vercel. On receiving the request, Vercel will trigger the appropriate function from the string framework with any data passed along with the API request. Once the function has completed, it returns any data (or errors) to the client to be used or displayed as appropriate.
+% Ultimately a widely-useable package was created that could be used either on the web or as a standalone application, as this gave the broadest opportunity to demonstrate the use of the developed technology.
+
+% It combined data and technologies from a number of sources to create a package that could be used to reason about temporal information, and augment annotation-based data in a way that is both efficient and simple-to-use \nb{hard claim to make without a study backing it up...}
 
 \subsection{Back-end Pipeline}\label{sub:backend} % ?NLTK
 This is the main stuff. Lots of python code all interacting with the data and PMB and Boxer (and the failure of old boxer and why the output is basically theoretical).
@@ -1999,7 +2092,7 @@ superpose_languages(A, B, lim):
 superpose_all_languages(list, lim):
   for i=0, i++, i < len(list):
     for j=i+1, j++, j < len(list)
-      sp = superpose_lanugages(list[i], list[j], lim)
+      sp = superpose_languages(list[i], list[j], lim)
       if sp = {}:
         # inconsistent
       elif sp = {list[i], list[j]}:
@@ -2010,7 +2103,17 @@ superpose_all_languages(list, lim):
   return list
 \end{verbatim}
 
-Also taking advantage of Python's built-in caching, the most recent 100 (string) superpositions are stored, which can vastly improve the speed of the calculation. For example, using Python's timeit function to test how much time repetitions of a function takes, with the input $\{\EventString{{}|b,e|{}}, \EventString{{}|c|{}|d|{}}, \EventString{{}|f|{}|d|{}}, \EventString{{}|e|{}|d|{}}, \EventString{{}|a|a,b|a|{}}\}$, we find the following times:
+Reproducing \cref{ex:case-study-strings} and the result of their sensible superposition \cref{ex:sp-sens-result} below for convenience.
+\begin{align}
+	\{\Equals{e9}{e30}, \Before{e4}{t0}, \Before{e2}{t0}, \Before{e9}{t0}, \During{e30}{t31}\}\label{ex:caching-strs}
+\end{align}
+\begin{align}
+	\{\EventString{{}|t31|e30,e9,t31|t31|{}|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t31|{}},\\
+	\EventString{{}|t31|e30,e9,t31|t31|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t0|{}},\notag\\
+	\EventString{{}|t31|e30,e9,t31|t31|t0,t31|{}}\}, \{\EventString{{}|e4|{}|t0|{}}\}, \{\EventString{{}|e2|{}|t0|{}}\}\notag
+\end{align}
+\nb{updated to 1000}
+Also taking advantage of Python's built-in caching, the most recent 100 (string) superpositions are stored, which can vastly improve the speed of the calculation. For example, using Python's timeit function to test how much time repetitions of a function takes, with the input from \cref{ex:caching-strs}, we find the following times:
 \begin{center}
 	\footnotesize
 	\begin{tabular}[h!]{|r|c  c  c|}

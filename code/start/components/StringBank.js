@@ -4,7 +4,6 @@ export default function StringBank(props) {
   
   const doSuperposition = async () => {
     setLoading(true)
-    // fetch('/api/superpose', {
     const res = await fetch(process.env.NEXT_PUBLIC_SUPERPOSE_ENDPOINT, {
       method: 'POST',
       headers: {

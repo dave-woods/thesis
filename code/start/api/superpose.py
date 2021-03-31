@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-import apiscripts.wsf
+import apiscripts.strfns
 import json
 
 
@@ -8,10 +8,10 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         post_data = self.rfile.read(content_length).decode('utf-8')
-        ll = json.loads(post_data)['data']
+        passed_data = json.loads(post_data)['data']
         result = dict()
         try:
-            result['strings'] = list(apiscripts.wsf.superpose_all_langs_sensible(ll['strings'], ll['limit']))
+            result['strings'] = list(apiscripts.strfns.superpose_all_langs_sensible(passed_data['strings'], passed_data['limit']))
         except Exception as e:
             result['error'] = str(e)
 

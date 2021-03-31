@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback, useReducer } from 'react'
+import { useState, useEffect, useCallback, useReducer } from 'react'
 import Head from 'next/head'
 
 import { parseTML } from '../fns/parseTML'
@@ -31,11 +31,14 @@ export default function Annotate() {
     prevStates: []
   }
 
+  // helps to set the reducer's initial state
   const init = initialObj => ({
     ...initialObj
   })
 
+  // current state + action => next state
   const [state, dispatch] = useReducer((curState, action) => {
+    // make sure nextId always gets a unique value
     const getLastId = (evs, curId) => {
       let sortedIds = evs.map(ev => parseInt(ev.id.substring(1)))
       sortedIds.sort((a, b) => a - b)
@@ -97,6 +100,7 @@ export default function Annotate() {
       case 'DO_PARSE':
         if (action.payload.trim() !== '') {
           const parseResult = parseTML(action.payload)
+          // try to parse the input as TimeML, else assume plaintext
           if (parseResult.transformed) {
             return {
               ...curState,
@@ -104,6 +108,7 @@ export default function Annotate() {
               parsedTlinks: [...parseResult.tlinks],
               parsedEvents: [...parseResult.events],
               eventStrings: parseResult.tlinks.map(tlink => {
+                // usually means e1 === e2
                 if (tlink.warning) {
                   window.alert(`Bad TLINK: ${tlink.e1} ${tlink.rel} ${tlink.e2}`)
                   return []
@@ -121,7 +126,8 @@ export default function Annotate() {
             }
           }
         }
-      case 'UNDO': 
+      case 'UNDO':
+        // go to the last state if possible
         if (curState.prevStates.length > 0) {
           const [cur, ...pre] = curState.prevStates
           return {
@@ -140,6 +146,7 @@ export default function Annotate() {
     }
   }, initialState, init)
 
+  // handle keyboard listening
   useEffect(() => {
     document.addEventListener('keyup', handleKeyboard, false)
       return () => {
@@ -158,6 +165,7 @@ export default function Annotate() {
       } else if (kb === 's') {
         document.getElementById('dosp').click()
       } else if (kb === '?') {
+        // close other overlays before opening help
         setDetails(null)
         setExamineStringDisplay(null)
         setHelpDisplayed(!helpDisplayed)
@@ -177,6 +185,7 @@ export default function Annotate() {
     }
   }
 
+  // only highlight events under the mouse
   const hoverLang = vocab => {
     if (!!vocab) {
       setNoHighlight(true)
@@ -189,6 +198,7 @@ export default function Annotate() {
     }
   }
 
+  // view TLINK etc
   const examineString = async string => {
     const vocab = [...new Set(string.split(/[,|]+/).filter(v => v !== ''))]
     const newString = string.split('|').map(c => c.split(',').map(e => state.parsedEvents.find(ev => ev.id === e)?.text.replace(/\s+/, '_')).join(','))
@@ -236,6 +246,7 @@ export default function Annotate() {
     return data.tlinks
   }
 
+  // tell the user what relation exists in the KB for a given event pair
   const tryFindRelation = async (e1, e2) => {
     const res = await fetch(process.env.NEXT_PUBLIC_NEW_TLINKS_ENDPOINT, {
       method: 'POST',
@@ -261,6 +272,8 @@ export default function Annotate() {
     } else {
       const ev1 = state.parsedEvents.find(e => e.id === e1)
       const ev2 = state.parsedEvents.find(e => e.id === e2)
+
+      // try to suggest a relation based on Derczynski (2013)
       const suggestion = suggestTenseAspectRelation({tense1: ev1.attr.tense, aspect1: ev1.attr.aspect}, {tense2: ev2.attr.tense, aspect2: ev2.attr.aspect})
       if (!suggestion || suggestion === 'un') {
         window.alert('That relation could not be determined from current knowledge.')
@@ -272,7 +285,34 @@ export default function Annotate() {
     }
   }
 
+  // see if the string is entailed in the KB
+  const testRelation = async (e1, e2, rel) => {
+    fetch(process.env.NEXT_PUBLIC_TEST_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        data: {
+          strings: state.eventStrings,
+          e1,
+          e2,
+          rel
+        }
+      })
+    }).then(response => response.json()).then(data => {
+      if (data.error) {
+        console.error(data.error)
+        window.alert(data.error)
+        return
+      }
+      const { status, strings } = data
+      window.alert(`That relation is ${status} according to the knowledge base.${status !== 'contradicted' ? `\nClick 'Add New Relation' to add:\n${strings}` : '\nAdding this relation is not recommended.'}`)
+    }).catch(e => console.error(e))
+  }
 
+  // convert START data back into TimeML
   const exportTML = async elem => {
     const newTLINKs = await getNewTLINKs()
     const newText = elem.current.cloneNode(true)
@@ -302,6 +342,7 @@ ${newTLINKs.join('\n')}
     document.body.removeChild(dlElem)
   }
 
+  // tag the selected (highlighted) text as an event or time
   const createMark = useCallback(tag => {
     if (window.getSelection) {
       const sel = window.getSelection()
@@ -337,6 +378,7 @@ ${newTLINKs.join('\n')}
     }
   }, [state.nextId])
 
+  // remove the highlighting element
   const removeMark = useCallback(id => {
     const ev = document.querySelector(`[data-id="${id}"].tml-ev-ano`)
     const textNode = document.createTextNode(ev.textContent)
@@ -345,33 +387,6 @@ ${newTLINKs.join('\n')}
     par.normalize()
     dispatch({type: 'REMOVE_EVENT', payload: {id, newText: par.innerHTML}})
   })
-
-  const testRelation = async (e1, e2, rel) => {
-    // fetch('/api/test', {
-    fetch(process.env.NEXT_PUBLIC_TEST_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        data: {
-          strings: state.eventStrings,
-          e1,
-          e2,
-          rel
-        }
-      })
-    }).then(response => response.json()).then(data => {
-      if (data.error) {
-        console.error(data.error)
-        window.alert(data.error)
-        return
-      }
-      const { status, strings } = data
-      window.alert(`That relation is ${status} according to the knowledge base.${status !== 'contradicted' ? `\nClick 'Add New Relation' to add:\n${strings}` : '\nAdding this relation is not recommended.'}`)
-    }).catch(e => console.error(e))
-  }
 
   return (
     <main id="annotate">

@@ -3,51 +3,52 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: refs.bib
+Warning--I didn't find a database entry for "ababzianidze2017parallel"
 Warning--empty year in aristotlePhysicsIV
 Warning--there's a number but no volume in Bunt2020
 Warning--there's a number but no series in fernando2015semantics
 Warning--empty author in ISO24617-1
 Warning--there's a number but no volume in kamp1981theory
 Warning--empty publisher in Mueller2008
-You've used 88 entries,
+You've used 95 entries,
             1940 wiz_defined-function locations,
-            1019 strings with 20353 characters,
-and the built_in function-call counts, 38230 in all, are:
-= -- 3856
-> -- 1311
-< -- 107
-+ -- 446
-- -- 431
-* -- 3108
-:= -- 6241
-add.period$ -- 287
-call.type$ -- 88
-change.case$ -- 643
-chr.to.int$ -- 83
-cite$ -- 94
-duplicate$ -- 1651
-empty$ -- 2828
-format.name$ -- 562
-if$ -- 7822
+            1055 strings with 21652 characters,
+and the built_in function-call counts, 41459 in all, are:
+= -- 4172
+> -- 1455
+< -- 115
++ -- 496
+- -- 481
+* -- 3370
+:= -- 6775
+add.period$ -- 310
+call.type$ -- 95
+change.case$ -- 701
+chr.to.int$ -- 90
+cite$ -- 101
+duplicate$ -- 1785
+empty$ -- 3048
+format.name$ -- 625
+if$ -- 8482
 int.to.chr$ -- 6
 int.to.str$ -- 0
-missing$ -- 91
-newline$ -- 451
-num.names$ -- 271
-pop$ -- 670
+missing$ -- 99
+newline$ -- 486
+num.names$ -- 292
+pop$ -- 737
 preamble$ -- 1
-purify$ -- 652
+purify$ -- 711
 quote$ -- 0
-skip$ -- 1253
+skip$ -- 1358
 stack$ -- 0
-substring$ -- 2735
-swap$ -- 468
-text.length$ -- 45
+substring$ -- 2930
+swap$ -- 508
+text.length$ -- 48
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 506
+type$ -- 544
 warning$ -- 6
-while$ -- 341
+while$ -- 365
 width$ -- 0
-write$ -- 1176
-(There were 6 warnings)
+write$ -- 1267
+(There were 7 warnings)

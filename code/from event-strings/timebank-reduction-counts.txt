@@ -1,2 +1,0 @@
-corpusfile,num_events,num_tlinks,num_timelines,problem_found
-wsj_0348.tml,32,24,14,None

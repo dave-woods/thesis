@@ -8,7 +8,6 @@ export const parseTML = inputString => {
       }
     }
     let nodes = []
-    // console.log([...clone.querySelectorAll('EVENT,TIMEX3')])
     if (xml.firstChild.getElementsByTagName('TEXT').length === 0) {
       nodes = xml.firstChild.childNodes
     } else {
@@ -23,7 +22,6 @@ export const parseTML = inputString => {
         rest
       }
     })
-    // console.log(instances)
 
     const pieces = []
     const events = []
@@ -80,8 +78,6 @@ export const parseTML = inputString => {
         transformed: pieces.join('').trim(),
         text: xml.documentElement.textContent.trim(),
         events,
-        // timexs,
-        // ids,
         tlinks
     }
 }

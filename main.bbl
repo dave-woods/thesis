@@ -26,6 +26,13 @@ Allen, J.~F. and Ferguson, G. (1994).
 \newblock {Actions and events in interval temporal logic}.
 \newblock {\em Journal of logic and computation}, 4(5):531--579.
 
+\bibitem[\protect\astroncite{Anderson et~al.}{1995}]{anderson1995serverless}
+Anderson, T.~E., Dahlin, M.~D., Neefe, J.~M., Patterson, D.~A., Roselli, D.~S.,
+  and Wang, R.~Y. (1995).
+\newblock Serverless network file systems.
+\newblock In {\em Proceedings of the fifteenth ACM symposium on Operating
+  systems principles}, pages 109--126.
+
 \bibitem[\protect\astroncite{Applegate and
   Cook}{1991}]{applegate1991computational}
 Applegate, D. and Cook, W. (1991).
@@ -92,6 +99,19 @@ Bunt, H. and Pustejovsky, J. (2010).
 Bunt, H.~C. (1985).
 \newblock {\em Mass terms and model-theoretic semantics}.
 \newblock Cambridge University Press, Cambridge.
+
+\bibitem[\protect\astroncite{Clocksin and
+  Mellish}{2012}]{clocksin2012programming}
+Clocksin, W.~F. and Mellish, C.~S. (2012).
+\newblock {\em {Programming in Prolog: Using the ISO standard}}.
+\newblock Springer Science \& Business Media.
+
+\bibitem[\protect\astroncite{Cooper et~al.}{1996}]{cooper1996using}
+Cooper, R., Crouch, D., Van~Eijck, J., Fox, C., Van~Genabith, J., Jaspars, J.,
+  Kamp, H., Milward, D., Pinkal, M., Poesio, M., et~al. (1996).
+\newblock Using the framework.
+\newblock Technical report, Technical Report LRE 62-051 D-16, The FraCaS
+  Consortium.
 
 \bibitem[\protect\astroncite{Curran et~al.}{2007}]{curran2007linguistically}
 Curran, J.~R., Clark, S., and Bos, J. (2007).
@@ -254,6 +274,11 @@ Kamp, H. and Reyle, U. (1993).
   Semantics of Natural Language, Formal Logic and DRT}}.
 \newblock Dordrecht: Kluwer.
 
+\bibitem[\protect\astroncite{Ketkar}{2017}]{ketkar2017introduction}
+Ketkar, N. (2017).
+\newblock Introduction to pytorch.
+\newblock In {\em Deep learning with python}, pages 195--208. Springer.
+
 \bibitem[\protect\astroncite{Khourshid}{2015}]{khourshid_2015}
 Khourshid, D. (2015).
 \newblock {XState}.
@@ -265,6 +290,12 @@ Khourshid, D. (2015).
 Kowalski, R. and Sergot, M. (1986).
 \newblock {A Logic-based Calculus of Events}.
 \newblock {\em New Generation Computing}, 4(1):67--95.
+
+\bibitem[\protect\astroncite{Kuhlman}{2009}]{kuhlman2009python}
+Kuhlman, D. (2009).
+\newblock {\em {A python book: Beginning python, advanced python, and python
+  exercises}}.
+\newblock Dave Kuhlman Lutz.
 
 \bibitem[\protect\astroncite{Kumar}{2005}]{kumar2005effective}
 Kumar, P.~P. (2005).
@@ -318,6 +349,12 @@ McCarthy, J. and Hayes, P.~J. (1969).
   Intelligence}.
 \newblock In {\em Machine Intelligence}, pages 463--502. Edinburgh University
   Press.
+
+\bibitem[\protect\astroncite{McGrath and Brenner}{2017}]{mcgrath2017serverless}
+McGrath, G. and Brenner, P.~R. (2017).
+\newblock {Serverless computing: Design, implementation, and performance}.
+\newblock In {\em 2017 IEEE 37th International Conference on Distributed
+  Computing Systems Workshops (ICDCSW)}, pages 405--410. IEEE.
 
 \bibitem[\protect\astroncite{Miller and Shanahan}{1999}]{Miller1999}
 Miller, R. and Shanahan, M. (1999).
@@ -459,6 +496,12 @@ Thielscher, M. (1999).
 \newblock {From situation calculus to fluent calculus: State update axioms as a
   solution to the inferential frame problem}.
 \newblock {\em Artificial intelligence}, 111(1-2):277--299.
+
+\bibitem[\protect\astroncite{Tilkov and Vinoski}{2010}]{tilkov2010node}
+Tilkov, S. and Vinoski, S. (2010).
+\newblock {Node.js: Using JavaScript to Build High-Performance Network
+  Programs}.
+\newblock {\em IEEE Internet Computing}, 14(6):80--83.
 
 \bibitem[\protect\astroncite{{TimeML Working Group}}{2005}]{timeml2005timeml}
 {TimeML Working Group} (2005).
