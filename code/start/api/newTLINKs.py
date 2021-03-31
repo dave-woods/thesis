@@ -34,7 +34,11 @@ class handler(BaseHTTPRequestHandler):
         result = dict()
         try:
             vocab = passed_data['vocabulary']
-            strings = frozenset(apiscripts.strfns.flatten_list(passed_data['strings']))
+            strings = None
+            try:
+                strings = frozenset(apiscripts.strfns.flatten_list(apiscripts.strfns.superpose_all_langs_sensible(passed_data['strings'], 12)))
+            except:
+                strings = frozenset(apiscripts.strfns.flatten_list(passed_data['strings']))
             idx = 0
             lid = 0
             links = []

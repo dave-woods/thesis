@@ -221,6 +221,9 @@ main#annotate {
     display: flex;
     flex-direction: column;
 }
+#annotate .sb-string {
+    cursor: pointer;
+}
 #annotate .sb-string:not(:last-child)::after {
     content: ',';
 }

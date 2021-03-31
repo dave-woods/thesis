@@ -258,7 +258,7 @@ I, the undersigned, consent to the examiner retaining a copy of the thesis beyon
 \begin{abstract}
 \addcontentsline{toc}{section}{Abstract}
 \noindent
-%This work describes the use of strings as models for the representation of temporal data -- i.e. events and times -- to form the basis of a framework for reasoning about that data. Some of the relevant motivating literature is examined, and a breakdown is given of the work done to develop and flesh out the framework so far, including discussion on superposition for collation of information into single, timeline-like strings, and projection which allows for the identification of temporal relations between arbitrary events and times from the strings. Possible ways of treating incomplete information are also looked at, including moving from intervals as primitives to semi-intervals. Some work done to implement this framework in code is described, with a discussion of potential applications in modern intelligent systems, including tooling for annotation software.
+%This work describes the use of strings as models for the representation of temporal data -- i.e. events and times -- to form the basis of a framework for reasoning about that data. Some of the relevant motivating literature is examined, and a breakdown is given of the work done to develop and flesh out the framework so far, including discussion on superposition for collation of information into single, timeline-like strings, and projection which allows for the identification of temporal relations between arbitrary events and times from the strings. Possible ways of treating incomplete information are also looked at, including moving from intervals as primitives to semi-intervals. Some work done to implement this framework in code is described, with a discussion of potential applications in modern  i7-6700 CPU with 16GB memory.ligent systems, including tooling for annotation software.
 \end{abstract}
 
 \newpage
@@ -494,7 +494,7 @@ In general, if a pair of events that are to be temporally related are in separat
 The next section takes a deeper look at the TimeBank corpus and the annotation schema with which it is marked up, TimeML.
 
 \subsection{Temporal Annotation}\label{sub:annotation}
-Ideally, humans who use artificially intelligent systems for question-answering, scheduling, or other applications which require some level of reasoning about temporal data won't ever have to consider the annotation which drives it---except, of course, in the case when annotation is itself the goal of using the system. Computer systems have no inherent understanding of natural language, and rely on the samples they have been provided with in order to give a facsimile of the communication abilities that humans have. The better the quality of those samples, and the more information embedded within them, the better the system can interpret human language, and in turn generate interpretable output.
+Ideally, humans who use artificially  i7-6700 CPU with 16GB memory.ligent systems for question-answering, scheduling, or other applications which require some level of reasoning about temporal data won't ever have to consider the annotation which drives it---except, of course, in the case when annotation is itself the goal of using the system. Computer systems have no inherent understanding of natural language, and rely on the samples they have been provided with in order to give a facsimile of the communication abilities that humans have. The better the quality of those samples, and the more information embedded within them, the better the system can interpret human language, and in turn generate interpretable output.
 
 The annotation of a document allows for information about the text to be expressed in such a way as to make the implicit explicit---revealing a layer of semantics which a human may be able to infer, but an artificial agent would not. There are many ways to mark up a text, and many concepts which may warrant marking up, but in terms of temporal data, the most prudent schema to follow is that of TimeML \citep{timeml2005timeml} and its successor, which has become the ISO (International Organization for Standardization) standard for temporal annotation: ISO-TimeML \citep{ISO24617-1}, a part of the ISO Semantic Annotation Framework---see \citet{Bunt2020}.
 
@@ -511,7 +511,7 @@ The initial goal for creating the TimeML language came from a desire to improve 
 \end{itemize}
 Speakers will rely on their listeners being able to use context to interpret what these temporal expressions refer to.
 
-TimeML aimed, in part, to give implicit and relative temporal expressions an explicit anchoring, in order to assist with intelligent systems' temporal awareness. \citet[p. 125, (1a.)]{Pustejovsky2005} wanted to enable question-answering systems to be able to answer questions such as
+TimeML aimed, in part, to give implicit and relative temporal expressions an explicit anchoring, in order to assist with  i7-6700 CPU with 16GB memory.ligent systems' temporal awareness. \citet[p. 125, (1a.)]{Pustejovsky2005} wanted to enable question-answering systems to be able to answer questions such as
 \begin{itemize}
 	\item[\ipp] ``Is Schr\"{o}der currently German chancellor?''
 \end{itemize}
@@ -1239,7 +1239,7 @@ Note that this result is still a language (a set of strings), and that there may
 	\end{tabular}
 	\captionof{table}{Projections of \cref{ex:spvc-allen-transitivity} matching Allen's transitivities.}\label{tab:spvc-allen-transitivity-projections}
 \end{center}
-In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an Intel i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary-constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary-constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings} is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
+In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an  i7-6700 CPU with 16GB memory. i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary-constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary-constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings} is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
 \begin{center}
 	\begin{tabular}{c|c|c|c}
 	& $\triangle = *$ & $\triangle = v\!c$ & Decrease in time\\
@@ -1836,7 +1836,7 @@ The last two relations in \Cref{tab:freksa-projections}, shown again in \Cref{ta
 	\end{tabular}
 	\captionof{table}{The remaining Freksa relations and the strings they project to.}\label{tab:freksa-projections-b}
 \end{center}
-Now there is a way of representing (almost) all of the disjunctions that may arise from superpositions of strings representing relations between times and events derived from \verb|<TLINK>| tags as single strings. This presents a useful way to tackle the often large sizes of the languages produced when trying to string together the \verb|<TLINK>|s to form a picture of an annotated document's temporal structure in a timeline-like manner. However, there is a notable tradeoff for using semi-intervals instead of intervals, which is that in the process of reducing the cardinality of the output languages, the vocabulary for the strings have become much more complex, and including non-atomic formulas such as the disjunctions within string components also adds furter complexity to superposition computation. Additionally, the strings which represent some of the Freksa relations are not in all cases necessarily intuitive---for instance, while \EventString{\alpha(a),\alpha(b)|{}} shows neatly that both intervals $a$ and $b$ begin at the same moment for the `head to head' relation, it's not immediately obvious why \EventString{\alpha(b) \lor \omega(a)} should correspond with `precedes'. The additional complexity that arises for the benefit of reducing the amount of data to process threatens the tenet of \citet[p. 202]{Freksa1992} that the representation should not become more complex the less is known.
+Now there is a way of representing (almost) all of the disjunctions that may arise from superpositions of strings representing relations between times and events derived from \verb|<TLINK>| tags as single strings. This presents a useful way to tackle the often large sizes of the languages produced when trying to string together the \verb|<TLINK>|s to form a picture of an annotated document's temporal structure in a timeline-like manner. However, there is a notable tradeoff for using semi-intervals instead of intervals, which is that in the process of reducing the cardinality of the output languages, the vocabulary for the strings have become much more complex, with two symbols for every interval where there was only one previously, and including non-atomic formulas such as the disjunctions within string components also adds further complexity to superposition computation. Additionally, the strings which represent some of the Freksa relations are not in all cases necessarily intuitive---for instance, while \EventString{\alpha(a),\alpha(b)|{}} shows neatly that both intervals $a$ and $b$ begin at the same moment for the `head to head' relation, it's not immediately obvious why \EventString{\alpha(b) \lor \omega(a)} should correspond with `precedes'. The additional complexity that arises for the benefit of reducing the amount of data to process threatens the tenet of \citet[p. 202]{Freksa1992} that the representation should not become more complex the less is known.
 
 As such, it would be useful to consider an alternate approach to treating situations where extracting and combining strings from the \verb|<TLINK>| tags of a TimeML document leads to unwieldy numbers of generated strings due to loose constraints from the relation types on the times and events in the narrative. This new approach may be comortably used alongside the semi-interval way of handling if so desired, as shall be shown.
 
@@ -1874,7 +1874,7 @@ superpose_languages(A, B, limit):
 superpose_all_languages(list, limit):
   for i=0, i++, i < len(list):
     for j=i+1, j++, j < len(list)
-      sp = superpose_languages found in \cref{ex:sens-sp}(list[i], list[j], limit)
+      sp = superpose_languages(list[i], list[j], limit)
       if sp = {}:
         # inconsistent
       elif sp = {list[i], list[j]}:
@@ -1887,7 +1887,7 @@ superpose_all_languages(list, limit):
   return list
 \end{verbatim}
 \end{figure}
-\captionof{figure}{Pseudo-code for superposing a list of languages of strings.}\label{other:pseudo-code-spsens}
+\captionof{figure}{Pseudo-code for superposing a list of languages of strings.}\label{fig:pseudo-code-spsens}
 \end{center}
 The result of this procedure will be a list of languages which were not superposed together---or if all of the languages were superposed, then the list will contain just one language. Each language will contain at most $k$ strings, where $k$ was the pre-determined limit in \cref{def:sensible-superposition}.
 
@@ -1908,7 +1908,7 @@ The strings derived from these tags are in \cref{ex:case-study-strings}:
 \begin{align}
 	\{\Equals{e9}{e30}, \Before{e4}{t0}, \Before{e2}{t0}, \Before{e9}{t0}, \During{e30}{t31}\}\label{ex:case-study-strings}
 \end{align}
-Using the normal procedure, these strings are superposed together, and the result is a language containing 7,449 strings, each of which has a vocabulary of $\{e9,e30,e4,t0,e2,t31\}$. Using the sensible superposition along with the procedure in \Cref{other:pseudo-code-spsens}, the result is a list of three languages: two of which contain a single string, and the third of which contains five strings:
+Using the normal procedure, these strings are superposed together, and the result is a language containing 7,449 strings, each of which has a vocabulary of $\{e9,e30,e4,t0,e2,t31\}$. Using the sensible superposition along with the procedure in \Cref{fig:pseudo-code-spsens}, the result is a list of three languages: two of which contain a single string, and the third of which contains five strings:
 \begin{align}
 	\{\EventString{{}|t31|e30,e9,t31|t31|{}|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t31|{}},\label{ex:sp-sens-result}\\
 	\EventString{{}|t31|e30,e9,t31|t31|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t0|{}},\notag\\
@@ -2046,64 +2046,26 @@ The gap operation is useful for using strings in the context of question-answeri
 The next chapter describes the details of how the string framework which was described in \cref{sec:fst} and used throughout the current chapter is currently implemented. In particular, an illustrative tool is discussed which may be used to annotate text with a slightly modified subset of the TimeML 1.2 \citep{timeml2005timeml} schema, or to edit and examine a document that has already been marked up.
 \newpage
 \section[String Temporal Annotation and Relation Tool (START)]{String Temporal Annotation and Relation Tool\\(START)}\label{sec:implementation}
-
-% The focus is on using strings for discovery and consistency-checking of relations between a document's times and events
-% Proof of concept tool rather than comparison with other annotation tools,
-% illustrates what has been enabled by strings
-% Functional programming paradigm
-
 In order to implement the string framework for representing times and events as described in \Cref{sec:fst} and utilised in \cref{sec:methods}, various approaches were trialled using different programming languages, including Prolog, JavaScript (Node.js), and Python \citep[see][respectively for more on each]{clocksin2012programming,tilkov2010node,kuhlman2009python}. Ultimately, Python (version 3) was chosen for its speed, wide cross-platform availability, and ease of use through familiarity.
 
 Python is a high-level, dynamically-typed, interpreted programming language implemented in C, with a large standard library that has found widespread use among scientific communities, in part thanks to the availability of tooling such as the Natural Language Toolkit (NLTK) \citep{Bird2009} for natural language processing and PyTorch \citep{ketkar2017introduction} for machine learning, as well as many other packages which are easily accessible through an official package installer.
 
 Although Python has support for object-oriented programming styles, a functional programming paradigm was used in the design of the framework, wherein the use of mutable, global state is avoided. Functions are designed so as to take some input and give some output, without causing side effects, so that running a function with a particular input will always give the same result. This style of programming was chosen so as to better reflect the logical forms of the string operations which are described in \cref{ssub:operations}---a mathematical function has no state, it simply takes some input and transforms it into an output.
 
-In order to illustrate what is enabled by the use of the string framework, a proof-of-concept tool for annotation was built as a web-based application (though, with a little effort, it may also be downloaded and set up to be used locally without an internet connection), which is available at \url{http://scss.tcd.ie/~dwoods/thesis/code/start}\footnote{Also available at \url{https://start-dwoodscs.vercel.app}.}, and the code is available to view at \url{https://github.com/dave-woods/thesis/tree/master/code/start}. The front-end of the application, known as START for String Temporal Annotation and Relation Tool, was developed and built using the Next.js (\url{https://nextjs.org}) framework upon top of the React (\url{https://reactjs.org}) JavaScript library. React is designed for building fast user interfaces through a component-based library that only updates the parts of the web page's document object model (DOM) which need to be updated, rather than re-rendering the entire page on every request or interaction sent from the page. Next.js enables web pages to be rendered on the server rather than on the client's machine, and provides some extra abstractions over common tasks in React. Next.js is also tightly integrated with the cloud-based hosting platform Vercel (\url{https://vercel.com/docs}) which allows for Python code to be hosted as part of the application in the form of so-called serverless functions \citep{anderson1995serverless} where ``application logic is split into functions and executed in response to events'' \citep[p. 405]{mcgrath2017serverless}. The result of this is that for most operations of the string framework made from the application, the client will send a request to an API endpoint hosted by Vercel. On receiving the request, Vercel will trigger the appropriate function from the string framework with any data passed along with the API request. Once the function has completed, it returns any data (or errors) to the client to be used or displayed as appropriate.
-% Ultimately a widely-useable package was created that could be used either on the web or as a standalone application, as this gave the broadest opportunity to demonstrate the use of the developed technology.
+In order to illustrate what is enabled by the use of the string framework, a proof-of-concept tool for annotation was built as a web-based application (though, with a little effort, it may also be downloaded and set up to be used locally without an internet connection), which is available at \url{http://scss.tcd.ie/~dwoods/thesis/code/start}\footnote{Also available at \url{https://start-dwoodscs.vercel.app}.}, and all of the code is available to view at \url{https://github.com/dave-woods/thesis/tree/master/code/start}. The main drive behind this tool is on using strings for discovery and consistency-checking of relations between a document's times and events, while providing a useful visual aid for a human annotator to verify that the timeline of the document, inasmuch as it can be determined, lines up with their understanding of the narrative's temporal structure.
 
-% It combined data and technologies from a number of sources to create a package that could be used to reason about temporal information, and augment annotation-based data in a way that is both efficient and simple-to-use \nb{hard claim to make without a study backing it up...}
+The front-end of the application, known as START for String Temporal Annotation and Relation Tool, was developed and built using the Next.js (\url{https://nextjs.org}) framework upon top of the React (\url{https://reactjs.org}) JavaScript library, both of which are open source software. React is designed for building fast user interfaces through a component-based library that only updates the parts of the web page's document object model (DOM) which need to be updated, rather than re-rendering the entire page on every request or interaction sent from the page. Next.js enables web pages to be rendered on the server rather than on the client's machine, and provides some extra abstractions over common tasks in React. Next.js is also tightly integrated with the cloud-based hosting platform Vercel (\url{https://vercel.com/docs}) which allows for Python code to be hosted as part of the application in the form of so-called serverless functions \citep{anderson1995serverless} where ``application logic is split into functions and executed in response to events'' \citep[p. 405]{mcgrath2017serverless}. The result of this is that for most operations of the string framework made from the application, the client will send a request to an API endpoint hosted by Vercel. On receiving the request, Vercel will trigger the appropriate function from the string framework with any data passed along with the API request, using JSON as a format for communication between the front-end and back-end. Once the function has completed, it returns any data (or errors) to the client to be used or displayed as appropriate.
 
-\subsection{Back-end Pipeline}\label{sub:backend} % ?NLTK
-This is the main stuff. Lots of python code all interacting with the data and PMB and Boxer (and the failure of old boxer and why the output is basically theoretical).
+For the reader's convenience, two video files are available which demonstrate the tool in use. The first is located at \url{https://www.scss.tcd.ie/~dwoods/thesis/code/assets/annotate-text.mp4} and shows the process of working with a pre-annotated TimeML file. The second is located at \url{https://www.scss.tcd.ie/~dwoods/thesis/code/assets/annotate-plain-text.mp4} and shows the process of working with and adding annotation to plain text.
 
-Describe all the moving parts, but mostly go into detail about the different API layers (i.e. multiple languages, tooling exposing only certain parts, NLTK having only some parts up to scratch), and the code that I personally wrote to stitch them all together, since that's basically the only sort-of valuable thing in this entire project.
+An important note for understanding the notation in the code and the tool is that, since strings of times and events as used in the current work are sequences of sets of symbols, the appropriate format to represent these in the code would be lists of sets---and indeed, this is the underlying representation. However, since both Python and JavaScript have strings as built-in types, an alternative but equivalent representation is used to write the strings. This increases their portability, since list in Python and arrays in JavaScript are heavier objects that use more memory than the built-in strings. In this new notation, the pipe character `$|$' is used to denotate the boundary between two consecutive string components. For example, the string \EventString{{}|a|a,b|b|{}} can be written as ``\verb!|a|a,b|b|!''. A simple function can translate from a string of this kind to a list of components and back again.
 
-pseudocode of superpose all langs sensible:
+\subsection{Back-end API}\label{sub:backend} % ?NLTK
+The majority of the implementation of the framework is contained within a single Python file, which is called \verb|strfns.py| in the Appendices. Following the functional programming style meant that any of the operations defined in \cref{ssub:operations} would be implemented by composing together several Python functions, each of which has a single clear task. The functions need to be pure, meaning that they have no side effects, and running a function any number of times on the same input will produce the same output every time. As such, the \verb|strfns.py| file contains only functions---in order to use them, they must be imported into another file, which is exactly what happens in the other Python files included in the Appendices. In fact, all of the other Python files also only define functions---these are the serverless functions which are hosted by Vercel. When the front-end sends a request to one of these endpoints, the \verb|handler| class in each of \verb|freksa.py|, \verb|newTLINKs.py|, \verb|superpose.py|, and \verb|test.py| triggers the (sole) function it contains, \verb|do_POST|, which performs the requested data manipulations and sends the results back to the client.
 
-Superposes all langs sensible takes a list of languages of strings and attempts to superpose them all together, while avoiding superpositions of languages with no shared vocabulary and which will produce a result no longer than some user-specified limit (default is 12, since 13 usually is the result from no relation being found). When a superposition is avoided, the constituent languages are returned along with any successful superpositions.
+There is, however, one caveat to the purity of the \verb|strfns.py| file, which is that the \verb|superpose_sensible| function uses a decorator which implements a LRU-style cache from the standard \verb|functools| library. The decorator wraps the function in another function, encapsulating it and giving it access to a cache object which uses the LRU stategy: that is, the `Least Recently Used' items in the cache will be removed to make room for new items---compare with a FIFO or `First In First Out' strategy which says that newer entries are the most likely to be reused, where LRU says that recently used entries are the most likely to be resused. So technically the \verb|superpose_sensible| function does have a side effect of potential cache mutation, rather than being a completely pure function. However, for all intents and purposes it is still essentially pure, in that passing the function the same inputs will always produce the same outputs, it'll just retrieve them from the cache rather than computing them after the first time.
 
-\begin{verbatim}
-superpose_sensible(a, b, lim):
-  if a = b:
-    # same string
-    return {a}
-  if Va = Vb:
-    # inconsistent
-    return {}
-  if (Va intersect Vb) = 0 or len(superpose(a, b)) > lim:
-    # disjoint vocab
-    return {a, b}
-  else:
-    return superpose(a, b)
-
-superpose_languages(A, B, lim):
-  return superpose_sensible(a, b, lim) for a in A, for b in B
-
-superpose_all_languages(list, lim):
-  for i=0, i++, i < len(list):
-    for j=i+1, j++, j < len(list)
-      sp = superpose_languages(list[i], list[j], lim)
-      if sp = {}:
-        # inconsistent
-      elif sp = {list[i], list[j]}:
-        # superposition avoided
-      else:
-        newList = sp + (list - {list[i], list[j]})
-        return superposition_all_languages(newList)
-  return list
-\end{verbatim}
-
-Reproducing \cref{ex:case-study-strings} and the result of their sensible superposition \cref{ex:sp-sens-result} below for convenience.
+Since the algorithm for computing the sensible superposition of a list of languages---see \Cref{fig:pseudo-code-spsens}, p. \pageref{fig:pseudo-code-spsens}---involves a nested for-loop as well as recursion, the tradeoff for sacrificing a little functional purity and some memory space is a dramatic increase in efficiency. This can be seen best through example, so going back to the \verb|wsj_1073| file from the TimeBank corpus, the strings derived from the \verb|<TLINK>| tags and the result of sensibly superposing these are reproduced from \cref{ex:case-study-strings} and \cref{ex:sp-sens-result} below for convenience.
 \begin{align}
 	\{\Equals{e9}{e30}, \Before{e4}{t0}, \Before{e2}{t0}, \Before{e9}{t0}, \During{e30}{t31}\}\label{ex:caching-strs}
 \end{align}
@@ -2112,25 +2074,147 @@ Reproducing \cref{ex:case-study-strings} and the result of their sensible superp
 	\EventString{{}|t31|e30,e9,t31|t31|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t0|{}},\notag\\
 	\EventString{{}|t31|e30,e9,t31|t31|t0,t31|{}}\}, \{\EventString{{}|e4|{}|t0|{}}\}, \{\EventString{{}|e2|{}|t0|{}}\}\notag
 \end{align}
-\nb{updated to 1000}
-Also taking advantage of Python's built-in caching, the most recent 100 (string) superpositions are stored, which can vastly improve the speed of the calculation. For example, using Python's timeit function to test how much time repetitions of a function takes, with the input from \cref{ex:caching-strs}, we find the following times:
+The LRU cache implementation allows for a maxsize to be set, so the most recently used 1000 (string) superpositions are kept in the cache, which can vastly improve the speed of the calculation. Using Python's built-in \verb|timeit| functionality to test how much time repetitions of a function takes\footnote{Running with Python v3.7.3 (64-bit) on Ubuntu 16.04 using an Intel i7-6700 CPU with 16GB memory.}, with the input from \cref{ex:caching-strs}, we find the following times while varying whether sensible superposition used the cache or not:
 \begin{center}
 	\footnotesize
 	\begin{tabular}[h!]{|r|c  c  c|}
 		\hline
-		Iterations & No caching (s) & Caching (s) & $\frac{caching}{no caching}$ (\%)\\
+		\textbf{Iterations} & \textbf{No caching (s)} & \textbf{Caching (s)} & $\frac{caching}{no caching}$ (\%)\\
 		\hline
-		1 & 0.04596 & 0.00018 & 0.39\%\\
-		100 & 1.60466 & 0.02367 & 1.48\%\\% 32 vs 100
-		10000 & 156.47007 & 0.27928 & 0.18\%\\% 98 vs 14
+		1 & 0.02069 & 0.00018 & 0.87\%\\
+		100 & 1.61041 & 0.0063 & 0.39\%\\% 32 vs 100
+		10000 & 163.17628 & 0.26268 & 0.16\%\\% 98 vs 14
 		\hline
 	\end{tabular}
-	\captionof{table}{Caching superpositions improving efficiency.}
+	\captionof{table}{Caching superpositions vastly improving efficiency.}
 \end{center}
+On average, the version using caching took less the half of one percent of the time that the non-caching version took. Since these functions are to be used as part of an API which forms the back-end to a web-based application, long waiting times are very undesirable. An annotator using a tool does not want to have to wait for the tool to keep up with them---really, a tool that makes itself noticeable for any reason rather than just facilitating the task at hand is problematic.
+
+% Just for comparisons sake, using vocabulary-constrained superposition with the same inputs, in comparison with the non-caching sensible superposition.
+% \begin{center}
+% 	\footnotesize
+% 	\begin{tabular}[h!]{|r|c  c  |}
+% 		\hline
+% 		\textbf{Iterations} & \textbf{$\sensp$ (s)} & \textbf{$\spvc$ (s)}\\
+% 		\hline
+% 		1 & 0.02069 & 0.43679\\
+% 		10 & 0.47613 & 4.0403\\
+% 		100 & 1.61041 & 40.9049\\
+% 		1000 & 0.02069 & 408.9788\\
+% 		\hline
+% 	\end{tabular}
+% 	\captionof{table}{Caching superpositions vastly improving efficiency.}
+% \end{center}
+Other than the superposition algorithm, there are also a number of functions defined for reasoning with strings. In particular, there are a set of projection functions which use the definition of projection in \cref{def:projection}, p. \pageref{def:projection} and extend it so that there are definitions of a language projecting to a string if all strings in the language project to the string, a language projecting to a language if all strings in the first language project to all strings in the second, a language containing a string if some string in the language projects to it, and a language contradicting a string if the language doesn't contain it and there is some string in the language whose vocabulary contains the vocabulary of the string.
+\begin{align}
+	L \sqsupseteq s' &\Longleftrightarrow \forall s \in L ~(s \sqsupseteq s')\\
+	L \sqsupseteq L' &\Longleftrightarrow \forall (s \in L,~ s' \in L')~(s \sqsupseteq s')\\
+	contains(L, s') &\Longleftrightarrow \exists s \in L ~(s \sqsupseteq s')\\
+	contradicts(L, s') &\Longleftrightarrow \lnot contains(L, s') \land \exists s \in L ~(\V_s \supseteq \V_{s'})
+\end{align}
+These functions are used as part of the relation testing procedure while annotating a text with TimeML---when a user wants to add some relation between a pair of events or times, which will be added in the form of a string, first it is reasonable to test whether that string and relation are possible given the current knowledge base of relations, or if it's even contradicted by some other relation.
+
+There's also an implementation of the gap algorithm described in \cref{ssub:residuals} which calculates the set of strings which would need to be superposed with some premises in order to entail some conclusion, an algorithm to determine which string of some list uses the least simultaneous resources, which helps to answer the trains problem in \Cref{tab:train-problem-clues}, p. \pageref{tab:train-problem-clues}, and functions to translate to and from between a string using intervals and a string using semi-intervals, as described in \cref{ssub:incomplete}.
+
+The file \verb|freksa.py| is effectively a lookup table, providing the set of strings which correspond with any given relation from either Allen's set or the extended Freksa set. \verb|newTLINKs.py| uses the concept of analogous strings---see \cref{para:analogous-strings}, p. \pageref{para:analogous-strings}---to determine the TimeML \verb|<TLINK>| relation type to use when translating back from strings during the export process of the START application.
+
 \subsection{Front-end Interface}\label{sub:frontend}
-% Brython application with some JS to grease the wheels---why not TKinter? because HTML and CSS are convenient and widely used tools and allow for a web-based interface as well as an offline tool (electron for packaging? maybe?) why not just use js frontend and python in the backend? python generators are hard, and don't play nice when you want to use `next()' to use an effectively `pausable' function and get a new value.
+A web-based application was chosen for the graphical user interface (GUI) as this ensures the widest coverage in terms of accessibility, as the only requirement is a modestly up-to-date web browser. It is possible to download the system and run it locally, but it's not envisioned that there would be much need unless planning to annotate without a web connection for an extended period of time. The key benefit of running the application in a web browser is that there is no need to download or install anything to get started, and additionally being able to design the GUI using HTML and CSS is somewhat more straightforward than some of the existing GUI toolkits for Python---again, there is no need to download or install anything new, as everything operates within the same interface.
 
+On visiting the web page at \url{http://scss.tcd.ie/~dwoods/thesis/code/start}, the user is greeted with a blank textarea input. Most of the functionality is inactive until some text has been entered into this input. There are two sample files from the TimeBank corpus \citep{pustejovsky2006timebank} linked on the lower left of the screen, which the user can copy into the textarea to get a feel for how to use the tool. Once the user clicks the `Annotate' button, the system will try to parse the input as a TimeML file, but if it fails to parse it, then it will be considered as plain text. If this is the case, then all of the features described below will work just the same, but the user will have to begin marking up from scratch, as there must be some tagged events or times to begin with before they can be related and the relation transformed into a string.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.9\textwidth]{images/START-blank.png}
+		\captionof{figure}{START: Initial blank input.}
+	\end{figure}
+\end{center}
+Assuming the user chose to input some TimeML\footnote{The file used in the below screenshots is the `Sample 1' file available on the web page, which is the same document of the TimeBank corpus used in the example in \Cref{fig:case-study-tlinks}, document ID \texttt{wsj\_1073}.}, the input area will change to instead show the text content of the inputted document with the times and events highlighted in pink and yellow, respectively. All of these times and events are also added to a list on the right-hand side of the screen---noting that \verb|<EVENT>| and \verb|<MAKEINSTANCE>| tags have been amalgamated as described in \cref{ssub:tlinks}. Finally, the strings that are derived from the \verb|<TLINK>| tags are added to the `String bank' section in the lower left of the screen, and a new panel becomes available on the lower right side.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.9\textwidth]{images/START-imported.png}
+		\captionof{figure}{START: The screen after a TimeML file is imported.}
+	\end{figure}
+\end{center}
+At this point the user is in the main flow of the system. They are free to immediately click the `Export' button to export the data to a new TimeML file and leave the program if they wish---noting that the export works from what the system knows of the data, rather than basing it on the original input. Internally, since the relations are stored as strings, which use Allen's set rather than the TimeML set, and some of the TimeML relations map to the same Allen relation---see \Cref{fig:tlink-allen-translation}, p. \pageref{fig:tlink-allen-translation}---it is possible that the relations specified in the original document will be different from those in the exported one, though it is guaranteed that they will map to the same Allen relation. Also, it is worth bearing in mind that the TimeML that is exported is a subset of the full schema, so the \verb|<SIGNAL>|, \verb|<SLINK>|, and \verb|<ALINK>| tags are ignored, as they are not directly involved in the computations relating to temporal ordering.
 
+If the user doesn't in fact leave immediately, they may notice that the temporal relations found in the document have been imported as languages of strings.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.4\textwidth]{images/START-sp-1.png}
+		\captionof{figure}{START: The String bank after importing TimeML.}
+	\end{figure}
+\end{center}
+Clicking on the `Superpose' button or pressing the S key on the keyboard will send a request to the back-end to compute the sensible superposition of all of the languages in the String bank, which may result in a smaller number of languages, as it does in this case. The strings have been combined where it made sense to do so and the result of superposition did not create a language with a cardinality greater than the set limit---see \cref{def:sensible-superposition}, p. \pageref{def:sensible-superposition}. The limit is initially set to a default value of 12, so that strings which do not constrain each other tightly will not be superposed, though this limit can be altered by clicking the `Help' button. Setting the limit to a value of 0 will perform the superposition without a limit at all, though this can produce unwieldy results and may be slower in terms of performance, so is not recommended if not necessary. If, during superposition, an empty set is ever returned from Python, this implies that an inconsistency was present in some of the strings in the String bank. The system will warn the user that a problem was found, and it will show the languages that were being superposed when the error occurred.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.4\textwidth]{images/START-sp-2.png}
+		\captionof{figure}{START: The String bank after clicking `Superpose'.}
+	\end{figure}
+\end{center}
+If the user hovers their mouse over one of the strings in the String bank, all of the highlights in the main text area will turn off except for any times and events that are mentioned in that string. If the user clicks on a string, an overlay will appear which shows the string in the conventional notation established in \cref{sub:strings}, with the event text appearing in place of the time or event IDs, so as to help the user decide whether the string seems valid or not, for example in the case of trying to narrow down a disjunction. A list of all the \verb|<TLINK>| tags which can be derived from the string is also displayed. If the user wishes to remove the string from the knowledge base for whatever reason, the `Remove' button at the top of the panel will do this. The user can press the Escape key, or click outside the panel to return to the main screen.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{images/START-clicked-string.png}
+		\captionof{figure}{START: Examine a particular string.}
+	\end{figure}
+\end{center}
+Moving over to the lower right panel, there are three drop-down menus and three buttons that become available after importing at least one event or time. If the user picks two different intervals from the drop-down menus, the `Try Find Relation' will become enabled. Clicking this will search the strings in the String bank and try to find a relation or disjunction of relations that is entailed by one or more of the strings.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.4\textwidth]{images/START-try-1.png}
+		\captionof{figure}{START: The relation panel.}
+	\end{figure}
+\end{center}
+If the system finds any relations, these are reported to the user at the top of the screen. However, if no relations can be found from superposition of the strings, and both of the intervals are verbal events, then the system will attempt to make a recommendation of the relation based on the tenses and aspects of the pair of verbs, as in \citet{Derczynski2013}'s empirical validation of \citet{reichenbach1947elements}'s framework of tense and aspect. The system follows the table in \Cref{fig:tense-aspect-freksa}, p. \pageref{fig:tense-aspect-freksa}, though the suggestion will be accompanied by a warning that it \textit{is} merely a suggestion, and if one of the verbs has the event class of `REPORTING', this is highlighted to the user, since it raises the likelihood that the events are in separate temporal contexts.  If no relations can be found for the selected pair of intervals via either methodology, the user is informed of this instead.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.4\textwidth]{images/START-try-2.png}
+		\captionof{figure}{START: Relations found for a pair of intervals.}
+	\end{figure}
+\end{center}
+If the user selects one of the relations from the drop-down list, and then clicks `Test Relation', the system will attempt to check the string(s)\footnote{The user can select an option in the `Help' menu which will allow them to choose Freksa-labelled relations in addition to the normal set as the input.} relating to that relation against the String bank. It will then inform the user with one of three statuses:
+\begin{itemize}
+	\item `Found': that relation already exists in the knowledge base, though it may appear in a disjunctive language, so it may be safely added to the String bank.
+	\item `Possible': that relation was not found in the knowledge base, but neither was it contradicted. It may be added to the String bank.
+	\item `Contradicted': A string was found that was inconsistent with that relation. It should not be added to the String bank.
+\end{itemize}
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.4\textwidth]{images/START-test-2.png}
+		\captionof{figure}{START: The result of testing a particular relation for consistency within the knowledge base.}
+	\end{figure}
+\end{center}
+Clicking the `Add New Relation' button will, as might be expected, add a string to the String bank representing the relation that is currently specified by the drop-down menus. The full set of TimeML relations is available here, with the addition of Allen's `overlaps' and its inverse as `OVERLAPS' and `OVERLAPPED\_BY'. The primary reasoning behind including these despite their scarcity in natural language is because of the fact that they appear in a number of the disjunctions that can occur from superposition of strings.
+
+Moving up to the top left of the screen, where the main text is, if the user moves their mouse over one of the highlighted terms, its eventID or timeID as appropriate will be indicated to help the user distinguish in case there are several highlighted elements with the same text content. The user can tag a new event by highlighting the relevant text with the mouse, and either clicking on the `Tag Event' button, or pressing the E key on their keyboard. The new event will be added to the panel on the right side of the screen, and will become available to be selected in the drop-down menus in order to relate the event to another interval. The process is the same for tagging a new time in the text, either clicking the `Tag Time' button, or pressing the T key on the keyboard after selecting some text.
+
+Finally, moving to the panel on the right, which contains a list of all of the times and events that have been tagged in the text, if the user moves their mouse over one of the items in the list, then only the text marked up for that event or time will be highlighted in the main text area, so as to ensure the user is aware exactly which interval they are dealing with. The user can click on the `+' button to the right of the time or event to bring up another overlay containing that time or event's attributes. If the interval is not one that was imported, the attributes will be set to default values, which can be edited as needed, clicking the `Update' button to save the new values. The user can again press Escape or click outside of the panel to return to the main view. If the user clicks on the `$\times$' button, that event or time will be removed from the document, along with any strings which mention it. This is a slightly heavy-handed approach, but it is preferable to the inconsistency of being able to export a file which contains \verb|<TLINK>| tags that point to a non-existant event or time.
+\begin{center}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{images/START-event-attrs.png}
+		\captionof{figure}{START: Editing some of an event's attributes.}
+	\end{figure}
+\end{center}
+If at any point the user makes an error or wishes to go back to a previous state for some other reason, they can click the Undo button or press the U key on their keyboard to retrace their steps through their last 50 actions. This limit was chosen somewhat arbitrarily as a means to keep a handle on the memory usage in the application, though increasing the limit is unlikely to have a significant performance impact. The use can also reset the application's state at any point by clicking the `Reset' button, although this action cannot be undone, and this is effectively equivalent to refreshing the browser page.
+
+When the user is finished with a file, they can click the `Export' button which, as mentioned, will prompt the browser to download the TimeML file. One alteration to the format of the output not already mentioned is what happens when a disjunction of relations exists in the knowledge base for some pair of intervals. Rather than exporting multiple \verb|<TLINK>| tags relating the same pair of intervals, which would instead be interpreted as the exported file containing inconsistencies, the \verb|relType| attribute of the \verb|<TLINK>| is interpreted as forming a disjunction of at least one relations, separated by the pipe character `$|$'. For example:
+\begin{itemize}
+	\item[\ipp] \verb!<TLINK eventID="e1" relatedToTime="t2" relType="BEFORE|IBEFORE" />!
+\end{itemize}
+While this does not conform with the TimeML schema, exactly, it is interpreted correctly if the exported file is re-imported back into START as a language of strings.
+
+While this tool is not expected nor intended to compete with existing annotation tools, it does serve as a proof-of-concept of what is enabled when using the string framework to represent events and times. Superpositions can quickly find inconsistencies in a document's temporal relations, as well as generate new constraints and relations that may not have been previously explicit, while also presenting a convenient visual guide for the overall temporal structure of the annotated document. It is hoped that future work will have the opportunity to develop this tool further, and perhaps integrate it with other tooling as an alternate view alongside graphical and chart-based tools.
+
+The next chapter examines some of the evaluation criteria for the present work, including ensuring that data cannot become lost or falsified when using the string framework, showing strings in use as part of a semantic test suite, and ensuring that the code implementing the framework is valid and behaves as expected.
 
 \newpage
 \section{Evaluation}\label{sec:evaluation}
@@ -2155,11 +2239,67 @@ What have I spent the last four and a half years of my life doing?
 \onehalfspacing
 \bibliographystyle{apa}
 \bibliography{refs}
+
 \newpage
 %\appendix
+
 \section*{Appendices}
+
 \addcontentsline{toc}{section}{Appendices}
 \subsection*{Python Code}
 \addcontentsline{toc}{subsection}{Python Code}
-% \lstinputlisting[language=Python,breaklines=true]{filename.py}
+
+\addcontentsline{toc}{subsubsection}{strfns.py}
+\lstinputlisting[language=Python,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""strfns.py"""}]{code/start/apiscripts/strfns.py}
+\newpage
+\addcontentsline{toc}{subsubsection}{freksa.py}
+\lstinputlisting[language=Python,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""freksa.py"""}]{code/start/api/freksa.py}
+\newpage
+\addcontentsline{toc}{subsubsection}{newTLINKs.py}
+\lstinputlisting[language=Python,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""newTLINKs.py"""}]{code/start/api/newTLINKs.py}
+\newpage
+\addcontentsline{toc}{subsubsection}{superpose.py}
+\lstinputlisting[language=Python,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""superpose.py"""}]{code/start/api/superpose.py}
+\newpage
+\addcontentsline{toc}{subsubsection}{test.py}
+\lstinputlisting[language=Python,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""test.py"""}]{code/start/api/test.py}
+
+\newpage
+\subsection*{JavaScript Code}
+\addcontentsline{toc}{subsection}{JavaScript Code}
+
+\addcontentsline{toc}{subsubsection}{index.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""index.js"""}]{code/start/pages/index.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{parseTML.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""parseTML.js"""}]{code/start/fns/parseTML.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{suggestTenseAspectRelation.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""suggestTenseAspectRelation.js"""}]{code/start/fns/suggestTenseAspectRelation.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{CreateRelation.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""CreateRelation.js"""}]{code/start/components/CreateRelation.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{Details.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""Details.js"""}]{code/start/components/Details.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{EventList.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""EventList.js"""}]{code/start/components/EventList.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{ExamineString.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""ExamineString.js"""}]{code/start/components/ExamineString.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{Help.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""Help.js"""}]{code/start/components/Help.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{StringBank.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""StringBank.js"""}]{code/start/components/StringBank.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{TextDisplay.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""TextDisplay.js"""}]{code/start/components/TextDisplay.js}
+\newpage
+\addcontentsline{toc}{subsubsection}{TextEntry.js}
+\lstinputlisting[language=Java,breaklines=true,basicstyle=\ttfamily,title=\texttt{"""TextEntry.js"""}]{code/start/components/TextEntry.js}
+
+
 \end{document}

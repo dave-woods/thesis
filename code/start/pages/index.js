@@ -24,7 +24,6 @@ export default function Annotate() {
 
   const initialState = {
     textHTML: '',
-    parsedTlinks: [],
     parsedEvents: [],
     eventStrings: [],
     nextId: 1,
@@ -51,12 +50,6 @@ export default function Annotate() {
           textHTML: action.payload,
           prevStates: [{...curState, prevStates: []}, ...curState.prevStates.slice(0, 50)]
         }
-      case 'SET_TLINKS':
-        return {
-          ...curState,
-          parsedTlinks: action.payload,
-          prevStates: [{...curState, prevStates: []}, ...curState.prevStates.slice(0, 50)]
-        }
       case 'SET_EVENTS':
         return {
           ...curState,
@@ -76,6 +69,7 @@ export default function Annotate() {
         return {
           ...curState,
           parsedEvents: curState.parsedEvents.filter(e => e.id !== action.payload.id),
+          eventStrings: curState.eventStrings.map(lan => lan.filter(s => !s.split(/[,|]/).includes(action.payload.id))).filter(lan => lan.length > 0),
           textHTML: action.payload.newText,
           prevStates: [{...curState, prevStates: []}, ...curState.prevStates.slice(0, 50)]
         }
@@ -97,6 +91,12 @@ export default function Annotate() {
           eventStrings: [action.payload, ...curState.eventStrings],
           prevStates: [{...curState, prevStates: []}, ...curState.prevStates.slice(0, 50)]
         }
+      case 'REMOVE_STRINGS':
+        return {
+          ...curState,
+          eventStrings: curState.eventStrings.map(lan => lan.filter(s => !action.payload.includes(s))).filter(lan => lan.length > 0),
+          prevStates: [{...curState, prevStates: []}, ...curState.prevStates.slice(0, 50)]
+        }
       case 'DO_PARSE':
         if (action.payload.trim() !== '') {
           const parseResult = parseTML(action.payload)
@@ -105,15 +105,16 @@ export default function Annotate() {
             return {
               ...curState,
               textHTML: parseResult.transformed,
-              parsedTlinks: [...parseResult.tlinks],
               parsedEvents: [...parseResult.events],
               eventStrings: parseResult.tlinks.map(tlink => {
-                // usually means e1 === e2
-                if (tlink.warning) {
-                  window.alert(`Bad TLINK: ${tlink.e1} ${tlink.rel} ${tlink.e2}`)
-                  return []
-                }
-                return freksa[tlink.rel](tlink.e1, tlink.e2)
+                return tlink.map(t => {
+                  // usually means e1 === e2
+                  if (t.warning) {
+                    window.alert(`Bad TLINK: ${t.e1} ${t.rel} ${t.e2}`)
+                    return []
+                  }
+                  return freksa[t.rel](t.e1, t.e2)
+                }).flat()
               }).filter(l => l.length > 0),
               nextId: getLastId([...parseResult.events], curState.nextId) + 1,
               prevStates: [{...curState, prevStates: []}, ...curState.prevStates.slice(0, 50)]
@@ -393,7 +394,7 @@ ${newTLINKs.join('\n')}
       <Head><title>START (String Temporal Annotation and Relation Tool)</title></Head>
       {helpDisplayed && <Help extendedRels={extendedRels} setExtendedRels={setExtendedRels} dismiss={dismissOverlay} limit={superposeLimit} setLimit={setSuperposeLimit}/>}
       {details && <Details event={state.parsedEvents.find(e => e.id === details)} dismiss={dismissOverlay} update={(id, newAttribs) => dispatch({type: 'UPDATE_EVENT', payload: {id, newAttribs}})} />}
-      {examineStringDisplay && <ExamineString data={examineStringDisplay} dismiss={dismissOverlay}/>}
+      {examineStringDisplay && <ExamineString data={examineStringDisplay} dismiss={dismissOverlay} removeString={s => dispatch({type: 'REMOVE_STRINGS', payload: [s]})}/>}
       {!state.textHTML ? <TextEntry grabParse={val => dispatch({type: 'DO_PARSE', payload: val})}/> : <TextDisplay noHighlight={noHighlight} text={state.textHTML} reset={() => dispatch({type: 'SET_TEXT', payload: ''})} download={downloadTML}/>}
       <div className="panel">
         <p>Select some text, then tag as Event or Time</p>

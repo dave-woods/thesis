@@ -39,7 +39,7 @@ export const parseTML = inputString => {
               type: 'EVENT',
               text: span.textContent,
               elem: span,
-              attr: {...nodeRest, ...inst.rest}
+              attr: inst !== undefined ? {...nodeRest, ...inst.rest} : {...nodeRest}
             })
             pieces.push(span.outerHTML)
         } else if (node.nodeName === 'TIMEX3') {
@@ -63,15 +63,15 @@ export const parseTML = inputString => {
     }
     
     const tlinks = [...xml.getElementsByTagName('TLINK')].map(tlink => {
-      const { eventInstanceID, timeID, relatedToEventInstance, relatedToTime, relType } = tlink.attributes
-      const e1 = instances.find(i => eventInstanceID !== undefined && i.eiid === eventInstanceID.value)?.eventID ?? timeID.value
-      const e2 = instances.find(i => relatedToEventInstance !== undefined && i.eiid === relatedToEventInstance.value)?.eventID ?? relatedToTime.value
-      return {
-        rel: tmlToAllen[relType.value],
+      const { eventID, eventInstanceID, timeID, relatedToEvent, relatedToEventInstance, relatedToTime, relType } = tlink.attributes
+      const e1 = eventID ? eventID.value : instances.find(i => eventInstanceID !== undefined && i.eiid === eventInstanceID.value)?.eventID ?? timeID.value
+      const e2 = relatedToEvent ? relatedToEvent.value : instances.find(i => relatedToEventInstance !== undefined && i.eiid === relatedToEventInstance.value)?.eventID ?? relatedToTime.value
+      return relType.value.split('|').map(r => ({
+        rel: tmlToAllen[r],
         e1,
         e2,
         warning: e1 === e2
-      }
+      }))
     })
     return {
         imported: inputString,
@@ -83,18 +83,20 @@ export const parseTML = inputString => {
 }
 
 export const tmlToAllen = {
-    BEFORE: 'b',
-    AFTER: 'bi',
-    INCLUDES: 'di',
-    DURING_INV: 'di',
-    IS_INCLUDED: 'd',
-    DURING: 'd',
-    SIMULTANEOUS: 'e',
-    IDENTITY: 'e',
-    IAFTER: 'mi',
-    IBEFORE: 'm',
-    BEGINS: 's',
-    ENDS: 'f',
-    BEGUN_BY: 'si',
-    ENDED_BY: 'fi'
+  BEFORE: 'b',
+  AFTER: 'bi',
+  INCLUDES: 'di',
+  DURING_INV: 'di',
+  IS_INCLUDED: 'd',
+  DURING: 'd',
+  SIMULTANEOUS: 'e',
+  IDENTITY: 'e',
+  IAFTER: 'mi',
+  IBEFORE: 'm',
+  BEGINS: 's',
+  ENDS: 'f',
+  BEGUN_BY: 'si',
+  ENDED_BY: 'fi',
+  OVERLAPS: 'o',
+  OVERLAPPED_BY: 'oi'
 }

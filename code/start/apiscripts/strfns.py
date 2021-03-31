@@ -114,7 +114,7 @@ def lang_contains_string(a, b):
 
 def lang_contradicts_string(a, b):
     """Take a language and a string, return whether the first contradicts the second"""
-    return not lang_contains_string(a,b) and any([vocabulary(s).issuperset(vocabulary(b)) for s in a])
+    return not lang_contains_string(a,b) and any([vocabulary(s).issuperseteq(vocabulary(b)) for s in a])
 
 def projection_full_vocab(string, vocab):
     """Take a string and a set, return the block compressed reduct or an empty string if the full vocab isn't used"""
@@ -125,7 +125,6 @@ def projection_lang_full_vocab(lang, new_vocab):
     """Take a language and a set, return the block compressed reduct of every string in the language or empty strings if the full vocab isn't used"""
     return list(set(filter(lambda n: n != '', [projection_full_vocab(s, new_vocab) for s in lang])))
 
-@lru_cache(maxsize=1000)
 def analogous_strings(a, b):
     """Take two strings and return whether they are analogous"""
     v_a = vocabulary(a)
@@ -311,3 +310,29 @@ def least_simultaneous_resources(strings):
         elif l == min_len:
             min_set.add(s)
     return sorted(min_set, key=lambda s: string_length(s))
+
+def to_semiintervals(string, keep_fluents=False):
+    """Take a string containing interval fluents, return its translation to use semi-intervals"""
+    vocab = vocabulary(string)
+    pp = map(lambda v: ('α({})'.format(v),'ω({})'.format(v)), vocab)
+    lookup = { v: p for v, p in zip(vocab, pp) }
+    used = []
+    result = []
+    for c in get_components(string):
+        used += [f for f in c if f != '']
+        # pre if fluent not occurred + post if occurred
+        new_c = [lookup[k][0] for k in lookup if k not in used and k not in c] + [lookup[k][1] for k in lookup if k in used and k not in c]
+        result.append(new_c if not keep_fluents else new_c + [f for f in c if f != ''])
+    return '|'.join([','.join(c) for c in result])
+
+def from_semiintervals(string):
+    """Take a string containing semi-interval fluents, return its translation to use intervals"""
+    vocab = set(re.findall(r'[αω]\((\w+)\)', string))
+    pp = map(lambda v: ('α({})'.format(v),'ω({})'.format(v)), vocab)
+    lookup = { v: p for v, p in zip(vocab, pp) }
+    used = []
+    result = []
+    for c in get_components(string):
+        used += [k for k in lookup if lookup[k][1] in c]
+        result.append([k for k in lookup if k not in used and lookup[k][0] not in c])
+    return '|'.join([','.join(c) for c in result])
