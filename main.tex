@@ -258,7 +258,7 @@ I, the undersigned, consent to the examiner retaining a copy of the thesis beyon
 \begin{abstract}
 \addcontentsline{toc}{section}{Abstract}
 \noindent
-%This work describes the use of strings as models for the representation of temporal data -- i.e. events and times -- to form the basis of a framework for reasoning about that data. Some of the relevant motivating literature is examined, and a breakdown is given of the work done to develop and flesh out the framework so far, including discussion on superposition for collation of information into single, timeline-like strings, and projection which allows for the identification of temporal relations between arbitrary events and times from the strings. Possible ways of treating incomplete information are also looked at, including moving from intervals as primitives to semi-intervals. Some work done to implement this framework in code is described, with a discussion of potential applications in modern  i7-6700 CPU with 16GB memory.ligent systems, including tooling for annotation software.
+This work describes the use of strings as models for the representation of temporal data---that is, events and times, and their linear ordering and temporal inter-relations---to form the basis of a framework for reasoning about that data and using it to aid in the creation or validation of semantic temporal annotation. Some of the relevant motivating literature is examined, in particular \citet{allen1983maintaining}'s interval algebra and relation set and the TimeML \citep{timeml2005timeml} annotation schema. The finite-state temporality approach to semantics wherein the string framework originated is also detailed, and a breakdown is given of the work done to develop and flesh out the framework, including discussion on the various operations for manipulating and reasoning with the data. In particular, various flavours of a superposition operation allow for collation of the temporal information into compact, timeline or comic strip-like objects, which provide a useful visual reference or signpost for a document's temporal structure. A projection operation allows for the identification of temporal relations between arbitrary events and times which appear in the strings, and also for validating that data is not lost or corrupted from the original sources. Possible treatments of incomplete information are also described, leveraging the relation set associated with \citet{Freksa1992}'s semi-intervals. Applications in annotation and scheduling are discussed, and a proof-of-concept online tool is presented which uses strings as a basis for creating, editing, and removing inconsistencies from documents marked up with TimeML.
 \end{abstract}
 
 \newpage
@@ -307,12 +307,40 @@ During the course of my studies, I was an author on three papers that were accep
 %                                                                              %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{sec:intro}
-This thesis will explore and describe the use of strings as models to represent temporal information---data concerning times and events---for use in computational systems which deal with knowledge-based reasoning in some way. Such systems rely on temporal information in order to perform accurately. For example, a question-answering system that is asked ``Will it rain next week?'' must be able to locate itself temporally such that it knows what the current time is, the relation between that time and the queried time, and whether raining events have been forecast during the period that it defines using the phrase `next week'.
+% This thesis will explore and describe the use of strings as models to represent temporal information---data concerning times and events---for use in computational systems which deal with knowledge-based reasoning in some way. Such systems rely on temporal information in order to perform accurately. For example, a question-answering system that is asked ``Will it rain next week?'' must be able to locate itself temporally such that it knows what the current time is, the relation between that time and the queried time, and whether raining events have been forecast during the period that it defines using the phrase `next week'.
+The ability to reason about time and events is considered an essential aspect in several kinds of intelligent systems. For example, answering questions such as ``Which of our students were in receipt of a grant last year?" or ``How many conference papers were accepted last semester?" requires the use and interpretation of temporal information. Planning and scheduling systems rely on temporal reasoning in order to organise the data they process. Additionally, as human discourse and narrative often describes events out of chronological ordering, it's critical for natural language processing systems to be able to reason about sentences like ``The stock market fell this morning after the controversy last night," so as to understand which event occurred first (the stock market falling, or the controversy), in order for it to have an accurate understanding of the scenario.
+
+In order to perform reasoning about events and other time-related data in a useful way, it is first necessary to create a comprehensive framework for representing that temporal information in knowledge-based systems. Several approaches have been designed over the years, based on a number of conventions and formalisms. The event calculus \citep{Kowalski1986,Miller1999,Mueller2008}, for example, represents events and their effects through the use of the predicates of a logical language. \citet{allen1983maintaining} used directed graphs to keep track of events and their inter-relations. T-BOX \citep{verhagen2005TBOX} draws semantically-placed boxes to similarly display the \citep{timeml2005timeml}, a semantic annotation schema and markup language which has become an international standard \citep{ISO24617-1} for the annotation of text with explicit temporal data \citep{pustejovsky2010iso}.
+
+However, these frameworks do not offer a straightforward way to adequately and intuitively visualise a document's temporal structure without sacrificing the ability to perform efficient reasoning over that temporal information, and vice versa. For example, the formality of the event calculus is arguably not intuitive to a layperson, the directed graph approach of Allen suffers from a non-semantic layout, TimeML has no native graphical interface, and while T-BOX has an attractive design, it is not intended for use beyond being a visualisation aid---see \cref{sub:annotation} for more details on these. This thesis will explore and describe the use of strings as models to represent temporal information---data concerning times and events---for use in computational systems which deal with knowledge-based reasoning in some way, while also maintaining both a compact visual appeal that is reminiscent of strips of film or panels of a comic.
+
+Using strings---as finite sequences of information $\sigma_1 \cdots \sigma_n$, $n \in \mathbb{N}$, where each $\sigma_i$ is a symbol representing some data---is not uncommon for visualising the relations between events, evoking notions of Gantt charts and timelines. For example, these strings give a general picture of the relative order of two events X and Y:
+
+{
+\singlespacing
+\begin{center}
+\verb|XXX      |\\
+\verb|      YYY|\\
+\textit{``X occurs before Y occurs"}\\
+\vspace{1em}
+\verb|XXXXXXXXX|\\
+\verb|  YYYYY  |\\
+\textit{``Y occurs during X"}\\
+\end{center}
+}
+\noindent
+or see \citet[p. 835, Figure 2]{allen1983maintaining}, reproduced in \Cref{fig:allens-pictorial} in \cref{sec:litreview}, p. \pageref{fig:allens-pictorial}.
+
+The overarching question this work seeks to answer is {\sl How can strings be used to capture and represent temporal information in a precise, compact, and semantically meaningful way for reasoning and processing, whilst evoking the intuitive metaphor of timelines?} In order to tackle this, events and times must first be made representable as symbols in a simple and logical manner, so that they may be used as elements in a string. It is important that the strings may be used for semantic reasoning; that is, logical consequences may be inferred---for instance, whether one set of temporal data entails another---allowing for useful deductions to be made. This work is also interested in ensuring that the framework be computationally tractable, so reducing algorithmic complexity and increasing data density are desirable. However, with this in mind, the intuitive presentational form of a timeline should be preserved where possible. The framework should be able to handle the complexities of real narratives and discourse to a satisfactory level, which may or may not contain incomplete or vague data.
+
+Strings offer an excellent basis for this system which is to be created, as they are basic computational entities which are amenable to finite-state methods, such as decidably determining entailment of one string by another---see \cref{ssub:mso}---and reading them is intuitively similar to reading a timeline. The framework may have a number of applications in the field of intelligent systems, including among them annotation tooling, for which a proof-of-concept application is presented in \cref{sec:implementation}. This tool, named START (String Temporal Annotation and Relation Tool) is illustrative of what the string framework can provide to semantic annotation, and it is intended to be seen as a complementary tool for assisting with manual and semi-automatic annotation of temporal data in texts, alongside existant tools like T-BOX, which similarly strives for a semantic and intuitive presentation of temporal information.
+
+The text proceeds as follows: \cref{sec:litreview} introduces some of the core material which the current work uses as its foundation, including the interval-based framework for representing events/times and their inter-relations put forward by \citet{allen1983maintaining}, as well as TimeML and the TimeBank corpus, and ISO-TimeML, which is TimeML's successor and an international standard for marking up texts with temporal annotations. \cref{sec:fst} goes into detail on the finite-state approach to temporal semantics which licences the string framework, including how strings may be interpreted as finite models of Monadic Second-Order Logic, which leads to an equivalence with regular languages. The mechanics and operations for using strings as a representational tool for temporality are described, as well as multiple strings can be composed together in order to increase data density and make explicit relations that were previously only implied. Possible applications for the use of strings are discussed, including in creating timeline structures from annotated texts and in scheduling problems which involve temporal constraint satisfaction. \cref{sec:methods} discusses how documents marked up with TimeML---such as those in the TimeBank corpus---are used as a source for creating strings, and subsequently some methods for handling the often incomplete or vague information that is extracted from these narratives. \cref{sec:implementation} presents an online, web-based tool which can be used to demonstrate the utility of strings in a temporal annotation context. \cref{sec:evaluation} explains how the framework can be validated by ensuring that information is not lost or corrupted when using the string representation, which can be proven by leveraging the projection operation.
 \newpage
 \section{Relevant Literature}\label{sec:litreview}
-In this chapter, the existing literature related to the major topics of the thesis are reviewed and analysed. \nb{Write more here later.} A gap is identified, which the remainder of this work seeks to fill.
+In this chapter, the existing literature related to the major topics of the thesis are reviewed and analysed. These works are discussed in detail and some gaps are identified which may be filled through the use of a string-based representation framework for temporal entities and the relations between them.
 \subsection{Times and Events}\label{sub:timesevents}
-The concept of time has fascinated researchers for millenia, and as such, a great deal of work exists on the topic. What follows here focuses on the formal study of temporality in language.
+The concept of time has fascinated researchers for millenia, and as such, a great deal of work exists on the topic. What follows focuses on the formal study of temporality in logic and language. First is presented the interval-based algebra which pervades throughout the rest of this work through TimeML's use of the same relations, as well as their appearance from superposition---see \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings}.
 \subsubsection{Allen's Interval Algebra}\label{ssub:allen}
 % The seminal work of James F. Allen's \textit{Maintaining Knowledge about Temporal Intervals} has pushed the field since its publication in  \citeyear{allen1983maintaining}, and indeed the framework he described drives some of the design decisions in the present work.
 Much of the present work draws its roots in James F. \citeauthor{allen1983maintaining}'s work \textit{Maintaining Knowledge about Temporal Intervals} \citeyearpar{allen1983maintaining}, both directly and indirectly via the many systems which have built upon it in the years since it was first published. In this seminal paper, Allen described a framework for the use of temporal intervals as primitives to represent events and time periods, as opposed to points on the real line. There are four key criteria given as being of primary importance in guiding the design of this framework \citeyearpar[p. 833]{allen1983maintaining}, all of which also feature in the system of string-based event representation described in the present work (see \cref{sub:strings}):
@@ -707,13 +735,13 @@ One further aspect of the T-BOX framework worth noting is that it can be used to
 
 The next section discusses some of the existing approaches to semantic representation of times and events aside from the semantics associated with the annotation schemas of TimeML and ISO-TimeMLs, in particular the structures of Discourse Representation Theory.
 
-\subsection{Temporal Semantics}\label{sub:semantics}
-The following sections describe some of the existing ways that the semantics of times and events can be represented.
-\nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, Otherwise just make 2.3 about DRT... :/}
+\subsection{Temporal Semantics of DRT}\label{sub:semantics}
+% The following sections describe some of the existing ways that the semantics of times and events can be represented.
+% \nb{This section needs more---Prior's TL, FOL, SOL, Event Calculus?, Frames?, Otherwise just make 2.3 about DRT... :/}
 % \nb{Bunt (2020) mentions that Abziande \& Bos (2019) mention that almost everyone uses Neo-Davidsonian event semantics...}
 % \nb{Harry Bunt's slides from his DCLRS talk would be useful here, else ref ``A semantic annotation scheme for quantiﬁcation" (Bunt, 2019)}
 
-\subsubsection{Discourse Representation Theory}\label{ssub:drt}
+% \subsubsection{Discourse Representation Theory}
 In what have become robust and well-known works since their publication, \citet{kamp1981theory,kamp1988discourse,Kamp1993} presented Discourse Representation Theory (DRT) as a formal framework for semantically representing information derived from discourse---that is, coherent series of sentences or propositions, which may appear in speech or text. The development of DRT aimed to allow model-theoretic semantic representations that go beyond single sentences, which was the standard approach in First-Order Logic (FOL), and to treat phenomena such as anaphora, where an entity named earlier in a discourse may be referred to again later without naming it again. The classic example sentences \citep{kamp1988discourse} involve an indefinite, `a donkey', appearing as an antecedent, and acting as a quantifier which binds the pronoun `it' in the second sentence, as in \cref{ex:donkey-1}.
 \begin{subequations}
 	\begin{align}
@@ -1540,9 +1568,7 @@ The next chapter will describe the procedures by which these strings can integra
 
 \newpage
 \section{Methods}\label{sec:methods}
-This chapter details the approaches that were taken to produce the results. 
-
-\nb{more here}
+This chapter details the use of strings in application. Using TimeML-annotated documents as a source, strings can be derived from the temporal links, and used to bring out other, implicit relations. However, due to the nature of discourse, the temporal data is often vague or incomplete, so some methods are presented for dealing with this.
 
 \subsection{Extracting Strings from Annotated Text}\label{sub:extracting}
 In order to extract temporal strings like those described in \cref{sub:strings} from a text, the text must first be marked up using the TimeML \citep{timeml2005timeml} annotation schema, as this will provide the starting point which indicates which temporal entities are relevant in the text\footnote{Although, if used in an interactive environment such as the tool presented in \cref{sec:implementation}, it is possible to start instead from plain text.}. These annotated times and events, along with the given relations between them, will directly lead to the creation of the initial set of strings, which will serve as a `seed' for the generation of all other possible strings.
@@ -1917,25 +1943,71 @@ Using the normal procedure, these strings are superposed together, and the resul
 These seven strings are a lot easier as a human to interpret than the over 7000 from the normal procedure. When one of the languages contains more than one string, as in this case, it is possible to translate these to use semi-intervals, and try to further reduce the cardinality that way, although this may be a case of user preference. The sensible superposition operation is the default option built into the tool presented in \cref{sec:implementation}, although it is possible to remove the limit if desired.
 
 
-\subsection{Enhancing Strings using DRT}\label{sub:enhancing}
-The automatic parsing of Discourse Representation Structures (DRSs) from plain text is a field which has recently seen some new approaches \citep{ababzianidze2017parallel,van-noord-etal-2018-exploring}, particularly during a new shared task due to \citet{abzianidze2019first} which aimed to take sentences of English as input and produce DRSs---in an evaluation-friendly clausal form, rather than the typical human-friendly boxed format---as output. It is possible to leverage the temporal information that features in a DRS to create strings of times and events such as are described in \cref{sub:strings}. While, in general, the temporal relations found using this approach are less specific than those found in TimeML as most parsing tools for DRSs do not appear to utilise Allen's interval algebra, the advantage of using DRSs is that elements such as event participants can be picked out automatically.
+\subsection{Strings From Other Sources}\label{sub:enhancing}
+The automatic parsing of the Discourse Representation Structures (DRSs) of Discourse Representation Theory (DRT) \citep{kamp1981theory} from plain text is a field which has recently seen some new approaches \citep{abzianidze2017parallel,van-noord-etal-2018-exploring}, particularly during a recent shared task due to \citet{abzianidze2019first} which aimed to take sentences of English as input and produce DRSs---in an evaluation-friendly clausal form, rather than the typical human-friendly boxed format---as output. The relative success of this task shows that there is an interest in developing systems which can perform automatic DRS parsing. The state-of-the-art was improved considerably, with the winning system of \citet{liu2019discourse} achieving an F1 score of $84.8\%$, an improvement from the baseline score of $54.3\%$. It is possible to leverage the temporal information that features in a DRS to create strings of times and events such as are described in \cref{sub:strings}. While, in general, the temporal relations found using this approach are less specific than those found in TimeML as most parsing tools for DRSs do not appear to utilise Allen's interval algebra, the advantage of using DRSs is that elements such as event participants can be picked out automatically.
 
 Boxer \citep{Bos2008} is one readily available piece of tooling which claims coverage as wide as 95\% for semantic analysis of newswire texts, the same domain as the TimeBank corpus \citep{pustejovsky2006timebank}. The Boxer software is part of the C\&C toolchain \citep{curran2007linguistically} for parsing a text into one or more DRSs, using a neo-Davidsonian representation for events and leveraging the set of thematic roles provided in VerbNet \citep{schuler2005verbnet}, though it is noted in \citet[p. 277]{Bos2008} that the temporal aspects of the tool are not quite as strong as some of the others, and that ``some measure and time expressions are correctly analysed, others aren't.'' A newer version of the tool is used as part of the Parallel Meaning Bank \citep{abzianidze2017parallel} toolchain, although it has not been made widely available for use in research at the time of writing. Another widely available tool for automatic DRS parsing exists as part of the popular Python-based natural language processing toolkit, NLTK \citep{Bird2009}, although it is to be noted that the DRSs produced by this tool do not give much focus to their treatment of events.
 
 \subsubsection{Parallel Meaning Bank}\label{ssub:pmb}
-Under the assumption that the version of Boxer that is used in PMB would become available at some point, here is a description of PMB, and how the present work utilises the data within it as a demonstration of using text that has been parsed into DRSs can be transformed into strings for temporal reasoning.
+The Parallel Meaning Bank (PMB) is an online corpus (\url{https://pmb.let.rug.nl}) with a total of over 12,000 DRSs for parallel structures in English, German, Dutch, and Italian. The corpus comprises sentences along with clausal form DRSs for providing fine-grained meaning representations for texts, as well as word senses and thematic roles from WordNet \citep{fellbaum2010wordnet} and VerbNet \citep{schuler2005verbnet} respectively.
 
-Discourse relations are also a thing here.
+Under the assumption that the version of Boxer that is used in the PMB would become available at some point, here are some examples of extracting strings from example entries from the corpus. The idea being that, using a high-quality DRS parser to automatically determine semantic information from an unannotated text, then extracting the temporal information from these DRSs to derive strings from could present an opportunity to create a gateway towards automatic temporal annotation: since it is already possible to translate from strings to the \verb|<TLINK>| tags of TimeML \citep{timeml2005timeml}---utilised in the annotation tool described in \cref{sec:implementation}---generating strings from another source could at the very least allow for creating a basic level of semantically informed automatic annotation of a document's temporal relations.
 
-\subsubsection{VerbNet and WordNet}\label{ssub:verbwordnet}
-Two resources which are used in PMB and that can be leveraged are VerbNet, which supplies the semantic roles in a DRS, and WordNet, which is used to specify the particular sense of a verb (or other word). The version of Boxer used in the PMB includes this information in its output.
+The goal, therefore, is to create a mapping from a text $T$ to some set of strings $S$ which will be used to represent the linear ordering and inter-relations of the temporal entities in $T$. As intermediate steps, $T$ is parsed for semantic information which is represented as one or more DRSs. A projection from these DRSs is created, such that the resultant, reduced DRSs only contain temporal information, and $S$ is the set of strings derived from these temporalised DRSs. The original DRSs are retained in this process so that there is a link back from the representations which have lost all non-temporal information.
 
-This data can be useful when trying to make links between events which have not been given a specific relation. For example, finding the closest hypernym between two verbs, or checking verbs which share participants may help to inform the building of relations (see \cref{ssub:ontology}).
+Once a DRS representation is parsed from the text, the next step is to eliminate any non-temporal information from the produced DRSs. It is assumed that all temporal information is accurate. A basic approach for how to choose which information to remove is to select all discourse referents which either do not appear in a Time condition or related conditions, such as Duration, or are not explicit time expressions such as \textit{now}, or \textit{09:00}, and then to remove any conditions which featured a now-removed referent. Any now-empty DRSs are also removed. \cref{ex:drs-example} below takes an example from \citet[p. 8]{abzianidze2019first} and shows the text and the originally given DRS, though using the construction that is found in the Parallel Meaning Bank (v2.2.0, ID 99/2308). The conditions in \ref{ex:drs-example-b} which will be retained after projection to \cref{ex:drs-example-c}, the temporalised DRS, are shown in bold.
+
+After removing all of the non-temporal information, a single DRS is left, which in this example corresponds to an instance of not being afraid occurring occurred in the present. This DRS has no information about \textit{who} isn't afraid, or \textit{what} they aren't afraid of, it just represents the \textit{when}.
+
+\begingroup
+\setlength{\abovedisplayskip}{-10pt}%
+\setlength{\belowdisplayskip}{0pt}%
+\setlength{\abovedisplayshortskip}{-10pt}%
+\setlength{\belowdisplayshortskip}{0pt}%
+
+\begin{subequations}
+	\label{ex:drs-example}
+	\begin{align}
+	\text{Tom isn't afraid of anything.}\label{ex:drs-example-a}\\
+	\text{\drs{$x_1$ \hfill}{
+		{\small\texttt{male.n.02($x_1$)}}\\
+		{\small\texttt{~~Name($x_1$,tom)}}\\
+		$\neg{}$ \drs{$s_1$~~$x_2$~~$t_1$~ \hfill}{
+			{\small\textbf{\texttt{time.n.08($t_1$)}}}\\
+			{\small\textbf{\texttt{~~$t_1$ $=$ now}}}\\
+			{\small\textbf{\texttt{afraid.a.01($s_1$)}}}\\
+			{\small\textbf{\texttt{~~Time($s_1$,$t_1$)}}}\\
+			{\small\texttt{~~Stimulus($s_1$,$x_2$)}}\\
+			{\small\texttt{~~Experiencer($s_1$,$x_1$)}}\\
+			{\small\texttt{entity.n.01($x_2$)}}
+		}
+	}}\label{ex:drs-example-b}\\
+	\text{$\neg{}$ \drs{$s_1$~~$t_1$ \hfill}{
+		{\small\texttt{time.n.08($t_1$)}}\\
+		{\small\texttt{~~$t_1$ $=$ now}}\\
+		{\small\texttt{afraid.a.01($s_1$)}}\\
+		{\small\texttt{~~Time($s_1$, $t_1$)}}
+	}}\label{ex:drs-example-c}\\
+	\EventString{|\neg{} s_1, t_1, now|}\label{ex:drs-example-d}
+	\end{align}
+\end{subequations}
+\endgroup
+From this reduced DRS in \cref{ex:drs-example-c}, a string can be formed, as in \cref{ex:drs-example-d}. The discourse referents are ordered based on any temporal relations which are mentioned in the DRS's conditions. In this example, \cref{ex:drs-example-d} contains $t_1 =$ \texttt{now}, which indicates that any temporal entities which occur at timepoint $t_1$ are concurrent with the ``current" moment\footnote{Note that there are other uses of \textit{now}, the distinctions dropped here for simplicity.}. This is the time at which the utterance was created, or the time of speech in \citet{reichenbach1947elements}'s framework---see \cref{ssub:tenseaspect}. Other timepoints may be referenced, such as dates, durations, relative times---for example \textit{yesterday}---clock times, and so on, each of which must be ordered correctly.
+
+In addition to the $=$ equals relation, there might be a $\prec$ precedence, $\subset$ during, or $\bigcirc$ overlaps relation, which would correspond to different orderings of the discourse referents. Other conditions, such as negation, are also accounted for---for example, in \cref{ex:drs-example-d} it is assumed that an explicit time expression should not be negated, and so the event expression is negated instead. Although, typically a fluent appearing in a string is negated by its absence from a box, that is, a fluent which appears in the vocabulary of a string is not occurring unless it explicitly \textit{is} occurring. However, event-like statives are treated in TimeML, and may occur as fluents in a string, so it is not too large a step to allow negated fluents into strings.
+
+One further utility of using the DRSs of the Parallel Meaning Bank is the ability to leverage the resources of VerbNet \citep{schuler2005verbnet}, which supplies the semantic roles that permit the new-Davidsonian event semantics in a DRS, and WordNet \citep{fellbaum2010wordnet}, which is used to specify the particular sense of a verb or other word. The version of Boxer used in the PMB includes this information in its output, which may be utilised in linking events that are not given an explicit temporal relation, as events which share semantic participants are likely to be linked in some way.
+
+% \subsubsection{VerbNet and WordNet}\label{ssub:verbwordnet}
+% Two resources which are used in the Parallel Meaning Bank \citep{abzianidze2017parallel} and that can be leveraged are VerbNet \citep{schuler2005verbnet}, which supplies the semantic roles that permit the new-Davidsonian event semantics in a DRS, and WordNet \citep{fellbaum2010wordnet}, which is used to specify the particular sense of a verb or other word. The version of Boxer used in the PMB includes this information in its output.
+
+% This data can be useful when trying to make links between events which have not been given a specific relation. For example, finding the closest hypernym between two verbs, or checking verbs which share participants may help to inform the building of relations.
 
 \subsection{Reasoning with Strings}\label{sub:reasoning}
-Strings of events may be used to reason about the temporal information they contain: to infer a linear ordering and new relations that were not explicitly stated in the source as existing between the times and events modelled within the strings. There are several methods which can be employed depending on the specific results that are desired.
+Strings of events may be used to reason about the temporal information they contain: to infer a linear ordering and new relations that were not explicitly stated in the source as existing between the times and events modelled within the strings. There are a number methods which can be employed depending on the specific results that are desired.
 
-Superposition of strings creates new strings which feature all of the constraints of their `parent' strings, and new relations can be derived by taking the projections of these strings in relation to an intersection of the parent vocabularies. Using resources such as VerbNet and WordNet (see \cref{ssub:verbwordnet}), the lexical semantics can be leveraged in order to suggest links between events which were not previously explicitly related. Additionally, residuals are employed to determine what relations may need to hold in order for other inferences to be made.
+Superposition of strings creates new strings which feature all of the constraints of their `parent' strings, and new relations can be derived by taking the projections of these strings in relation to an intersection of the parent vocabularies. %Using resources such as VerbNet and WordNet (see \cref{ssub:verbwordnet}), the lexical semantics can be leveraged in order to suggest links between events which were not previously explicitly related.
+Additionally, residuals are employed to determine what relations may need to hold in order for other inferences to be made.
 
 \subsubsection{Superposition and Projection}\label{ssub:superposition}
 Given some set of strings, whether extracted from an annotated document, such as one of those in the TimeBank \citep{pustejovsky2006timebank} corpus, or derived from some other source like the temporal properties of DRSs, the most straightforward kind of reasoning that can be done is to use superposition to determine the relations which are not yet made explicit, moving towards the computation of the temporal closure of a document if it is not already calculated. If a document's times and events have temporal closure, then each time and event has been related to each other time and event with exactly one relational label. Once strings have been superposesd together, projection can be used to find the relation(s) that they specify between any pair of times and/or events.
@@ -1959,11 +2031,6 @@ Since the resulting strings of a vocabulary-constrained superposition always\foo
 While it is not hugely difficult to follow along the transitivity chain of this particular set of 25 relations to determine that the relation between $a$ and $z$ is also `contains', it only takes one step to determine this relation while using strings: namely take the projection of the string in \cref{ex:a-z-string} relative to the vocabulary of interest, which in this case is $\{a,z\}$, which produces the string \EventString{{}|a|a,z|a|{}} which entails the `contains' relation between $a$ and $z$, by \cref{def:entails-allen}, p. \pageref{def:entails-allen}. One could further imagine a scenario with the same set of events where the relational transitivities are more difficult to compute, where the relation is not the same for every single event-pair. In this case, superposition will (possibly) produce more than one string as a result, but for every string produced there is exactly one relation between every time or event which appears in that string---effectively, taking each string into consideration in isolation from all of the others, the temporal closure has been computed. In order to find the relation or relations that hold---assuming it is still the relation between $a$ and $z$ that is of interest in this scenario---the projection is taken of each string relative to the set $\{a,z\}$, as before, and the union of all found relations is taken. This set will either be the relation or disjunction of possible relations that may hold between $a$ and $z$.
 
 For a more concrete example, using the sensible superposition operation on the \allowbreak{}\verb|<TLINK>| tags from a document---see \Cref{fig:case-study-tlinks} and \cref{ex:case-study-strings}, p. \pageref{ex:case-study-strings}---from the TimeBank corpus in \cref{ssub:incomplete} produced the set of languages found in \cref{ex:sp-sens-result}. To find, for example, the relation in that document's narrative between the two marked up times, $t0$ and $t31$, the projection of every string across all of the languages is taken relative to $\{t0, t31\}$, producing a set of five strings which correspond to the relations `during', `after', `met by', `finishes', and `overlapped by'. The disjunction of these five are the possibilities for the relation between $t0$ and $t31$, corresponding to the \citet{Freksa1992} relation `younger'.
-
-
-\subsubsection{Event Ontology}\label{ssub:ontology}
-Event hierarchy and using verb/word nets to figure out how events might relate to each other, e.g. using verb roles/participants to forge connections
-\nb{remove?}
 
 \subsubsection{Residuals and Gaps}\label{ssub:residuals}
 Given some set of strings which represent times and events and their temporal relations to serve as a knowledge base, an operation can be used to determine what strings must be added to the knowledge base in order to make some other string entailed. The operation is known as \textit{gap} as it effectively finds the language that would bridge the gap between the premises (the knowledge base of strings) and the conclusion (the other string).
@@ -2214,20 +2281,55 @@ While this does not conform with the TimeML schema, exactly, it is interpreted c
 
 While this tool is not expected nor intended to compete with existing annotation tools, it does serve as a proof-of-concept of what is enabled when using the string framework to represent events and times. Superpositions can quickly find inconsistencies in a document's temporal relations, as well as generate new constraints and relations that may not have been previously explicit, while also presenting a convenient visual guide for the overall temporal structure of the annotated document. It is hoped that future work will have the opportunity to develop this tool further, and perhaps integrate it with other tooling as an alternate view alongside graphical and chart-based tools.
 
-The next chapter examines some of the evaluation criteria for the present work, including ensuring that data cannot become lost or falsified when using the string framework, showing strings in use as part of a semantic test suite, and ensuring that the code implementing the framework is valid and behaves as expected.
+The next chapter examines some of the evaluation criteria for the present work, including ensuring that data cannot become lost or falsified when using the string framework.%, showing strings in use as part of a semantic test suite.%, and ensuring that the code implementing the framework is valid and behaves as expected.
 
 \newpage
 \section{Evaluation}\label{sec:evaluation}
-Evaluation was performed on the basis of three main components: asserting that the results produced were not invalid (i.e. did not cause contradictions internally within a string/language or externally within a knowledge-base), performing inferences using the FRACAS semantic test suite, and verifying that all implementation code was tested so as to produce exactly and only the expected results. \nb{how and why does this add \textit{value}---data is compressed? human readable/intuitive?}
+% Evaluation is on the basis of two main components: 
+In order evaluate, asserting that the string framework does not produce results that are invalid---that is, string operations do not cause contradictions internally, and they do not lose, falsify, or otherwise corrupt the original source data.%; and demonstrating the use of strings to represent the inferences which appear within the FRACAS semantic test suite.%; and verifying that the implementation code produces exactly and only the expected results.
 \subsection{Timeline Validity}\label{sub:validity}
-If data is superposed or otherwise manipulated, no information is lost or falsified in the process.
-\subsection{FRACAS Semantic Test Suite}\label{sub:fracas}
-A de facto standard for testing semantic inferencing.
-\subsection{Correctness of Code}\label{sub:correct}
-Python test suites.
+The string framework allows for compact temporal data representation with an intuitive link to timelines due to the sequential nature of the data, as explored in \cref{ssub:timelines}. However, it is crucial that these string representations do not mislead users by creating contradictory or otherwise problematic results, or if the information being operated on becomes mutated in some way that would lead to incorrect inferences being drawn that would not have been drawn before the data was manipulated. In essence, it must be ensured that when strings containing data from a source such as a document that is marked up with TimeML from the TimeBank corpus are utilised in any way, but particular after superposition as the most heavily relied upon operation in the framework, that no information becomes lost or falsified in the process.
+
+The notion of projection---see \cref{def:projection}, p. \pageref{def:projection}---allows any given string to be tested as to whether it contains the same temporal data as some other string, which gives a way of verifying whether source material has been lost or corrupted in some way during data manipulation. It was shown in \Cref{tab:failed-projections} that the asynchronous superposition operation, which allowed for data to be combined from pairs of strings of varying lengths, did not necessarily preserve projections from its results to its sources. As a consequence, the notion of projection was built into the definition of the vocabulary-constrained superposition operation, and it was enshrined that the only valid results of the operation would be those strings which could in fact project back to the original sources.
+
+To validate this using a concrete example, take the strings from the TimeBank document \verb|wsj_1073| again:
+\begin{align}
+	\{\Equals{e9}{e30}, \Before{e4}{t0}, \Before{e2}{t0}, \Before{e9}{t0}, \During{e30}{t31}\}\label{ex:validate-wsj}
+\end{align}
+Doing the vocabulary-constrained superposition on these strings produces a language which contains 7,449 strings.
+\begin{align}
+	\Equals{e9}{e30} \spvc \Before{e4}{t0} \spvc \Before{e2}{t0} \spvc \Before{e9}{t0} \spvc \During{e30}{t31}\\
+	= \{ \EventString{{}|t31|e2,t31|e2,e30,e9,t31|e2,e30,e4,e9,t31|e30,e9,t31|t31|t0|{}},\label{ex:7449}\\
+	\EventString{{}|e2|e2,t31|e2,e30,e9,t31|e2,e30,e4,e9,t31|e30,e9,t31|t31|t0,t31|t31|{}},\notag\\
+	\EventString{{}|e2,t31|e2,e30,e9,t31|e2,e30,e4,e9,t31|e30,e9,t31|t31|t0|{}},\notag\\
+	\EventString{{}|t31|e2,t31|e2,e30,e9,t31|e2,e30,e4,e9,t31|e30,e9,t31|t31|t0,t31|t0|{}},\notag\\
+	\ldots \}\notag
+\end{align}
+Checking each string individually, every single string in \cref{ex:7449} projects to every string in \cref{ex:validate-wsj}, thus verifying that all of the original information has been preserved through the superposition to the resulting strings.
+
+However, due to the unwieldy nature of vocabulary-constrained superposition which always performs superposition even when it sometimes doesn't make much sense from a practical point of view, the annotation tool in \cref{sec:implementation} uses instead a so-called `sensible' superposition, which avoids computing the result of superposition between strings if it is too costly to do so, based on the intersections of the inputs vocabularies and a pre-determined limit. Using this kind of superposition on \cref{ex:validate-wsj} does not in fact produce a single language, but a set of three languages, as in \cref{ex:validate-senssp}
+\begin{align}
+	\{\EventString{{}|t31|e30,e9,t31|t31|{}|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t31|{}},\label{ex:validate-senssp}\\
+	\EventString{{}|t31|e30,e9,t31|t31|t0|{}}, \EventString{{}|t31|e30,e9,t31|t31|t0,t31|t0|{}},\notag\\
+	\EventString{{}|t31|e30,e9,t31|t31|t0,t31|{}}\}, \{\EventString{{}|e4|{}|t0|{}}\}, \{\EventString{{}|e2|{}|t0|{}}\}\notag
+\end{align}
+It's clearly not possible for every string in \cref{ex:validate-senssp} to project to every string in \cref{ex:validate-wsj}: for instance $\EventString{{}|e2|{}|t0|{}} \not\sqsupseteq \Equals{e9}{e30}$. However, sensible superposition only ever produces either strings from the vocabulary-constrained superposition or the input strings themselves, so it should be possible to find the projections, and indeed it is. The sensible superposition effectively forms a segmentation of the data, meaning that rather than each string in \cref{ex:validate-wsj} being projected to by every string in \cref{ex:validate-senssp}, every string in \cref{ex:validate-wsj} is projected to by every string in one of the languages of \cref{ex:validate-senssp}. The second and third languages contain one string each, and each projects to one string from \cref{ex:validate-wsj}. The remaining three strings \Equals{e9}{e30}, \Before{e9}{t0}, and \During{e30}{t31} are indeed all projected to by every string in the remaining (first) language of \cref{ex:validate-senssp}, thus validating that all of the information has not been lost or corrupted during superpositions.
+
+% \subsection{FRACAS Semantic Test Suite}\label{sub:fracas}
+% A de facto standard for testing semantic inferencing.
+% \subsection{Correctness of Code}\label{sub:correct}
+% Python test suites.
 \newpage
 \section{Conclusion}\label{sec:conclusion}
-What have I spent the last four and a half years of my life doing?
+This thesis has described a framework for using strings as finite representations of temporal entities---times and events, as well as the relations between them. Strings have an intuitive comparison with timelines, a well-known method of conceptualising temporal information, due to their nature as sequential entities. Relevant literature was examined and discussed, in particular \citet{allen1983maintaining}'s interval algebra which forms a strong basis from which the string framework draws inspiration.
+
+The string framework is described, including a number of operations which can be used to combine data from different strings and reason with them by inferring new temporal relations which weren't previously made explicit.
+
+Some applications of the strings are given, in particular the use for augmenting semantic temporal annotation, for which a proof of concept tool is presented.
+
+It is hoped that in the future this framework can be developed further and find a place among the tools of modern semantic temporal annotation.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                              %
 %                             Actual Document Ends                             %

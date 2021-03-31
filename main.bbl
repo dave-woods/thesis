@@ -169,6 +169,12 @@ Elgot, C.~C. and Rabin, M.~O. (1966).
   order theory of (generalized) successor}.
 \newblock {\em The Journal of Symbolic Logic}, 31(2):169--181.
 
+\bibitem[\protect\astroncite{Fellbaum}{2010}]{fellbaum2010wordnet}
+Fellbaum, C. (2010).
+\newblock Wordnet.
+\newblock In {\em Theory and applications of ontology: computer applications},
+  pages 231--243. Springer.
+
 \bibitem[\protect\astroncite{Fernando}{2004}]{Fernando2004}
 Fernando, T. (2004).
 \newblock {A Finite-State Approach to Events in Natural Language semantics}.
