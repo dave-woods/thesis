@@ -51,6 +51,7 @@
 \usepackage{diagbox}
 \usepackage[nodayofweek]{datetime}
 \usepackage{listings}
+\lstset{literate={α}{{$\alpha$}}1 {ω}{{$\omega$}}1}
 
 \captionsetup[figure]{font=small,labelfont=small,justification=centering}
 \captionsetup[table]{font=small,labelfont=small,justification=centering}
@@ -522,7 +523,7 @@ In general, if a pair of events that are to be temporally related are in separat
 The next section takes a deeper look at the TimeBank corpus and the annotation schema with which it is marked up, TimeML.
 
 \subsection{Temporal Annotation}\label{sub:annotation}
-Ideally, humans who use artificially  i7-6700 CPU with 16GB memory.ligent systems for question-answering, scheduling, or other applications which require some level of reasoning about temporal data won't ever have to consider the annotation which drives it---except, of course, in the case when annotation is itself the goal of using the system. Computer systems have no inherent understanding of natural language, and rely on the samples they have been provided with in order to give a facsimile of the communication abilities that humans have. The better the quality of those samples, and the more information embedded within them, the better the system can interpret human language, and in turn generate interpretable output.
+Ideally, humans who use artificially  intelligent systems for question-answering, scheduling, or other applications which require some level of reasoning about temporal data won't ever have to consider the annotation which drives it---except, of course, in the case when annotation is itself the goal of using the system. Computer systems have no inherent understanding of natural language, and rely on the samples they have been provided with in order to give a facsimile of the communication abilities that humans have. The better the quality of those samples, and the more information embedded within them, the better the system can interpret human language, and in turn generate interpretable output.
 
 The annotation of a document allows for information about the text to be expressed in such a way as to make the implicit explicit---revealing a layer of semantics which a human may be able to infer, but an artificial agent would not. There are many ways to mark up a text, and many concepts which may warrant marking up, but in terms of temporal data, the most prudent schema to follow is that of TimeML \citep{timeml2005timeml} and its successor, which has become the ISO (International Organization for Standardization) standard for temporal annotation: ISO-TimeML \citep{ISO24617-1}, a part of the ISO Semantic Annotation Framework---see \citet{Bunt2020}.
 
@@ -539,7 +540,7 @@ The initial goal for creating the TimeML language came from a desire to improve 
 \end{itemize}
 Speakers will rely on their listeners being able to use context to interpret what these temporal expressions refer to.
 
-TimeML aimed, in part, to give implicit and relative temporal expressions an explicit anchoring, in order to assist with  i7-6700 CPU with 16GB memory.ligent systems' temporal awareness. \citet[p. 125, (1a.)]{Pustejovsky2005} wanted to enable question-answering systems to be able to answer questions such as
+TimeML aimed, in part, to give implicit and relative temporal expressions an explicit anchoring, in order to assist with  intelligent systems' temporal awareness. \citet[p. 125, (1a.)]{Pustejovsky2005} wanted to enable question-answering systems to be able to answer questions such as
 \begin{itemize}
 	\item[\ipp] ``Is Schr\"{o}der currently German chancellor?''
 \end{itemize}
@@ -1267,7 +1268,7 @@ Note that this result is still a language (a set of strings), and that there may
 	\end{tabular}
 	\captionof{table}{Projections of \cref{ex:spvc-allen-transitivity} matching Allen's transitivities.}\label{tab:spvc-allen-transitivity-projections}
 \end{center}
-In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an  i7-6700 CPU with 16GB memory. i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary-constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary-constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings} is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
+In \citet[p. 82]{woods2018improving} some simple benchmark tests were run, comparing the time (in milliseconds\footnote{The mean time of 1001 runs is given. The testing environment was Node.js v10.0.0 (64-bit) on Ubuntu 16.04 using an  Intel i7-6700 CPU with 16GB of memory.}) taken to compute the superpositions of a number of pairs of strings, using each of asynchronous superposition (generating then testing) and vocabulary-constrained superposition (testing while generating). These figures indicate a notable increase in the efficiency of time to calculate the correct results in using vocabulary-constrained superposition. Each of the strings in \Cref{tab:allen-rels-strings}, p. \pageref{tab:allen-rels-strings} is superposed with itself and each of the others (e.g. \textit{before} with \textit{before}, \textit{before} with \textit{after}, \textit{before} with \textit{meets}, ..., \textit{finished by} with \textit{started by}, \textit{finished by} with \textit{finished by}), while varying the vocabularies of the operand strings as follows: first, both strings had the same vocabulary $\{a, b\}$; second, the strings shared one fluent in common, $\{a, b\}$ and $\{b, c\}$; finally, the strings had disjoint vocabularies, $\{a, b\}$ and $\{c, d\}$. A fragment of these tests is shown in \Cref{tab:speedtest}.
 \begin{center}
 	\begin{tabular}{c|c|c|c}
 	& $\triangle = *$ & $\triangle = v\!c$ & Decrease in time\\
