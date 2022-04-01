@@ -922,18 +922,18 @@ The fact that strings can be construed as models of MSO gives rise to a convenie
 A string $s$ will be said to be \textit{analogous} to some other string $s'$ if the MSO models corresponding to each string can be said to be, in a sense, isomorphic%
 % \nb{wiki: bijection, isomorphism;\\\url{https://www.britannica.com/science/isomorphism-mathematics}\\\url{https://mathworld.wolfram.com/Isomorphism.html}\\\url{https://plato.stanford.edu/entries/modeltheory-fo/}}
 ---that is, $s$ and $s'$ are of equal length, there exists a bijective function $f$ mapping between the vocabulary of $s$ and the vocabulary of $s'$, and for every fluent $v \in \V_s$, its image $f(v) \in \V_{s'}$ appears in only those same string positions in $s'$ as $v$ appears in $s$:
-\begin{align}
-	mod(s) &\cong mod(s') \Longleftrightarrow \\\notag &\text{length}(s) = \text{length}(s') \land \exists f ~(f: \V_s \leftrightarrow \V_{s'} \land \forall v \in \V_s ~(\llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket)\\
-	mod(s) &\cong mod(s') \Longleftrightarrow s \sim s'
+\begin{align}\label{def:analogous-strings}
+	mod(s) \cong&~ mod(s') \Longleftrightarrow \\\notag &\text{length}(s) = \text{length}(s') \land \exists f ~(f: \V_s \leftrightarrow \V_{s'} \land \forall v \in \V_s ~(\llbracket P_v \rrbracket = \llbracket P_{f(v)} \rrbracket)\\
+	s \sim s' :=&~ mod(s) \cong mod(s')
 \end{align}
 For example, in \cref{ex:analog}, \Before{a}{b} is analogous to \Before{c}{d}, while in \cref{ex:not-analog} \Before{a}{b} is not analogous to \Overlaps{c}{d}
 \begin{align}
 	\Before{a}{b} &\sim \Before{c}{d}\label{ex:analog}\\
 	\Before{a}{b} &\nsim \Overlaps{c}{d}\label{ex:not-analog}
 \end{align}
-This definition of analogy can be lifted to languages $L$ and $L'$ simply by testing if all strings in $L$ are analogous with all strings in $L'$:
-\begin{align}
-	L \sim L' := \forall (s \in L) \forall (s' \in L')~ (s \sim s')
+This definition of analogy can be lifted to languages of equal size $L$ and $L'$ by testing if for every string $s$ in $L$ there is an analogous string $s'$ in $L'$, and vice versa. Essentially, if a a bijection exists which maps strings from $L$ to $L'$ by analogy.
+\begin{align}\label{def:analogous-languages}
+	L \sim L' ~:=~ &\# L = \#L' ~\wedge\\\notag&\forall (s \in L) \exists (s' \in L')~ (s \sim s') ~\wedge\\\notag&\forall (s' \in L') \exists (s \in L)~ (s' \sim s)
 \end{align}
 Determining whether strings are analogous is useful when ascertaining the relations between events appearing in a string. If the relations between events in a string $s$ are known, and another string $s'$ can be shown to be analogous to $s$, then the relations between the events that appear in $s'$ are also known\footnote{For example, the string on the left hand side of \cref{ex:analog} says that event $a$ is \textit{before} event $b$, and since the string on the right hand side is analogous, THEN event $c$ must be \textit{before} event $d$.}. By employing this concept in conjunction with that of projection (see p. \pageref{para:str-op-projection}) and a set of reference strings---such as those modelling Allen's relations (see \cref{tab:allen-rels-strings})---it becomes simple to determine which relations appear in a string.
 
