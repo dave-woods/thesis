@@ -846,7 +846,7 @@ If some string, such as in \cref{ex:judder-invalid}, features judder in this way
 		\EventString{a|a|a|a|a}\label{ex:judder-valid-2} ~-~& \text{valid}
 	\end{align}
 \end{subequations}
-Sets of strings are \textit{languages}, which allow for grouping of strings based on some property---such as their source---and which introduces a method for handling such cases of ambiguity and non-determinism as will be shown in more detail in \cref{ssub:superposition} (see also \cref{ex:lang-superposition}, p. \pageref{ex:lang-superposition}). For example,
+Sets of strings are \textit{languages}, which allow for collections of strings to be grouped together. In this work, typically, the shared property by which strings are grouped is their vocabulary---that is, the strings in the language represent different sequences of the same fluents---although, other properties may be used, such as strings which have an identical first component, or strings extracted from the same source text (see \cref{sub:extracting}). Using languages in this way allows for a method to be introduced for handling such cases of ambiguity and non-determinism, as will be shown in more detail in \cref{ssub:superposition}---see also \cref{ex:lang-superposition}, p. \pageref{ex:lang-superposition}. For example,
 \begin{align}
 	L = \{\EventString{a|b|c}, \EventString{a|c|b}\}
 \end{align}
