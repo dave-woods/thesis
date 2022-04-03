@@ -32,7 +32,7 @@
 \contentsline {subsection}{\numberline {3.2}Applications}{73}
 \contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{74}
 \contentsline {subsubsection}{\numberline {3.2.2}Constraints and Scheduling (Zebra Puzzle)}{80}
-\contentsline {section}{\numberline {4}Methods}{91}
+\contentsline {section}{\numberline {4}Methods for Deriving and Using Strings}{91}
 \contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{91}
 \contentsline {subsubsection}{\numberline {4.1.1}Linking the TLINKs}{93}
 \contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{98}
@@ -41,29 +41,29 @@
 \contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{114}
 \contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{115}
 \contentsline {subsubsection}{\numberline {4.3.2}Residuals and Gaps}{117}
-\contentsline {section}{\numberline {5}String Temporal Annotation and Relation Tool (START)}{122}
-\contentsline {subsection}{\numberline {5.1}Back-end API}{124}
-\contentsline {subsection}{\numberline {5.2}Front-end Interface}{127}
-\contentsline {section}{\numberline {6}Evaluation}{136}
-\contentsline {subsection}{\numberline {6.1}Timeline Validity}{136}
-\contentsline {section}{\numberline {7}Conclusion}{139}
-\contentsline {section}{Bibliography}{140}
-\contentsline {section}{Appendices}{148}
-\contentsline {subsection}{Python Code}{148}
-\contentsline {subsubsection}{strfns.py}{148}
-\contentsline {subsubsection}{freksa.py}{160}
-\contentsline {subsubsection}{newTLINKs.py}{164}
-\contentsline {subsubsection}{superpose.py}{167}
-\contentsline {subsubsection}{test.py}{168}
-\contentsline {subsection}{JavaScript Code}{169}
-\contentsline {subsubsection}{index.js}{169}
-\contentsline {subsubsection}{parseTML.js}{183}
-\contentsline {subsubsection}{suggestTenseAspectRelation.js}{187}
-\contentsline {subsubsection}{CreateRelation.js}{190}
-\contentsline {subsubsection}{Details.js}{194}
-\contentsline {subsubsection}{EventList.js}{198}
-\contentsline {subsubsection}{ExamineString.js}{199}
-\contentsline {subsubsection}{Help.js}{200}
-\contentsline {subsubsection}{StringBank.js}{203}
-\contentsline {subsubsection}{TextDisplay.js}{205}
-\contentsline {subsubsection}{TextEntry.js}{206}
+\contentsline {subsection}{\numberline {4.4}Timeline Validity}{121}
+\contentsline {section}{\numberline {5}String Temporal Annotation and Relation Tool (START)}{124}
+\contentsline {subsection}{\numberline {5.1}Back-end API}{126}
+\contentsline {subsection}{\numberline {5.2}Front-end Interface}{129}
+\contentsline {section}{\numberline {6}Conclusion}{138}
+\contentsline {section}{Index of Definitions and Concepts}{144}
+\contentsline {section}{Bibliography}{146}
+\contentsline {section}{Appendices}{154}
+\contentsline {subsection}{Python Code}{154}
+\contentsline {subsubsection}{strfns.py}{154}
+\contentsline {subsubsection}{freksa.py}{166}
+\contentsline {subsubsection}{newTLINKs.py}{170}
+\contentsline {subsubsection}{superpose.py}{173}
+\contentsline {subsubsection}{test.py}{174}
+\contentsline {subsection}{JavaScript Code}{175}
+\contentsline {subsubsection}{index.js}{175}
+\contentsline {subsubsection}{parseTML.js}{189}
+\contentsline {subsubsection}{suggestTenseAspectRelation.js}{193}
+\contentsline {subsubsection}{CreateRelation.js}{196}
+\contentsline {subsubsection}{Details.js}{200}
+\contentsline {subsubsection}{EventList.js}{204}
+\contentsline {subsubsection}{ExamineString.js}{205}
+\contentsline {subsubsection}{Help.js}{206}
+\contentsline {subsubsection}{StringBank.js}{209}
+\contentsline {subsubsection}{TextDisplay.js}{211}
+\contentsline {subsubsection}{TextEntry.js}{212}

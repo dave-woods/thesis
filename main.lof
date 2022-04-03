@@ -14,12 +14,12 @@
 \contentsline {figure}{\numberline {14}{\ignorespaces Inter-annotator agreement for attributes in TimeBank 1.2 \citep [from][]{timeml2005timeml}.\relax }}{93}
 \contentsline {figure}{\numberline {15}{\ignorespaces Pseudo-code for superposing a list of languages of strings.\relax }}{108}
 \contentsline {figure}{\numberline {16}{\ignorespaces TLINKs from the wsj\_1073 document of TimeBank 1.2.\relax }}{109}
-\contentsline {figure}{\numberline {17}{\ignorespaces START: Initial blank input.\relax }}{128}
-\contentsline {figure}{\numberline {18}{\ignorespaces START: The screen after a TimeML file is imported.\relax }}{129}
-\contentsline {figure}{\numberline {19}{\ignorespaces START: The String bank after importing TimeML.\relax }}{130}
-\contentsline {figure}{\numberline {20}{\ignorespaces START: The String bank after clicking `Superpose'.\relax }}{131}
-\contentsline {figure}{\numberline {21}{\ignorespaces START: Examine a particular string.\relax }}{131}
-\contentsline {figure}{\numberline {22}{\ignorespaces START: The relation panel.\relax }}{132}
-\contentsline {figure}{\numberline {23}{\ignorespaces START: Relations found for a pair of intervals.\relax }}{132}
-\contentsline {figure}{\numberline {24}{\ignorespaces START: The result of testing a particular relation for consistency within the knowledge base.\relax }}{133}
-\contentsline {figure}{\numberline {25}{\ignorespaces START: Editing some of an event's attributes.\relax }}{134}
+\contentsline {figure}{\numberline {17}{\ignorespaces START: Initial blank input.\relax }}{130}
+\contentsline {figure}{\numberline {18}{\ignorespaces START: The screen after a TimeML file is imported.\relax }}{131}
+\contentsline {figure}{\numberline {19}{\ignorespaces START: The String bank after importing TimeML.\relax }}{132}
+\contentsline {figure}{\numberline {20}{\ignorespaces START: The String bank after clicking `Superpose'.\relax }}{133}
+\contentsline {figure}{\numberline {21}{\ignorespaces START: Examine a particular string.\relax }}{133}
+\contentsline {figure}{\numberline {22}{\ignorespaces START: The relation panel.\relax }}{134}
+\contentsline {figure}{\numberline {23}{\ignorespaces START: Relations found for a pair of intervals.\relax }}{134}
+\contentsline {figure}{\numberline {24}{\ignorespaces START: The result of testing a particular relation for consistency within the knowledge base.\relax }}{135}
+\contentsline {figure}{\numberline {25}{\ignorespaces START: Editing some of an event's attributes.\relax }}{136}
