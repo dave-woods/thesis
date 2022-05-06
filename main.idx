@@ -2,51 +2,51 @@
 \indexentry{Allen Relations!Symbols}{8}
 \indexentry{Allen Relations!Transitivity}{8}
 \indexentry{Temporal closure}{9}
-\indexentry{Inertial world}{42}
-\indexentry{Fluent}{43}
-\indexentry{Fluent Labels}{43}
-\indexentry{Sequences of sets}{43}
-\indexentry{Vocabulary}{43}
-\indexentry{Component}{44}
-\indexentry{Duration}{44}
-\indexentry{Box notation}{44}
-\indexentry{Empty box}{44}
-\indexentry{Judder}{45}
-\indexentry{Languages of strings}{45}
-\indexentry{Conflation of language and string}{46}
-\indexentry{MSO}{46}
-\indexentry{MSO!Interpretation of $P$ $\llbracket P \rrbracket$}{47}
-\indexentry{MSO!String positions}{47}
-\indexentry{MSO!Finite models}{48}
-\indexentry{MSO!Models described by strings}{49}
-\indexentry{MSO!Equivalence with regular languages}{49}
-\indexentry{Analogy!Strings}{50}
-\indexentry{Analogy!Languages}{51}
-\indexentry{Event borders}{53}
-\indexentry{Granularity}{53}
-\indexentry{Pointwise strings!$l$ and $r$}{53}
-\indexentry{Pointwise strings!Translation from intervals}{54}
-\indexentry{Pointwise strings!Relations}{54}
-\indexentry{Empty box!Bounded finite events}{56}
-\indexentry{Vocabulary!Strings  $\V_s$}{57}
-\indexentry{Vocabulary!Languages}{57}
-\indexentry{Block compression!5@Stutter}{58}
-\indexentry{Block compression!1@\bc}{58}
-\indexentry{Block compression!2@$\bc^{-1}$}{58}
-\indexentry{Block compression!3@\bc -equivalent}{58}
-\indexentry{Superposition!Basic $\sp$}{59}
-\indexentry{Superposition!Basic $\sp$!Languages}{59}
-\indexentry{Block compression!4@$pad_k$}{62}
-\indexentry{Superposition!Asynchronous $\spasync$}{62}
-\indexentry{Reduct}{64}
-\indexentry{Projection!Strings}{65}
-\indexentry{Projection!Languages}{66}
-\indexentry{Superposition!Vocabulary-constrained $\spvc$}{71}
-\indexentry{Allen Relations!String representations}{78}
-\indexentry{Semi-intervals!$\alpha$ and $\omega$}{103}
-\indexentry{Semi-intervals!$semi(s)$}{103}
-\indexentry{Semi-intervals!Disjunctions in a box}{105}
-\indexentry{Superposition!Sensible $\sensp$}{108}
-\indexentry{Reasoning!Gap}{118}
-\indexentry{Reasoning!Contains}{128}
-\indexentry{Reasoning!Contradicts}{128}
+\indexentry{Inertial world}{43}
+\indexentry{Fluent}{44}
+\indexentry{Fluent Labels}{44}
+\indexentry{Sequences of sets}{45}
+\indexentry{Vocabulary}{45}
+\indexentry{Component}{45}
+\indexentry{Duration}{45}
+\indexentry{Box notation}{45}
+\indexentry{Empty box}{46}
+\indexentry{Judder}{46}
+\indexentry{Languages of strings}{47}
+\indexentry{Conflation of language and string}{47}
+\indexentry{MSO}{48}
+\indexentry{MSO!Interpretation of $P$ $\llbracket P \rrbracket$}{48}
+\indexentry{MSO!String positions}{49}
+\indexentry{MSO!Finite models}{49}
+\indexentry{MSO!Models described by strings}{50}
+\indexentry{MSO!Equivalence with regular languages}{51}
+\indexentry{Analogy!Strings}{52}
+\indexentry{Analogy!Languages}{53}
+\indexentry{Event borders}{55}
+\indexentry{Granularity}{55}
+\indexentry{Pointwise strings!$l$ and $r$}{55}
+\indexentry{Pointwise strings!Translation from intervals}{56}
+\indexentry{Pointwise strings!Relations}{56}
+\indexentry{Empty box!Bounded finite events}{58}
+\indexentry{Vocabulary!Strings  $\V_s$}{59}
+\indexentry{Vocabulary!Languages}{59}
+\indexentry{Block compression!5@Stutter}{60}
+\indexentry{Block compression!1@\bc}{60}
+\indexentry{Block compression!2@$\bc^{-1}$}{61}
+\indexentry{Block compression!3@\bc -equivalent}{61}
+\indexentry{Superposition!Basic $\sp$}{61}
+\indexentry{Superposition!Basic $\sp$!Languages}{62}
+\indexentry{Block compression!4@$pad_k$}{64}
+\indexentry{Superposition!Asynchronous $\spasync$}{65}
+\indexentry{Reduct}{67}
+\indexentry{Projection!Strings}{68}
+\indexentry{Projection!Languages}{69}
+\indexentry{Superposition!Vocabulary-constrained $\spvc$}{75}
+\indexentry{Allen Relations!String representations}{82}
+\indexentry{Semi-intervals!$\alpha$ and $\omega$}{109}
+\indexentry{Semi-intervals!$semi(s)$}{109}
+\indexentry{Semi-intervals!Disjunctions in a box}{111}
+\indexentry{Superposition!Sensible $\sensp$}{114}
+\indexentry{Reasoning!Gap}{126}
+\indexentry{Reasoning!Contains}{137}
+\indexentry{Reasoning!Contradicts}{137}

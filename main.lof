@@ -3,23 +3,23 @@
 \contentsline {figure}{\numberline {3}{\ignorespaces Computation of a transitivity with a multiple-label result.\relax }}{10}
 \contentsline {figure}{\numberline {4}{\ignorespaces Arrangements of the points $E$, $R$, and $S$, from \citet {reichenbach1947elements}.\relax }}{13}
 \contentsline {figure}{\numberline {5}{\ignorespaces Relations of $E$, $R$, and $S$ for the Progressive aspect.\relax }}{14}
-\contentsline {figure}{\numberline {6}{\ignorespaces Tense-aspect pairs and the \citet {Freksa1992} relations they may suggest \citep [taken from][p. 80, Table 5]{Derczynski2013}.\relax }}{16}
+\contentsline {figure}{\numberline {6}{\ignorespaces Tense-aspect pairs and the \citet {Freksa1992} relations they may suggest \citep [taken from][p. 80, Table 5]{Derczynski2013}.\relax }}{17}
 \contentsline {figure}{\numberline {7}{\ignorespaces Possible values of a TLINK's relType attribute and their Allen relation counterparts.\relax }}{24}
 \contentsline {figure}{\numberline {8}{\ignorespaces Example TimeML annotation for ``He panicked on Wednesday.''\relax }}{25}
 \contentsline {figure}{\numberline {9}{\ignorespaces Tag counts for TimeBank 1.2.\relax }}{26}
 \contentsline {figure}{\numberline {10}{\ignorespaces Tango's interface \citep [taken from][p. 2, Figure 1]{verhagen2005TBOX}.\relax }}{29}
-\contentsline {figure}{\numberline {11}{\ignorespaces \Cref {fig:tango}'s data now drawn using T-BOX \citep [taken from][p. 3, Figure 2]{verhagen2005TBOX}.\relax }}{31}
-\contentsline {figure}{\numberline {12}{\ignorespaces A Gantt chart featuring six events.\relax }}{75}
-\contentsline {figure}{\numberline {13}{\ignorespaces Inter-annotator agreement for tags in TimeBank 1.2 \citep [from][]{timeml2005timeml}.\relax }}{92}
-\contentsline {figure}{\numberline {14}{\ignorespaces Inter-annotator agreement for attributes in TimeBank 1.2 \citep [from][]{timeml2005timeml}.\relax }}{93}
-\contentsline {figure}{\numberline {15}{\ignorespaces Pseudo-code for superposing a list of languages of strings.\relax }}{108}
-\contentsline {figure}{\numberline {16}{\ignorespaces TLINKs from the wsj\_1073 document of TimeBank 1.2.\relax }}{109}
-\contentsline {figure}{\numberline {17}{\ignorespaces START: Initial blank input.\relax }}{130}
-\contentsline {figure}{\numberline {18}{\ignorespaces START: The screen after a TimeML file is imported.\relax }}{131}
-\contentsline {figure}{\numberline {19}{\ignorespaces START: The String bank after importing TimeML.\relax }}{132}
-\contentsline {figure}{\numberline {20}{\ignorespaces START: The String bank after clicking `Superpose'.\relax }}{133}
-\contentsline {figure}{\numberline {21}{\ignorespaces START: Examine a particular string.\relax }}{133}
-\contentsline {figure}{\numberline {22}{\ignorespaces START: The relation panel.\relax }}{134}
-\contentsline {figure}{\numberline {23}{\ignorespaces START: Relations found for a pair of intervals.\relax }}{134}
-\contentsline {figure}{\numberline {24}{\ignorespaces START: The result of testing a particular relation for consistency within the knowledge base.\relax }}{135}
-\contentsline {figure}{\numberline {25}{\ignorespaces START: Editing some of an event's attributes.\relax }}{136}
+\contentsline {figure}{\numberline {11}{\ignorespaces \Cref {fig:tango}'s data now drawn using T-BOX \citep [taken from][p. 3, Figure 2]{verhagen2005TBOX}.\relax }}{32}
+\contentsline {figure}{\numberline {12}{\ignorespaces A Gantt chart featuring six events.\relax }}{79}
+\contentsline {figure}{\numberline {13}{\ignorespaces Inter-annotator agreement for tags in TimeBank 1.2 \citep [from][]{timeml2005timeml}.\relax }}{97}
+\contentsline {figure}{\numberline {14}{\ignorespaces Inter-annotator agreement for attributes in TimeBank 1.2 \citep [from][]{timeml2005timeml}.\relax }}{98}
+\contentsline {figure}{\numberline {15}{\ignorespaces Pseudo-code for superposing a list of languages of strings.\relax }}{115}
+\contentsline {figure}{\numberline {16}{\ignorespaces TLINKs from the wsj\_1073 document of TimeBank 1.2.\relax }}{116}
+\contentsline {figure}{\numberline {17}{\ignorespaces START: Initial blank input.\relax }}{139}
+\contentsline {figure}{\numberline {18}{\ignorespaces START: The screen after a TimeML file is imported.\relax }}{140}
+\contentsline {figure}{\numberline {19}{\ignorespaces START: The String bank after importing TimeML.\relax }}{140}
+\contentsline {figure}{\numberline {20}{\ignorespaces START: The String bank after clicking `Superpose'.\relax }}{141}
+\contentsline {figure}{\numberline {21}{\ignorespaces START: Examine a particular string.\relax }}{142}
+\contentsline {figure}{\numberline {22}{\ignorespaces START: The relation panel.\relax }}{142}
+\contentsline {figure}{\numberline {23}{\ignorespaces START: Relations found for a pair of intervals.\relax }}{143}
+\contentsline {figure}{\numberline {24}{\ignorespaces START: The result of testing a particular relation for consistency within the knowledge base.\relax }}{144}
+\contentsline {figure}{\numberline {25}{\ignorespaces START: Editing some of an event's attributes.\relax }}{145}

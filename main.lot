@@ -1,22 +1,22 @@
 \contentsline {table}{\numberline {1}{\ignorespaces Fragment of Allen's transitivity table \citeyearpar [p. 836, Figure 4]{allen1983maintaining}.\relax }}{11}
-\contentsline {table}{\numberline {2}{\ignorespaces Failed projections for \cref {ex:async-superposition}.\relax }}{67}
-\contentsline {table}{\numberline {3}{\ignorespaces Preserved projections of \cref {ex:spasync-disjoint-vocab}.\relax }}{68}
-\contentsline {table}{\numberline {4}{\ignorespaces Failed projections for \cref {ex:spasync-overlap-vocab}.\relax }}{68}
-\contentsline {table}{\numberline {5}{\ignorespaces Projections of \cref {ex:spvc-allen-transitivity} matching Allen's transitivities.\relax }}{72}
-\contentsline {table}{\numberline {6}{\ignorespaces Fragment of speed comparison between $\nobreakspace {}\&_*\nobreakspace {}$ and $\nobreakspace {}\&_{v\tmspace -\thinmuskip {.1667em}c}\nobreakspace {}$.\relax }}{73}
-\contentsline {table}{\numberline {7}{\ignorespaces Allen interval relations in strings.\relax }}{79}
-\contentsline {table}{\numberline {8}{\ignorespaces Temporal Zebra puzzle clues in English.\relax }}{82}
-\contentsline {table}{\numberline {9}{\ignorespaces Temporal Zebra puzzle clues as strings.\relax }}{84}
-\contentsline {table}{\numberline {10}{\ignorespaces Solution to Temporal Zebra puzzle as in \cref {ex:zebra-string-full-solution}.\relax }}{86}
-\contentsline {table}{\numberline {11}{\ignorespaces Constraints of the Trains example from \citet [p. 3283]{durand2008tool}.\relax }}{87}
-\contentsline {table}{\numberline {12}{\ignorespaces Train scheduling problem constraints as languages of strings.\relax }}{88}
-\contentsline {table}{\numberline {13}{\ignorespaces Durations of relations between $a$ and $b$.\relax }}{89}
-\contentsline {table}{\numberline {14}{\ignorespaces The counts and proportions of each TimeML relation in the TimeBank 1.2 corpus.\relax }}{94}
-\contentsline {table}{\numberline {15}{\ignorespaces Relations arising from the superposition in \cref {ex:vague-older-sp}.\relax }}{99}
-\contentsline {table}{\numberline {16}{\ignorespaces \citet {Freksa1992}'s relations described in terms of the constraints they impose on the beginnings and endings of a pair of intervals.\relax }}{101}
-\contentsline {table}{\numberline {17}{\ignorespaces \citet {Freksa1992}'s relations described in terms of disjunctions of \citet {allen1983maintaining}'s relations.\relax }}{102}
-\contentsline {table}{\numberline {18}{\ignorespaces Translating strings corresponding to the Freksa `older' relation from \Cref {tab:older-strings} to use semi-intervals.\relax }}{104}
-\contentsline {table}{\numberline {19}{\ignorespaces Block compressed reduct on \Cref {tab:older-strings-semi}.\relax }}{104}
-\contentsline {table}{\numberline {20}{\ignorespaces The Freksa relations and the strings they project to.\relax }}{105}
-\contentsline {table}{\numberline {21}{\ignorespaces The remaining Freksa relations and the strings they project to.\relax }}{106}
-\contentsline {table}{\numberline {22}{\ignorespaces Caching superpositions vastly improving efficiency.\relax }}{128}
+\contentsline {table}{\numberline {2}{\ignorespaces Failed projections for \cref {ex:async-superposition}.\relax }}{70}
+\contentsline {table}{\numberline {3}{\ignorespaces Preserved projections of \cref {ex:spasync-disjoint-vocab}.\relax }}{71}
+\contentsline {table}{\numberline {4}{\ignorespaces Failed projections for \cref {ex:spasync-overlap-vocab}.\relax }}{72}
+\contentsline {table}{\numberline {5}{\ignorespaces Projections of \cref {ex:spvc-allen-transitivity} matching Allen's transitivities.\relax }}{76}
+\contentsline {table}{\numberline {6}{\ignorespaces Fragment of speed comparison between $\nobreakspace {}\&_*\nobreakspace {}$ and $\nobreakspace {}\&_{v\tmspace -\thinmuskip {.1667em}c}\nobreakspace {}$.\relax }}{76}
+\contentsline {table}{\numberline {7}{\ignorespaces Allen interval relations in strings.\relax }}{82}
+\contentsline {table}{\numberline {8}{\ignorespaces Temporal Zebra puzzle clues in English.\relax }}{86}
+\contentsline {table}{\numberline {9}{\ignorespaces Temporal Zebra puzzle clues as strings.\relax }}{88}
+\contentsline {table}{\numberline {10}{\ignorespaces Solution to Temporal Zebra puzzle as in \cref {ex:zebra-string-full-solution}.\relax }}{90}
+\contentsline {table}{\numberline {11}{\ignorespaces Constraints of the Trains example from \citet [p. 3283]{durand2008tool}.\relax }}{91}
+\contentsline {table}{\numberline {12}{\ignorespaces Train scheduling problem constraints as languages of strings.\relax }}{92}
+\contentsline {table}{\numberline {13}{\ignorespaces Durations of relations between $a$ and $b$.\relax }}{93}
+\contentsline {table}{\numberline {14}{\ignorespaces The counts and proportions of each TimeML relation in the TimeBank 1.2 corpus.\relax }}{99}
+\contentsline {table}{\numberline {15}{\ignorespaces Relations arising from the superposition in \cref {ex:vague-older-sp}.\relax }}{105}
+\contentsline {table}{\numberline {16}{\ignorespaces \citet {Freksa1992}'s relations described in terms of the constraints they impose on the beginnings and endings of a pair of intervals.\relax }}{107}
+\contentsline {table}{\numberline {17}{\ignorespaces \citet {Freksa1992}'s relations described in terms of disjunctions of \citet {allen1983maintaining}'s relations.\relax }}{108}
+\contentsline {table}{\numberline {18}{\ignorespaces Translating strings corresponding to the Freksa `older' relation from \Cref {tab:older-strings} to use semi-intervals.\relax }}{110}
+\contentsline {table}{\numberline {19}{\ignorespaces Block compressed reduct on \Cref {tab:older-strings-semi}.\relax }}{110}
+\contentsline {table}{\numberline {20}{\ignorespaces The Freksa relations and the strings they project to.\relax }}{112}
+\contentsline {table}{\numberline {21}{\ignorespaces The remaining Freksa relations and the strings they project to.\relax }}{112}
+\contentsline {table}{\numberline {22}{\ignorespaces Caching superpositions vastly improving efficiency.\relax }}{136}

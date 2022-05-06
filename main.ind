@@ -2,99 +2,99 @@
 
   \item Allen Relations
     \subitem Motivations, 6
-    \subitem String representations, 78
+    \subitem String representations, 82
     \subitem Symbols, 8
     \subitem Transitivity, 8
   \item Analogy
-    \subitem Languages, 51
-    \subitem Strings, 50
+    \subitem Languages, 53
+    \subitem Strings, 52
 
   \indexspace
 
   \item Block compression
-    \subitem \bc, 58
-    \subitem $\bc^{-1}$, 58
-    \subitem \bc -equivalent, 58
-    \subitem $pad_k$, 62
-    \subitem Stutter, 58
-  \item Box notation, 44
+    \subitem \bc, 60
+    \subitem $\bc^{-1}$, 61
+    \subitem \bc -equivalent, 61
+    \subitem $pad_k$, 64
+    \subitem Stutter, 60
+  \item Box notation, 45
 
   \indexspace
 
-  \item Component, 44
-  \item Conflation of language and string, 46
+  \item Component, 45
+  \item Conflation of language and string, 47
 
   \indexspace
 
-  \item Duration, 44
+  \item Duration, 45
 
   \indexspace
 
-  \item Empty box, 44
-    \subitem Bounded finite events, 56
-  \item Event borders, 53
+  \item Empty box, 46
+    \subitem Bounded finite events, 58
+  \item Event borders, 55
 
   \indexspace
 
-  \item Fluent, 43
-  \item Fluent Labels, 43
+  \item Fluent, 44
+  \item Fluent Labels, 44
 
   \indexspace
 
-  \item Granularity, 53
+  \item Granularity, 55
 
   \indexspace
 
-  \item Inertial world, 42
+  \item Inertial world, 43
 
   \indexspace
 
-  \item Judder, 45
+  \item Judder, 46
 
   \indexspace
 
-  \item Languages of strings, 45
+  \item Languages of strings, 47
 
   \indexspace
 
-  \item MSO, 46
-    \subitem Equivalence with regular languages, 49
-    \subitem Finite models, 48
-    \subitem Interpretation of $P$ $\llbracket P \rrbracket$, 47
-    \subitem Models described by strings, 49
-    \subitem String positions, 47
+  \item MSO, 48
+    \subitem Equivalence with regular languages, 51
+    \subitem Finite models, 49
+    \subitem Interpretation of $P$ $\llbracket P \rrbracket$, 48
+    \subitem Models described by strings, 50
+    \subitem String positions, 49
 
   \indexspace
 
   \item Pointwise strings
-    \subitem $l$ and $r$, 53
-    \subitem Relations, 54
-    \subitem Translation from intervals, 54
+    \subitem $l$ and $r$, 55
+    \subitem Relations, 56
+    \subitem Translation from intervals, 56
   \item Projection
-    \subitem Languages, 66
-    \subitem Strings, 65
+    \subitem Languages, 69
+    \subitem Strings, 68
 
   \indexspace
 
   \item Reasoning
-    \subitem Contains, 128
-    \subitem Contradicts, 128
-    \subitem Gap, 118
-  \item Reduct, 64
+    \subitem Contains, 137
+    \subitem Contradicts, 137
+    \subitem Gap, 126
+  \item Reduct, 67
 
   \indexspace
 
   \item Semi-intervals
-    \subitem $\alpha$ and $\omega$, 103
-    \subitem $semi(s)$, 103
-    \subitem Disjunctions in a box, 105
-  \item Sequences of sets, 43
+    \subitem $\alpha$ and $\omega$, 109
+    \subitem $semi(s)$, 109
+    \subitem Disjunctions in a box, 111
+  \item Sequences of sets, 45
   \item Superposition
-    \subitem Asynchronous $\spasync$, 62
-    \subitem Basic $\sp$, 59
-      \subsubitem Languages, 59
-    \subitem Sensible $\sensp$, 108
-    \subitem Vocabulary-constrained $\spvc$, 71
+    \subitem Asynchronous $\spasync$, 65
+    \subitem Basic $\sp$, 61
+      \subsubitem Languages, 62
+    \subitem Sensible $\sensp$, 114
+    \subitem Vocabulary-constrained $\spvc$, 75
 
   \indexspace
 
@@ -102,8 +102,8 @@
 
   \indexspace
 
-  \item Vocabulary, 43
-    \subitem Languages, 57
-    \subitem Strings  $\V_s$, 57
+  \item Vocabulary, 45
+    \subitem Languages, 59
+    \subitem Strings  $\V_s$, 59
 
 \end{theindex}

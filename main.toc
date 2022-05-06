@@ -11,59 +11,59 @@
 \contentsline {subsubsection}{\numberline {2.1.1}Allen's Interval Algebra}{5}
 \contentsline {subsubsection}{\numberline {2.1.2}Tense and Aspect}{12}
 \contentsline {subsection}{\numberline {2.2}Temporal Annotation}{18}
-\contentsline {subsubsection}{\numberline {2.2.1}TimeML and TimeBank}{19}
+\contentsline {subsubsection}{\numberline {2.2.1}TimeML and TimeBank}{20}
 \contentsline {subsubsection}{\numberline {2.2.2}Tango and T-BOX}{29}
-\contentsline {subsection}{\numberline {2.3}Temporal Semantics of DRT}{33}
-\contentsline {section}{\numberline {3}Finite-State Temporality}{40}
-\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{41}
-\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{43}
-\contentsline {subsubsection}{\numberline {3.1.2}Strings as MSO Models}{46}
-\contentsline {paragraph}{Analogous Strings}{50}
-\contentsline {subsubsection}{\numberline {3.1.3}Granularity: Points and Intervals}{51}
-\contentsline {subsubsection}{\numberline {3.1.4}String Operations}{56}
-\contentsline {paragraph}{Vocabulary:}{57}
-\contentsline {paragraph}{Block Compression:}{57}
-\contentsline {paragraph}{Superposition:}{59}
-\contentsline {paragraph}{Asynchronous Superposition:}{60}
-\contentsline {paragraph}{Reduct:}{63}
-\contentsline {paragraph}{Projection:}{65}
-\contentsline {paragraph}{Generate and Test:}{66}
-\contentsline {paragraph}{Vocabulary-Constrained Superposition:}{70}
-\contentsline {subsection}{\numberline {3.2}Applications}{73}
-\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{74}
-\contentsline {subsubsection}{\numberline {3.2.2}Constraints and Scheduling (Zebra Puzzle)}{80}
-\contentsline {section}{\numberline {4}Methods for Deriving and Using Strings}{91}
-\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{91}
-\contentsline {subsubsection}{\numberline {4.1.1}Linking the TLINKs}{93}
-\contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{98}
-\contentsline {subsection}{\numberline {4.2}Strings From Other Sources}{110}
-\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{111}
-\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{114}
-\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{115}
-\contentsline {subsubsection}{\numberline {4.3.2}Residuals and Gaps}{117}
-\contentsline {subsection}{\numberline {4.4}Timeline Validity}{121}
-\contentsline {section}{\numberline {5}String Temporal Annotation and Relation Tool (START)}{124}
-\contentsline {subsection}{\numberline {5.1}Back-end API}{126}
-\contentsline {subsection}{\numberline {5.2}Front-end Interface}{129}
-\contentsline {section}{\numberline {6}Conclusion}{138}
-\contentsline {section}{Index of Definitions and Concepts}{144}
-\contentsline {section}{Bibliography}{146}
-\contentsline {section}{Appendices}{154}
-\contentsline {subsection}{Python Code}{154}
-\contentsline {subsubsection}{strfns.py}{154}
-\contentsline {subsubsection}{freksa.py}{166}
-\contentsline {subsubsection}{newTLINKs.py}{170}
-\contentsline {subsubsection}{superpose.py}{173}
-\contentsline {subsubsection}{test.py}{174}
-\contentsline {subsection}{JavaScript Code}{175}
-\contentsline {subsubsection}{index.js}{175}
-\contentsline {subsubsection}{parseTML.js}{189}
-\contentsline {subsubsection}{suggestTenseAspectRelation.js}{193}
-\contentsline {subsubsection}{CreateRelation.js}{196}
-\contentsline {subsubsection}{Details.js}{200}
-\contentsline {subsubsection}{EventList.js}{204}
-\contentsline {subsubsection}{ExamineString.js}{205}
-\contentsline {subsubsection}{Help.js}{206}
-\contentsline {subsubsection}{StringBank.js}{209}
-\contentsline {subsubsection}{TextDisplay.js}{211}
-\contentsline {subsubsection}{TextEntry.js}{212}
+\contentsline {subsection}{\numberline {2.3}Temporal Semantics of DRT}{34}
+\contentsline {section}{\numberline {3}Finite-State Temporality}{41}
+\contentsline {subsection}{\numberline {3.1}Strings for Times and Events}{42}
+\contentsline {subsubsection}{\numberline {3.1.1}Creating Strings}{45}
+\contentsline {subsubsection}{\numberline {3.1.2}Strings as MSO Models}{48}
+\contentsline {paragraph}{Analogous Strings}{52}
+\contentsline {subsubsection}{\numberline {3.1.3}Granularity: Points and Intervals}{53}
+\contentsline {subsubsection}{\numberline {3.1.4}String Operations}{58}
+\contentsline {paragraph}{Vocabulary:}{59}
+\contentsline {paragraph}{Block Compression:}{59}
+\contentsline {paragraph}{Superposition:}{61}
+\contentsline {paragraph}{Asynchronous Superposition:}{63}
+\contentsline {paragraph}{Reduct:}{66}
+\contentsline {paragraph}{Projection:}{68}
+\contentsline {paragraph}{Generate and Test:}{69}
+\contentsline {paragraph}{Vocabulary-Constrained Superposition:}{73}
+\contentsline {subsection}{\numberline {3.2}Applications}{77}
+\contentsline {subsubsection}{\numberline {3.2.1}Timelines from Texts}{77}
+\contentsline {subsubsection}{\numberline {3.2.2}Constraints and Scheduling (Zebra Puzzle)}{84}
+\contentsline {section}{\numberline {4}Methods for Deriving and Using Strings}{96}
+\contentsline {subsection}{\numberline {4.1}Extracting Strings from Annotated Text}{96}
+\contentsline {subsubsection}{\numberline {4.1.1}Linking the TLINKs}{98}
+\contentsline {subsubsection}{\numberline {4.1.2}Handling Incomplete Data}{104}
+\contentsline {subsection}{\numberline {4.2}Strings From Other Sources}{117}
+\contentsline {subsubsection}{\numberline {4.2.1}Parallel Meaning Bank}{118}
+\contentsline {subsection}{\numberline {4.3}Reasoning with Strings}{121}
+\contentsline {subsubsection}{\numberline {4.3.1}Superposition and Projection}{122}
+\contentsline {subsubsection}{\numberline {4.3.2}Residuals and Gaps}{125}
+\contentsline {subsection}{\numberline {4.4}Timeline Validity}{128}
+\contentsline {section}{\numberline {5}String Temporal Annotation and Relation Tool (START)}{132}
+\contentsline {subsection}{\numberline {5.1}Back-end API}{134}
+\contentsline {subsection}{\numberline {5.2}Front-end Interface}{137}
+\contentsline {section}{\numberline {6}Conclusion}{147}
+\contentsline {section}{Index of Definitions and Concepts}{153}
+\contentsline {section}{Bibliography}{155}
+\contentsline {section}{Appendices}{163}
+\contentsline {subsection}{Python Code}{163}
+\contentsline {subsubsection}{strfns.py}{163}
+\contentsline {subsubsection}{freksa.py}{175}
+\contentsline {subsubsection}{newTLINKs.py}{180}
+\contentsline {subsubsection}{superpose.py}{183}
+\contentsline {subsubsection}{test.py}{184}
+\contentsline {subsection}{JavaScript Code}{186}
+\contentsline {subsubsection}{index.js}{186}
+\contentsline {subsubsection}{parseTML.js}{200}
+\contentsline {subsubsection}{suggestTenseAspectRelation.js}{204}
+\contentsline {subsubsection}{CreateRelation.js}{207}
+\contentsline {subsubsection}{Details.js}{211}
+\contentsline {subsubsection}{EventList.js}{215}
+\contentsline {subsubsection}{ExamineString.js}{216}
+\contentsline {subsubsection}{Help.js}{217}
+\contentsline {subsubsection}{StringBank.js}{220}
+\contentsline {subsubsection}{TextDisplay.js}{222}
+\contentsline {subsubsection}{TextEntry.js}{223}
